@@ -1,0 +1,388 @@
+/* 90s_style.css - Retro 90's style CSS for Ratul Hasan's personal website */
+
+/* Base styles */
+body {
+    background-color: #000000;
+    background-image: url('images/backgrounds/stars.gif');
+    color: #FFFFFF;
+    font-family: "Times New Roman", Times, serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    cursor: url('images/cursors/cursor.cur'), auto;
+}
+
+a {
+    color: #00FFFF;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #FF69B4;
+    text-decoration: underline;
+}
+
+/* Container and layout */
+.container {
+    width: 760px;
+    margin: 0 auto;
+    border: 5px solid #FF69B4;
+    background-color: #000033;
+    padding: 20px;
+    box-shadow: 10px 10px 0px #9400D3;
+}
+
+.header {
+    border: 3px solid #00FFFF;
+    background-color: #000066;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.content {
+    border: 3px solid #00FFFF;
+    padding: 15px;
+    margin: 20px 0;
+    background-color: #000066;
+    text-align: left;
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 12px;
+    border-top: 2px solid #00FFFF;
+    padding-top: 10px;
+}
+
+/* Typography */
+h1 {
+    font-family: "Comic Sans MS", cursive;
+    color: #FFFF00;
+    text-shadow: 2px 2px #FF0000;
+    font-size: 36px;
+    margin: 10px 0;
+}
+
+h2 {
+    font-family: "Comic Sans MS", cursive;
+    color: #00FFFF;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+h3 {
+    font-family: "Comic Sans MS", cursive;
+    color: #FF69B4;
+    font-size: 20px;
+    margin: 8px 0;
+}
+
+p {
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+/* Special effects */
+.blink {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+marquee {
+    background-color: #000066;
+    color: #FFFF00;
+    padding: 5px;
+    border: 1px solid #00FFFF;
+}
+
+/* Navigation */
+.nav-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.nav-table td {
+    width: 25%;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid #9400D3;
+}
+
+.nav-button {
+    display: block;
+    background-color: #9400D3;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 8px;
+    text-decoration: none;
+    border: 2px outset #FF69B4;
+}
+
+.nav-button:hover {
+    background-color: #FF69B4;
+    border: 2px inset #9400D3;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+/* Decorative elements */
+.badge {
+    margin: 10px;
+}
+
+.counter {
+    font-family: "Courier New", monospace;
+    background-color: #000000;
+    color: #00FF00;
+    border: 2px inset #666666;
+    padding: 3px;
+    margin: 10px auto;
+    width: 100px;
+}
+
+/* Profile section */
+.profile {
+    border: 3px solid #00FFFF;
+    padding: 10px;
+    margin: 20px 0;
+    background-color: #000066;
+}
+
+.profile-img {
+    border: 5px solid #FF69B4;
+    margin: 10px;
+}
+
+/* Tables */
+.bio-table, .job-table, .edu-table, .project-table, .skill-table, .award-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.bio-table td, .job-table td, .edu-table td, .project-table td, .skill-table td, .award-table td,
+.bio-table th, .job-table th, .edu-table th, .project-table th, .skill-table th, .award-table th {
+    padding: 8px;
+    border: 1px solid #00FFFF;
+}
+
+.bio-table th, .job-table th, .edu-table th, .project-table th, .skill-table th, .award-table th {
+    background-color: #9400D3;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+/* Bio table */
+.bio-label {
+    width: 30%;
+    font-weight: bold;
+    color: #FFFF00;
+}
+
+/* Job table */
+.job-title {
+    color: #FFFF00;
+    font-weight: bold;
+}
+
+.job-company {
+    color: #FF69B4;
+    font-weight: bold;
+}
+
+.job-date {
+    color: #00FFFF;
+    font-style: italic;
+}
+
+/* Education table */
+.school-name {
+    color: #FFFF00;
+    font-weight: bold;
+}
+
+.degree {
+    color: #FF69B4;
+    font-weight: bold;
+}
+
+.year {
+    color: #00FFFF;
+    font-style: italic;
+}
+
+/* Project table */
+.project-title {
+    color: #FFFF00;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.project-date {
+    color: #FF69B4;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.project-desc {
+    margin-top: 10px;
+}
+
+/* Skills table */
+.skill-category {
+    color: #FFFF00;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #000099;
+    text-align: center;
+}
+
+.skill-name {
+    color: #FF69B4;
+    font-weight: bold;
+    width: 40%;
+}
+
+.skill-level {
+    width: 60%;
+}
+
+.skill-bar {
+    background-color: #000000;
+    border: 1px solid #00FFFF;
+    height: 20px;
+    position: relative;
+}
+
+.skill-fill {
+    background-color: #00FFFF;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Awards table */
+.award-name {
+    color: #FFFF00;
+    font-weight: bold;
+    width: 60%;
+}
+
+.award-year {
+    color: #FF69B4;
+    font-weight: bold;
+    width: 40%;
+    text-align: center;
+}
+
+.trophy {
+    font-size: 24px;
+    color: #FFD700;
+    margin-right: 10px;
+}
+
+/* Guestbook */
+.guestbook-form {
+    background-color: #000066;
+    border: 2px solid #00FFFF;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.form-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.form-table td {
+    padding: 8px;
+}
+
+.form-label {
+    width: 30%;
+    color: #FFFF00;
+    font-weight: bold;
+    text-align: right;
+}
+
+.form-input {
+    width: 70%;
+}
+
+input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    background-color: #000033;
+    color: #FFFFFF;
+    border: 1px solid #00FFFF;
+    padding: 5px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+input[type="submit"] {
+    background-color: #9400D3;
+    color: #FFFFFF;
+    border: 2px outset #FF69B4;
+    padding: 8px 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #FF69B4;
+    border: 2px inset #9400D3;
+}
+
+.messages {
+    background-color: #000066;
+    border: 2px solid #00FFFF;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.message {
+    border: 1px solid #00FFFF;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #000033;
+}
+
+.message-header {
+    border-bottom: 1px dashed #00FFFF;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.message-name {
+    color: #FFFF00;
+    font-weight: bold;
+}
+
+.message-date {
+    color: #FF69B4;
+    font-style: italic;
+    float: right;
+}
+
+.message-content {
+    margin-top: 10px;
+}
+
+/* Responsive design (basic) */
+@media screen and (max-width: 800px) {
+    .container {
+        width: 95%;
+    }
+    
+    .nav-table td {
+        display: block;
+        width: 100%;
+    }
+}
