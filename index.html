@@ -1,126 +1,896 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Ratul Hasan Ruhan- Personal Website</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/themes.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ratul Hasan Ruhan</title>
 
-    <!-- ✅ Basic Meta Tags -->
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ratul Hasan Ruhan — Software Engineer & Tech Enthusiast</title>
-<meta name="description" content="Ratul Hasan Ruhan is a Bangladeshi Software Engineer focused on Software Development, AI, and open-source projects. This is his personal site." />
-<meta name="author" content="Ratul Hasan Ruhan" />
-<link rel="canonical" href="https://ratulhasanruhan.github.io/" />
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/ratulhsan-faviocn.ico" type="image/x-icon">
 
-<!-- ✅ Open Graph for Social Media Preview -->
-<meta property="og:title" content="Ratul Hasan Ruhan — Software Engineer & Flutter Enthusiast" />
-<meta property="og:description" content="Building cross-platform apps, exploring AI, and creating tools for the Bangla tech ecosystem." />
-<meta property="og:image" content="https://avatars.githubusercontent.com/u/55647560?v=4" /> 
-<meta property="og:url" content="https://ratulhasanruhan.github.io/" />
-<meta property="og:type" content="website" />
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
 
-<!-- ✅ Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Ratul Hasan Ruhan" />
-<meta name="twitter:description" content="Flutter Dev | AI Explorer | Open Source Enthusiast" />
-<meta name="twitter:image" content="https://camo.githubusercontent.com/332cea7c2c66a9f05c224dcfee9b33fafd0aa9163ad59ca53ea6885d778a2e3d/68747470733a2f2f63617073756c652d72656e6465722e76657263656c2e6170702f6170693f747970653d776176696e6726636f6c6f723d464645364536266865696768743d3230302673656374696f6e3d68656164657226746578743d526174756c253230486173616e253230527568616e26666f6e7453697a653d343026666f6e74436f6c6f723d324532453245" />
-
-<!-- ✅ Schema.org Structured Data (JSON-LD) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Ratul Hasan Ruhan",
-  "alternateName": "রাতুল হাসান রুহান",
-  "url": "https://ratulhasanruhan.github.io",
-  "image": "https://avatars.githubusercontent.com/u/55647560?v=4",
-  "sameAs": [
-    "https://github.com/ratulhasanruhan",
-    "https://www.linkedin.com/in/ratul-hasan-ruhan",
-    "https://ratulhasanruhan.medium.com"
-  ],
-  "jobTitle": "Software Developer",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Appibrium"
-  },
-  "alumniOf": {
-    "@type": "CollegeOrUniversity",
-    "name": "Daffodil International University"
-  },
-  "knowsAbout": [
-    "Software Engineering",
-    "Mobile App Development",
-    "AI Integration",
-    "Open Source",
-    "Bangla Programming Language",
-    "Ojogor Language"
-  ],
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "BD",
-    "addressLocality": "Dhaka"
-  }
-}
-</script>
-
-    
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>RATUL HASAN RUHAN</h1>
-            <h2>SOFTWARE DEVELOPER</h2>
+
+  <!--
+    - #MAIN
+  -->
+
+  <main>
+
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="./assets/images/ratulhasan-avatar.png" alt="Ratul Hasan Ruhan" width="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Ratul Hasan Ruhan">Ratul Hasan Ruhan</h1>
+
+          <p class="title">Software Engineer</p>
         </div>
-        
-        <marquee scrollamount="5" behavior="scroll" direction="left">
-            Welcome to my personal website! Thanks for visiting! This site is best viewed in 800x600 resolution!
-        </marquee>
-        
-        <div class="welcome">
-            <span class="blink">*** WELCOME TO MY HOMEPAGE ***</span>
-        </div>
-        
-        <div class="profile">
-            <!-- Placeholder for profile image -->
-            <div class="profile-img">
-                [Profile Photo Coming Soon]
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
             </div>
-            
-            <p>Hello! I'm Ratul Hasan, a Software Developer based in Dhaka, Bangladesh.</p>
-            <p>I specialize in Flutter, Python, and C# development.</p>
-            <p>This website showcases my education, work experience, projects, and skills.</p>
-        </div>
-        
-        <table class="nav-table">
-            <tr>
-                <td><a href="about.html" class="nav-button">About Me</a></td>
-                <td><a href="experience.html" class="nav-button">Work Experience</a></td>
-                <td><a href="education.html" class="nav-button">Education</a></td>
-                <td><a href="projects.html" class="nav-button">Projects</a></td>
-            </tr>
-            <tr>
-                <td><a href="skills.html" class="nav-button">Skills</a></td>
-                <td><a href="awards.html" class="nav-button">Awards</a></td>
-                <td><a href="guestbook.html" class="nav-button">Guestbook</a></td>
-                <td><a href="mailto:ratulhasan1644@gmail.com" class="nav-button">Email Me</a></td>
-            </tr>
-        </table>
-        
-        <div>
-            <img src="images/gifs/under_construction.gif" alt="Under Construction" class="badge">
-            <img src="images/gifs/new.gif" alt="New" class="badge">
-            <img src="images/gifs/netscape_now.gif" alt="Netscape Now" class="badge">
-        </div>
-        
-        <div class="footer">
-            <p>Visitors: <span class="counter">00001</span></p>
-            <p>Last updated: April 2025</p>
-            <p>© 2025 Ratul Hasan Ruhan | <a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a> | <a href="https://ratulhasanruhan.github.io" target="_blank">GitHub</a></p>
-        </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="mailto:ratulhasan1644@gmail.com" class="contact-link">ratulhasan1644@gmail.com</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+
+              <a href="tel:+880178953698" class="contact-link">+880178953698</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Birthday</p>
+
+              <time datetime="2004-03-23">March 23, 2004</time>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+
+              <address>Dhaka, Bangladesh</address>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item">
+            <a href="https://github.com/ratulhasanruhan" class="social-link">
+              <ion-icon name="logo-github"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://www.linkedin.com/in/ratul-hasan-ruhan/" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://ratulhasan.link" class="social-link">
+              <ion-icon name="globe-outline"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+
+
+
+
+    <!--
+      - #main-content
+    -->
+
+    <div class="main-content">
+
+      <!--
+        - #NAVBAR
+      -->
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <button class="navbar-link  active" data-nav-link>About</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Resume</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Portfolio</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Blog</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+
+
+
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about  active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            I'm a Software Engineer specializing in building scalable, efficient, user-friendly mobile, web, and desktop applications. 
+            I started my journey with android app development, later expanding into Flutter, web technologies, and AI/ML. I love exploring the intersection of technology and local context.
+          </p>
+
+          <p>
+            I believe that software should be elegant, intuitive, and empowering. My expertise spans across cross-platform development,
+            desktop applications, applied AI/ML, and clean architecture design.
+          </p>
+        </section>
+
+
+        <!--
+          - service
+        -->
+
+        <section class="service">
+
+          <h3 class="h3 service-title">What i'm doing</h3>
+
+          <ul class="service-list">
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-app.svg" 
+				alt="mobile app icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Mobile App Development</h4>
+
+                <p class="service-item-text">
+                  Building efficient and cross-platform mobile applications
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-desktop.svg" alt="desktop application icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Desktop Applications</h4>
+
+                <p class="service-item-text">
+                  Developing modern desktop applications using .NET and C#
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-ai.svg" alt="AI/ML icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">AI/ML Integration</h4>
+
+                <p class="service-item-text">
+                  Implementing AI and machine learning solutions in real-world applications
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-dev.svg" alt="web application icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Web Applications</h4>
+
+                <p class="service-item-text">
+                  Creating stunning web experiences with modern frameworks & technologies
+                </p>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+
+        <section class="resume-download">
+          <div class="download-card">
+            <div class="card-content">
+              <div class="download-icon">
+                <ion-icon name="document-text-outline"></ion-icon>
+              </div>
+              
+              <h3 class="h3 download-title">Download Resume</h3>
+              
+              <p class="download-text">
+                Get a copy of my detailed resume in PDF format
+              </p>
+
+              <div class="download-buttons">
+                <a href="./assets/Ratul Hasan Ruhan_CV_2025.pdf" class="download-btn" download>
+                  <ion-icon name="download-outline"></ion-icon>
+                  <span>Download PDF</span>
+                </a>
+                <a href="./assets/Ratul Hasan Ruhan_CV_2025.pdf" class="view-btn" target="_blank">
+                  <ion-icon name="eye-outline"></ion-icon>
+                  <span>View Online</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #RESUME
+      -->
+
+      <article class="resume" data-page="resume">
+
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+        </header>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Education</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">BSc. in Computer Science & Engineering</h4>
+
+              <span>Jan 2024 - Dec 2027</span>
+
+              <p class="timeline-text">
+                Daffodil International University
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Higher Secondary Certificate (Science)</h4>
+
+              <span>Jan 2021 - Jun 2023</span>
+
+              <p class="timeline-text">
+                Shariatpur Govt. College
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Secondary School Certificate (Science)</h4>
+
+              <span>Jan 2016 - Dec 2020</span>
+
+              <p class="timeline-text">
+                PTGD Govt. High School
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Experience</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Emerge AI | Mobile Application Developer</h4>
+
+              <span>Oct 2024 - Mar 2025</span>
+
+              <p class="timeline-text">
+                Developed cross-platform mobile apps using Flutter and integrated AI solutions.
+                Collaborated with a global team to design innovative mobile tech solutions.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Infolook | Mobile Application Developer</h4>
+
+              <span>Sep 2023 - Aug 2024</span>
+
+              <p class="timeline-text">
+                Designed and developed cross-platform mobile applications.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Appibrium | Android Application Developer</h4>
+
+              <span>Dec 2020 - Feb 2022</span>
+
+              <p class="timeline-text">
+                Improved app performance and user experience through regular testing and debugging.
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+        <section class="skill">
+
+          <h3 class="h3 skills-title">My skills</h3>
+
+          <ul class="skills-list content-card">
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Flutter Development</h5>
+                <data value="90">90%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 90%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Python</h5>
+                <data value="85">85%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 85%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">C#</h5>
+                <data value="80">80%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 80%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Data Structures & Algorithms</h5>
+                <data value="85">85%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 85%;"></div>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="trophy-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Awards & Achievements</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">1st Place — Programming Contest | DIA ICT Fest 2025</h4>
+              <p class="timeline-text">
+                Won first place in the programming contest at DIA ICT Fest 2025
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">1st Place — Project Showcasing | DIA ICT Fest 2025</h4>
+              <p class="timeline-text">
+                Secured first position in project showcasing competition
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Cisco Certified Network Associate (CCNA)</h4>
+              <p class="timeline-text">
+                Professional certification in networking and security
+              </p>
+            </li>
+
+          </ol>
+
+        </section>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="heart-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Volunteering</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Volunteer — SPSB</h4>
+              <p class="timeline-text">
+                Sciecne Popularization Society of Bangladesh
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Volunteer — BDOSN</h4>
+              <p class="timeline-text">
+                Bangladesh Open Source Network
+              </p>
+            </li>
+
+          </ol>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #PORTFOLIO
+      -->
+
+      <article class="portfolio" data-page="portfolio">
+
+        <header>
+          <h2 class="h2 article-title">Portfolio</h2>
+        </header>
+
+        <section class="projects">
+
+          <ul class="filter-list">
+
+            <li class="filter-item">
+              <button class="active" data-filter-btn>All</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Mobile Apps</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>AI Projects</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Web Apps</button>
+            </li>
+
+          </ul>
+
+          <div class="filter-select-box">
+
+            <button class="filter-select" data-select>
+
+              <div class="select-value" data-selecct-value>Select category</div>
+
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+
+            </button>
+
+            <ul class="select-list">
+
+              <li class="select-item">
+                <button data-select-item>All</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Mobile Apps</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>AI Projects</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Web Apps</button>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <ul class="project-list">
+            <!-- Project items will be loaded dynamically -->
+          </ul>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #BLOG
+      -->
+
+      <article class="blog" data-page="blog">
+
+        <header>
+          <h2 class="h2 article-title">Blog</h2>
+        </header>
+
+        <section class="blog-posts">
+          <div class="blog-loading">Loading blog posts...</div>
+          <ul class="blog-posts-list">
+            <!-- Blog posts will be loaded dynamically -->
+          </ul>
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #CONTACT
+      -->
+
+      <article class="contact" data-page="contact">
+
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <section class="contact-info-card improved-contact-card">
+          <div class="contact-info-main">
+            <h3 class="contact-heading">Let's Connect!</h3>
+            <div class="contact-info-list">
+              <div class="contact-info-row"><strong>Email:</strong> <a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a></div>
+              <div class="contact-info-row"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ratul-hasan-ruhan/" target="_blank">ratul-hasan-ruhan</a></div>
+            </div>
+            <blockquote class="contact-fun-fact improved-fun-fact">“I love exploring <span class='highlight'>all kinds of frameworks</span>—if it has docs, I've probably tried it!”</blockquote>
+          </div>
+          <div class="contact-qr">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=mailto:ratulhasan1644@gmail.com" alt="QR to email" class="contact-qr-img">
+            <div class="contact-qr-caption">Scan to email me!</div>
+          </div>
+        </section>
+
+        <section class="contact-form improved-contact-form">
+          <h3 class="h3 form-title">Contact Form</h3>
+          <form action="https://formspree.io/f/mkgrbazr" method="POST" class="form" data-form>
+            <div class="input-wrapper">
+              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+            </div>
+            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+            <button class="form-btn" type="submit" data-form-btn>
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
+          </form>
+        </section>
+
+      </article>
+
     </div>
+
+  </main>
+
+
+
+
+
+
+  <!--
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <!--
+    - marked.js link
+  -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- Improved contact section styles -->
+  <style id="improved-contact-styles">
+  .improved-contact-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 32px;
+    background: var(--eerie-black-2);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    padding: 32px 28px 24px 28px;
+    margin-bottom: 32px;
+    border: 1px solid var(--jet);
+  }
+  .contact-info-main {
+    flex: 2 1 220px;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .contact-heading {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--orange-yellow-crayola);
+  }
+  .contact-info-list {
+    margin-bottom: 12px;
+    font-size: 1.05rem;
+  }
+  .contact-info-list a {
+    color: var(--orange-yellow-crayola);
+    text-decoration: none;
+  }
+  .contact-info-list a:hover {
+    text-decoration: underline;
+  }
+  .contact-fun-fact {
+    margin: 0;
+    padding: 12px 18px;
+    background: var(--onyx);
+    border-left: 4px solid var(--orange-yellow-crayola);
+    border-radius: 8px;
+    color: var(--light-gray-70);
+    font-style: italic;
+    font-size: 1.05rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .contact-qr {
+    flex: 1 1 140px;
+    min-width: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .contact-qr-img {
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    background: #fff;
+    width: 140px;
+    height: 140px;
+  }
+  .contact-qr-caption {
+    font-size: 13px;
+    text-align: center;
+    margin-top: 7px;
+    color: var(--light-gray-70);
+  }
+  .improved-contact-form {
+    background: var(--eerie-black-2);
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 28px 22px 22px 22px;
+    border: 1px solid var(--jet);
+  }
+  @media (max-width: 700px) {
+    .improved-contact-card {
+      flex-direction: column;
+      padding: 18px 8px 12px 8px;
+      gap: 18px;
+    }
+    .improved-contact-form {
+      padding: 16px 4px 12px 4px;
+    }
+  }
+  .contact-info-row {
+    margin-bottom: 8px;
+    font-size: 1.08rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .contact-info-row strong {
+    color: var(--orange-yellow-crayola);
+    font-weight: 600;
+    min-width: 70px;
+  }
+  .contact-info-row a {
+    color: var(--white-2);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .contact-info-row a:hover {
+    color: var(--orange-yellow-crayola);
+    text-decoration: underline;
+  }
+  .improved-fun-fact {
+    font-size: 1.12rem;
+    color: var(--light-gray-70);
+    background: var(--onyx);
+    border-left: 4px solid var(--orange-yellow-crayola);
+    border-radius: 8px;
+    padding: 14px 20px;
+    margin-top: 10px;
+    font-style: italic;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .improved-fun-fact .highlight {
+    color: var(--orange-yellow-crayola);
+    font-weight: 600;
+  }
+  </style>
+
+  <!-- Add canvas-confetti CDN for confetti animation on blog card click -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Add modal container if it doesn't exist -->
+  <script>
+  if (!document.querySelector('.modal-container')) {
+    const modalHTML = `
+      <div class="modal-container" style="display: none;">
+        <div class="modal-content">
+          <span class="modal-close">&times;</span>
+          <div id="modal-blog-content"></div>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+  }
+  </script>
+
 </body>
+
 </html>

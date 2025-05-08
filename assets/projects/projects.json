@@ -1,0 +1,23 @@
+[
+	{
+	  "title": "Ojogor (অজগর)",
+	  "subtitle": "A powerful mobile app for language learning.",
+	  "category": "Mobile Apps",
+	  "image": "ojogor.webp",
+	  "url": "https://ratulhasan.gitbook.io/ojogor"
+	},
+	{
+	  "title": "GoruMetrik – গরু মেট্রিক",
+	  "subtitle": "AI-powered cattle measurement tool.",
+	  "category": "AI Projects",
+	  "image": "project2.png",
+	  "url": "#"
+	},
+	{
+	  "title": "Emerge AI",
+	  "subtitle": "A mobile app for language learning.",
+	  "category": "Mobile Apps",
+	  "image": "project3.jpg",
+	  "url": "#"
+	}
+  ]
