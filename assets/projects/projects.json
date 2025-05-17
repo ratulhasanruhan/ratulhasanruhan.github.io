@@ -44,7 +44,7 @@
 	{
 	  "title": "Gone Board",
 	  "subtitle": "A flutter UI package",
-	  "category": "Libary",
+	  "category": "Library",
 	  "image": "gone_board.png",
 	  "url": "https://pub.dev/packages/gone_board"
 	},
@@ -61,6 +61,13 @@
 	  "category": "Desktop Apps",
 	  "image": "dokanmate.png",
 	  "url": "https://github.com/ratulhasanruhan/DokanMate"
+	},
+		{
+	  "title": "apinion",
+	  "subtitle": "A packgae for easy API handling",
+	  "category": "Library",
+	  "image": "apinion_logo.png",
+	  "url": "https://pub.dev/packages/apinion"
 	},
 	{
 	  "title": "Porichoy",
