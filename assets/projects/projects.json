@@ -49,6 +49,13 @@
 	  "url": "https://pub.dev/packages/gone_board"
 	},
 	{
+	  "title": "Flutter Build Uploader",
+	  "subtitle": "A flutter CLI tools for build automation",
+	  "category": "Library",
+	  "image": "flutter_build_uploader.png",
+	  "url": "https://pub.dev/packages/flutter_build_uploader"
+	},
+	{
 	  "title": "Productive Muslim",
 	  "subtitle": "A fullfilled islamic app",
 	  "category": "Mobile Apps",
