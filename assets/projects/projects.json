@@ -1,23 +1,93 @@
 [
 	{
 	  "title": "Ojogor (অজগর)",
-	  "subtitle": "A powerful mobile app for language learning.",
-	  "category": "Mobile Apps",
+	  "subtitle": "A bengali programming language",
+	  "category": "Compiler",
 	  "image": "ojogor.webp",
 	  "url": "https://ratulhasan.gitbook.io/ojogor"
 	},
 	{
-	  "title": "GoruMetrik – গরু মেট্রিক",
-	  "subtitle": "AI-powered cattle measurement tool.",
-	  "category": "AI Projects",
-	  "image": "project2.png",
-	  "url": "#"
+	  "title": "Emerge AI",
+	  "subtitle": "An AI based mental health and fitness app",
+	  "category": "Mobile Apps",
+	  "image": "emerge.webp",
+	  "url": "https://play.google.com/store/apps/details?id=app.goemergeai.emergeai"
 	},
 	{
-	  "title": "Emerge AI",
-	  "subtitle": "A mobile app for language learning.",
+	  "title": "Juniro Cambrian",
+	  "subtitle": "A LMS with gamification",
 	  "category": "Mobile Apps",
-	  "image": "project3.jpg",
-	  "url": "#"
+	  "image": "junior.png",
+	  "url": "https://www.ekushey-tv.com/%E0%A6%96%E0%A7%87%E0%A6%B2%E0%A6%BE%E0%A6%B0-%E0%A6%9B%E0%A6%B2%E0%A7%87-%E0%A6%85%E0%A6%A8%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%A8%E0%A7%87-%E0%A6%AC%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9A%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B0-%E0%A6%B6%E0%A7%87%E0%A6%96%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87-%E0%A6%9C%E0%A7%81%E0%A6%A8%E0%A6%BF%E0%A7%9F%E0%A6%B0-%E0%A6%95%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AE%E0%A6%AC%E0%A7%8D%E0%A6%B0%E0%A6%BF%E0%A7%9F%E0%A6%BE%E0%A6%A8/1360873111111142091"
+	},
+	{
+	  "title": "Hello Chatkhil",
+	  "subtitle": "A Medical and blood donation app",
+	  "category": "Mobile Apps",
+	  "image": "hello_chatkhil.png",
+	  "url": "https://play.google.com/store/apps/details?id=com.rhrsoft.rokto"
+	},
+	{
+	  "title": "Sikhboi",
+	  "subtitle": "A fullfilled app for digital learners",
+	  "category": "Mobile Apps",
+	  "image": "sikhboi.webp",
+	  "url": "https://play.google.com/store/apps/details?id=com.rhrsoft.sikhboinew"
+	},
+	{
+	  "title": "Hello Doctor",
+	  "subtitle": "An app for doctors to manage their patients",
+	  "category": "Mobile Apps",
+	  "image": "hello_doctor.webp",
+	  "url": "https://play.google.com/store/apps/details?id=com.rhrsoft.hello_doctor"
+	},
+	{
+	  "title": "Gone Board",
+	  "subtitle": "A flutter UI package",
+	  "category": "Library",
+	  "image": "gone_board.png",
+	  "url": "https://pub.dev/packages/gone_board"
+	},
+	{
+	  "title": "Flutter Build Uploader",
+	  "subtitle": "A flutter CLI tools for build automation",
+	  "category": "Library",
+	  "image": "flutter_build_uploader.png",
+	  "url": "https://pub.dev/packages/flutter_build_uploader"
+	},
+	{
+	  "title": "Productive Muslim",
+	  "subtitle": "A fullfilled islamic app",
+	  "category": "Mobile Apps",
+	  "image": "productive.jpg",
+	  "url": "https://apkpure.net/bn/productive-muslim/com.muslim.productive/download"
+	},
+	{
+	  "title": "DokanMate",
+	  "subtitle": "A lightweight offline POS system",
+	  "category": "Desktop Apps",
+	  "image": "dokanmate.png",
+	  "url": "https://github.com/ratulhasanruhan/DokanMate"
+	},
+		{
+	  "title": "apinion",
+	  "subtitle": "A packgae for easy API handling",
+	  "category": "Library",
+	  "image": "apinion_logo.png",
+	  "url": "https://pub.dev/packages/apinion"
+	},
+	{
+	  "title": "Porichoy",
+	  "subtitle": "A platform for portfolio website and cv showcasing",
+	  "category": "Web Apps",
+	  "image": "porichoy_white.png",
+	  "url": "https://porichoy.me/"
+	},
+	{
+	  "title": "Bandhu AI",
+	  "subtitle": "A mental wellbeing app",
+	  "category": "Mobile Apps",
+	  "image": "bandhu.png",
+	  "url": "https://bandhuai.app/"
 	}
   ]
