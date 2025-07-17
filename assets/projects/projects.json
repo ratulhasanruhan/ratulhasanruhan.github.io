@@ -14,7 +14,7 @@
 	  "url": "https://play.google.com/store/apps/details?id=app.goemergeai.emergeai"
 	},
 	{
-	  "title": "Juniro Cambrian",
+	  "title": "Junior Cambrian",
 	  "subtitle": "A LMS with gamification",
 	  "category": "Mobile Apps",
 	  "image": "junior.png",
@@ -89,5 +89,12 @@
 	  "category": "Mobile Apps",
 	  "image": "bandhu.png",
 	  "url": "https://bandhuai.app/"
+	},
+	{
+	  "title": "WaveCode",
+	  "subtitle": "Encodes audio into stunning visual representations and decodes them back to audio",
+	  "category": "Mobile Apps",
+	  "image": "wavecode.png",
+	  "url": "https://github.com/ratulhasanruhan/wavecode"
 	}
   ]
