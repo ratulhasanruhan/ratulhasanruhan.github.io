@@ -66,15 +66,22 @@
 	  "title": "DokanMate",
 	  "subtitle": "A lightweight offline POS system",
 	  "category": "Desktop Apps",
-	  "image": "dokanmate.png",
+	  "image": "dokanmate_desktop.png",
 	  "url": "https://github.com/ratulhasanruhan/DokanMate"
 	},
-		{
+	{
 	  "title": "apinion",
 	  "subtitle": "A packgae for easy API handling",
 	  "category": "Library",
 	  "image": "apinion_logo.png",
 	  "url": "https://pub.dev/packages/apinion"
+	},
+	{
+	  "title": "Goribli",
+	  "subtitle": "A MLOps pipeline for image generation",
+	  "category": "AI/ML",
+	  "image": "goribli.png",
+	  "url": "https://goribli.web.app/"
 	},
 	{
 	  "title": "Porichoy",
@@ -96,5 +103,19 @@
 	  "category": "Mobile Apps",
 	  "image": "wavecode.png",
 	  "url": "https://github.com/ratulhasanruhan/wavecode"
+	},
+	{
+	  "title": "DokanMate",
+	  "subtitle": "In a world of overloaded POS apps, we chose simplicity.",
+	  "category": "Mobile Apps",
+	  "image": "dokanmate.png",
+	  "url": "https://www.facebook.com/dokanmate/"
+	},
+	{
+	  "title": "GoruSheba",
+	  "subtitle": "Bangladesh's first intelligent cattle management system powered by AI & IoT. ",
+	  "category": "Mobile Apps",
+	  "image": "gorusheba.png",
+	  "url": "https://www.facebook.com/gorusheba/"
 	}
   ]
