@@ -55,6 +55,13 @@
 	  "image": "flutter_build_uploader.png",
 	  "url": "https://pub.dev/packages/flutter_build_uploader"
 	},
+		{
+	  "title": "TypeMate",
+	  "subtitle": "Overlay tools that follow your text fields on any app",
+	  "category": "Library",
+	  "image": "type_mate.jpg",
+	  "url": "https://pub.dev/packages/type_mate"
+	},
 	{
 	  "title": "Productive Muslim",
 	  "subtitle": "A fullfilled islamic app",
