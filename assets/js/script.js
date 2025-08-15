@@ -100,6 +100,27 @@ for (let i = 0; i < navigationLinks.length; i++) {
   });
 }
 
+// --- Direct URL navigation to Portfolio section ---
+window.addEventListener('DOMContentLoaded', function () {
+  // Only use hash-based navigation for main sections
+  const hash = window.location.hash.toLowerCase();
+  const sectionMap = {
+    '#about': 'about',
+    '#resume': 'resume',
+    '#contact': 'contact',
+    '#works': 'portfolio',
+    '#portfolio': 'portfolio'
+  };
+  if (sectionMap[hash]) {
+    for (let i = 0; i < navigationLinks.length; i++) {
+      if (navigationLinks[i].innerText.trim().toLowerCase() === sectionMap[hash]) {
+        navigationLinks[i].click();
+        break;
+      }
+    }
+  }
+});
+
 // Blog Integration with GitHub
 async function fetchBlogPosts() {
   try {
