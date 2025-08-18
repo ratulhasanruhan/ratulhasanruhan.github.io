@@ -41,7 +41,27 @@
 	  "image": "istt.jpeg",
 	  "url": "https://istt-uni.web.app/"
 	},
-	
+	{
+	  "title": "Avianicare | Avian & Animal Care BD",
+	  "subtitle": "A tech-driven e-commerce platform for animal health products and services.",
+	  "category": "Mobile Apps",
+	  "image": "avianicare.jpg",
+	  "url": "https://play.google.com/store/apps/details?id=com.pet.avianicare"
+	},
+	{
+	  "title": "Forex Signals",
+	  "subtitle": "Forex Signals – Live Trends & Analysis App",
+	  "category": "Mobile Apps",
+	  "image": "forex.png",
+	  "url": "https://play.google.com/store/apps/details?id=com.appybuilder.mdbillalhossain1.forex_tradingsignal"
+	},
+	{
+	  "title": "World Shine",
+	  "subtitle": "This gold investment app offers a user-friendly and secure platform to buy, sell, and track your gold investments",
+	  "category": "Mobile Apps",
+	  "image": "gold_app.png",
+	  "url": "https://worldshine.biz/"
+	},
 	{
 	  "title": "Sikhboi",
 	  "subtitle": "A fullfilled app for digital learners",
