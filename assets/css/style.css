@@ -1912,6 +1912,14 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .navbar-link { font-weight: var(--fw-500); }
 
+  /**
+   * ARTICLE HEADERS - Add padding to prevent going under navbar
+   */
+  
+  article header {
+    padding-top: 80px;
+  }
+
 
 
   /**

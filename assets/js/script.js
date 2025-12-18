@@ -84,39 +84,117 @@ for (let i = 0; i < formInputs.length; i++) {
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
 
-// add event to all nav link
+// URL to page mapping
+const urlToPageMap = {
+  '/': 'about',
+  '/about': 'about',
+  '/resume': 'resume',
+  '/projects': 'projects',
+  '/writings': 'writings',
+  '/writting': 'writings', // backward compatibility
+  '/research': 'research',
+  '/recognition': 'recognition',
+  '/contact': 'contact'
+};
+
+// Page name to URL mapping
+const pageToUrlMap = {
+  'about': '/',
+  'resume': '/resume',
+  'projects': '/projects',
+  'writings': '/writings',
+  'research': '/research',
+  'recognition': '/recognition',
+  'contact': '/contact'
+};
+
+// Function to show a specific page
+function showPage(pageName) {
+  // Remove active class from all pages and nav links
+  pages.forEach(page => page.classList.remove("active"));
+  navigationLinks.forEach(link => link.classList.remove("active"));
+
+  // Find and activate the target page
+  const targetPage = document.querySelector(`[data-page="${pageName}"]`);
+  if (targetPage) {
+    targetPage.classList.add("active");
+  }
+
+  // Find and activate the corresponding nav link
+  navigationLinks.forEach((link, index) => {
+    const linkText = link.textContent.trim().toLowerCase();
+    if (linkText === pageName || 
+        (pageName === 'writings' && linkText === 'writting')) {
+      link.classList.add("active");
+    }
+  });
+
+  window.scrollTo(0, 0);
+}
+
+// Function to update URL without page reload
+function updateURL(path) {
+  const newURL = window.location.origin + path;
+  window.history.pushState({ page: path }, '', newURL);
+}
+
+// Handle navigation link clicks
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
-        window.scrollTo(0, 0);
-      } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
-      }
-    }
+    const linkText = this.textContent.trim();
+    const pageName = linkText.toLowerCase();
+    
+    // Get the URL for this page
+    const url = pageToUrlMap[pageName] || `/${pageName}`;
+    
+    // Show the page
+    showPage(pageName);
+    
+    // Update URL
+    updateURL(url);
   });
 }
 
-// --- Direct URL navigation to Portfolio section ---
+// Handle browser back/forward buttons
+window.addEventListener('popstate', function(event) {
+  const path = window.location.pathname || '/';
+  const pageName = urlToPageMap[path] || 'about';
+  showPage(pageName);
+});
+
+// Handle initial page load and direct URLs
 window.addEventListener('DOMContentLoaded', function () {
-  // Only use hash-based navigation for main sections
-  const hash = window.location.hash.toLowerCase();
-  const sectionMap = {
-    '#about': 'about',
-    '#resume': 'resume',
-    '#contact': 'contact',
-    '#works': 'portfolio',
-    '#portfolio': 'portfolio'
-  };
-  if (sectionMap[hash]) {
-    for (let i = 0; i < navigationLinks.length; i++) {
-      if (navigationLinks[i].innerText.trim().toLowerCase() === sectionMap[hash]) {
-        navigationLinks[i].click();
-        break;
-      }
+  const path = window.location.pathname || '/';
+  const pageName = urlToPageMap[path] || 'about';
+  showPage(pageName);
+});
+
+// Hash-based navigation fallback (for backward compatibility)
+window.addEventListener('DOMContentLoaded', function () {
+  // Check for hash in URL as fallback
+  if (window.location.hash) {
+    const hash = window.location.hash.toLowerCase().substring(1); // Remove #
+    const hashToPageMap = {
+      'about': 'about',
+      'resume': 'resume',
+      'contact': 'contact',
+      'projects': 'projects',
+      'portfolio': 'projects', // backward compatibility
+      'writings': 'writings',
+      'writting': 'writings', // backward compatibility
+      'blog': 'writings', // backward compatibility
+      'research': 'research',
+      'recognition': 'recognition'
+    };
+    
+    const pageName = hashToPageMap[hash];
+    if (pageName) {
+      showPage(pageName);
+      // Update URL to clean format
+      const url = pageToUrlMap[pageName] || `/${pageName}`;
+      updateURL(url);
+      // Remove hash
+      window.history.replaceState(null, '', url);
     }
   }
 });
@@ -385,8 +463,10 @@ function attachBlogModalHandler() {
 
 // Store blog posts for modal lookup
 async function displayBlogPosts() {
-  const blogList = document.querySelector('.blog-posts-list');
-  const loadingDiv = document.querySelector('.blog-loading');
+  // Look for blog-posts-list in active writings or blog section
+  const activeSection = document.querySelector('[data-page="writings"].active, [data-page="blog"].active');
+  const blogList = activeSection ? activeSection.querySelector('.blog-posts-list') : document.querySelector('.blog-posts-list');
+  const loadingDiv = activeSection ? activeSection.querySelector('.blog-loading') : document.querySelector('.blog-loading');
   if (!blogList || !loadingDiv) return;
   try {
     loadingDiv.style.display = 'block';
@@ -707,7 +787,8 @@ if (!document.getElementById('improved-blog-card-styles')) {
   document.head.appendChild(style);
 }
 
-const blogSection = document.querySelector('[data-page="blog"]');
+// Watch for both blog and writings sections (writings shows same content as blog)
+const blogSection = document.querySelector('[data-page="blog"]') || document.querySelector('[data-page="writings"]');
 if (blogSection) {
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
@@ -722,8 +803,29 @@ if (blogSection) {
     attributeFilter: ['class']
   });
 
-  // Load posts immediately if blog section is already active
+  // Load posts immediately if blog/writings section is already active
   if (blogSection.classList.contains('active')) {
+    displayBlogPosts();
+  }
+}
+
+// Also watch writings section separately if blog section doesn't exist
+const writingsSection = document.querySelector('[data-page="writings"]');
+if (writingsSection && writingsSection !== blogSection) {
+  const observer2 = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.target.classList.contains('active')) {
+        displayBlogPosts();
+      }
+    });
+  });
+
+  observer2.observe(writingsSection, {
+    attributes: true,
+    attributeFilter: ['class']
+  });
+
+  if (writingsSection.classList.contains('active')) {
     displayBlogPosts();
   }
 }
