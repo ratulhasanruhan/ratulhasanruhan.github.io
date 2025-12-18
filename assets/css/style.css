@@ -540,19 +540,49 @@ main {
   z-index: -1;
 }
 
-.service-icon-box { margin-bottom: 10px; }
+.service-icon-box { 
+  margin-bottom: 10px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .service-icon-box img { margin: auto; }
 
+.service-icon-box ion-icon {
+  font-size: 44px;
+  color: var(--orange-yellow-crayola);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.service-item:hover .service-icon-box ion-icon {
+  transform: scale(1.1);
+  color: var(--white-2);
+}
+
 .service-content-box { text-align: center; }
 
-.service-item-title { margin-bottom: 7px; }
+.service-item-title { 
+  margin-bottom: 10px;
+  color: var(--white-2);
+  font-weight: var(--fw-500);
+}
 
 .service-item-text {
   color: var(--light-gray);
   font-size: var(--fs-6);
-  font-weight: var(--fw-3);
-  line-height: 1.6;
+  font-weight: var(--fw-300);
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+.service-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-3);
 }
 
 
