@@ -916,6 +916,61 @@ main {
   transform: translateX(4px);
 }
 
+/* Publications */
+.publication-item {
+  position: relative;
+}
+
+.publication-item::after {
+  top: 5px;
+}
+
+.publication-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.publication-content:hover {
+  color: inherit;
+}
+
+.publication-content:hover .timeline-item-title {
+  color: var(--orange-yellow-crayola);
+}
+
+.publication-info {
+  flex: 1;
+}
+
+.publication-doi {
+  color: var(--light-gray-70);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-300);
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.publication-arrow {
+  color: var(--orange-yellow-crayola);
+  font-size: 22px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.publication-content:hover .publication-arrow {
+  color: var(--orange-yellow-crayola);
+  opacity: 1;
+  transform: translateX(4px);
+}
+
 
 /**
  * skills 
