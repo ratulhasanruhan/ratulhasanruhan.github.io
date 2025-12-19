@@ -1,0 +1,405 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ratul Hasan Ruhan",
+  "alternateName": ["Ratul Hasan", "Ratul Ruhan"],
+  "jobTitle": "Software Engineer & Systems Researcher",
+  "email": "ratulhasan1644@gmail.com",
+  "telephone": "+8801789536985",
+  "url": "https://ratuler.vercel.app/",
+  "image": "https://ratuler.vercel.app/assets/images/ratulhasan-avatar.png",
+  "sameAs": [
+    "https://github.com/ratulhasanruhan",
+    "https://www.linkedin.com/in/ratul-hasan-ruhan/",
+    "https://www.facebook.com/ratulhasan.ruhan",
+    "https://www.youtube.com/@ratulicious",
+    "https://ratulhasan.hashnode.dev",
+    "https://ratulhasan.link",
+    "http://ratulruhan.cv/"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Dhaka",
+    "addressCountry": "Bangladesh"
+  },
+  "nationality": "Bangladeshi",
+  "birthDate": "2004-03-23",
+  "knowsLanguage": [
+    {
+      "@type": "Language",
+      "name": "Bengali",
+      "alternateName": "Native"
+    },
+    {
+      "@type": "Language",
+      "name": "English",
+      "alternateName": "Fluent"
+    }
+  ],
+  "description": "I'm a software engineer working across mobile, web, desktop, embedded systems, and core computer science domains. I started with Android development and gradually expanded into cross-platform engineering, applied AI/ML, systems programming, and infrastructure work. I'm especially interested in how software systems are designed, how components interact, and how research ideas translate into reliable, real-world applications. I value clarity, maintainability, and thoughtful engineering over quick fixes.",
+  "alumniOf": [
+    {
+      "@type": "EducationalOrganization",
+      "name": "University of Greenwich (NCC Pathway)",
+      "url": "https://www.gre.ac.uk/"
+    },
+    {
+      "@type": "EducationalOrganization",
+      "name": "Daffodil International University",
+      "url": "https://daffodilvarsity.edu.bd/"
+    }
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Appibrium",
+    "url": "https://appibrium.tech"
+  },
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Cisco CCNA 200-301 + Python Network Automation",
+      "credentialCategory": "Professional Certificate",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Udemy"
+      },
+      "dateIssued": "2024",
+      "url": "https://www.udemy.com/certificate/UC-42719966-3bd8-47f3-b0ca-d3f67775cfd8/"
+    }
+  ],
+  "award": [
+    {
+      "@type": "Award",
+      "name": "Bangladesh ICT & Innovation Award 2025",
+      "dateReceived": "2025-10",
+      "awardedBy": {
+        "@type": "Organization",
+        "name": "Bangladesh ICT & Innovation Network (BIIN)"
+      },
+      "description": "Honored to receive the Bangladesh ICT & Innovation Award 2025 for my project Ojogor (অজগর) — the first Bengali programming language. It was an incredible moment to stand among the nation's top innovators, with the presence of respected leaders from BTRC, ICT Division, and many others."
+    },
+    {
+      "@type": "Award",
+      "name": "Startup World Cup: 2025 | Regional Finalist",
+      "dateReceived": "2025-08",
+      "awardedBy": {
+        "@type": "Organization",
+        "name": "Pegasus Tech Venture"
+      },
+      "description": "From the first round to the final at 🌍 Startup World Cup: Bangladesh– 2025. Grateful to stand among 4500+ innovative startups."
+    },
+    {
+      "@type": "Award",
+      "name": "1st Place – Programming Contest | DIA ICT Fest 2025",
+      "dateReceived": "2025-02",
+      "awardedBy": {
+        "@type": "Organization",
+        "name": "Daffodil International Academy"
+      },
+      "description": "Thrilled to secure 1st place in the Programming Contest at DIA ICT Fest 2025! 🏆 It was an intense competition, and I'm grateful for the opportunity to test my skills and problem-solving abilities."
+    },
+    {
+      "@type": "Award",
+      "name": "1st Place – Project Showcasing | DIA ICT Fest 2025",
+      "dateReceived": "2025-02",
+      "awardedBy": {
+        "@type": "Organization",
+        "name": "Daffodil International Academy"
+      },
+      "description": "Feeling grateful to have achieved 1st place in the Project Showcasing category at DIA ICT Fest 2025! 🏆 Presenting my project and receiving valuable feedback was an enriching experience."
+    },
+    {
+      "@type": "Award",
+      "name": "2nd Place – Puzzle Hunt | DIA ICT Fest 2025",
+      "dateReceived": "2025-02",
+      "awardedBy": {
+        "@type": "Organization",
+        "name": "Daffodil International Academy"
+      },
+      "description": "Grateful to have secured 2nd Place in the Puzzle Hunt at DIA ICT Fest 2025 🧩 It was a fun and challenging experience that pushed my logical thinking and teamwork."
+    }
+  ],
+  "hasOccupation": [
+    {
+      "@type": "Occupation",
+      "name": "Founder & Full-Stack Mobile Architect",
+      "occupationLocation": {
+        "@type": "City",
+        "name": "Dhaka"
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Appibrium",
+        "url": "https://appibrium.tech"
+      },
+      "startDate": "2025-10",
+      "description": "I design and build complete mobile systems—from frontend UI to backend infrastructure—with deep integration of DevOps and machine learning. At Appibrium, I lead the full product lifecycle, turning ideas into high-performance, scalable apps."
+    },
+    {
+      "@type": "Occupation",
+      "name": "Software Engineer",
+      "occupationLocation": {
+        "@type": "Country",
+        "name": "United States"
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Solution Explorer",
+        "url": "https://solutionexplorer.com/"
+      },
+      "startDate": "2025-08",
+      "endDate": "2025-10",
+      "description": "Design and develop cross-platform apps for mobile (iOS & Android) and desktop (Windows, macOS, Linux), ensuring performance, usability, and scalability."
+    },
+    {
+      "@type": "Occupation",
+      "name": "Mobile Application Developer",
+      "occupationLocation": {
+        "@type": "Country",
+        "name": "Bangladesh"
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Sydrix AI",
+        "url": "https://sydrixai.com"
+      },
+      "startDate": "2025-05",
+      "endDate": "2025-07",
+      "description": "Contributed to rapid prototyping and feature development for early-stage AI products. Built the Sydrix AI mobile solution."
+    },
+    {
+      "@type": "Occupation",
+      "name": "Flutter Developer",
+      "occupationLocation": {
+        "@type": "City",
+        "name": "Dhaka"
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "BdCalling IT Ltd.",
+        "url": "https://bdcalling.com/"
+      },
+      "startDate": "2025-04",
+      "endDate": "2025-05",
+      "description": "Built and optimized real-time features using Socket.io for live data syncing. Integrated audio/video calling features for both iOS and Android platforms. Worked on production-level mobile apps in a fast-paced corporate environment."
+    },
+    {
+      "@type": "Occupation",
+      "name": "Mobile Application Developer",
+      "occupationLocation": {
+        "@type": "Country",
+        "name": "China"
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Emerge AI",
+        "url": "https://www.linkedin.com/company/emergeai/"
+      },
+      "startDate": "2024-08",
+      "endDate": "2025-03",
+      "description": "Working remotely with Emerge AI, I develop intuitive, high-quality mobile applications with Flutter, integrating AI-driven solutions to enhance user experiences."
+    },
+    {
+      "@type": "Occupation",
+      "name": "Mobile Application Developer",
+      "occupationLocation": {
+        "@type": "City",
+        "name": "Dhaka"
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Infolook",
+        "url": "https://infolook.net/"
+      },
+      "startDate": "2023-07",
+      "endDate": "2024-08",
+      "description": "Designed and developed cross-platform mobile applications using Flutter and Dart, delivering high-performance solutions with modern UI/UX. Collaborated with a hybrid team to implement features, optimize performance, and ensure smooth client deployment."
+    },
+    {
+      "@type": "Occupation",
+      "name": "Android Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Spotlight Creative"
+      },
+      "startDate": "2019-11",
+      "endDate": "2022-12",
+      "description": "Developed and maintained enterprise-level Android applications using Java and XML."
+    }
+  ],
+  "memberOf": [
+    {
+      "@type": "Organization",
+      "name": "Bangladesh Open Source Network (BdOSN)",
+      "url": "https://bdosn.org/"
+    },
+    {
+      "@type": "Organization",
+      "name": "Society for the Popularization of Science, Bangladesh",
+      "url": "https://spsb.org/"
+    }
+  ],
+  "knowsAbout": [
+    "Mobile & Multiplatform Development",
+    "Flutter",
+    "Kotlin",
+    ".NET MAUI / C#",
+    "Systems Programming",
+    "Rust",
+    "Python",
+    "Java / Spring",
+    "Embedded Systems",
+    "IoT",
+    "Networking",
+    "DevOps",
+    "CI/CD",
+    "Machine Learning",
+    "Software Architecture"
+  ],
+  "creator": {
+    "@type": "SoftwareApplication",
+    "name": "Ojogor",
+    "description": "First Bengali Programming Language Interpreter",
+    "url": "https://ratulhasan.gitbook.io/ojogor"
+  },
+  "author": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Caller Collision Resolution Protocol (CCRP): Bridging Simultaneous Call Attempts in Real-World Telephony",
+      "datePublished": "2025-10",
+      "publisher": {
+        "@type": "Organization",
+        "name": "ResearchGate"
+      },
+      "url": "https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony",
+      "description": "This paper introduces the Caller Collision Resolution Protocol (CCRP), a novel framework designed to resolve mutual call collisions—a persistent issue in telephony where two parties calling each other simultaneously receive busy signals."
+    }
+  ],
+  "additionalData": {
+    "education": [
+      {
+        "degree": "BSc (Hons) Computing",
+        "period": "Jan 2025 - Present",
+        "institution": "University of Greenwich (NCC Pathway)",
+        "url": "https://www.gre.ac.uk/",
+        "status": "Ongoing"
+      },
+      {
+        "degree": "BSc. in Computer Science & Engineering",
+        "period": "Jan 2024 - Jan 2025",
+        "institution": "Daffodil International University",
+        "url": "https://daffodilvarsity.edu.bd/",
+        "status": "Completed"
+      },
+      {
+        "degree": "Higher Secondary Certificate (Science)",
+        "period": "Jan 2021 - Jun 2023",
+        "institution": "Shariatpur Govt. College",
+        "url": "https://sgc.college.gov.bd/",
+        "status": "Completed"
+      },
+      {
+        "degree": "Secondary School Certificate (Science)",
+        "period": "Jan 2016 - Dec 2020",
+        "institution": "PTGD Govt. High School",
+        "status": "Completed"
+      }
+    ],
+    "skills": [
+      {
+        "category": "Mobile & Multiplatform",
+        "technologies": ["Flutter", "Kotlin", ".NET MAUI / C#"],
+        "description": "Cross-platform mobile and desktop application development."
+      },
+      {
+        "category": "Systems, Programming & Applied AI",
+        "technologies": ["Rust", "Python", "Java / Spring"],
+        "description": "Systems programming, backend services, and applied machine learning."
+      },
+      {
+        "category": "Embedded, IoT & Networking",
+        "technologies": ["Embedded Systems", "IoT", "Networking"],
+        "description": "Hardware–software integration and connected systems."
+      },
+      {
+        "category": "DevOps & Infrastructure",
+        "technologies": ["CI/CD", "Deployment", "System Configuration"],
+        "description": "Reliable builds, deployments, and production workflows."
+      }
+    ],
+    "researchInterests": [
+      "Computer systems and software architecture",
+      "Applied AI / ML in real-world systems",
+      "Human-centered and localized computing",
+      "Programming languages and developer tooling"
+    ],
+    "awardImages": {
+      "Bangladesh ICT & Innovation Award 2025": [
+        "https://ratuler.vercel.app/assets/images/awards/winner_trophy.jpg",
+        "https://ratuler.vercel.app/assets/images/awards/award_ceremony.jpg"
+      ],
+      "Startup World Cup: 2025 | Regional Finalist": [
+        "https://ratuler.vercel.app/assets/images/awards/pitch_session.jpg",
+        "https://ratuler.vercel.app/assets/images/awards/showcase_session.jpg"
+      ],
+      "1st Place – Programming Contest | DIA ICT Fest 2025": [
+        "https://ratuler.vercel.app/assets/images/awards/1st_certificate_programming_contest.jpg",
+        "https://ratuler.vercel.app/assets/images/awards/trophy.jpg"
+      ],
+      "1st Place – Project Showcasing | DIA ICT Fest 2025": [
+        "https://ratuler.vercel.app/assets/images/awards/project_showcase.jpg"
+      ],
+      "2nd Place – Puzzle Hunt | DIA ICT Fest 2025": [
+        "https://ratuler.vercel.app/assets/images/awards/award_receiving.jpg"
+      ]
+    },
+    "mediaCoverage": [
+      {
+        "title": "Ojogor introduces Bangla syntax to programming",
+        "source": "The Business Standard",
+        "url": "https://tbsgraduates.net/writeup/programming-made-easy-diu-students-ojogor-introduces-bangla-syntax-to-python/"
+      },
+      {
+        "title": "বাংলায় প্রথম প্রোগ্রামিং ভাষা রুহানের 'অজগর'",
+        "source": "Protidiner Bangladesh",
+        "url": "https://protidinerbangladesh.com/technology/132975/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A7%9F-%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A5%E0%A6%AE-%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%BF%E0%A6%82-%E0%A6%AD%E0%A6%BE%E0%A6%B7%E0%A6%BE-%E0%A6%B0%E0%A7%81%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A7%87%E0%A6%B0-%E0%A6%85%E0%A6%9C%E0%A6%97%E0%A6%B0"
+      },
+      {
+        "title": "Student creates Python in Bangla to help others learn",
+        "source": "The Business Standard (LinkedIn)",
+        "url": "https://www.linkedin.com/posts/the-business-standard_programming-made-easy-diu-students-ojogor-activity-7308421903390572544-BvIZ/"
+      },
+      {
+        "title": "Ojogor — First Bengali Programming Language",
+        "source": "Daily Blurb",
+        "url": "https://www.instagram.com/p/DG7yqCVyWCO/"
+      },
+      {
+        "title": "Ojogor Programming Language",
+        "source": "InfogramBD",
+        "url": "https://www.facebook.com/infogrambd/posts/more-details-in-the-comments-section/657991090072772/"
+      },
+      {
+        "title": "Ojogor — First Bengali Programming Language",
+        "source": "BongoWiki",
+        "url": "https://www.facebook.com/share/p/1Kmhp2zus2/"
+      },
+      {
+        "title": "Bangladesh ICT and Innovation Network recognises nation's top innovators",
+        "source": "The Business Standard",
+        "url": "https://www.tbsnews.net/bangladesh/bangladesh-ict-and-innovation-network-recognises-nations-top-innovators-1265456#:~:text=Ojogor%20from%20Daffodil%20International%20University%20(DIU)"
+      },
+      {
+        "title": "BIIN honours country's top innovators",
+        "source": "TechWorld Bangladesh",
+        "url": "https://en.techworldbd.com/news/98#:~:text=Daffodil%20International%20University%E2%80%94DIU%20(Ajogor)"
+      },
+      {
+        "title": "Bangladesh ICT and Innovation Network honors the country's top innovators",
+        "source": "Dhaka Tribune",
+        "url": "https://www.dhakatribune.com/bangladesh/event/394357/bangladesh-ict-and-innovation-network-honors-the#:~:text=Fraud%20Shield%20(AIUB)%2C-,Ojogor%20(DIU),-%2C%20and%20Sohopathi%20AI"
+      }
+    ]
+  }
+}
+
