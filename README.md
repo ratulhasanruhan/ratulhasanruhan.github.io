@@ -1,121 +1,162 @@
-# Ratul Hasan Ruhan's Portfolio
+# Ratul Hasan Ruhan - Software Engineer & Systems Researcher
 
-Welcome to my personal portfolio repository! This is where I showcase my work, skills, and thoughts through my blog posts. I'm a Software Engineer passionate about building scalable applications and exploring new technologies.
+👋 Welcome! I'm **Ratul Hasan Ruhan**, a Software Engineer & Systems Researcher based in Dhaka, Bangladesh. I'm passionate about building scalable mobile systems, exploring applied AI/ML, and creating innovative solutions that bridge technology with real-world applications.
 
-## About This Repository
+## 🌟 About Me
 
-This repository hosts my personal portfolio website, built with HTML, CSS, and JavaScript. It serves as my digital presence where I share my professional journey, projects, and technical writings.
+I'm a software engineer working across mobile, web, desktop, embedded systems, and core computer science domains. I started with Android development and gradually expanded into cross-platform engineering, applied AI/ML, systems programming, and infrastructure work.
 
-## Project Structure
+I'm especially interested in how software systems are designed, how components interact, and how research ideas translate into reliable, real-world applications. I value clarity, maintainability, and thoughtful engineering over quick fixes.
 
-```
-ratulhasanruhan.github.io/
-├── assets/
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   └── script.js
-│   ├── images/
-│   │   ├── ratulhasan-avatar.png
-│   │   ├── ratulhsan-faviocn.ico
-│   │   └── icons/
-│   └── Ratul Hasan Ruhan_CV_2025.pdf
-├── index.html
-└── README.md
-```
+### 🏆 Key Achievements
 
-## Features
+- **Founder & Full-Stack Mobile Architect** at [Appibrium](https://appibrium.tech) — Leading end-to-end mobile system development
+- **Creator of Ojogor (অজগর)** — The first Bengali programming language, making coding accessible to Bengali speakers
+- **Winner of Bangladesh ICT & Innovation Award 2025** — Recognized for innovation in technology
+- **Startup World Cup 2025 Regional Finalist** — Among 4500+ innovative startups
+- **Multiple 1st Place Awards** at DIA ICT Fest 2025 — Programming Contest & Project Showcasing
+- **Published Researcher** — Author of research on Caller Collision Resolution Protocol (CCRP)
+- **Award-winning Mobile Developer** — Expert in Flutter, cross-platform development, and AI/ML integration
 
-- Responsive design that works on all devices
-- Dark mode interface
-- Interactive sections:
-  - About
-  - Resume
-  - Portfolio
-  - Blog
-  - Contact
-- SEO optimized
-- Social media integration
-- Contact form with Formspree integration
-- QR code for quick contact
+### 💼 Current Role
 
-## Blog Integration
+Currently serving as **Founder & Full-Stack Mobile Architect** at **Appibrium**, where I design and build complete mobile systems—from frontend UI to backend infrastructure—with deep integration of DevOps and machine learning. I lead the full product lifecycle, turning ideas into high-performance, scalable apps.
 
-I write technical articles and share my experiences on Hashnode. The blog section of my portfolio is automatically populated through Hashnode backup. Here's how it works:
+## 🌐 Online Presence
 
-1. **Hashnode Integration**:
-   - I write and publish my blog posts on Hashnode
-   - Hashnode automatically creates a backup repository with my blog posts
-   - My portfolio website fetches and displays these posts
+### 🎯 Portfolio & CV
 
-2. **Blog Features**:
-   - Automatic updates when new posts are published
-   - Markdown support
-   - Syntax highlighting for code blocks
-   - Responsive images
-   - Social sharing capabilities
+- **Portfolio Website**: [https://ratuler.vercel.app/](https://ratuler.vercel.app/)
+- **Online CV**: [http://ratulruhan.cv/](http://ratulruhan.cv/)
+- **Download Resume**: [PDF Download](https://ratuler.vercel.app/resume)
 
-## Development
+### 📝 Writing & Blogging
 
-### Prerequisites
+I regularly write about software engineering, mobile development, and technology:
 
-- Basic knowledge of HTML, CSS, and JavaScript
-- Git for version control
-- A GitHub account for hosting
+- **Hashnode Blog**: [ratulhasanruhan.hashnode.dev](https://ratulhasanruhan.hashnode.dev) — Technical articles and insights
+- **Medium**: [ratulhasanruhan.medium.com](https://ratulhasanruhan.medium.com) — In-depth tech stories and experiences
+- **GitHub Blog**: Integrated into my portfolio for seamless access
 
-### Local Development
+### 👔 Professional Profiles
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ratulhasanruhan/ratulhasanruhan.github.io.git
-   ```
+- **Peerlist**: [peerlist.io/ratulhasan](https://peerlist.io/ratulhasan/) — Professional network and portfolio
+- **LinkedIn**: [ratul-hasan-ruhan](https://www.linkedin.com/in/ratul-hasan-ruhan/) — Professional network
+- **GitHub**: [ratulhasanruhan](https://github.com/ratulhasanruhan) — Open source contributions
 
-2. Open `index.html` in your browser to view the website locally
+### 🎥 Social Media
 
-### Deployment
+- **YouTube**: [@ratulicious](https://www.youtube.com/@ratulicious) — Tech videos and tutorials
+- **Facebook**: [ratulhasan.ruhan](https://www.facebook.com/ratulhasan.ruhan) — Personal updates
+- **Personal Website**: [ratulhasan.link](https://ratulhasan.link) — Personal landing page
 
-The website is automatically deployed to GitHub Pages when changes are pushed to the main branch.
+## 🎓 Education
 
-## Customization
+- **BSc (Hons) Computing** — University of Greenwich (NCC Pathway), London, UK (Jan 2025 - Present)
+- **BSc. in Computer Science & Engineering** — Daffodil International University, Dhaka, Bangladesh (Jan 2024 - Jan 2025)
+- **Higher Secondary Certificate (Science)** — Shariatpur Govt. College, Bangladesh
+- **Secondary School Certificate (Science)** — PTGD Govt. High School, Bangladesh
 
-### Adding Projects
+## 💡 Expertise & Skills
 
-1. Navigate to the portfolio section in `index.html`
-2. Add your project details in the following format:
-   ```html
-   <li class="project-item">
-     <a href="project-link">
-       <figure class="project-img">
-         <img src="project-image.jpg" alt="Project Name">
-       </figure>
-       <h3 class="project-title">Project Name</h3>
-       <p class="project-category">Category</p>
-     </a>
-   </li>
-   ```
+### Mobile & Multiplatform
+- Flutter, Kotlin, .NET MAUI / C#
+- Cross-platform mobile and desktop application development
+- iOS & Android native development
 
-### Modifying Styles
+### Systems, Programming & Applied AI
+- Rust, Python, Java / Spring
+- Systems programming and backend services
+- Applied machine learning integration
 
-1. Open `assets/css/style.css`
-2. Modify the CSS variables in the `:root` selector to change the theme
-3. Customize specific components by modifying their respective CSS classes
+### Embedded, IoT & Networking
+- Embedded Systems, IoT protocols
+- Network programming and infrastructure
+- Hardware–software integration
 
-## Contributing
+### DevOps & Infrastructure
+- CI/CD pipelines and automation
+- Deployment strategies
+- Production system configuration
 
-While this is my personal portfolio, I welcome suggestions and improvements! If you find any bugs or have ideas for enhancements, please feel free to:
-- Open an issue
-- Submit a pull request
-- Reach out to me directly
+## 🏅 Recognition & Awards
 
-## License
+- **Bangladesh ICT & Innovation Award 2025** (Oct 2025) — For creating Ojogor, the first Bengali programming language
+- **Startup World Cup 2025 Regional Finalist** (Aug 2025) — Among top startups in Bangladesh
+- **1st Place – Programming Contest** | DIA ICT Fest 2025
+- **1st Place – Project Showcasing** | DIA ICT Fest 2025
+- **2nd Place – Puzzle Hunt** | DIA ICT Fest 2025
 
-This project is open source and available under the [MIT License](LICENSE).
+## 📚 Research & Publications
 
-## Connect With Me
+### Publications
+- **Caller Collision Resolution Protocol (CCRP)**: Bridging Simultaneous Call Attempts in Real-World Telephony
+  - Published: October 2025
+  - DOI: 10.13140/RG.2.2.26499.98081
+  - [View on ResearchGate](https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony)
 
-I'm always excited to connect with fellow developers and tech enthusiasts! You can reach me through:
+### Research Interests
+- Computer systems and software architecture
+- Applied AI / ML in real-world systems
+- Human-centered and localized computing
+- Programming languages and developer tooling
 
-- Email: ratulhasan1644@gmail.com
-- LinkedIn: [ratul-hasan-ruhan](https://www.linkedin.com/in/ratul-hasan-ruhan/)
-- GitHub: [ratulhasanruhan](https://github.com/ratulhasanruhan)
-- Blog: [ratulhasanruhan.hashnode.dev](https://ratulhasanruhan.hashnode.dev) 
+## 🚀 Featured Projects
+
+### Ojogor (অজগর) — First Bengali Programming Language
+An interpreter for the Bengali programming language, enabling users to write and execute code in Bengali syntax. Designed to make programming accessible to Bengali speakers, especially beginners.
+
+[View Project](https://ratulhasan.gitbook.io/ojogor)
+
+### GoruSheba — Smart IoT & AI Farming
+A leading IoT and AI-powered cattle management platform. Monitor livestock health, track farm operations, and optimize productivity with smart sensors and real-time analytics.
+
+[View Project](https://www.goru.help/)
+
+### Other Notable Projects
+- **Junior Cambrian** — Educational games for cognitive development
+- **Emerge AI** — Mental well-being app with AI food scan and calorie tracking
+- **Various Mobile Applications** — Cross-platform solutions for multiple industries
+
+[View All Projects](https://ratuler.vercel.app/projects)
+
+## 🤝 Volunteering
+
+- **Society for the Popularization of Science, Bangladesh (SPSB)** — Promoting science education
+- **Bangladesh Open Source Network (BdOSN)** — Contributing to open-source culture and digital literacy
+
+## 📄 Resume Access
+
+My resume is available in multiple formats:
+
+- **📥 Download PDF**: Available on the [Resume page](https://ratuler.vercel.app/resume)
+- **🌐 View Online**: Interactive CV at [ratulruhan.cv](http://ratulruhan.cv/)
+- **📊 Structured Data**: Machine-readable JSON at [ratuler.vercel.app/ratul-hasan-ruhan.json](https://ratuler.vercel.app/ratul-hasan-ruhan.json)
+
+## 📞 Let's Connect
+
+I'm always excited to connect with fellow developers, researchers, and tech enthusiasts! Feel free to reach out:
+
+- **Email**: ratulhasan1644@gmail.com
+- **LinkedIn**: [ratul-hasan-ruhan](https://www.linkedin.com/in/ratul-hasan-ruhan/)
+- **WhatsApp**: [+8801789536985](https://wa.me/8801789536985)
+- **GitHub**: [ratulhasanruhan](https://github.com/ratulhasanruhan)
+- **Peerlist**: [peerlist.io/ratulhasan](https://peerlist.io/ratulhasan/)
+
+## 📰 Media Coverage
+
+My work, especially Ojogor, has been featured in multiple publications:
+
+- The Business Standard
+- Protidiner Bangladesh
+- Dhaka Tribune
+- TechWorld Bangladesh
+- And more...
+
+[View All Media Coverage](https://ratuler.vercel.app/recognition)
+
+---
+
+**Let's build something amazing together! 🚀**
+
+*Last updated: January 2025*
