@@ -829,3 +829,13 @@ if (writingsSection && writingsSection !== blogSection) {
     displayBlogPosts();
   }
 }
+
+// Award Image - Single image detection for smaller size
+document.addEventListener('DOMContentLoaded', function() {
+  // Add class for single image awards to make them smaller
+  document.querySelectorAll('.award-images-grid').forEach(grid => {
+    if (grid.children.length === 1) {
+      grid.classList.add('single-image');
+    }
+  });
+});

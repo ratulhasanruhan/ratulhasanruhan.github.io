@@ -869,6 +869,145 @@ main {
   line-height: 1.6;
 }
 
+.timeline-issuer {
+  color: var(--light-gray-70);
+  font-size: var(--fs-7);
+  opacity: 0.8;
+}
+
+/* Award images - Mini grid layout */
+.award-images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  margin-top: 15px;
+  max-width: 450px;
+}
+
+/* Single image container - smaller size */
+.award-images-grid.single-image {
+  max-width: 220px;
+}
+
+.award-image-link {
+  display: block;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  aspect-ratio: 4 / 3;
+  background: var(--onyx);
+  border: 1px solid var(--jet);
+  transition: var(--transition-1);
+}
+
+.award-image-link:hover {
+  border-color: var(--orange-yellow-crayola);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 183, 43, 0.2);
+}
+
+.award-image-link::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: var(--transition-1);
+  z-index: 1;
+}
+
+.award-image-link:hover::after {
+  opacity: 1;
+}
+
+.award-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: var(--transition-1);
+  position: relative;
+  z-index: 0;
+}
+
+.award-image-link:hover .award-image {
+  transform: scale(1.05);
+}
+
+/* Award Lightbox Modal */
+.award-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 10000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.award-lightbox.show {
+  display: flex;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.award-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: var(--white-2);
+  font-size: 40px;
+  font-weight: 300;
+  cursor: pointer;
+  z-index: 10001;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: var(--transition-1);
+}
+
+.award-lightbox-close:hover {
+  background: rgba(255, 183, 43, 0.3);
+  color: var(--orange-yellow-crayola);
+  transform: rotate(90deg);
+}
+
+.award-lightbox-image {
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 /* Certifications with arrows */
 .certification-item {
   position: relative;
@@ -1186,6 +1325,25 @@ main {
   .skill-segment:first-child {
     border-top: none;
   }
+
+  .award-images-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    max-width: 100%;
+  }
+
+  .award-lightbox-close {
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .award-lightbox-image {
+    max-width: 98%;
+    max-height: 80vh;
+  }
 }
 
 @media (max-width: 580px) {
@@ -1202,6 +1360,12 @@ main {
   
   .skill-tag:hover {
     transform: translateY(-2px);
+  }
+
+  .award-images-grid {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 8px;
+    max-width: 100%;
   }
 }
 
@@ -2272,6 +2436,23 @@ textarea.form-input::-webkit-resizer { display: none; }
 	 */
 
   .timeline-text { max-width: 700px; }
+
+  .award-images-grid {
+    max-width: 500px;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .award-lightbox-close {
+    top: 15px;
+    right: 20px;
+    font-size: 35px;
+  }
+
+  .award-lightbox-image {
+    max-width: 95%;
+    max-height: 85vh;
+  }
 
 }
 
