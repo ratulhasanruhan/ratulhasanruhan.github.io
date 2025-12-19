@@ -2,7 +2,10 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://ratulhasanruhan.github.io/sitemap.xml
+Sitemap: https://ratuler.vercel.app/sitemap.xml
+
+# Additional Sitemaps
+Sitemap: https://ratuler.vercel.app/sitemap.xml
  
 # Crawl-delay
 Crawl-delay: 1 
