@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://ratuler.vercel.app/sitemap.xml
+Sitemap: https://also.ratulruhan.cv/sitemap.xml
  
 # Crawl-delay
 Crawl-delay: 1 
