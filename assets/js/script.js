@@ -108,6 +108,35 @@ const pageToUrlMap = {
   'contact': '/contact'
 };
 
+// Function to update canonical URL and meta tags based on current path
+function updateCanonicalAndMeta(path) {
+  const baseUrl = 'https://also.ratulruhan.cv';
+  // Strip query parameters and hash from path for canonical URL (clean path only)
+  const cleanPath = path.split('?')[0].split('#')[0];
+  const fullUrl = baseUrl + (cleanPath === '/' ? '' : cleanPath);
+  
+  // Update canonical tag
+  let canonicalLink = document.querySelector('link[rel="canonical"]');
+  if (!canonicalLink) {
+    canonicalLink = document.createElement('link');
+    canonicalLink.setAttribute('rel', 'canonical');
+    document.head.appendChild(canonicalLink);
+  }
+  canonicalLink.setAttribute('href', fullUrl);
+  
+  // Update Open Graph URL
+  let ogUrl = document.querySelector('meta[property="og:url"]');
+  if (ogUrl) {
+    ogUrl.setAttribute('content', fullUrl);
+  }
+  
+  // Update Twitter URL
+  let twitterUrl = document.querySelector('meta[property="twitter:url"]');
+  if (twitterUrl) {
+    twitterUrl.setAttribute('content', fullUrl);
+  }
+}
+
 // Function to show a specific page
 function showPage(pageName) {
   // Remove active class from all pages and nav links
@@ -129,6 +158,10 @@ function showPage(pageName) {
     }
   });
 
+  // Update canonical URL and meta tags
+  const currentPath = window.location.pathname || '/';
+  updateCanonicalAndMeta(currentPath);
+
   window.scrollTo(0, 0);
 }
 
@@ -147,6 +180,9 @@ for (let i = 0; i < navigationLinks.length; i++) {
     // Get the URL for this page
     const url = pageToUrlMap[pageName] || `/${pageName}`;
     
+    // Update canonical URL and meta tags
+    updateCanonicalAndMeta(url);
+    
     // Show the page
     showPage(pageName);
     
@@ -159,6 +195,7 @@ for (let i = 0; i < navigationLinks.length; i++) {
 window.addEventListener('popstate', function(event) {
   const path = window.location.pathname || '/';
   const pageName = urlToPageMap[path] || 'about';
+  updateCanonicalAndMeta(path);
   showPage(pageName);
 });
 
@@ -166,8 +203,18 @@ window.addEventListener('popstate', function(event) {
 window.addEventListener('DOMContentLoaded', function () {
   const path = window.location.pathname || '/';
   const pageName = urlToPageMap[path] || 'about';
+  
+  // Update canonical URL immediately on page load (important for SEO crawlers)
+  updateCanonicalAndMeta(path);
+  
   showPage(pageName);
 });
+
+// Also update canonical immediately when script loads (before DOMContentLoaded)
+(function() {
+  const path = window.location.pathname || '/';
+  updateCanonicalAndMeta(path);
+})();
 
 // Hash-based navigation fallback (for backward compatibility)
 window.addEventListener('DOMContentLoaded', function () {
@@ -189,9 +236,10 @@ window.addEventListener('DOMContentLoaded', function () {
     
     const pageName = hashToPageMap[hash];
     if (pageName) {
-      showPage(pageName);
       // Update URL to clean format
       const url = pageToUrlMap[pageName] || `/${pageName}`;
+      updateCanonicalAndMeta(url);
+      showPage(pageName);
       updateURL(url);
       // Remove hash
       window.history.replaceState(null, '', url);

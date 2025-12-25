@@ -56,8 +56,28 @@
   <meta property="twitter:creator" content="@ratulhasanruhan">
   <meta property="twitter:site" content="@ratulhasanruhan">
 
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://also.ratulruhan.cv/">
+  <!-- Canonical URL (updated dynamically based on current route) -->
+  <link rel="canonical" href="https://also.ratulruhan.cv/" id="canonical-link">
+  
+  <!-- Update canonical URL immediately for SEO (before page render) -->
+  <script>
+    (function() {
+      var path = window.location.pathname || '/';
+      // Strip query parameters and hash for canonical URL
+      var cleanPath = path.split('?')[0].split('#')[0];
+      var baseUrl = 'https://also.ratulruhan.cv';
+      var fullUrl = baseUrl + (cleanPath === '/' ? '' : cleanPath);
+      var canonicalLink = document.getElementById('canonical-link') || document.querySelector('link[rel="canonical"]');
+      if (canonicalLink) {
+        canonicalLink.setAttribute('href', fullUrl);
+      }
+      // Also update og:url if it exists
+      var ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) {
+        ogUrl.setAttribute('content', fullUrl);
+      }
+    })();
+  </script>
   
   <!-- Sitemap -->
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://also.ratulruhan.cv/sitemap.xml">
