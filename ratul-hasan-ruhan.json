@@ -83,6 +83,16 @@
     },
     {
       "@type": "Award",
+      "name": "Coding Fest 2026 – 1st Place",
+      "dateReceived": "2026-02",
+      "awardedBy": {
+        "@type": "Organization",
+        "name": "Daffodil International Academy"
+      },
+      "description": "Achieved 1st Place in a competitive coding event, gaining valuable experience in problem solving and collaborative development."
+    },
+    {
+      "@type": "Award",
       "name": "Bangladesh ICT & Innovation Award 2025",
       "dateReceived": "2025-10",
       "awardedBy": {
@@ -350,6 +360,10 @@
       "National AI BUILD-A-THON – Trailblazer": [
         "https://also.ratulruhan.cv/assets/images/awards/ai_buildathon_award_ceremony.JPG",
         "https://also.ratulruhan.cv/assets/images/awards/national_ai_buildathon.jpeg"
+      ],
+      "Coding Fest 2026 – 1st Place": [
+        "https://also.ratulruhan.cv/assets/images/awards/coding_fest_2026.jpg",
+        "https://also.ratulruhan.cv/assets/images/awards/coding_fest_2026_certificate.jpg"
       ],
       "Bangladesh ICT & Innovation Award 2025": [
         "https://also.ratulruhan.cv/assets/images/awards/winner_trophy.jpg",
