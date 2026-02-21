@@ -1,8 +1,5 @@
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemap (canonical domain)
 Sitemap: https://also.ratulruhan.cv/sitemap.xml
- 
-# Crawl-delay
-Crawl-delay: 1 
