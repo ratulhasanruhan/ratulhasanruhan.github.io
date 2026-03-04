@@ -60,6 +60,17 @@
   "hasCredential": [
     {
       "@type": "EducationalOccupationalCredential",
+      "name": "Computer Architecture Course",
+      "credentialCategory": "Professional Certificate",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Codecademy"
+      },
+      "dateIssued": "2026-03",
+      "url": "https://www.codecademy.com/profiles/ratulhasan.ruhan/certificates/dee8cc79cfe5e46834989e0d0ec1d2d5"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
       "name": "Cisco CCNA 200-301 + Python Network Automation",
       "credentialCategory": "Professional Certificate",
       "recognizedBy": {
