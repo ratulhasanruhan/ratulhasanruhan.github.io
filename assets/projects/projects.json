@@ -159,5 +159,12 @@
 	  "category": "Mobile Apps",
 	  "image": "gorusheba.png",
 	  "url": "https://www.facebook.com/gorusheba/"
+	},
+	{
+	  "title": "Datayon",
+	  "subtitle": "A bengali monthly tech magazine.",
+	  "category": "Web Apps",
+	  "image": "datayon.png",
+	  "url": "https://datayon.bd"
 	}
   ]
