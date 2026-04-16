@@ -166,5 +166,12 @@
 	  "category": "Web Apps",
 	  "image": "datayon.png",
 	  "url": "https://datayon.bd"
+	},
+	{
+	  "title": "Disaster-Resilient Communication System",
+	  "subtitle": "A disaster-ready networking system for resilient communications",
+	  "category": "Networking",
+	  "image": "digital_delta.jpg",
+	  "url": "https://github.com/ratulhasanruhan/digital_delta_app"
 	}
   ]

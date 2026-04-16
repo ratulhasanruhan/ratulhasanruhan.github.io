@@ -1222,6 +1222,10 @@
               <button data-filter-btn>Web Apps</button>
             </li>
 
+            <li class="filter-item">
+              <button data-filter-btn>Networking</button>
+            </li>
+
           </ul>
 
           <div class="filter-select-box">
@@ -1252,6 +1256,10 @@
 
               <li class="select-item">
                 <button data-select-item>Web Apps</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Networking</button>
               </li>
 
             </ul>
@@ -1929,23 +1937,7 @@
     }
   </style>
 
-  <!-- Add canvas-confetti CDN for confetti animation on blog card click -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-  <!-- Add modal container if it doesn't exist -->
-  <script>
-    if (!document.querySelector('.modal-container')) {
-      const modalHTML = `
-      <div class="modal-container" style="display: none;">
-        <div class="modal-content">
-          <span class="modal-close">&times;</span>
-          <div id="modal-blog-content"></div>
-        </div>
-      </div>
-    `;
-      document.body.insertAdjacentHTML('beforeend', modalHTML);
-    }
-  </script>
+  <!-- Blog modal is injected/managed by assets/js/script.js -->
 
   <!-- Award Image Lightbox -->
   <div id="award-lightbox" class="award-lightbox" style="display: none;">

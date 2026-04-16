@@ -339,7 +339,14 @@ function createBlogPostHTML(post) {
     <li class="blog-post-item improved-blog-card">
       <a href="${post.url}" target="_blank" class="improved-blog-link">
         <figure class="improved-blog-img">
-          <img src="${post.coverImage}" alt="${post.title}" loading="lazy" onerror="this.src='./assets/images/blog-1.jpg'">
+          <img
+            src="${post.coverImage}"
+            alt="${post.title}"
+            loading="lazy"
+            decoding="async"
+            width="800"
+            height="450"
+            onerror="this.src='./assets/images/blog-1.jpg'">
         </figure>
         <div class="improved-blog-content">
           <h3 class="improved-blog-title">${post.title}</h3>
@@ -556,7 +563,13 @@ function createProjectHTML(project) {
     <li class="project-item active" data-filter-item data-category="${project.category.toLowerCase()}">
       <a href="${project.url}" target="_blank" class="project-card-link">
         <figure class="project-img enhanced-project-img">
-          <img src="./assets/projects/${project.image}" alt="${project.title}" loading="lazy">
+          <img
+            src="./assets/projects/${project.image}"
+            alt="${project.title}"
+            loading="lazy"
+            decoding="async"
+            width="900"
+            height="506">
           <span class="project-category-badge">${project.category}</span>
         </figure>
         <div class="project-card-content">
