@@ -105,6 +105,20 @@
 	  "url": "https://apkpure.net/bn/productive-muslim/com.muslim.productive/download"
 	},
 	{
+	  "title": "Richminis",
+	  "subtitle": "Modern ecommerce system",
+	  "category": "Web Apps",
+	  "image": "richminis.webp",
+	  "url": "https://richminis.com"
+	},
+	{
+	  "title": "Ilmpurity",
+	  "subtitle": "Learning Management system with AI based Exam",
+	  "category": "Web Apps",
+	  "image": "ilmpurity.webp",
+	  "url": "https://ilmpurity.com"
+	},
+	{
 	  "title": "DokanMate",
 	  "subtitle": "A lightweight offline POS system",
 	  "category": "Desktop Apps",
