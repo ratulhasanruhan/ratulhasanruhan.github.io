@@ -60,6 +60,17 @@
   "hasCredential": [
     {
       "@type": "EducationalOccupationalCredential",
+      "name": "Data Literacy Certification",
+      "credentialCategory": "Professional Certificate",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "DataCamp"
+      },
+      "dateIssued": "2026-06",
+      "url": "https://www.datacamp.com/skill-verification/DL0038378814287"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
       "name": "Computer Architecture Course",
       "credentialCategory": "Professional Certificate",
       "recognizedBy": {
