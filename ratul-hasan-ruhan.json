@@ -55,7 +55,7 @@
   "worksFor": {
     "@type": "Organization",
     "name": "Appibrium",
-    "url": "https://appibrium.tech"
+    "url": "https://appibrium.com"
   },
   "hasCredential": [
     {
@@ -175,7 +175,7 @@
       "worksFor": {
         "@type": "Organization",
         "name": "Appibrium",
-        "url": "https://appibrium.tech"
+        "url": "https://appibrium.com"
       },
       "startDate": "2025-10",
       "description": "I design and build complete mobile systems—from frontend UI to backend infrastructure—with deep integration of DevOps and machine learning. At Appibrium, I lead the full product lifecycle, turning ideas into high-performance, scalable apps."

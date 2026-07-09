@@ -10,7 +10,7 @@ I'm especially interested in how software systems are designed, how components i
 
 ### 🏆 Key Achievements
 
-- **Founder & Full-Stack Mobile Architect** at [Appibrium](https://appibrium.tech) — Leading end-to-end mobile system development
+- **Founder & Full-Stack Mobile Architect** at [Appibrium](https://appibrium.com) — Leading end-to-end mobile system development
 - **Creator of Ojogor (অজগর)** — The first Bengali programming language, making coding accessible to Bengali speakers
 - **Winner of Bangladesh ICT & Innovation Award 2025** — Recognized for innovation in technology
 - **Startup World Cup 2025 Regional Finalist** — Among 4500+ innovative startups
