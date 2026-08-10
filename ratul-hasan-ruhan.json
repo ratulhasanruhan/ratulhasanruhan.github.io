@@ -274,6 +274,28 @@
   ],
   "memberOf": [
     {
+      "@type": "OrganizationRole",
+      "roleName": "Local Ambassador, Bangladesh",
+      "startDate": "2026",
+      "endDate": "2027",
+      "url": "https://gllrc.org/rruhan",
+      "memberOf": {
+        "@type": "Organization",
+        "name": "Global Logic & Reasoning Challenge (GLRC)",
+        "url": "https://gllrc.org/"
+      }
+    },
+    {
+      "@type": "OrganizationRole",
+      "roleName": "Country Ambassador, Bangladesh",
+      "startDate": "2026",
+      "memberOf": {
+        "@type": "Organization",
+        "name": "International Computer Science Competition (ICSC)",
+        "url": "https://icscompetition.org/"
+      }
+    },
+    {
       "@type": "Organization",
       "name": "Bangladesh Open Source Network (BdOSN)",
       "url": "https://bdosn.org/"

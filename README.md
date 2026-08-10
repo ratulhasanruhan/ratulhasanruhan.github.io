@@ -122,6 +122,8 @@ A leading IoT and AI-powered cattle management platform. Monitor livestock healt
 
 ## 🤝 Volunteering
 
+- **GLRC — Local Ambassador, Bangladesh (2026–27)** — Promoting logic and reasoning education, organising preparatory sessions, and growing national participation ([public page](https://gllrc.org/rruhan))
+- **International Computer Science Competition — Country Ambassador (2026)** — Representing Bangladesh and encouraging student participation
 - **Society for the Popularization of Science, Bangladesh (SPSB)** — Promoting science education
 - **Bangladesh Open Source Network (BdOSN)** — Contributing to open-source culture and digital literacy
 
