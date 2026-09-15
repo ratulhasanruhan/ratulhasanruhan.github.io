@@ -11,6 +11,7 @@
   "sameAs": [
     "https://also.ratulruhan.cv/",
     "https://ratuler.vercel.app/",
+    "https://ratulhasan.web.app/",
     "https://github.com/ratulhasanruhan",
     "https://www.linkedin.com/in/ratul-hasan-ruhan/",
     "https://www.facebook.com/ratulhasan.ruhan",
@@ -132,6 +133,12 @@
         "name": "Pegasus Tech Venture"
       },
       "description": "From the first round to the final at 🌍 Startup World Cup: Bangladesh– 2025. Grateful to stand among 4500+ innovative startups."
+    },
+    {
+      "@type": "Award",
+      "name": "National Tech Award - 2025",
+      "dateReceived": "2025",
+      "description": "National Tech Award 2025 for Ishara, a real-time Bengali sign language translation system focused on accessibility and inclusion."
     },
     {
       "@type": "Award",
@@ -436,6 +443,9 @@
       "Startup World Cup: 2025 | Regional Finalist": [
         "https://also.ratulruhan.cv/assets/images/awards/pitch_session.jpg",
         "https://also.ratulruhan.cv/assets/images/awards/showcase_session.jpg"
+      ],
+      "National Tech Award - 2025": [
+        "https://also.ratulruhan.cv/assets/images/awards/national_tech_award.jpg"
       ],
       "1st Place – Programming Contest | DIA ICT Fest 2025": [
         "https://also.ratulruhan.cv/assets/images/awards/1st_certificate_programming_contest.jpg",

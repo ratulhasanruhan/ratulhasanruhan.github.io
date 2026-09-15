@@ -81,11 +81,20 @@ I regularly write about software engineering, mobile development, and technology
 
 ## 🏅 Recognition & Awards
 
+- **Coding Fest 2026 – 1st Place** (Feb 2026)
+- **National AI BUILD-A-THON – Trailblazer** (Jan 2026) — Led a team project delivering technology-driven solutions with real-world impact
 - **Bangladesh ICT & Innovation Award 2025** (Oct 2025) — For creating Ojogor, the first Bengali programming language
 - **Startup World Cup 2025 Regional Finalist** (Aug 2025) — Among top startups in Bangladesh
+- **National Tech Award 2025** — For Ishara, a real-time Bengali sign language translation system
 - **1st Place – Programming Contest** | DIA ICT Fest 2025
 - **1st Place – Project Showcasing** | DIA ICT Fest 2025
 - **2nd Place – Puzzle Hunt** | DIA ICT Fest 2025
+
+## 📜 Certifications
+
+- **Data Literacy Certification** — DataCamp (Jun 2026)
+- **Computer Architecture Course** — Codecademy (Mar 2026)
+- **Cisco CCNA 200-301 + Python Network Automation** — Udemy (2024)
 
 ## 📚 Research & Publications
 
@@ -162,4 +171,4 @@ My work, especially Ojogor, has been featured in multiple publications:
 
 **Let's build something amazing together! 🚀**
 
-*Last updated: January 2025*
+*Last updated: September 2026*
