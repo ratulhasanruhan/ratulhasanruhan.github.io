@@ -491,6 +491,15 @@ main {
 
 .appointment-cta button:active { transform: translateY(0); }
 
+.lang-switch {
+  color: var(--light-gray-70);
+  font-size: var(--fs-8);
+  text-decoration: none;
+  transition: var(--transition-1);
+}
+
+.lang-switch:hover { color: var(--orange-yellow-crayola); }
+
 
 /*-----------------------------------*\
   #NAVBAR
