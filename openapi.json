@@ -1,0 +1,164 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Ratul Hasan Ruhan — Profile Data API",
+    "version": "2026-09-15",
+    "summary": "Public, read-only, machine-readable profile data for Ratul Hasan Ruhan.",
+    "description": "Static JSON and Markdown documents published alongside the portfolio site. All endpoints are unauthenticated GET requests, CORS-enabled, and safe to cache. There are no write operations. Content changes only when the site is redeployed.",
+    "contact": {
+      "name": "Ratul Hasan Ruhan",
+      "email": "ratulhasan1644@gmail.com",
+      "url": "https://also.ratulruhan.cv/"
+    },
+    "license": {
+      "name": "All rights reserved — personal profile data; attribution appreciated.",
+      "identifier": "LicenseRef-Personal"
+    }
+  },
+  "servers": [
+    { "url": "https://also.ratulruhan.cv", "description": "Canonical (Vercel)" },
+    { "url": "https://ratuler.vercel.app", "description": "Mirror (Vercel)" },
+    { "url": "https://ratulhasan.web.app", "description": "Mirror (Firebase Hosting)" },
+    { "url": "https://ratulhasanruhan.github.io", "description": "Mirror (GitHub Pages; no custom headers)" }
+  ],
+  "tags": [
+    { "name": "profile", "description": "Who Ratul is: roles, education, awards, publications, memberships." },
+    { "name": "projects", "description": "Portfolio projects shown on the Projects page." },
+    { "name": "discovery", "description": "Site-level discovery documents." }
+  ],
+  "paths": {
+    "/ratul-hasan-ruhan.json": {
+      "get": {
+        "operationId": "getProfile",
+        "tags": ["profile"],
+        "summary": "Full profile as a schema.org Person record (JSON-LD)",
+        "description": "The primary structured record: name, contact, current role, occupations, education, credentials, awards (with image URLs), memberships/volunteering, publications, skills, research interests, and media coverage. Mirrors the content of the HTML site.",
+        "responses": {
+          "200": {
+            "description": "schema.org Person",
+            "content": {
+              "application/ld+json": { "schema": { "$ref": "#/components/schemas/Person" } }
+            }
+          }
+        }
+      }
+    },
+    "/assets/projects/projects.json": {
+      "get": {
+        "operationId": "listProjects",
+        "tags": ["projects"],
+        "summary": "All portfolio projects",
+        "description": "Array of projects in display order. `image` is a filename relative to `/assets/projects/`. `category` values are free-form labels used by the site's filter (e.g. \"Mobile Apps\", \"Web Apps\", \"Library\", \"Compiler\", \"AI/ML\", \"Networking\", \"Desktop Apps\").",
+        "responses": {
+          "200": {
+            "description": "Project list",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Project" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/README.md": {
+      "get": {
+        "operationId": "getProfileMarkdown",
+        "tags": ["profile"],
+        "summary": "Human/agent-readable profile overview (Markdown)",
+        "description": "Prose summary of the profile. Also returned for any page route when the request carries `Accept: text/markdown` (canonical domain only).",
+        "responses": {
+          "200": {
+            "description": "Markdown document",
+            "content": { "text/markdown": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/sitemap.xml": {
+      "get": {
+        "operationId": "getSitemap",
+        "tags": ["discovery"],
+        "summary": "Sitemap of the HTML site (English and Bangla pages)",
+        "responses": {
+          "200": {
+            "description": "Sitemap",
+            "content": { "application/xml": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/.well-known/api-catalog": {
+      "get": {
+        "operationId": "getApiCatalog",
+        "tags": ["discovery"],
+        "summary": "RFC 9727 API catalog (linkset)",
+        "responses": {
+          "200": {
+            "description": "Linkset",
+            "content": { "application/linkset+json": { "schema": { "type": "object" } } }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Person": {
+        "type": "object",
+        "description": "schema.org/Person. Only the most useful fields are listed; the document may include additional schema.org properties.",
+        "required": ["@context", "@type", "name"],
+        "properties": {
+          "@context": { "type": "string", "const": "https://schema.org" },
+          "@type": { "type": "string", "const": "Person" },
+          "name": { "type": "string" },
+          "alternateName": { "type": "array", "items": { "type": "string" } },
+          "jobTitle": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "telephone": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "image": { "type": "string", "format": "uri" },
+          "sameAs": { "type": "array", "items": { "type": "string", "format": "uri" } },
+          "description": { "type": "string" },
+          "worksFor": { "$ref": "#/components/schemas/Organization" },
+          "alumniOf": { "type": "array", "items": { "$ref": "#/components/schemas/Organization" } },
+          "hasOccupation": { "type": "array", "items": { "type": "object" } },
+          "hasCredential": { "type": "array", "items": { "type": "object" } },
+          "award": { "type": "array", "items": { "type": "object" } },
+          "memberOf": { "type": "array", "items": { "type": "object" } },
+          "author": { "type": "array", "items": { "type": "object" }, "description": "Publications" },
+          "knowsAbout": { "type": "array", "items": { "type": "string" } },
+          "additionalData": {
+            "type": "object",
+            "properties": {
+              "education": { "type": "array", "items": { "type": "object" } },
+              "skills": { "type": "array", "items": { "type": "object" } },
+              "researchInterests": { "type": "array", "items": { "type": "string" } },
+              "awardImages": { "type": "object", "additionalProperties": { "type": "array", "items": { "type": "string", "format": "uri" } } },
+              "mediaCoverage": { "type": "array", "items": { "type": "object" } }
+            }
+          }
+        }
+      },
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "@type": { "type": "string" },
+          "name": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
+        }
+      },
+      "Project": {
+        "type": "object",
+        "required": ["title", "category", "image", "url"],
+        "properties": {
+          "title": { "type": "string" },
+          "subtitle": { "type": "string" },
+          "category": { "type": "string" },
+          "image": { "type": "string", "description": "Filename under /assets/projects/" },
+          "url": { "type": "string", "format": "uri", "description": "Project homepage or store listing" }
+        }
+      }
+    }
+  }
+}

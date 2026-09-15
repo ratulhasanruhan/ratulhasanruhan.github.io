@@ -1,0 +1,45 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://also.ratulruhan.cv/",
+      "service-desc": [
+        {
+          "href": "https://also.ratulruhan.cv/openapi.json",
+          "type": "application/vnd.oai.openapi+json;version=3.1",
+          "title": "Ratul Hasan Ruhan profile data API — OpenAPI 3.1"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://also.ratulruhan.cv/README.md",
+          "type": "text/markdown",
+          "title": "Profile overview and endpoint guide (Markdown)"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "https://also.ratulruhan.cv/ratul-hasan-ruhan.json",
+          "type": "application/ld+json",
+          "title": "schema.org Person record for Ratul Hasan Ruhan"
+        }
+      ],
+      "alternate": [
+        {
+          "href": "https://ratuler.vercel.app/",
+          "type": "text/html",
+          "title": "Mirror (Vercel)"
+        },
+        {
+          "href": "https://ratulhasan.web.app/",
+          "type": "text/html",
+          "title": "Mirror (Firebase Hosting)"
+        },
+        {
+          "href": "https://ratulhasanruhan.github.io/",
+          "type": "text/html",
+          "title": "Mirror (GitHub Pages)"
+        }
+      ]
+    }
+  ]
+}

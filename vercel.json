@@ -24,7 +24,7 @@
       "headers": [
         {
           "key": "Link",
-          "value": "<https://also.ratulruhan.cv/ratul-hasan-ruhan.json>; rel=\"describedby\"; type=\"application/ld+json\", <https://also.ratulruhan.cv/README.md>; rel=\"alternate\"; type=\"text/markdown\", <https://also.ratulruhan.cv/sitemap.xml>; rel=\"alternate\"; type=\"application/xml\""
+          "value": "<https://also.ratulruhan.cv/ratul-hasan-ruhan.json>; rel=\"describedby\"; type=\"application/ld+json\", <https://also.ratulruhan.cv/README.md>; rel=\"alternate\"; type=\"text/markdown\", <https://also.ratulruhan.cv/sitemap.xml>; rel=\"alternate\"; type=\"application/xml\", <https://also.ratulruhan.cv/.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\""
         },
         {
           "key": "Vary",
@@ -55,6 +55,57 @@
         {
           "key": "Access-Control-Allow-Origin",
           "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/api-catalog",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/linkset+json; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, s-maxage=3600"
+        }
+      ]
+    },
+    {
+      "source": "/openapi.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/vnd.oai.openapi+json;version=3.1; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, s-maxage=3600"
+        }
+      ]
+    },
+    {
+      "source": "/auth.md",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, s-maxage=3600"
         }
       ]
     }
