@@ -275,10 +275,20 @@
   "memberOf": [
     {
       "@type": "OrganizationRole",
+      "roleName": "AWS Student Builder Leader",
+      "startDate": "2026",
+      "description": "Building cloud skills in the Bangladeshi student community",
+      "memberOf": {
+        "@type": "Organization",
+        "name": "Amazon Web Services",
+        "url": "https://aws.amazon.com/"
+      }
+    },
+    {
+      "@type": "OrganizationRole",
       "roleName": "Local Ambassador, Bangladesh",
       "startDate": "2026",
       "endDate": "2027",
-      "url": "https://gllrc.org/rruhan",
       "memberOf": {
         "@type": "Organization",
         "name": "Global Logic & Reasoning Challenge (GLRC)",
@@ -296,14 +306,24 @@
       }
     },
     {
-      "@type": "Organization",
-      "name": "Bangladesh Open Source Network (BdOSN)",
-      "url": "https://bdosn.org/"
+      "@type": "OrganizationRole",
+      "roleName": "Volunteer",
+      "startDate": "2025-04",
+      "memberOf": {
+        "@type": "Organization",
+        "name": "Bangladesh Open Source Network (BdOSN)",
+        "url": "https://bdosn.org/"
+      }
     },
     {
-      "@type": "Organization",
-      "name": "Society for the Popularization of Science, Bangladesh",
-      "url": "https://spsb.org/"
+      "@type": "OrganizationRole",
+      "roleName": "Volunteer",
+      "startDate": "2025-04",
+      "memberOf": {
+        "@type": "Organization",
+        "name": "Society for the Popularization of Science, Bangladesh (SPSB)",
+        "url": "https://spsb.org/"
+      }
     }
   ],
   "knowsAbout": [
