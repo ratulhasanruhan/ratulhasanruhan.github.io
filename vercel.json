@@ -24,7 +24,7 @@
       "headers": [
         {
           "key": "Link",
-          "value": "<https://also.ratulruhan.cv/ratul-hasan-ruhan.json>; rel=\"describedby\"; type=\"application/ld+json\", <https://also.ratulruhan.cv/README.md>; rel=\"alternate\"; type=\"text/markdown\", <https://also.ratulruhan.cv/sitemap.xml>; rel=\"alternate\"; type=\"application/xml\", <https://also.ratulruhan.cv/.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\""
+          "value": "<https://also.ratulruhan.cv/ratul-hasan-ruhan.json>; rel=\"describedby\"; type=\"application/ld+json\", <https://also.ratulruhan.cv/ratul-hasan-ruhan.md>; rel=\"alternate\"; type=\"text/markdown\", <https://also.ratulruhan.cv/sitemap.xml>; rel=\"alternate\"; type=\"application/xml\", <https://also.ratulruhan.cv/.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\""
         },
         {
           "key": "Vary",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "source": "/README.md",
+      "source": "/ratul-hasan-ruhan.md",
       "headers": [
         {
           "key": "Content-Type",

@@ -61,7 +61,7 @@
         }
       }
     },
-    "/README.md": {
+    "/ratul-hasan-ruhan.md": {
       "get": {
         "operationId": "getProfileMarkdown",
         "tags": ["profile"],

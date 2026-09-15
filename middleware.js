@@ -4,8 +4,9 @@
  * Vercel resolves static files before `rewrites`, so an Accept-based rewrite
  * in vercel.json never fires for `/` (it matches index.html first). Middleware
  * runs ahead of the filesystem, so it can hand agents that ask for
- * `Accept: text/markdown` the markdown profile (README.md) while browsers keep
- * getting HTML. GitHub Pages and Firebase ignore this file.
+ * `Accept: text/markdown` the markdown profile (ratul-hasan-ruhan.md — a copy
+ * of README.md, because Vercel does not serve a root README.md) while browsers
+ * keep getting HTML. GitHub Pages and Firebase ignore this file.
  */
 
 export const config = {
@@ -31,7 +32,7 @@ export default async function middleware(request) {
     return; // fall through to the normal static response
   }
 
-  const markdownUrl = new URL('/README.md', request.url);
+  const markdownUrl = new URL('/ratul-hasan-ruhan.md', request.url);
   const upstream = await fetch(markdownUrl, {
     headers: { accept: 'text/markdown' },
   });
@@ -40,6 +41,9 @@ export default async function middleware(request) {
   }
 
   const body = await upstream.text();
+  if (/^\s*<!doctype html/i.test(body)) {
+    return; // upstream misconfigured — fall through rather than mislabel HTML
+  }
 
   return new Response(body, {
     status: 200,

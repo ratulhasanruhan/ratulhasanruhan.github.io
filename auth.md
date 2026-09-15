@@ -13,7 +13,7 @@ there is nothing to register for.
 |---|---|---|
 | Profile (schema.org Person) | `https://also.ratulruhan.cv/ratul-hasan-ruhan.json` | `application/ld+json` |
 | Projects | `https://also.ratulruhan.cv/assets/projects/projects.json` | `application/json` |
-| Profile overview | `https://also.ratulruhan.cv/README.md` | `text/markdown` |
+| Profile overview | `https://also.ratulruhan.cv/ratul-hasan-ruhan.md` | `text/markdown` |
 | OpenAPI 3.1 description | `https://also.ratulruhan.cv/openapi.json` | `application/vnd.oai.openapi+json` |
 | API catalog (RFC 9727) | `https://also.ratulruhan.cv/.well-known/api-catalog` | `application/linkset+json` |
 
