@@ -2,7 +2,12 @@
   "hosting": {
     "site": "ratulhasan",
     "public": ".",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "middleware.js"
+    ],
     "rewrites": [
       {
         "source": "**",
@@ -22,15 +27,27 @@
       {
         "source": "/README.md",
         "headers": [
-          { "key": "Content-Type", "value": "text/markdown; charset=utf-8" },
-          { "key": "Access-Control-Allow-Origin", "value": "*" }
+          {
+            "key": "Content-Type",
+            "value": "text/markdown; charset=utf-8"
+          },
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
         ]
       },
       {
         "source": "/ratul-hasan-ruhan.json",
         "headers": [
-          { "key": "Content-Type", "value": "application/ld+json; charset=utf-8" },
-          { "key": "Access-Control-Allow-Origin", "value": "*" }
+          {
+            "key": "Content-Type",
+            "value": "application/ld+json; charset=utf-8"
+          },
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
         ]
       }
     ]

@@ -15,17 +15,6 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": ".*text/markdown.*"
-        }
-      ],
-      "destination": "/README.md"
-    },
-    {
-      "source": "/(.*)",
       "destination": "/index.html"
     }
   ],
