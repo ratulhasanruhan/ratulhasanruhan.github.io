@@ -8,9 +8,6 @@
  */
 
 
-
-
-
 /*-----------------------------------*\
   #CUSTOM PROPERTY
 \*-----------------------------------*/
@@ -112,9 +109,6 @@
 }
 
 
-
-
-
 /*-----------------------------------*\
   #RESET
 \*-----------------------------------*/
@@ -156,9 +150,6 @@ input, textarea {
 html { font-family: var(--ff-poppins); }
 
 body { background: var(--smoky-black); }
-
-
-
 
 
 /*-----------------------------------*\
@@ -293,9 +284,6 @@ article.active {
 }
 
 
-
-
-
 /*-----------------------------------*\
   #MAIN
 \*-----------------------------------*/
@@ -305,9 +293,6 @@ main {
   margin-bottom: 75px;
   min-width: 259px;
 }
-
-
-
 
 
 /*-----------------------------------*\
@@ -507,9 +492,6 @@ main {
 .appointment-cta button:active { transform: translateY(0); }
 
 
-
-
-
 /*-----------------------------------*\
   #NAVBAR
 \*-----------------------------------*/
@@ -548,9 +530,6 @@ main {
 .navbar-link.active { color: var(--orange-yellow-crayola); }
 
 
-
-
-
 /*-----------------------------------*\
   #ABOUT
 \*-----------------------------------*/
@@ -566,7 +545,6 @@ main {
 }
 
 .about-text p { margin-bottom: 15px; }
-
 
 
 /**
@@ -854,9 +832,6 @@ main {
 .clients-item img:hover { filter: grayscale(0); }
 
 
-
-
-
 /*-----------------------------------*\
   #RESUME
 \*-----------------------------------*/
@@ -996,65 +971,6 @@ main {
 
 .award-image-link:hover .award-image {
   transform: scale(1.05);
-}
-
-/* Award Lightbox Modal */
-.award-lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.95);
-  z-index: 10000;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.award-lightbox.show {
-  display: flex;
-  animation: fadeIn 0.2s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.award-lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  color: var(--white-2);
-  font-size: 40px;
-  font-weight: 300;
-  cursor: pointer;
-  z-index: 10001;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  transition: var(--transition-1);
-}
-
-.award-lightbox-close:hover {
-  background: rgba(255, 183, 43, 0.3);
-  color: var(--orange-yellow-crayola);
-  transform: rotate(90deg);
-}
-
-.award-lightbox-image {
-  max-width: 90%;
-  max-height: 90vh;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  animation: zoomIn 0.3s ease;
 }
 
 @keyframes zoomIn {
@@ -1392,18 +1308,7 @@ main {
     max-width: 100%;
   }
 
-  .award-lightbox-close {
-    top: 10px;
-    right: 15px;
-    font-size: 30px;
-    width: 35px;
-    height: 35px;
-  }
 
-  .award-lightbox-image {
-    max-width: 98%;
-    max-height: 80vh;
-  }
 }
 
 @media (max-width: 580px) {
@@ -1588,9 +1493,6 @@ main {
 }
 
 
-
-
-
 /*-----------------------------------*\
   #BLOG
 \*-----------------------------------*/
@@ -1711,9 +1613,6 @@ main {
 }
 
 
-
-
-
 /*-----------------------------------*\
   #CONTACT
 \*-----------------------------------*/
@@ -1822,9 +1721,6 @@ textarea.form-input::-webkit-resizer { display: none; }
 .form-btn:disabled:hover::before { background: var(--bg-gradient-jet); }
 
 
-
-
-
 /*-----------------------------------*\
   #RESPONSIVE
 \*-----------------------------------*/
@@ -1842,7 +1738,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   .clients-item { min-width: calc(33.33% - 10px); }
 
 
-
   /**
    * #PORTFOLIO, BLOG 
    */
@@ -1851,9 +1746,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   .blog-banner-box { height: auto; }
 
 }
-
-
-
 
 
 /**
@@ -1881,7 +1773,6 @@ textarea.form-input::-webkit-resizer { display: none; }
     --fs-8: 12px;
 
   }
-
 
 
   /**
@@ -1912,7 +1803,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
 
-
   /**
    * #MAIN
    */
@@ -1921,7 +1811,6 @@ textarea.form-input::-webkit-resizer { display: none; }
     margin-top: 60px;
     margin-bottom: 100px;
   }
-
 
 
   /**
@@ -1968,7 +1857,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
 
-
   /**
    * #NAVBAR
    */
@@ -1978,7 +1866,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   .navbar-list { gap: 20px; }
 
   .navbar-link { --fs-8: 14px; }
-
 
 
   /**
@@ -2083,7 +1970,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   .clients-item { min-width: calc(33.33% - 35px); }
 
 
-
   /**
    * #RESUME
    */
@@ -2101,7 +1987,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   .skills-item:not(:last-child) { margin-bottom: 25px; }
 
 
-
   /**
    * #PORTFOLIO, BLOG
    */
@@ -2111,7 +1996,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   .blog-posts-list { gap: 30px; }
 
   .blog-content { padding: 25px; }
-
 
 
   /**
@@ -2142,9 +2026,6 @@ textarea.form-input::-webkit-resizer { display: none; }
 }
 
 
-
-
-
 /**
  * responsive larger than 768px screen
  */
@@ -2160,7 +2041,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   .has-scrollbar::-webkit-scrollbar-button { width: 100px; }
 
 
-
   /**
    * SIDEBAR
    */
@@ -2171,13 +2051,11 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
 
-
   /**
    * NAVBAR
    */
 
   .navbar-link { --fs-8: 15px; }
-
 
 
   /**
@@ -2192,7 +2070,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .modal-avatar-box img { width: 80px; }
-
 
 
   /**
@@ -2227,7 +2104,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   .project-list, .blog-posts-list { grid-template-columns: 1fr 1fr; }
 
 
-
   /**
    * CONTACT
    */
@@ -2240,9 +2116,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
   
 }
-
-
-
 
 
 /**
@@ -2268,7 +2141,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
 
-
   /**
    * REUSED STYLE
    */
@@ -2277,7 +2149,6 @@ textarea.form-input::-webkit-resizer { display: none; }
     width: 950px;
     box-shadow: var(--shadow-5);
   }
-
 
 
   /**
@@ -2291,7 +2162,6 @@ textarea.form-input::-webkit-resizer { display: none; }
     width: max-content;
     margin: auto;
   }
-
 
 
   /**
@@ -2326,7 +2196,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
 
-
   /**
    * ABOUT
    */
@@ -2357,13 +2226,11 @@ textarea.form-input::-webkit-resizer { display: none; }
   .clients-item { min-width: calc(25% - 38px); }
 
 
-
   /**
    * PORTFOLIO
    */
 
   .project-list { grid-template-columns: repeat(3, 1fr); }
-
 
 
   /**
@@ -2373,9 +2240,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   .blog-banner-box { height: 230px; }
 
 }
-
-
-
 
 
 /**
@@ -2405,7 +2269,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   body::-webkit-scrollbar-button { height: 60px; }
 
 
-
   /**
    * REUSED STYLE
    */
@@ -2413,7 +2276,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   .sidebar, article { width: auto; }
 
   article { min-height: 100%; }
-
 
 
   /**
@@ -2434,7 +2296,6 @@ textarea.form-input::-webkit-resizer { display: none; }
     width: 75%;
     margin: 0;
   }
-
 
 
   /**
@@ -2490,7 +2351,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   .social-list { justify-content: center; }
 
 
-
   /**
 	 * RESUME
 	 */
@@ -2503,16 +2363,6 @@ textarea.form-input::-webkit-resizer { display: none; }
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 
-  .award-lightbox-close {
-    top: 15px;
-    right: 20px;
-    font-size: 35px;
-  }
-
-  .award-lightbox-image {
-    max-width: 95%;
-    max-height: 85vh;
-  }
 
 }
 
