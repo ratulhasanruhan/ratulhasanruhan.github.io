@@ -8,6 +8,31 @@
         "source": "**",
         "destination": "/index.html"
       }
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Link",
+            "value": "<https://also.ratulruhan.cv/ratul-hasan-ruhan.json>; rel=\"describedby\"; type=\"application/ld+json\", <https://also.ratulruhan.cv/README.md>; rel=\"alternate\"; type=\"text/markdown\", <https://also.ratulruhan.cv/sitemap.xml>; rel=\"alternate\"; type=\"application/xml\""
+          }
+        ]
+      },
+      {
+        "source": "/README.md",
+        "headers": [
+          { "key": "Content-Type", "value": "text/markdown; charset=utf-8" },
+          { "key": "Access-Control-Allow-Origin", "value": "*" }
+        ]
+      },
+      {
+        "source": "/ratul-hasan-ruhan.json",
+        "headers": [
+          { "key": "Content-Type", "value": "application/ld+json; charset=utf-8" },
+          { "key": "Access-Control-Allow-Origin", "value": "*" }
+        ]
+      }
     ]
   }
 }
