@@ -1,11 +1,9 @@
+# AI content usage preferences (https://contentsignals.org/)
+#   search   = may be indexed and surfaced in search results
+#   ai-input = may be used as live input/context by AI assistants
+#   ai-train = may be used to train AI models
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
-# AI content usage preferences (https://contentsignals.org/)
-# search    = may be indexed and surfaced in search results
-# ai-input  = may be used as live input/context by AI assistants
-# ai-train  = may be used to train AI models
-Content-Signal: search=yes, ai-input=yes, ai-train=yes
-
-# Sitemap (canonical domain)
 Sitemap: https://also.ratulruhan.cv/sitemap.xml
