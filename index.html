@@ -667,6 +667,29 @@
 
         </ul>
 
+        <div class="separator"></div>
+
+        <div class="appointment-cta">
+          <p class="appointment-cta-text">Got something to discuss?</p>
+          <!-- Google Calendar Appointment Scheduling begin -->
+          <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+          <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+          <script>
+            (function () {
+              var target = document.currentScript;
+              window.addEventListener('load', function () {
+                calendar.schedulingButton.load({
+                  url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ01vVQ1tVn35qEWA91zEWLjB0OY56xiZE_gVIc58FSZojPLTSxfHnpbgNrCQudJHp1GyClOtSOs?gv=true',
+                  color: '#FFDB70', /* --orange-yellow-crayola */
+                  label: 'Quick sync with Ratul',
+                  target,
+                });
+              });
+            })();
+          </script>
+          <!-- end Google Calendar Appointment Scheduling -->
+        </div>
+
       </div>
 
     </aside>

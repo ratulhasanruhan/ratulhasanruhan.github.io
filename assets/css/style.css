@@ -321,7 +321,7 @@ main {
   transition: var(--transition-2);
 }
 
-.sidebar.active { max-height: 405px; }
+.sidebar.active { max-height: 520px; }
 
 .sidebar-info {
   position: relative;
@@ -445,6 +445,66 @@ main {
 
 
 .social-item .social-link:hover { color: var(--light-gray); }
+
+.appointment-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 4px;
+}
+
+.appointment-cta-text {
+  color: var(--light-gray-70);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-300);
+  text-align: center;
+}
+
+/*
+ * Google Calendar scheduling button: the script renders a <button> with an
+ * inline bg colour, so restyle it as the site's quiet secondary button
+ * (same treatment as "Show Contacts" / "View Online").
+ */
+.appointment-cta button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px !important;
+  font-family: var(--ff-poppins) !important;
+  font-size: var(--fs-7) !important;
+  font-weight: var(--fw-500) !important;
+  white-space: nowrap;
+  color: var(--orange-yellow-crayola) !important;
+  background: var(--border-gradient-onyx) !important;
+  border: 1px solid var(--jet) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: var(--transition-1) !important;
+}
+
+.appointment-cta button::before {
+  content: "";
+  flex-shrink: 0;
+  width: 15px;
+  height: 15px;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='3'/%3E%3Cpath d='M16 2v4M8 2v4M3 10h18'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='3'/%3E%3Cpath d='M16 2v4M8 2v4M3 10h18'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.appointment-cta button:hover,
+.appointment-cta button:focus-visible {
+  background: var(--bg-gradient-yellow-2) !important;
+  border-color: hsla(45, 100%, 72%, 0.35) !important;
+  transform: translateY(-1px);
+}
+
+.appointment-cta button:active { transform: translateY(0); }
 
 
 
@@ -1873,7 +1933,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     margin-bottom: 30px;
   }
 
-  .sidebar.active { max-height: 584px; }
+  .sidebar.active { max-height: 700px; }
 
   .sidebar-info { gap: 25px; }
 
