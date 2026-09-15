@@ -3,7 +3,7 @@
 #   ai-input = may be used as live input/context by AI assistants
 #   ai-train = may be used to train AI models
 User-agent: *
-Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
 Sitemap: https://also.ratulruhan.cv/sitemap.xml
