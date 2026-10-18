@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F6F2EA"/>
+      <stop offset="1" stop-color="#EDE7DA"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <!-- border -->
+  <rect x="24" y="24" width="1152" height="582" fill="none" stroke="#8C1D2C" stroke-width="2"/>
+  <!-- name -->
+  <g font-family="Fraunces, Georgia, 'Times New Roman', serif" fill="#14161A">
+    <text x="72" y="260" font-size="84" letter-spacing="-0.5px">Ratul Hasan Ruhan</text>
+  </g>
+  <!-- positioning line -->
+  <g font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" fill="#6B7280">
+    <text x="76" y="320" font-size="30">Software engineer and systems researcher building technology for Bangla speakers;</text>
+    <text x="76" y="360" font-size="30">creator of Ojogor, the first Bengali programming language.</text>
+  </g>
+  <!-- badge -->
+  <g font-family="'Source Code Pro', ui-monospace, Menlo, Monaco, monospace" fill="#8C1D2C">
+    <text x="76" y="424" font-size="22">Dhaka, Bangladesh · Appibrium (Founder & Full-Stack Mobile Architect)</text>
+  </g>
+  <!-- site -->
+  <g font-family="Inter, system-ui" fill="#8C1D2C">
+    <text x="76" y="486" font-size="22">also.ratulruhan.cv</text>
+  </g>
+</svg>
