@@ -235,7 +235,7 @@ html[lang="bn"] .at-a-glance p strong { font-size: 13.5px; }
   display: inline-flex;
   flex-wrap: nowrap;
   gap: 8px;
-  align-items: center;
+  align-items: baseline;
   overflow-wrap: anywhere;
   min-width: 0;
 }
