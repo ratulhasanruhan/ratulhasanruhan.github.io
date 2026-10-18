@@ -1,40 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
-
-  <!-- Google tag (gtag.js) -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'dark' || saved === 'light') document.documentElement.setAttribute('data-theme', saved);
+        else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) {}
+    })();
+  </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-R6RNXNJJ74"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-R6RNXNJJ74');
   </script>
-
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Primary Meta Tags -->
-  <title>Ratul Hasan Ruhan — Software engineer & researcher</title>
+  <title>Ratul Hasan Ruhan — Software engineer &amp; researcher</title>
   <meta name="title" content="Ratul Hasan Ruhan — Software engineer & researcher">
   <meta name="description" content="Software engineer and systems researcher in Dhaka. Creator of Ojogor, the first Bengali programming language. Founder at Appibrium.">
-  <meta name="keywords"
-    content="Ratul Hasan Ruhan, Ratul Hasan, Software Engineer, Mobile Architect, Flutter Developer, Ojogor, Bengali Programming Language, Appibrium, AI/ML Developer, Mobile App Developer, Cross-platform Developer, Bangladesh ICT Award Winner, Startup World Cup, DIU, Bangladesh, Dhaka, Mobile Development, Web Development, Systems Engineering, Python, Rust, Kotlin">
+  <meta name="keywords" content="Ratul Hasan Ruhan, Ratul Hasan, Software Engineer, Mobile Architect, Flutter Developer, Ojogor, Bengali Programming Language, Appibrium, AI/ML Developer, Mobile App Developer, Cross-platform Developer, Bangladesh ICT Award Winner, Startup World Cup, DIU, Bangladesh, Dhaka, Mobile Development, Web Development, Systems Engineering, Python, Rust, Kotlin">
   <meta name="author" content="Ratul Hasan Ruhan">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="language" content="English">
   <meta name="revisit-after" content="7 days">
-  <meta name="generator" content="HTML5">
-  <meta name="rating" content="General">
-  <meta name="distribution" content="Global">
-  <meta name="coverage" content="Worldwide">
-  <meta name="target" content="all">
-  <meta name="HandheldFriendly" content="true">
-
-  <!-- Open Graph / Facebook -->
+  <meta name="theme-color" content="#F4EFE4">
+  <link rel="canonical" href="https://also.ratulruhan.cv/" id="canonical-link">
+  <link rel="alternate" hreflang="en" href="https://also.ratulruhan.cv/" data-hreflang>
+  <link rel="alternate" hreflang="bn" href="https://also.ratulruhan.cv/bn/" data-hreflang>
+  <link rel="alternate" hreflang="x-default" href="https://also.ratulruhan.cv/" data-hreflang>
+  <script>
+    (function () {
+      var path = window.location.pathname || '/';
+      var cleanPath = path.split('?')[0].split('#')[0];
+      var baseUrl = 'https://also.ratulruhan.cv';
+      var fullUrl = baseUrl + (cleanPath === '/' ? '' : cleanPath);
+      var canonicalLink = document.getElementById('canonical-link') || document.querySelector('link[rel="canonical"]');
+      if (canonicalLink) canonicalLink.setAttribute('href', fullUrl);
+      var ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.setAttribute('content', fullUrl);
+      if (cleanPath !== '/') {
+        document.querySelectorAll('link[data-hreflang]').forEach(function (l) { l.remove(); });
+      }
+    })();
+  </script>
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://also.ratulruhan.cv/sitemap.xml">
+  <link rel="alternate" href="https://also.ratulruhan.cv/ratul-hasan-ruhan.json" type="application/ld+json" title="Ratul Hasan Ruhan - Professional Data">
+  <link rel="alternate" href="https://also.ratulruhan.cv/ratul-hasan-ruhan.md" type="text/markdown" title="Ratul Hasan Ruhan - Profile (Markdown)">
+  <link rel="api-catalog" href="https://also.ratulruhan.cv/.well-known/api-catalog" type="application/linkset+json">
+  <link rel="service-desc" href="https://also.ratulruhan.cv/openapi.json" type="application/vnd.oai.openapi+json;version=3.1">
+  <link rel="me" href="https://github.com/ratulhasanruhan">
+  <link rel="me" href="https://www.linkedin.com/in/ratul-hasan-ruhan/">
+  <link rel="me" href="https://ratulhasan.link">
+  <link rel="alternate" href="https://ratulhasan.web.app/" type="text/html" title="Ratul Hasan Ruhan - Portfolio (Firebase)">
+  <link rel="alternate" href="https://ratuler.vercel.app/" type="text/html" title="Ratul Hasan Ruhan - Portfolio (Vercel)">
+  <link rel="alternate" href="https://ratulruhan.cv/" type="text/html" title="Ratul Hasan Ruhan - CV">
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://also.ratulruhan.cv/">
   <meta property="og:title" content="Ratul Hasan Ruhan — Software engineer & researcher">
@@ -46,8 +69,6 @@
   <meta property="og:site_name" content="Ratul Hasan Ruhan's Portfolio">
   <meta property="og:locale" content="en_US">
   <meta property="og:updated_time" content="2026-09-15T00:00:00+00:00">
-
-  <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://also.ratulruhan.cv/">
   <meta property="twitter:title" content="Ratul Hasan Ruhan — Software engineer & researcher">
@@ -56,114 +77,17 @@
   <meta property="twitter:image:alt" content="Ratul Hasan Ruhan - Software Engineer">
   <meta property="twitter:creator" content="@ratulhasanruhan">
   <meta property="twitter:site" content="@ratulhasanruhan">
-
-  <!-- Canonical URL (updated dynamically based on current route) -->
-  <link rel="canonical" href="https://also.ratulruhan.cv/" id="canonical-link">
-
-  <!-- Language alternates: only the home page has a Bangla twin (/bn/); removed on other routes below -->
-  <link rel="alternate" hreflang="en" href="https://also.ratulruhan.cv/" data-hreflang>
-  <link rel="alternate" hreflang="bn" href="https://also.ratulruhan.cv/bn/" data-hreflang>
-  <link rel="alternate" hreflang="x-default" href="https://also.ratulruhan.cv/" data-hreflang>
-
-  <!-- Update canonical URL immediately for SEO (before page render) -->
-  <script>
-    (function () {
-      var path = window.location.pathname || '/';
-      // Strip query parameters and hash for canonical URL
-      var cleanPath = path.split('?')[0].split('#')[0];
-      var baseUrl = 'https://also.ratulruhan.cv';
-      var fullUrl = baseUrl + (cleanPath === '/' ? '' : cleanPath);
-      var canonicalLink = document.getElementById('canonical-link') || document.querySelector('link[rel="canonical"]');
-      if (canonicalLink) {
-        canonicalLink.setAttribute('href', fullUrl);
-      }
-      // Also update og:url if it exists
-      var ogUrl = document.querySelector('meta[property="og:url"]');
-      if (ogUrl) {
-        ogUrl.setAttribute('content', fullUrl);
-      }
-      // hreflang pairs must be reciprocal; sub-routes have no /bn/ counterpart
-      if (cleanPath !== '/') {
-        document.querySelectorAll('link[data-hreflang]').forEach(function (l) { l.remove(); });
-      }
-    })();
-  </script>
-
-  <!-- Sitemap -->
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://also.ratulruhan.cv/sitemap.xml">
-
-  <!-- Structured Data JSON -->
-  <link rel="alternate" href="https://also.ratulruhan.cv/ratul-hasan-ruhan.json" type="application/ld+json"
-    title="Ratul Hasan Ruhan - Professional Data">
-  <link rel="alternate" href="https://also.ratulruhan.cv/ratul-hasan-ruhan.md" type="text/markdown"
-    title="Ratul Hasan Ruhan - Profile (Markdown)">
-
-  <!-- API discovery (RFC 9727) -->
-  <link rel="api-catalog" href="https://also.ratulruhan.cv/.well-known/api-catalog" type="application/linkset+json">
-  <link rel="service-desc" href="https://also.ratulruhan.cv/openapi.json" type="application/vnd.oai.openapi+json;version=3.1">
-  <!-- rel=me for identity verification -->
-  <link rel="me" href="https://github.com/ratulhasanruhan">
-  <link rel="me" href="https://www.linkedin.com/in/ratul-hasan-ruhan/">
-  <link rel="me" href="https://ratulhasan.link">
-
-  <!-- Alternate domains and CV Site -->
-  <link rel="alternate" href="https://ratulhasan.web.app/" type="text/html"
-    title="Ratul Hasan Ruhan - Portfolio (Firebase)">
-  <link rel="alternate" href="https://ratuler.vercel.app/" type="text/html"
-    title="Ratul Hasan Ruhan - Portfolio (Vercel)">
-  <link rel="alternate" href="https://ratulruhan.cv/" type="text/html" title="Ratul Hasan Ruhan - CV">
-
-  <!-- Additional Meta Tags -->
-  <meta name="theme-color" content="#1a1a1a">
-  <meta name="msapplication-TileColor" content="#1a1a1a">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Ratul Hasan Ruhan">
-
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="./assets/images/ratulhasan-favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/ratulhasan-favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/ratulhasan-favicon.ico">
-  <link rel="apple-touch-icon" href="./assets/images/ratulhasan-avatar.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/ratulhasan-avatar.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="./assets/images/ratulhasan-avatar.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="./assets/images/ratulhasan-avatar.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="./assets/images/ratulhasan-avatar.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="./assets/images/ratulhasan-avatar.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="./assets/images/ratulhasan-avatar.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="./assets/images/ratulhasan-avatar.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="./assets/images/ratulhasan-avatar.png">
-  <link rel="apple-touch-icon" sizes="57x57" href="./assets/images/ratulhasan-avatar.png">
-
-  <!-- Preconnect for performance -->
+  <link rel="shortcut icon" href="/assets/images/ratulhasan-favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/images/ratulhasan-favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/images/ratulhasan-avatar.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://www.googletagmanager.com">
-  <link rel="preconnect" href="https://unpkg.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="preconnect" href="https://api.github.com">
-  <link rel="preconnect" href="https://api.qrserver.com">
-  <link rel="preconnect" href="https://formspree.io">
-
-  <!-- DNS Prefetch for additional performance -->
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-  <link rel="dns-prefetch" href="https://unpkg.com">
-  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-
-  <!--
-    - custom css link
-  -->
-  <link rel="stylesheet" href="./assets/css/meridian.css">
-
-  <!--
-    - google font link
-  -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&family=Source+Code+Pro:wght@400;600&family=Noto+Serif+Bengali:wght@600;700&display=swap" rel="stylesheet">
-
-  <!-- Enhanced Structured Data -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,500&family=Fraunces:ital,opsz,wght@0,9..144,560;0,9..144,700;1,9..144,560&family=Noto+Serif+Bengali:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/broadsheet.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -177,7 +101,7 @@
       "https://also.ratulruhan.cv/",
       "https://ratulhasan.web.app/",
       "https://ratuler.vercel.app/",
-      "http://ratulruhan.cv/",
+      "https://ratulruhan.cv/",
       "https://github.com/ratulhasanruhan",
       "https://www.linkedin.com/in/ratul-hasan-ruhan/",
       "https://ratulhasan.hashnode.dev",
@@ -280,7 +204,7 @@
       {
         "@type": "PropertyValue",
         "name": "CV/Resume",
-        "value": "http://ratulruhan.cv/"
+        "value": "https://ratulruhan.cv/"
       },
       {
         "@type": "PropertyValue",
@@ -300,9 +224,7 @@
     ]
   }
   </script>
-
-  <!-- Website Structured Data -->
-  <script type="application/ld+json">
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -326,9 +248,7 @@
     }
   }
   </script>
-
-  <!-- BreadcrumbList Structured Data -->
-  <script type="application/ld+json">
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -378,9 +298,7 @@
     ]
   }
   </script>
-
-  <!-- Organization Structured Data -->
-  <script type="application/ld+json">
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -394,9 +312,7 @@
     }
   }
   </script>
-
-  <!-- CreativeWork Structured Data for Portfolio -->
-  <script type="application/ld+json">
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
@@ -411,9 +327,7 @@
     "keywords": ["Flutter", "Mobile Apps", "AI/ML", "Web Development", "Software Engineering"]
   }
   </script>
-
-  <!-- Blog Structured Data -->
-  <script type="application/ld+json">
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -430,8 +344,7 @@
     }
   }
   </script>
-  <!-- AEO structured data additions -->
-  <script type="application/ld+json">
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
@@ -446,7 +359,7 @@
     "primaryImageOfPage": "https://also.ratulruhan.cv/assets/images/ratulhasan-avatar.png"
   }
   </script>
-  <script type="application/ld+json">
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -458,7 +371,7 @@
     "description": "First Bengali programming language."
   }
   </script>
-  <script type="application/ld+json">
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
@@ -470,296 +383,756 @@
     "publisher": { "@type": "Organization", "name": "ResearchGate" }
   }
   </script>
-  <script type="application/ld+json" id="faq-jsonld">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      { "@type": "Question", "name": "Who is Ratul Hasan Ruhan?", "acceptedAnswer": { "@type": "Answer", "text": "Ratul Hasan Ruhan is a software engineer and systems researcher based in Dhaka, Bangladesh. He builds technology for Bangla speakers and is the creator of Ojogor, the first Bengali programming language." } },
-      { "@type": "Question", "name": "What is Ojogor?", "acceptedAnswer": { "@type": "Answer", "text": "Ojogor (অজগর) is the first Bengali programming language. It enables writing code with Bengali syntax. Ojogor received the Bangladesh ICT & Innovation Award 2025." } },
-      { "@type": "Question", "name": "What is Ishara?", "acceptedAnswer": { "@type": "Answer", "text": "Ishara is a real-time Bengali sign language translation system focused on accessibility and inclusion. It received the National Tech Award 2025." } },
-      { "@type": "Question", "name": "What awards has he won?", "acceptedAnswer": { "@type": "Answer", "text": "Recognitions include National AI BUILD-A-THON – Trailblazer (Jan 2026), Coding Fest 2026 – 1st Place, Bangladesh ICT & Innovation Award 2025, Startup World Cup 2025 Regional Finalist, and multiple awards at DIA ICT Fest 2025." } },
-      { "@type": "Question", "name": "What is his research?", "acceptedAnswer": { "@type": "Answer", "text": "His research includes the Caller Collision Resolution Protocol (CCRP), a preprint published on ResearchGate in Oct 2025 (DOI: 10.13140/RG.2.2.26499.98081)." } },
-      { "@type": "Question", "name": "Where did he study?", "acceptedAnswer": { "@type": "Answer", "text": "He studies BSc (Hons) Computing at the University of Greenwich (NCC Pathway) and previously studied Computer Science & Engineering at Daffodil International University." } },
-      { "@type": "Question", "name": "Is he open to new opportunities?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — open to research collaboration, MSc/PhD opportunities, and full‑time roles." } },
-      { "@type": "Question", "name": "How to contact him?", "acceptedAnswer": { "@type": "Answer", "text": "Reach him by email at ratulhasan1644@gmail.com or via LinkedIn at linkedin.com/in/ratul-hasan-ruhan." } }
-    ]
-  }
-  </script>
 </head>
-
 <body>
-
-  <!-- Meridian editorial layout (new) -->
-
-  <!-- Sticky top nav -->
-  <div class="topnav-wrap">
-    <nav class="topnav" aria-label="Top navigation">
-      <div class="brand">Ratul&nbsp;Hasan&nbsp;Ruhan</div>
-      <button id="menu-toggle" class="menu-toggle" aria-controls="topnav-menu" aria-expanded="false">Menu</button>
-      <div id="topnav-menu" class="topnav-menu" role="menu">
-        <a href="#about" role="menuitem">About</a>
-        <a href="#research" role="menuitem">Research</a>
-        <a href="#projects" role="menuitem">Projects</a>
-        <a href="#awards" role="menuitem">Awards</a>
-        <a href="#experience" role="menuitem">Experience</a>
-        <a href="#press" role="menuitem">Press</a>
-        <a href="#writings" role="menuitem">Writings</a>
-        <a href="#contact" role="menuitem">Contact</a>
-        <a class="lang-link" href="/bn/" hreflang="bn" role="menuitem">বাংলা</a>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">Theme</button>
-      </div>
-    </nav>
-  </div>
-
-  <!-- Main editorial page -->
-  <main id="main" class="page">
-    <!-- 00 Hero -->
-    <section id="about" class="grid section" aria-labelledby="hero-title">
-      <div class="margin-col"><span class="label">00</span></div>
-      <div class="hero">
-        <div>
-          <h1 id="hero-title">Ratul Hasan Ruhan <span class="bengali">রাতুল হাসান রুহান</span></h1>
-          <p class="role">Software engineer and systems researcher building technology for Bangla speakers; creator of Ojogor, the first Bengali programming language.</p>
-          <div class="spacer-2"></div>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="/assets/Ratul-Hasan-Ruhan-Resume.pdf" download>Download CV</a>
-            <a class="btn" href="mailto:ratulhasan1644@gmail.com">Email</a>
-            <a class="btn" href="https://www.linkedin.com/in/ratul-hasan-ruhan/" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="btn" href="https://github.com/ratulhasanruhan" target="_blank" rel="noopener">GitHub</a>
-            <a class="btn" href="https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony" target="_blank" rel="noopener">ResearchGate</a>
+  <a class="skip" href="#main">Skip to the record</a>
+  <div class="sheet">
+    <header class="masthead">
+      <div class="ticker" role="region" aria-label="Selected honours">
+        <p class="ticker-kicker">Honours</p>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee-track">
+            <ul>
+              <li>National AI BUILD-A-THON, Trailblazer, Jan 2026</li>
+              <li>Coding Fest 2026, 1st place, Feb 2026</li>
+              <li>Bangladesh ICT &amp; Innovation Award 2025, for Ojogor</li>
+              <li>Startup World Cup 2025, regional finalist</li>
+              <li>National Tech Award 2025, for Ishara</li>
+              <li>DIA ICT Fest 2025, 1st, programming contest</li>
+              <li>DIA ICT Fest 2025, 1st, project showcasing</li>
+              <li>DIA ICT Fest 2025, 2nd, puzzle hunt</li>
+            </ul>
+            <ul>
+              <li>National AI BUILD-A-THON, Trailblazer, Jan 2026</li>
+              <li>Coding Fest 2026, 1st place, Feb 2026</li>
+              <li>Bangladesh ICT &amp; Innovation Award 2025, for Ojogor</li>
+              <li>Startup World Cup 2025, regional finalist</li>
+              <li>National Tech Award 2025, for Ishara</li>
+              <li>DIA ICT Fest 2025, 1st, programming contest</li>
+              <li>DIA ICT Fest 2025, 1st, project showcasing</li>
+              <li>DIA ICT Fest 2025, 2nd, puzzle hunt</li>
+            </ul>
           </div>
-          <div class="spacer-2"></div>
-          <p class="mono">Open to: research collaboration, MSc/PhD opportunities, full‑time roles.</p>
         </div>
-        <aside class="at-a-glance" aria-label="At a glance">
-          <div class="kicker">At a glance</div>
-          <p><strong>Location:</strong> <span class="agl-value">Dhaka, Bangladesh</span></p>
-          <p><strong>Status:</strong> <span class="agl-value">Founder & Full‑Stack Mobile Architect, <a href="https://appibrium.com" target="_blank" rel="noopener">Appibrium</a> (Oct 2025–present)</span></p>
-          <p><strong>Interests:</strong> <span class="agl-value">systems; applied AI/ML; PL & dev tools; Bangla language tech; accessibility; edge AI/IoT.</span></p>
-          <p><strong>Contact:</strong> <span class="agl-value"><a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a> <button id="copy-email" class="btn" type="button">Copy email</button></span></p>
+        <ul class="award-static">
+          <li>National AI BUILD-A-THON, Trailblazer, Jan 2026</li>
+          <li>Coding Fest 2026, 1st place, Feb 2026</li>
+          <li>Bangladesh ICT &amp; Innovation Award 2025, for Ojogor</li>
+          <li>Startup World Cup 2025, regional finalist</li>
+          <li>National Tech Award 2025, for Ishara</li>
+          <li>DIA ICT Fest 2025, 1st, programming contest</li>
+          <li>DIA ICT Fest 2025, 1st, project showcasing</li>
+          <li>DIA ICT Fest 2025, 2nd, puzzle hunt</li>
+        </ul>
+      </div>
+
+      <div class="nameplate">
+        <div class="ornament" aria-hidden="true">
+          <svg class="press-mark" viewBox="0 0 64 52" width="46" height="38">
+            <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">
+              <path d="M6 49 h52"/>
+              <path d="M11 49 V24 h42 v25"/>
+              <path d="M18 24 V15 h28 v9"/>
+              <path d="M32 15 V6"/>
+              <rect x="22" y="31" width="20" height="7"/>
+              <path d="M16 43 h32"/>
+            </g>
+            <circle cx="32" cy="5" r="2.3" fill="#C0281C"/>
+          </svg>
+          <p class="blackletter">The Record</p>
+          <svg class="press-mark" viewBox="0 0 64 52" width="46" height="38">
+            <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">
+              <path d="M6 49 h52"/>
+              <path d="M11 49 V24 h42 v25"/>
+              <path d="M18 24 V15 h28 v9"/>
+              <path d="M32 15 V6"/>
+              <rect x="22" y="31" width="20" height="7"/>
+              <path d="M16 43 h32"/>
+            </g>
+            <circle cx="32" cy="5" r="2.3" fill="#C0281C"/>
+          </svg>
+        </div>
+        <h1 class="wordmark">Ratul Hasan Ruhan <span class="bn-name" lang="bn">রাতুল হাসান রুহান</span></h1>
+        <p class="role-line">Software engineer and systems researcher</p>
+        <p class="positioning">Software engineer and systems researcher building technology for Bangla speakers; creator of Ojogor, the first Bengali programming language.</p>
+        <hr class="rule">
+        <p class="dateline">
+          <span>Dhaka, Bangladesh</span>
+          <span aria-hidden="true">·</span>
+          <time id="edition-date" datetime="2026-10-18">18 October 2026</time>
+          <span aria-hidden="true">·</span>
+          <span class="folio" aria-hidden="true">Vol.<span class="blank"></span>No.<span class="blank"></span></span>
+          <span>Front page</span>
+        </p>
+        <p class="counts">29 projects in the record · 12 press reports · 8 honours</p>
+        <hr class="rule-thin">
+      </div>
+
+      <nav class="section-nav" aria-label="Section index">
+        <ul>
+          <li><a href="#research">Science</a></li>
+          <li><a href="#projects">Technology</a></li>
+          <li><a href="#recognition">Honours</a></li>
+          <li><a href="#press">News</a></li>
+          <li><a href="#resume">Careers</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#communities">Communities</a></li>
+          <li><a href="#writings">Writings</a></li>
+          <li><a href="#letters">Letters</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li class="lang"><a href="/bn/" hreflang="bn" lang="bn">বাংলা</a></li>
+          <li><button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false"><span class="when-day">Night edition</span><span class="when-night">Day edition</span></button></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <div class="front" id="about">
+        <article class="lead" aria-labelledby="lead-title">
+          <p class="kicker">Lead story</p>
+          <h2 class="headline" id="lead-title">Bangladeshi student builds the first Bengali programming language</h2>
+          <div class="lead-top">
+            <div>
+              <p class="deck">Ojogor (অজগর) is written in Bengali syntax. Its author, in Dhaka, founded Appibrium and posted a telephony preprint on ResearchGate.</p>
+              <p class="byline">By Ratul Hasan Ruhan</p>
+            </div>
+            <figure class="plate">
+              <div class="shot">
+                <img src="/assets/images/ratulhasan-avatar.png" alt="Portrait of Ratul Hasan Ruhan" width="500" height="500" fetchpriority="high" decoding="async">
+              </div>
+              <figcaption>Cutout. Ratul Hasan Ruhan, Dhaka.</figcaption>
+            </figure>
+          </div>
+          <div class="columns">
+            <p>Ratul Hasan Ruhan is a software engineer and systems researcher in Dhaka, Bangladesh. He builds technology for Bangla speakers and created Ojogor (অজগর), the first Bengali programming language: an interpreter for writing and running code in Bengali syntax, especially for beginners. The language received the Bangladesh ICT &amp; Innovation Award 2025.</p>
+            <p>He works across mobile, web, desktop, embedded systems, and core computer science. He started with Android development and expanded into cross-platform engineering, applied AI and machine learning, systems programming, and infrastructure. He is interested in how systems are designed, how components interact, and how research becomes a reliable application.</p>
+            <blockquote class="pull">
+              <p>I value clarity, maintainability, and thoughtful engineering over quick fixes.</p>
+              <footer>Ratul Hasan Ruhan, profile</footer>
+            </blockquote>
+            <p>Since October 2025 he has been Founder and Full-Stack Mobile Architect at <a href="https://appibrium.com">Appibrium</a>, designing mobile systems from the interface to the backend, with DevOps and machine learning in the loop. He is studying for a BSc (Hons) in Computing at the University of Greenwich (NCC Pathway).</p>
+            <p>His preprint on the Caller Collision Resolution Protocol was posted on ResearchGate in October 2025. The DOI is <span class="doi">10.13140/RG.2.2.26499.98081</span>. He is open to research collaboration, MSc and PhD opportunities, and full-time roles.</p>
+            <p class="continued">Continued under <a href="#research">Science &amp; Research</a> · <a href="#projects">Technology</a> · <a href="#recognition">Honours</a> · <a href="#press">In the News</a></p>
+          </div>
+        </article>
+
+        <aside class="quick-facts" id="quick-facts" aria-label="Quick facts">
+          <p class="flag">Quick facts</p>
+          <h2>The subject at a glance</h2>
+          <dl>
+            <div class="fact">
+              <dt>Role</dt>
+              <dd>Software engineer and systems researcher</dd>
+            </div>
+            <div class="fact">
+              <dt>Location</dt>
+              <dd>Dhaka, Bangladesh</dd>
+            </div>
+            <div class="fact">
+              <dt>Research</dt>
+              <dd>Systems and software architecture; applied AI/ML; programming languages and developer tooling; <span class="nowrap">human-centered</span> and localized computing</dd>
+            </div>
+            <div class="fact">
+              <dt>Awards</dt>
+              <dd>Bangladesh ICT &amp; Innovation Award 2025; National AI <span class="nowrap">BUILD-A-THON</span> Trailblazer (Jan 2026); Coding Fest 2026, 1st</dd>
+            </div>
+            <div class="fact">
+              <dt>Open to</dt>
+              <dd>Research collaboration, MSc/PhD opportunities, <span class="nowrap">full-time</span> roles</dd>
+            </div>
+          </dl>
+          <div class="fact-actions">
+            <a class="btn btn-red" href="/assets/Ratul-Hasan-Ruhan-Resume.pdf">Download CV</a>
+            <button type="button" class="btn copy-email" data-email="ratulhasan1644@gmail.com" data-copied="Copied">Copy email</button>
+          </div>
+          <p class="fact-email"><a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a></p>
+          <p class="fact-also"><a href="https://www.linkedin.com/in/ratul-hasan-ruhan/">LinkedIn</a> · <a href="https://github.com/ratulhasanruhan">GitHub</a> · <a href="https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony">ResearchGate</a></p>
+          <div class="currently">
+            <p class="flag">Currently</p>
+            <h3>Building, studying, open</h3>
+            <ul>
+              <li><strong>Building.</strong> Ojogor, the first Bengali programming language, and mobile systems at Appibrium.</li>
+              <li><strong>Studying.</strong> BSc (Hons) Computing, University of Greenwich (NCC Pathway), <span class="nowrap">Jan 2025–present</span>.</li>
+              <li><strong>Open to.</strong> Research collaboration, MSc/PhD opportunities, and full-time roles.</li>
+            </ul>
+          </div>
         </aside>
       </div>
-    </section>
 
-    <!-- 01 Research -->
-    <section id="research" class="grid section" aria-labelledby="research-title">
-      <div class="margin-col"><span class="label">01</span></div>
-      <div>
-        <h2 id="research-title" class="section-title">Research</h2>
-        <div class="row" role="listitem" aria-expanded="false">
-          <div class="tablelike">
-            <div>
-              <a class="toggle" href="https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony" target="_blank" rel="noopener">
-                <div class="title">Caller Collision Resolution Protocol (CCRP): Bridging Simultaneous Call Attempts in Real-World Telephony</div>
-                <div class="meta">Preprint, October 2025 — DOI: 10.13140/RG.2.2.26499.98081</div>
-              </a>
-            </div>
-            <div class="meta"></div>
-            <div class="meta"><span class="mono">ResearchGate</span></div>
-            <div></div>
-          </div>
-        </div>
-        <div class="spacer-2"></div>
-        <h3>Interests</h3>
-        <ul>
+      <section class="desk" id="research" aria-labelledby="research-title">
+        <header class="desk-head">
+          <p class="flag">Science &amp; Research</p>
+          <h2 id="research-title">A preprint on calls that collide</h2>
+          <p class="dek">Caller Collision Resolution Protocol (CCRP): Bridging Simultaneous Call Attempts in Real-World Telephony. Posted on ResearchGate in October 2025. This is a preprint, not a journal article.</p>
+        </header>
+        <article class="story">
+          <p class="meta">October 2025 · ResearchGate · DOI <span class="doi">10.13140/RG.2.2.26499.98081</span></p>
+          <p>The preprint describes a protocol for mutual call collisions: two parties call each other at the same time and both receive a busy signal. Read it on <a href="https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony">ResearchGate</a>.</p>
+        </article>
+        <h3>Research interests</h3>
+        <ul class="interest-list">
           <li>Computer systems and software architecture</li>
-          <li>Applied AI / ML in real‑world systems</li>
-          <li>Human‑centered and localized computing</li>
+          <li>Applied AI / ML in real-world systems</li>
+          <li>Human-centered and localized computing</li>
           <li>Programming languages and developer tooling</li>
         </ul>
-      </div>
-    </section>
+      </section>
 
-    <!-- 02 Projects -->
-    <section id="projects" class="grid section" aria-labelledby="projects-title">
-      <div class="margin-col"><span class="label">02</span></div>
-      <div>
-        <h2 id="projects-title" class="section-title">Projects<span id="projects-count"></span></h2>
-        <h3>Featured</h3>
-        <div id="featured-projects">
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://ratulhasan.gitbook.io/ojogor" target="_blank" rel="noopener"><div class="title">01. Ojogor (অজগর)</div><div class="meta">First Bengali programming language</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Compiler</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://www.prothomalo.com/technology/hqdxhziscj" target="_blank" rel="noopener"><div class="title">02. Ishara</div><div class="meta">Real‑time Bengali sign language translation (National Tech Award 2025)</div></a></div><div class="meta"></div><div class="meta"><span class="mono">AI/ML</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://www.facebook.com/gorusheba/" target="_blank" rel="noopener"><div class="title">03. GoruSheba</div><div class="meta">AI & IoT cattle management platform</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile · IoT</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://datayon.bd" target="_blank" rel="noopener"><div class="title">04. Datayon</div><div class="meta">A Bengali monthly tech magazine</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Web</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony" target="_blank" rel="noopener"><div class="title">05. CCRP</div><div class="meta">Telephony collision resolution protocol (preprint, Oct 2025)</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Research</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://appibrium.com" target="_blank" rel="noopener"><div class="title">06. Appibrium</div><div class="meta">Founder & Full‑Stack Mobile Architect (Oct 2025–present)</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Organization</span></div><div></div></div></div>
+      <section class="desk" id="projects" aria-labelledby="projects-title">
+        <header class="desk-head">
+          <p class="flag">Technology</p>
+          <h2 id="projects-title">Ojogor first, then Ishara, then the notices</h2>
+          <p class="dek">Twenty-nine projects are set below as classifieds. Nothing in this desk is hidden behind a click.</p>
+        </header>
+        <article class="story">
+          <p class="kicker">01 · Lead</p>
+          <h3><a href="https://ratulhasan.gitbook.io/ojogor">Ojogor (অজগর)</a></h3>
+          <p class="meta">Compiler · First Bengali programming language</p>
+          <p>An interpreter for the Bengali programming language. People write and run code in Bengali syntax. It was made so Bengali speakers, especially beginners, can program. Documentation is on <a href="https://ratulhasan.gitbook.io/ojogor">GitBook</a>. The project received the Bangladesh ICT &amp; Innovation Award 2025.</p>
+        </article>
+        <article class="story">
+          <p class="kicker">02</p>
+          <h3>Ishara</h3>
+          <p class="meta">AI/ML · Accessibility · National Tech Award 2025</p>
+          <p>Ishara is a real-time Bengali sign language translation system focused on accessibility and inclusion. It received the National Tech Award 2025.</p>
+        </article>
+        <h3>Classifieds · all 29 projects</h3>
+        <div class="filters" role="toolbar" aria-label="Filter projects">
+          <button type="button" class="btn" data-filter-btn="All" aria-pressed="true">All</button>
+          <button type="button" class="btn" data-filter-btn="Mobile Apps" aria-pressed="false">Mobile Apps</button>
+          <button type="button" class="btn" data-filter-btn="Web Apps" aria-pressed="false">Web Apps</button>
+          <button type="button" class="btn" data-filter-btn="Library" aria-pressed="false">Library</button>
+          <button type="button" class="btn" data-filter-btn="Compiler" aria-pressed="false">Compiler</button>
+          <button type="button" class="btn" data-filter-btn="AI/ML" aria-pressed="false">AI/ML</button>
+          <button type="button" class="btn" data-filter-btn="Desktop Apps" aria-pressed="false">Desktop Apps</button>
+          <button type="button" class="btn" data-filter-btn="Networking" aria-pressed="false">Networking</button>
         </div>
-        <div class="spacer-2"></div>
-        <h3>Archive</h3>
-        <button id="toggle-archive" class="btn" type="button">Show all projects</button>
-        <div id="projects-archive-wrap" hidden>
-          <div class="spacer-1"></div>
-          <input id="project-search" type="search" placeholder="Search projects…" aria-label="Search projects" style="max-width:420px;">
-          <div id="projects-archive">
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://ratulhasan.gitbook.io/ojogor" target="_blank" rel="noopener"><div class="title">Ojogor (অজগর)</div><div class="meta">A Bengali programming language</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Compiler</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://play.google.com/store/apps/details?id=app.goemergeai.emergeai" target="_blank" rel="noopener"><div class="title">Emerge AI</div><div class="meta">An AI based mental health and fitness app</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://www.ekushey-tv.com/%E0%A6%96%E0%A7%87%E0%A6%B2%E0%A6%BE%E0%A6%B0-%E0%A6%9B%E0%A6%B2%E0%A7%87-%E0%A6%85%E0%A6%A8%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%A8%E0%A7%87-%E0%A6%AC%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9A%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B0-%E0%A6%B6%E0%A7%87%E0%A6%96%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87-%E0%A6%9C%E0%A7%81%E0%A6%A8%E0%A6%BF%E0%A7%9F%E0%A6%B0-%E0%A6%95%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AE%E0%A6%AC%E0%A7%8D%E0%A6%B0%E0%A6%BF%E0%A7%9F%E0%A6%BE%E0%A6%A8/1360873111111142091" target="_blank" rel="noopener"><div class="title">Junior Cambrian</div><div class="meta">A LMS with gamification</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://sydrixai.com/" target="_blank" rel="noopener"><div class="title">Sydrix AI</div><div class="meta">Smart Study Management Ai</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://play.google.com/store/apps/details?id=com.bionovabd.bionova" target="_blank" rel="noopener"><div class="title">Bionova BD</div><div class="meta">Medical supplies ordering & delivery tracking</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://play.google.com/store/apps/details?id=com.rhrsoft.rokto" target="_blank" rel="noopener"><div class="title">Hello Chatkhil</div><div class="meta">A Medical and blood donation app</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://istt-uni.web.app/" target="_blank" rel="noopener"><div class="title">ISTT University</div><div class="meta">ISTT routine management system</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://play.google.com/store/apps/details?id=com.pet.avianicare" target="_blank" rel="noopener"><div class="title">Avianicare | Avian & Animal Care BD</div><div class="meta">E‑commerce for animal health products & services</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://play.google.com/store/apps/details?id=com.appybuilder.mdbillalhossain1.forex_tradingsignal" target="_blank" rel="noopener"><div class="title">Forex Signals</div><div class="meta">Live trends & analysis app</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://worldshine.biz/" target="_blank" rel="noopener"><div class="title">World Shine</div><div class="meta">Gold investment app</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://play.google.com/store/apps/details?id=com.rhrsoft.sikhboinew" target="_blank" rel="noopener"><div class="title">Sikhboi</div><div class="meta">A full‑featured app for digital learners</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://play.google.com/store/apps/details?id=com.rhrsoft.hello_doctor" target="_blank" rel="noopener"><div class="title">Hello Doctor</div><div class="meta">Manage patients via mobile</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://pub.dev/packages/gone_board" target="_blank" rel="noopener"><div class="title">Gone Board</div><div class="meta">Flutter UI package</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Library</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://pub.dev/packages/flutter_build_uploader" target="_blank" rel="noopener"><div class="title">Flutter Build Uploader</div><div class="meta">A Flutter CLI tool for build automation</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Library</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://pub.dev/packages/type_mate" target="_blank" rel="noopener"><div class="title">TypeMate</div><div class="meta">Overlay tools for inputs</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Library</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://apkpure.net/bn/productive-muslim/com.muslim.productive/download" target="_blank" rel="noopener"><div class="title">Productive Muslim</div><div class="meta">Islamic app (full‑featured)</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://richminis.com" target="_blank" rel="noopener"><div class="title">Richminis</div><div class="meta">Modern ecommerce system</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Web Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://ilmpurity.com" target="_blank" rel="noopener"><div class="title">Ilmpurity</div><div class="meta">LMS with AI‑based exams</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Web Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://github.com/ratulhasanruhan/DokanMate" target="_blank" rel="noopener"><div class="title">DokanMate (Desktop)</div><div class="meta">Lightweight offline POS</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Desktop Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://pub.dev/packages/apinion" target="_blank" rel="noopener"><div class="title">apinion</div><div class="meta">A package for easy API handling</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Library</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://goribli.web.app/" target="_blank" rel="noopener"><div class="title">Goribli</div><div class="meta">MLOps pipeline for image generation</div></a></div><div class="meta"></div><div class="meta"><span class="mono">AI/ML</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://porichoy.me/" target="_blank" rel="noopener"><div class="title">Porichoy</div><div class="meta">Portfolio & CV showcasing platform</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Web Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://bandhuai.app/" target="_blank" rel="noopener"><div class="title">Bandhu AI</div><div class="meta">Mental wellbeing app</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://github.com/ratulhasanruhan/wavecode" target="_blank" rel="noopener"><div class="title">WaveCode</div><div class="meta">Encode/decode audio as visuals</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://www.facebook.com/dokanmate/" target="_blank" rel="noopener"><div class="title">DokanMate (Mobile)</div><div class="meta">Simplicity‑first POS</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://www.facebook.com/gorusheba/" target="_blank" rel="noopener"><div class="title">GoruSheba</div><div class="meta">AI & IoT cattle management</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://datayon.bd" target="_blank" rel="noopener"><div class="title">Datayon</div><div class="meta">Bengali monthly tech magazine</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Web Apps</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://github.com/ratulhasanruhan/digital_delta_app" target="_blank" rel="noopener"><div class="title">Disaster‑Resilient Communication System</div><div class="meta">Resilient networking for disasters</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Networking</span></div><div></div></div></div>
-          <div class="row"><div class="tablelike"><div><a class="toggle" href="https://play.google.com/store/apps/details?id=com.appibrium.carelifetouch" target="_blank" rel="noopener"><div class="title">Care Life Touch</div><div class="meta">On‑demand medicine & healthcare</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
+        <p class="search-line"><label for="project-search">Find a notice</label><input id="project-search" type="search" placeholder="Search projects" autocomplete="off"></p>
+        <div class="classifieds" id="projects-archive">
+          <article class="ad" data-category="Compiler">
+            <p class="ad-cat">Compiler</p>
+            <h3><a class="ad-link" href="https://ratulhasan.gitbook.io/ojogor" target="_blank" rel="noopener"><img src="/assets/projects/ojogor.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Ojogor (অজগর)</span></a></h3>
+            <p>A Bengali programming language</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://play.google.com/store/apps/details?id=app.goemergeai.emergeai" target="_blank" rel="noopener"><img src="/assets/projects/emerge.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Emerge AI</span></a></h3>
+            <p>An AI based mental health and fitness app</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://www.ekushey-tv.com/%E0%A6%96%E0%A7%87%E0%A6%B2%E0%A6%BE%E0%A6%B0-%E0%A6%9B%E0%A6%B2%E0%A7%87-%E0%A6%85%E0%A6%A8%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%A8%E0%A7%87-%E0%A6%AC%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9A%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B0-%E0%A6%B6%E0%A7%87%E0%A6%96%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87-%E0%A6%9C%E0%A7%81%E0%A6%A8%E0%A6%BF%E0%A7%9F%E0%A6%B0-%E0%A6%95%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AE%E0%A6%AC%E0%A7%8D%E0%A6%B0%E0%A6%BF%E0%A7%9F%E0%A6%BE%E0%A6%A8/1360873111111142091" target="_blank" rel="noopener"><img src="/assets/projects/junior.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Junior Cambrian</span></a></h3>
+            <p>A LMS with gamification</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://sydrixai.com/" target="_blank" rel="noopener"><img src="/assets/projects/sydrix_ai.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Sydrix AI</span></a></h3>
+            <p>Smart Study Management Ai</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://play.google.com/store/apps/details?id=com.bionovabd.bionova" target="_blank" rel="noopener"><img src="/assets/projects/bionova.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Bionova BD</span></a></h3>
+            <p>Medical supplies ordering &amp; delivery tracking</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://play.google.com/store/apps/details?id=com.rhrsoft.rokto" target="_blank" rel="noopener"><img src="/assets/projects/hello_chatkhil.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Hello Chatkhil</span></a></h3>
+            <p>A Medical and blood donation app</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://istt-uni.web.app/" target="_blank" rel="noopener"><img src="/assets/projects/istt.jpeg" alt="" width="56" height="56" loading="lazy" decoding="async"><span>ISTT University</span></a></h3>
+            <p>Institute of Science, Trade &amp; Technology (ISTT) routine management system</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://play.google.com/store/apps/details?id=com.pet.avianicare" target="_blank" rel="noopener"><img src="/assets/projects/avianicare.jpg" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Avianicare | Avian &amp; Animal Care BD</span></a></h3>
+            <p>A tech-driven e-commerce platform for animal health products and services.</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://play.google.com/store/apps/details?id=com.appybuilder.mdbillalhossain1.forex_tradingsignal" target="_blank" rel="noopener"><img src="/assets/projects/forex.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Forex Signals</span></a></h3>
+            <p>Forex Signals – Live Trends &amp; Analysis App</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://worldshine.biz/" target="_blank" rel="noopener"><img src="/assets/projects/gold_app.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>World Shine</span></a></h3>
+            <p>This gold investment app offers a user-friendly and secure platform to buy, sell, and track your gold investments</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://play.google.com/store/apps/details?id=com.rhrsoft.sikhboinew" target="_blank" rel="noopener"><img src="/assets/projects/sikhboi.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Sikhboi</span></a></h3>
+            <p>A full-featured app for digital learners</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://play.google.com/store/apps/details?id=com.rhrsoft.hello_doctor" target="_blank" rel="noopener"><img src="/assets/projects/hello_doctor.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Hello Doctor</span></a></h3>
+            <p>An app for doctors to manage their patients</p>
+          </article>
+<article class="ad" data-category="Library">
+            <p class="ad-cat">Library</p>
+            <h3><a class="ad-link" href="https://pub.dev/packages/gone_board" target="_blank" rel="noopener"><img src="/assets/projects/gone_board.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Gone Board</span></a></h3>
+            <p>A flutter UI package</p>
+          </article>
+<article class="ad" data-category="Library">
+            <p class="ad-cat">Library</p>
+            <h3><a class="ad-link" href="https://pub.dev/packages/flutter_build_uploader" target="_blank" rel="noopener"><img src="/assets/projects/flutter_build_uploader.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Flutter Build Uploader</span></a></h3>
+            <p>A Flutter CLI tool for build automation</p>
+          </article>
+<article class="ad" data-category="Library">
+            <p class="ad-cat">Library</p>
+            <h3><a class="ad-link" href="https://pub.dev/packages/type_mate" target="_blank" rel="noopener"><img src="/assets/projects/type_mate.jpg" alt="" width="56" height="56" loading="lazy" decoding="async"><span>TypeMate</span></a></h3>
+            <p>Overlay tools that follow your text fields on any app</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://apkpure.net/bn/productive-muslim/com.muslim.productive/download" target="_blank" rel="noopener"><img src="/assets/projects/productive.jpg" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Productive Muslim</span></a></h3>
+            <p>A full-featured Islamic app</p>
+          </article>
+<article class="ad" data-category="Web Apps">
+            <p class="ad-cat">Web Apps</p>
+            <h3><a class="ad-link" href="https://richminis.com" target="_blank" rel="noopener"><img src="/assets/projects/richminis.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Richminis</span></a></h3>
+            <p>Modern ecommerce system</p>
+          </article>
+<article class="ad" data-category="Web Apps">
+            <p class="ad-cat">Web Apps</p>
+            <h3><a class="ad-link" href="https://ilmpurity.com" target="_blank" rel="noopener"><img src="/assets/projects/ilmpurity.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Ilmpurity</span></a></h3>
+            <p>Learning Management System with AI-based exam</p>
+          </article>
+<article class="ad" data-category="Desktop Apps">
+            <p class="ad-cat">Desktop Apps</p>
+            <h3><a class="ad-link" href="https://github.com/ratulhasanruhan/DokanMate" target="_blank" rel="noopener"><img src="/assets/projects/dokanmate_desktop.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>DokanMate (Desktop)</span></a></h3>
+            <p>A lightweight offline POS system</p>
+          </article>
+<article class="ad" data-category="Library">
+            <p class="ad-cat">Library</p>
+            <h3><a class="ad-link" href="https://pub.dev/packages/apinion" target="_blank" rel="noopener"><img src="/assets/projects/apinion_logo.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>apinion</span></a></h3>
+            <p>A package for easy API handling</p>
+          </article>
+<article class="ad" data-category="AI/ML">
+            <p class="ad-cat">AI/ML</p>
+            <h3><a class="ad-link" href="https://goribli.web.app/" target="_blank" rel="noopener"><img src="/assets/projects/goribli.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Goribli</span></a></h3>
+            <p>A MLOps pipeline for image generation</p>
+          </article>
+<article class="ad" data-category="Web Apps">
+            <p class="ad-cat">Web Apps</p>
+            <h3><a class="ad-link" href="https://porichoy.me/" target="_blank" rel="noopener"><img src="/assets/projects/porichoy_white.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Porichoy</span></a></h3>
+            <p>A platform for portfolio website and cv showcasing</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://bandhuai.app/" target="_blank" rel="noopener"><img src="/assets/projects/bandhu.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Bandhu AI</span></a></h3>
+            <p>A mental wellbeing app</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://github.com/ratulhasanruhan/wavecode" target="_blank" rel="noopener"><img src="/assets/projects/wavecode.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>WaveCode</span></a></h3>
+            <p>Encodes audio into stunning visual representations and decodes them back to audio</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://www.facebook.com/dokanmate/" target="_blank" rel="noopener"><img src="/assets/projects/dokanmate.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>DokanMate (Mobile)</span></a></h3>
+            <p>In a world of overloaded POS apps, we chose simplicity.</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://www.facebook.com/gorusheba/" target="_blank" rel="noopener"><img src="/assets/projects/gorusheba.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>GoruSheba</span></a></h3>
+            <p>Bangladesh's first intelligent cattle management system powered by AI &amp; IoT.</p>
+          </article>
+<article class="ad" data-category="Web Apps">
+            <p class="ad-cat">Web Apps</p>
+            <h3><a class="ad-link" href="https://datayon.bd" target="_blank" rel="noopener"><img src="/assets/projects/datayon.png" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Datayon</span></a></h3>
+            <p>A Bengali monthly tech magazine.</p>
+          </article>
+<article class="ad" data-category="Networking">
+            <p class="ad-cat">Networking</p>
+            <h3><a class="ad-link" href="https://github.com/ratulhasanruhan/digital_delta_app" target="_blank" rel="noopener"><img src="/assets/projects/digital_delta.jpg" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Disaster-Resilient Communication System</span></a></h3>
+            <p>A disaster-ready networking system for resilient communications</p>
+          </article>
+<article class="ad" data-category="Mobile Apps">
+            <p class="ad-cat">Mobile Apps</p>
+            <h3><a class="ad-link" href="https://play.google.com/store/apps/details?id=com.appibrium.carelifetouch" target="_blank" rel="noopener"><img src="/assets/projects/care_life_touch.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Care Life Touch</span></a></h3>
+            <p>On-demand medicine delivery and healthcare platform.</p>
+          </article>
+        </div>
+        <div class="tools">
+          <div class="tool-card">
+            <h3>Mobile &amp; multiplatform</h3>
+            <p>Flutter, Kotlin, .NET MAUI / C#. Cross-platform mobile and desktop applications, including iOS and Android.</p>
+          </div>
+          <div class="tool-card">
+            <h3>Systems, programming &amp; applied AI</h3>
+            <p>Rust, Python, Java / Spring. Systems programming, backend services, and applied machine learning.</p>
+          </div>
+          <div class="tool-card">
+            <h3>Embedded, IoT &amp; networking</h3>
+            <p>Embedded systems, IoT protocols, network programming, and hardware–software integration.</p>
+          </div>
+          <div class="tool-card">
+            <h3>DevOps &amp; infrastructure</h3>
+            <p>CI/CD pipelines, deployment, and production system configuration.</p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 03 Awards -->
-    <section id="awards" class="grid section" aria-labelledby="awards-title">
-      <div class="margin-col"><span class="label">03</span></div>
-      <div>
-        <h2 id="awards-title" class="section-title">Awards & recognition</h2>
-        <ul>
-          <li><span class="mono">2026‑01</span> — National AI BUILD‑A‑THON – Trailblazer</li>
-          <li><span class="mono">2026‑02</span> — Coding Fest 2026 – 1st Place</li>
-          <li><span class="mono">2025‑10</span> — Bangladesh ICT & Innovation Award 2025 (Ojogor)</li>
-          <li><span class="mono">2025‑08</span> — Startup World Cup 2025 – Regional Finalist</li>
-          <li><span class="mono">2025‑02</span> — DIA ICT Fest 2025 — 1st (Programming), 1st (Project Showcasing), 2nd (Puzzle Hunt)</li>
-          <li><span class="mono">2025</span> — National Tech Award 2025 (Ishara)</li>
-        </ul>
-        <div class="spacer-1"></div>
-        <div class="award-images-grid">
-          <figure class="figure"><img src="/assets/images/awards/trophy.jpg" alt="Award trophy photograph (2025)" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 1</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/winner_trophy.jpg" alt="Winner trophy photograph" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 2</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/pitch_session.jpg" alt="Pitch session photograph (2025)" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 3</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/project_showcase.jpg" alt="Project showcasing photograph (DIA ICT Fest 2025)" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 4</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/showcase_session.jpg" alt="Showcase session photograph (DIA ICT Fest 2025)" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 5</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/coding_fest_2026_certificate.jpg" alt="Coding Fest 2026 1st place certificate" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 6</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/national_ai_buildathon.jpeg" alt="National AI Build‑a‑thon 2026 award ceremony photograph" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 7</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/national_tech_award.jpg" alt="National Tech Award 2025 ceremony photograph" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 8</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/award_receiving.jpg" alt="Receiving award on stage (2025)" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 9</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/coding_fest_2026.jpg" alt="Coding Fest 2026 ceremony photograph" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 10</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/1st_certificate_programming_contest.jpg" alt="Programming contest 1st place certificate (DIA ICT Fest 2025)" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 11</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/ai_buildathon_award_ceremony.JPG" alt="National AI Build‑a‑thon 2026 award ceremony" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 12</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/award_ceremony.jpg" alt="Award ceremony photograph (2025)" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 13</figcaption></figure>
+      <section class="desk" id="recognition" aria-labelledby="honours-title">
+        <header class="desk-head">
+          <p class="flag">Honours</p>
+          <h2 id="honours-title">Eight honours on the record</h2>
+          <p class="dek">Dates as given in the profile. Photographs from the award archive, printed with a halftone.</p>
+        </header>
+        <div class="notices">
+          <article class="notice">
+            <p class="when">Jan 2026</p>
+            <div>
+              <h3>National AI BUILD-A-THON — Trailblazer</h3>
+              <p class="meta">MillionX Bangladesh</p>
+              <p>Trailblazer at the National BUILD-A-THON, for leading a team project that delivered technology-driven solutions with real-world impact.</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Feb 2026</p>
+            <div>
+              <h3>Coding Fest 2026 — 1st place</h3>
+              <p class="meta">Daffodil International Academy</p>
+              <p>First place in the coding event.</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Oct 2025</p>
+            <div>
+              <h3>Bangladesh ICT &amp; Innovation Award 2025</h3>
+              <p class="meta">Bangladesh ICT &amp; Innovation Network (BIIN)</p>
+              <p>For Ojogor (অজগর), the first Bengali programming language.</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Aug 2025</p>
+            <div>
+              <h3>Startup World Cup 2025 — regional finalist</h3>
+              <p class="meta">Pegasus Tech Venture</p>
+              <p>Regional finalist. The profile records the run from the first round to the final, among 4500+ startups.</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">2025</p>
+            <div>
+              <h3>National Tech Award 2025</h3>
+              <p>For Ishara, a real-time Bengali sign language translation system focused on accessibility and inclusion.</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Feb 2025</p>
+            <div>
+              <h3>DIA ICT Fest 2025 — three placings</h3>
+              <p class="meta">Daffodil International Academy</p>
+              <p>1st, programming contest. 1st, project showcasing. 2nd, puzzle hunt.</p>
+            </div>
+          </article>
+        </div>
+        <div class="award-grid">
+          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/trophy.jpg" alt="Award trophy photograph (2025)" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>Fig. 1 — Award trophy photograph (2025)</figcaption></figure>
+          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/winner_trophy.jpg" alt="Winner trophy photograph" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>Fig. 2 — Winner trophy photograph</figcaption></figure>
+          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/pitch_session.jpg" alt="Pitch session photograph (2025)" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>Fig. 3 — Pitch session photograph (2025)</figcaption></figure>
+          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/project_showcase.jpg" alt="Project showcasing photograph (DIA ICT Fest 2025)" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>Fig. 4 — Project showcasing (DIA ICT Fest 2025)</figcaption></figure>
+          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/showcase_session.jpg" alt="Showcase session photograph (DIA ICT Fest 2025)" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>Fig. 5 — Showcase session (DIA ICT Fest 2025)</figcaption></figure>
+          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/coding_fest_2026_certificate.jpg" alt="Coding Fest 2026 1st place certificate" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>Fig. 6 — Coding Fest 2026, 1st place certificate</figcaption></figure>
+          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/national_ai_buildathon.jpeg" alt="National AI Build-a-thon 2026 award ceremony photograph" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>Fig. 7 — National AI Build-a-thon 2026</figcaption></figure>
+          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/national_tech_award.jpg" alt="National Tech Award 2025 ceremony photograph" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>Fig. 8 — National Tech Award 2025</figcaption></figure>
+          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/award_receiving.jpg" alt="Receiving award on stage (2025)" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>Fig. 9 — Receiving an award on stage (2025)</figcaption></figure>
+          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/coding_fest_2026.jpg" alt="Coding Fest 2026 ceremony photograph" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>Fig. 10 — Coding Fest 2026 ceremony</figcaption></figure>
+          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/1st_certificate_programming_contest.jpg" alt="Programming contest 1st place certificate (DIA ICT Fest 2025)" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>Fig. 11 — Programming contest, 1st (DIA ICT Fest 2025)</figcaption></figure>
+          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/ai_buildathon_award_ceremony.JPG" alt="National AI Build-a-thon 2026 award ceremony" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>Fig. 12 — National AI Build-a-thon 2026 ceremony</figcaption></figure>
+          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/award_ceremony.jpg" alt="Award ceremony photograph (2025)" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>Fig. 13 — Award ceremony photograph (2025)</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="desk" id="press" aria-labelledby="press-title">
+        <header class="desk-head">
+          <p class="flag">In the News</p>
+          <h2 id="press-title">Twelve clippings</h2>
+          <p class="dek">Outlet and headline as recorded in the profile. Each item links to the original report.</p>
+        </header>
+        <ol class="clippings print-url">
+          <li><a href="https://tbsgraduates.net/writeup/programming-made-easy-diu-students-ojogor-introduces-bangla-syntax-to-python/"><span class="clip-source">The Business Standard</span>Ojogor introduces Bangla syntax to programming</a></li>
+          <li><a href="https://protidinerbangladesh.com/technology/132975/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A7%9F-%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A5%E0%A6%AE-%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%BF%E0%A6%82-%E0%A6%AD%E0%A6%BE%E0%A6%B7%E0%A6%BE-%E0%A6%B0%E0%A7%81%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A7%87%E0%A6%B0-%E0%A6%85%E0%A6%9C%E0%A6%97%E0%A6%B0" lang="bn"><span class="clip-source">Protidiner Bangladesh</span>বাংলায় প্রথম প্রোগ্রামিং ভাষা রুহানের ‘অজগর’</a></li>
+          <li><a href="https://www.linkedin.com/posts/the-business-standard_programming-made-easy-diu-students-ojogor-activity-7308421903390572544-BvIZ/"><span class="clip-source">The Business Standard (LinkedIn)</span>Student creates Python in Bangla to help others learn</a></li>
+          <li><a href="https://www.instagram.com/p/DG7yqCVyWCO/"><span class="clip-source">Daily Blurb</span>Ojogor — First Bengali Programming Language</a></li>
+          <li><a href="https://www.facebook.com/infogrambd/posts/more-details-in-the-comments-section/657991090072772/"><span class="clip-source">InfogramBD</span>Ojogor Programming Language</a></li>
+          <li><a href="https://www.facebook.com/share/p/1Kmhp2zus2/"><span class="clip-source">BongoWiki</span>Ojogor — First Bengali Programming Language</a></li>
+          <li><a href="https://www.tbsnews.net/bangladesh/bangladesh-ict-and-innovation-network-recognises-nations-top-innovators-1265456#:~:text=Ojogor%20from%20Daffodil%20International%20University%20(DIU)"><span class="clip-source">The Business Standard</span>Bangladesh ICT and Innovation Network recognises nation’s top innovators</a></li>
+          <li><a href="https://en.techworldbd.com/news/98#:~:text=Daffodil%20International%20University%E2%80%94DIU%20(Ajogor)"><span class="clip-source">TechWorld Bangladesh</span>BIIN honours country’s top innovators</a></li>
+          <li><a href="https://www.dhakatribune.com/bangladesh/event/394357/bangladesh-ict-and-innovation-network-honors-the#:~:text=Fraud%20Shield%20(AIUB)%2C-,Ojogor%20(DIU),-%2C%20and%20Sohopathi%20AI"><span class="clip-source">Dhaka Tribune</span>Bangladesh ICT and Innovation Network honors the country’s top innovators</a></li>
+          <li><a href="https://www.tbsnews.net/economy/corporates/daffodil-international-academy-ict-fest-2025-inaugurated-1075236"><span class="clip-source">The Business Standard</span>Daffodil International Academy ICT Fest 2025 inaugurated</a></li>
+          <li><a href="https://www.prothomalo.com/technology/hqdxhziscj" lang="bn"><span class="clip-source">Prothom Alo</span>ন্যাশনাল এআই বিল্ড-এ-থনে বিজয়ী ৫ দল পেল ল্যাপটপ ও অর্থ পুরস্কার</a></li>
+          <li><a href="https://www.a1news24.com/%E0%A6%B0%E0%A6%BE%E0%A6%9C%E0%A6%A7%E0%A6%BE%E0%A6%A8%E0%A7%80%E0%A6%A4%E0%A7%87-%E0%A6%86%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%9C%E0%A6%BF%E0%A6%A4-%E0%A6%B9%E0%A6%B2-%E0%A6%A8%E0%A7%8D%E0%A6%AF/" lang="bn"><span class="clip-source">A1News24</span>ন্যাশনাল এআই বিল্ড-এ-থন</a></li>
+        </ol>
+      </section>
+
+      <section class="desk" id="resume" aria-labelledby="careers-title">
+        <header class="desk-head">
+          <p class="flag">Careers</p>
+          <h2 id="careers-title">Situations, 2019 to the present</h2>
+          <p class="dek">Classifieds from the profile. The current post is at the top.</p>
+        </header>
+        <div class="notices">
+          <article class="notice">
+            <p class="when">Oct 2025–present</p>
+            <div>
+              <h3>Appibrium — Founder &amp; Full-Stack Mobile Architect</h3>
+              <p class="meta">Dhaka · <a href="https://appibrium.com">appibrium.com</a></p>
+              <p>Designs and builds complete mobile systems, from the interface to backend infrastructure, with DevOps and machine learning. Leads the product lifecycle.</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Aug 2025–Oct 2025</p>
+            <div>
+              <h3>Solution Explorer — Software Engineer</h3>
+              <p class="meta">Remote, United States · <a href="https://solutionexplorer.com/">solutionexplorer.com</a></p>
+              <p>Cross-platform apps for mobile (iOS and Android) and desktop (Windows, macOS, Linux).</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">May 2025–Jul 2025</p>
+            <div>
+              <h3>Sydrix AI — Mobile Application Developer</h3>
+              <p class="meta">Remote, Dhaka · <a href="https://sydrixai.com">sydrixai.com</a></p>
+              <p>Prototyping and feature work for early-stage AI products, including the Sydrix AI mobile solution.</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Apr 2025–May 2025</p>
+            <div>
+              <h3>BdCalling IT Ltd. — Flutter Developer</h3>
+              <p class="meta">Dhaka · <a href="https://bdcalling.com/">bdcalling.com</a></p>
+              <p>Real-time features with Socket.io, and audio and video calling on iOS and Android.</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Aug 2024–Mar 2025</p>
+            <div>
+              <h3>Emerge AI — Mobile Application Developer</h3>
+              <p class="meta">Remote, Beijing · <a href="https://www.linkedin.com/company/emergeai/">LinkedIn</a></p>
+              <p>Flutter applications with AI-driven features.</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Jul 2023–Aug 2024</p>
+            <div>
+              <h3>Infolook — Mobile Application Developer</h3>
+              <p class="meta">Dhaka · <a href="https://infolook.net/">infolook.net</a></p>
+              <p>Cross-platform mobile applications with Flutter and Dart.</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Nov 2019–Dec 2022</p>
+            <div>
+              <h3>Spotlight Creative — Android Developer, freelance</h3>
+              <p>Enterprise Android applications in Java and XML.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="desk" id="education" aria-labelledby="edu-title">
+        <header class="desk-head">
+          <p class="flag">Education</p>
+          <h2 id="edu-title">Schools, and three certificates</h2>
+        </header>
+        <div class="notices">
+          <article class="notice">
+            <p class="when">Jan 2025–present</p>
+            <div>
+              <h3>BSc (Hons) Computing</h3>
+              <p class="meta"><a href="https://www.gre.ac.uk/">University of Greenwich</a> (NCC Pathway) · Ongoing</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Jan 2024–Jan 2025</p>
+            <div>
+              <h3>BSc in Computer Science &amp; Engineering</h3>
+              <p class="meta"><a href="https://daffodilvarsity.edu.bd/">Daffodil International University</a>, Dhaka · Completed</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Jan 2021–Jun 2023</p>
+            <div>
+              <h3>Higher Secondary Certificate, Science</h3>
+              <p class="meta"><a href="https://sgc.college.gov.bd/">Shariatpur Govt. College</a> · Completed</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Jan 2016–Dec 2020</p>
+            <div>
+              <h3>Secondary School Certificate, Science</h3>
+              <p class="meta">PTGD Govt. High School · Completed</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Jun 2026</p>
+            <div>
+              <h3>Data Literacy Certification</h3>
+              <p class="meta">DataCamp · <a href="https://www.datacamp.com/skill-verification/DL0038378814287">Certificate</a></p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Mar 2026</p>
+            <div>
+              <h3>Computer Architecture Course</h3>
+              <p class="meta">Codecademy · <a href="https://www.codecademy.com/profiles/ratulhasan.ruhan/certificates/dee8cc79cfe5e46834989e0d0ec1d2d5">Certificate</a></p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">2024</p>
+            <div>
+              <h3>Cisco CCNA 200-301 + Python Network Automation</h3>
+              <p class="meta">Udemy · <a href="https://www.udemy.com/certificate/UC-42719966-3bd8-47f3-b0ca-d3f67775cfd8/">Certificate</a></p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="desk" id="communities" aria-labelledby="comm-title">
+        <header class="desk-head">
+          <p class="flag">Communities &amp; Leadership</p>
+          <h2 id="comm-title">Five posts outside the day job</h2>
+        </header>
+        <div class="notices">
+          <article class="notice">
+            <p class="when">2026–present</p>
+            <div>
+              <h3>AWS Student Builder Leader</h3>
+              <p class="meta"><a href="https://aws.amazon.com/">Amazon Web Services</a></p>
+              <p>Building cloud skills in the Bangladeshi student community.</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">2026–2027</p>
+            <div>
+              <h3>Local Ambassador, Bangladesh</h3>
+              <p class="meta"><a href="https://gllrc.org/">Global Logic &amp; Reasoning Challenge</a></p>
+              <p>Promoting logic and reasoning education, organising preparatory sessions, and growing national participation.</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">2026</p>
+            <div>
+              <h3>Country Ambassador, Bangladesh</h3>
+              <p class="meta"><a href="https://icscompetition.org/">International Computer Science Competition</a></p>
+              <p>Representing Bangladesh and encouraging student participation.</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Apr 2025–present</p>
+            <div>
+              <h3>Volunteer</h3>
+              <p class="meta"><a href="https://spsb.org/">Society for the Popularization of Science, Bangladesh</a></p>
+              <p>Promoting science education.</p>
+            </div>
+          </article>
+          <article class="notice">
+            <p class="when">Apr 2025–present</p>
+            <div>
+              <h3>Volunteer</h3>
+              <p class="meta"><a href="https://bdosn.org/">Bangladesh Open Source Network</a></p>
+              <p>Contributing to open-source culture and digital literacy.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="desk" id="writings" aria-labelledby="writings-title">
+        <header class="desk-head">
+          <p class="flag">Writings</p>
+          <h2 id="writings-title">Where the essays run</h2>
+        </header>
+        <p>Recent writing is on <a href="https://ratulhasanruhan.medium.com">Medium</a>, <a href="https://ratulhasan.hashnode.dev">Hashnode</a>, and in the <a href="https://github.com/ratulhasanruhan/blogs">blogs repository</a>.</p>
+      </section>
+
+      <section class="desk" id="letters" aria-labelledby="letters-title">
+        <header class="desk-head">
+          <p class="flag">Letters to the Editor</p>
+          <h2 id="letters-title">Questions already on the desk</h2>
+          <p class="dek">The answers are printed in full. They match the FAQ structured data.</p>
+        </header>
+        <div class="letters">
+          <article class="letter">
+            <h3>Who is Ratul Hasan Ruhan?</h3>
+            <p>Ratul Hasan Ruhan is a software engineer and systems researcher based in Dhaka, Bangladesh. He builds technology for Bangla speakers and is the creator of Ojogor, the first Bengali programming language.</p>
+          </article>
+          <article class="letter">
+            <h3>What is Ojogor?</h3>
+            <p>Ojogor (অজগর) is the first Bengali programming language. It enables writing code with Bengali syntax. Ojogor received the Bangladesh ICT &amp; Innovation Award 2025.</p>
+          </article>
+          <article class="letter">
+            <h3>What is Ishara?</h3>
+            <p>Ishara is a real-time Bengali sign language translation system focused on accessibility and inclusion. It received the National Tech Award 2025.</p>
+          </article>
+          <article class="letter">
+            <h3>What awards has he won?</h3>
+            <p>Recognitions include National AI BUILD-A-THON – Trailblazer (Jan 2026), Coding Fest 2026 – 1st Place, Bangladesh ICT &amp; Innovation Award 2025, Startup World Cup 2025 Regional Finalist, and multiple awards at DIA ICT Fest 2025.</p>
+          </article>
+          <article class="letter">
+            <h3>What is his research?</h3>
+            <p>His research includes the Caller Collision Resolution Protocol (CCRP), a preprint published on ResearchGate in Oct 2025 (DOI: 10.13140/RG.2.2.26499.98081).</p>
+          </article>
+          <article class="letter">
+            <h3>Where did he study?</h3>
+            <p>He studies BSc (Hons) Computing at the University of Greenwich (NCC Pathway) and previously studied Computer Science &amp; Engineering at Daffodil International University.</p>
+          </article>
+          <article class="letter">
+            <h3>Is he open to new opportunities?</h3>
+            <p>Yes — open to research collaboration, MSc/PhD opportunities, and full-time roles.</p>
+          </article>
+          <article class="letter">
+            <h3>How to contact him?</h3>
+            <p>Reach him by email at <a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a> or via LinkedIn at linkedin.com/in/ratul-hasan-ruhan.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="colophon" id="contact">
+      <p class="flag">Contact</p>
+      <h2>Colophon</h2>
+      <div class="colo-grid">
+        <div>
+          <p>Ratul Hasan Ruhan<br>Software engineer and systems researcher<br>Dhaka, Bangladesh</p>
+          <p>Email <a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a>
+            <button type="button" class="btn copy-email" data-email="ratulhasan1644@gmail.com" data-copied="Copied">Copy</button></p>
+          <p><a class="btn btn-red" href="/assets/Ratul-Hasan-Ruhan-Resume.pdf">Download CV</a></p>
+          <p>Online CV: <a href="https://ratulruhan.cv/">ratulruhan.cv</a></p>
+        </div>
+        <div>
+          <p class="meta">Correspondence</p>
+          <ul class="colo-links">
+            <li><a href="https://www.linkedin.com/in/ratul-hasan-ruhan/">LinkedIn</a></li>
+            <li><a href="https://github.com/ratulhasanruhan">GitHub</a></li>
+            <li><a href="https://peerlist.io/ratulhasan">Peerlist</a></li>
+            <li><a href="https://www.youtube.com/@ratulicious">YouTube · @ratulicious</a></li>
+            <li><a href="https://www.facebook.com/ratulhasan.ruhan">Facebook</a></li>
+            <li><a href="https://ratulhasan.link">ratulhasan.link</a></li>
+          </ul>
+        </div>
+        <div class="print-url">
+          <p class="meta">For readers and machines</p>
+          <ul class="colo-links">
+            <li><a href="https://ratulhasanruhan.medium.com">Medium</a></li>
+            <li><a href="https://ratulhasan.hashnode.dev">Hashnode</a></li>
+            <li><a href="/ratul-hasan-ruhan.json">Profile JSON</a></li>
+            <li><a href="/ratul-hasan-ruhan.md">Profile Markdown</a></li>
+            <li><a href="/llms.txt">llms.txt</a></li>
+            <li><a href="/sitemap.xml">Sitemap</a></li>
+          </ul>
         </div>
       </div>
-    </section>
-
-    <!-- 04 Experience & Education -->
-    <section id="experience" class="grid section" aria-labelledby="exp-title">
-      <div class="margin-col"><span class="label">04</span></div>
-      <div>
-        <h2 id="exp-title" class="section-title">Experience & education</h2>
-        <div class="row"><div class="tablelike"><div><div class="title">Appibrium — Founder & Full‑Stack Mobile Architect</div><div class="meta">Oct 2025 – Present · Dhaka</div></div><div class="meta"></div><div class="meta"><span class="mono">Leadership</span></div><div></div></div></div>
-        <div class="row"><div class="tablelike"><div><div class="title">Solution Explorer — Software Engineer</div><div class="meta">Aug 2025 – Oct 2025 · Remote (Maryland, US)</div></div><div class="meta"></div><div class="meta"><span class="mono">Software</span></div><div></div></div></div>
-        <div class="row"><div class="tablelike"><div><div class="title">Sydrix AI — Mobile Application Developer</div><div class="meta">May 2025 – Jul 2025 · Remote (Dhaka, BD)</div></div><div class="meta"></div><div class="meta"><span class="mono">Mobile</span></div><div></div></div></div>
-        <div class="row"><div class="tablelike"><div><div class="title">BdCalling IT Ltd. — Flutter Developer</div><div class="meta">Apr 2025 – May 2025 · Dhaka</div></div><div class="meta"></div><div class="meta"><span class="mono">Mobile</span></div><div></div></div></div>
-        <div class="row"><div class="tablelike"><div><div class="title">Emerge AI — Mobile Application Developer</div><div class="meta">Aug 2024 – Mar 2025 · Remote (Beijing, CN)</div></div><div class="meta"></div><div class="meta"><span class="mono">Mobile</span></div><div></div></div></div>
-        <div class="row"><div class="tablelike"><div><div class="title">Infolook — Mobile Application Developer</div><div class="meta">Jul 2023 – Aug 2024 · Dhaka</div></div><div class="meta"></div><div class="meta"><span class="mono">Mobile</span></div><div></div></div></div>
-        <div class="row"><div class="tablelike"><div><div class="title">Spotlight Creative — Android Developer (Freelance)</div><div class="meta">Nov 2019 – Dec 2022</div></div><div class="meta"></div><div class="meta"><span class="mono">Android</span></div><div></div></div></div>
-        <div class="spacer-2"></div>
-        <div class="row"><div class="tablelike"><div><div class="title">BSc (Hons) Computing — University of Greenwich (NCC Pathway)</div><div class="meta">Jan 2025 – Present</div></div><div class="meta"></div><div class="meta"><span class="mono">Education</span></div><div></div></div></div>
-        <div class="row"><div class="tablelike"><div><div class="title">BSc in Computer Science & Engineering — Daffodil International University</div><div class="meta">Jan 2024 – Jan 2025</div></div><div class="meta"></div><div class="meta"><span class="mono">Education</span></div><div></div></div></div>
-      </div>
-    </section>
-
-    <!-- 05 Communities -->
-    <section id="communities" class="grid section" aria-labelledby="comm-title">
-      <div class="margin-col"><span class="label">05</span></div>
-      <div>
-        <h2 id="comm-title" class="section-title">Communities & leadership</h2>
-        <ul>
-          <li><strong>AWS Student Builder Leader</strong> — Amazon Web Services (2026–present)</li>
-          <li><strong>Local Ambassador</strong> — Global Logic & Reasoning Challenge (2026–2027)</li>
-          <li><strong>Country Ambassador</strong> — International Computer Science Competition (2026)</li>
-          <li><strong>Volunteer</strong> — Society for the Popularization of Science, Bangladesh (Apr 2025–present)</li>
-          <li><strong>Volunteer</strong> — Bangladesh Open Source Network (Apr 2025–present)</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 06 Press & media -->
-    <section id="press" class="grid section" aria-labelledby="press-title">
-      <div class="margin-col"><span class="label">06</span></div>
-      <div>
-        <h2 id="press-title" class="section-title">Press & media</h2>
-        <ol>
-          <li><a href="https://tbsgraduates.net/writeup/programming-made-easy-diu-students-ojogor-introduces-bangla-syntax-to-python/" target="_blank" rel="noopener">Ojogor introduces Bangla syntax to programming — The Business Standard (Graduates)</a></li>
-          <li><a href="https://protidinerbangladesh.com/technology/132975/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A7%9F-%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A5%E0%A6%AE-%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%BF%E0%A6%82-%E0%A6%AD%E0%A6%BE%E0%A6%B7%E0%A6%BE-%E0%A6%B0%E0%A7%81%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A7%87%E0%A6%B0-%E0%A6%85%E0%A6%9C%E0%A6%97%E0%A6%B0" target="_blank" rel="noopener">বাংলায় প্রথম প্রোগ্রামিং ভাষা রুহানের ‘অজগর’ — Protidiner Bangladesh</a></li>
-          <li><a href="https://www.linkedin.com/posts/the-business-standard_programming-made-easy-diu-students-ojogor-activity-7308421903390572544-BvIZ/" target="_blank" rel="noopener">Student creates Python in Bangla to help others learn — The Business Standard (LinkedIn)</a></li>
-          <li><a href="https://www.instagram.com/p/DG7yqCVyWCO/" target="_blank" rel="noopener">Ojogor — First Bengali Programming Language — Daily Blurb (Instagram)</a></li>
-          <li><a href="https://www.facebook.com/infogrambd/posts/more-details-in-the-comments-section/657991090072772/" target="_blank" rel="noopener">Ojogor Programming Language — InfogramBD (Facebook)</a></li>
-          <li><a href="https://www.facebook.com/share/p/1Kmhp2zus2/" target="_blank" rel="noopener">Facebook press post</a></li>
-          <li><a href="https://www.tbsnews.net/bangladesh/bangladesh-ict-and-innovation-network-recognises-nations-top-innovators-1265456#:~:text=Ojogor%20from%20Daffodil%20International%20University%20(DIU)" target="_blank" rel="noopener">Bangladesh ICT & Innovation Network recognises top innovators — The Business Standard</a></li>
-          <li><a href="https://en.techworldbd.com/news/98#:~:text=Daffodil%20International%20University%E2%80%94DIU%20(Ajogor)" target="_blank" rel="noopener">TechworldBD — DIU (Ajogor) feature</a></li>
-          <li><a href="https://www.dhakatribune.com/bangladesh/event/394357/bangladesh-ict-and-innovation-network-honors-the#:~:text=Fraud%20Shield%20(AIUB)%2C-,Ojogor%20(DIU),-%2C%20and%20Sohopathi%20AI" target="_blank" rel="noopener">Bangladesh ICT & Innovation Network honors — Dhaka Tribune</a></li>
-          <li><a href="https://www.tbsnews.net/economy/corporates/daffodil-international-academy-ict-fest-2025-inaugurated-1075236" target="_blank" rel="noopener">Daffodil International Academy ICT Fest 2025 inaugurated — The Business Standard</a></li>
-          <li><a href="https://www.prothomalo.com/technology/hqdxhziscj" target="_blank" rel="noopener">National AI Build-a-thon winners — Prothom Alo</a></li>
-          <li><a href="https://www.a1news24.com/%E0%A6%B0%E0%A6%BE%E0%A6%9C%E0%A6%A7%E0%A6%BE%E0%A6%A8%E0%A7%80%E0%A6%A4%E0%A7%87-%E0%A6%86%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%9C%E0%A6%BF%E0%A6%A4-%E0%A6%B9%E0%A6%B2-%E0%A6%A8%E0%A7%8D%E0%A6%AF/" target="_blank" rel="noopener">A1News24 — coverage</a></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- 07 Writings -->
-    <section id="writings" class="grid section" aria-labelledby="writings-title">
-      <div class="margin-col"><span class="label">07</span></div>
-      <div>
-        <h2 id="writings-title" class="section-title">Writings</h2>
-        <p>See recent writings on <a href="https://ratulhasanruhan.medium.com" target="_blank" rel="noopener">Medium</a>, <a href="https://ratulhasan.hashnode.dev" target="_blank" rel="noopener">Hashnode</a>, and the <a href="https://github.com/ratulhasanruhan/blogs" target="_blank" rel="noopener">blogs repo</a>.</p>
-      </div>
-    </section>
-
-    <!-- 08 Contact -->
-    <section id="contact" class="grid section" aria-labelledby="contact-title">
-      <div class="margin-col"><span class="label">08</span></div>
-      <div>
-        <h2 id="contact-title" class="section-title">Contact</h2>
-        <p>Email: <a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a> <button id="copy-email" class="btn" type="button" style="margin-left:8px">Copy email</button></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/ratul-hasan-ruhan/" target="_blank" rel="noopener">ratul-hasan-ruhan</a> · GitHub: <a href="https://github.com/ratulhasanruhan" target="_blank" rel="noopener">ratulhasanruhan</a></p>
-        <p>YouTube: <a href="https://www.youtube.com/@ratulicious" target="_blank" rel="noopener">@ratulicious</a> · Facebook: <a href="https://www.facebook.com/ratulhasan.ruhan" target="_blank" rel="noopener">ratulhasan.ruhan</a></p>
-      </div>
-    </section>
-
-    <!-- 09 FAQ (visible and matches JSON-LD) -->
-    <section id="faq" class="grid section" aria-labelledby="faq-title">
-      <div class="margin-col"><span class="label">09</span></div>
-      <div>
-        <h2 id="faq-title" class="section-title">FAQ</h2>
-        <details class="row"><summary class="toggle"><div class="title">Who is Ratul Hasan Ruhan?</div></summary><div class="details">Ratul Hasan Ruhan is a software engineer and systems researcher based in Dhaka, Bangladesh. He builds technology for Bangla speakers and is the creator of Ojogor, the first Bengali programming language.</div></details>
-        <details class="row"><summary class="toggle"><div class="title">What is Ojogor?</div></summary><div class="details">Ojogor (অজগর) is the first Bengali programming language. It enables writing code with Bengali syntax. Ojogor received the Bangladesh ICT & Innovation Award 2025.</div></details>
-        <details class="row"><summary class="toggle"><div class="title">What is Ishara?</div></summary><div class="details">Ishara is a real-time Bengali sign language translation system focused on accessibility and inclusion. It received the National Tech Award 2025.</div></details>
-        <details class="row"><summary class="toggle"><div class="title">What awards has he won?</div></summary><div class="details">Recognitions include National AI BUILD-A-THON – Trailblazer (Jan 2026), Coding Fest 2026 – 1st Place, Bangladesh ICT & Innovation Award 2025, Startup World Cup 2025 Regional Finalist, and multiple awards at DIA ICT Fest 2025.</div></details>
-        <details class="row"><summary class="toggle"><div class="title">What is his research?</div></summary><div class="details">His research includes the Caller Collision Resolution Protocol (CCRP), a preprint published on ResearchGate in Oct 2025 (DOI: 10.13140/RG.2.2.26499.98081).</div></details>
-        <details class="row"><summary class="toggle"><div class="title">Where did he study?</div></summary><div class="details">He studies BSc (Hons) Computing at the University of Greenwich (NCC Pathway) and previously studied Computer Science & Engineering at Daffodil International University.</div></details>
-        <details class="row"><summary class="toggle"><div class="title">Is he open to new opportunities?</div></summary><div class="details">Yes — open to research collaboration, MSc/PhD opportunities, and full‑time roles.</div></details>
-        <details class="row"><summary class="toggle"><div class="title">How to contact him?</div></summary><div class="details">Reach him by email at ratulhasan1644@gmail.com or via LinkedIn at linkedin.com/in/ratul-hasan-ruhan.</div></details>
-      </div>
-    </section>
-  </main>
-
-  <!--
-    - custom js link
-  -->
-  <script src="/assets/js/meridian.js"></script>
+      <p class="mast-end">
+        <span>Day edition on newsprint · Night edition from the index</span>
+        <span>Set in Fraunces, Source Serif 4, and Barlow Condensed</span>
+      </p>
+    </footer>
+  </div>
+  <script src="/assets/js/broadsheet.js"></script>
   <script src="/assets/js/webmcp.js"></script>
-
-  <!--
-    - WebMCP tools for in-browser AI agents (no-op where unsupported)
-  -->
-
 </body>
-
 </html>
