@@ -1,0 +1,22 @@
+Canonical: https://also.ratulruhan.cv/
+Profile JSON: https://also.ratulruhan.cv/ratul-hasan-ruhan.json
+Profile Markdown: https://also.ratulruhan.cv/ratul-hasan-ruhan.md
+Sitemap: https://also.ratulruhan.cv/sitemap.xml
+
+Entity: Ratul Hasan Ruhan (Bangla: রাতুল হাসান রুহান)
+Positioning: Software engineer and systems researcher building technology for Bangla speakers; creator of Ojogor, the first Bengali programming language.
+Location: Dhaka, Bangladesh
+Current role: Founder & Full‑Stack Mobile Architect, Appibrium (Oct 2025–present)
+
+Key works:
+- Ojogor (অজগর) — first Bengali programming language — https://ratulhasan.gitbook.io/ojogor
+- CCRP preprint (Oct 2025); DOI: 10.13140/RG.2.2.26499.98081 — https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony
+- GoruSheba — AI & IoT cattle management — https://www.facebook.com/gorusheba/
+- Datayon — Bengali monthly tech magazine — https://datayon.bd
+
+Awards (selected): National AI BUILD‑A‑THON Trailblazer (Jan 2026); Coding Fest 2026 1st place; Bangladesh ICT & Innovation Award 2025; Startup World Cup 2025 Regional Finalist; DIA ICT Fest 2025 (1st programming, 1st project showcasing, 2nd puzzle hunt).
+
+Education: BSc (Hons) Computing, University of Greenwich (NCC Pathway) 2025–; BSc in CSE, Daffodil International University 2024–2025.
+
+Contact: ratulhasan1644@gmail.com — LinkedIn: https://www.linkedin.com/in/ratul-hasan-ruhan/
+Press and media: 12 coverage links listed at https://also.ratulruhan.cv/#press
