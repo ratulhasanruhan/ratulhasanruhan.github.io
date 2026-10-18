@@ -21,6 +21,9 @@ Selected works and research
 - CCRP (Caller Collision Resolution Protocol): preprint (Oct 2025), DOI 10.13140/RG.2.2.26499.98081, ResearchGate: https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony
 - GoruSheba: AI & IoT cattle management system — https://www.facebook.com/gorusheba/
 - Datayon: Bengali monthly tech magazine — https://datayon.bd
+ 
+Press and media
+- 12 coverage links are listed on the canonical site at https://also.ratulruhan.cv/#press
 
 Awards and recognition (subset)
 - National AI BUILD‑A‑THON — Trailblazer (Jan 2026)

@@ -107,8 +107,9 @@ async function loadProjects() {
     const seen = new Set();
     const dedupedArchive = archive.filter(it => {
       if (exclude.has(it.title)) return false;
-      if (seen.has(it.title.toLowerCase())) return false;
-      seen.add(it.title.toLowerCase());
+      const norm = (it.title || '').replace(/\\s*\\((Desktop|Mobile)\\)\\s*$/i, '').toLowerCase();
+      if (seen.has(norm)) return false;
+      seen.add(norm);
       return true;
     });
 

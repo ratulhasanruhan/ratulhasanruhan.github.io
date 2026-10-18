@@ -67,25 +67,33 @@ async def main():
                     res = await capture(page, url, locale, width, dark)
                     results.append(res)
                     # Capture menu-open screenshot on mobile light only
-                    if width == 390 and not dark:
+                    if width in (390, 768) and not dark:
                         try:
                             await page.click('#menu-toggle', timeout=1000)
                             await page.wait_for_timeout(200)
-                            fn = OUT_DIR / f"mobile-{locale}-menu-open.png"
+                            fn = OUT_DIR / f"mobile-{locale}-menu-open-{width}.png"
                             await page.screenshot(path=str(fn), full_page=True)
                             # close menu
                             await page.click('#menu-toggle', timeout=1000)
                         except Exception:
                             pass
+                    # Validate press links and award images at desktop light once
+                    if width == 1280 and not dark and url == '/':
+                        press_count = await page.evaluate("document.querySelectorAll('#press ol li a').length")
+                        awards_imgs = await page.evaluate("document.querySelectorAll('#awards .figure img, #awards .award-images-grid img').length")
+                        results.append({'url': url, 'locale': locale, 'width': width, 'theme': 'light', 'pressCount': press_count, 'awardImages': awards_imgs})
         await browser.close()
     # Summarize results
     for r in results:
-        ok = "OK" if r["scrollWidth"] <= r["innerWidth"] else "OVERFLOW"
-        report_lines.append(
-            f"- {r['url']} [{r['locale']}] {r['theme']} {r['width']} => "
-            f"scrollWidth {r['scrollWidth']} / innerWidth {r['innerWidth']} — {ok}; "
-            f"scrollHeight {r['scrollHeight']}; legacyStrings={r['legacyStrings']}"
-        )
+        if 'scrollWidth' in r:
+            ok = "OK" if r["scrollWidth"] <= r["innerWidth"] else "OVERFLOW"
+            report_lines.append(
+                f"- {r['url']} [{r['locale']}] {r['theme']} {r['width']} => "
+                f"scrollWidth {r['scrollWidth']} / innerWidth {r['innerWidth']} — {ok}; "
+                f"scrollHeight {r['scrollHeight']}; legacyStrings={r['legacyStrings']}"
+            )
+        elif 'pressCount' in r:
+            report_lines.append(f"- metrics: pressCount={r['pressCount']}, awardImages={r['awardImages']}")
     if not_founds:
         report_lines.append("")
         report_lines.append("## 404s")
