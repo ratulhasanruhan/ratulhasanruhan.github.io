@@ -229,7 +229,7 @@ html[lang="bn"] .at-a-glance p strong { font-size: 13.5px; }
 .at-a-glance p .agl-value {
   grid-column: 2 / 3;
   display: inline-flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
   align-items: center;
   overflow-wrap: anywhere;
