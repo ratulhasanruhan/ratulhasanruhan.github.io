@@ -1,40 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Not Found — Ratul Hasan Ruhan</title>
-    <meta name="robots" content="noindex">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/meridian.css">
-  </head>
-  <body>
-    <a class="sr-only" href="/">Skip</a>
-    <div class="topnav-wrap">
-      <nav class="topnav" aria-label="Top navigation">
-        <div class="brand">Ratul&nbsp;Hasan&nbsp;Ruhan</div>
-        <a href="/">Home</a>
-        <a href="/#projects">Projects</a>
-        <a href="/#contact">Contact</a>
-      </nav>
+<html lang="en" data-theme="dark">
+<head>
+<script>(function(){try{var t=localStorage.getItem('observatory-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not found — Ratul Hasan Ruhan</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#070B1A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/observatory.css">
+</head>
+<body>
+<div class="sky" aria-hidden="true"><div class="stars"></div><div class="stars-day"></div></div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="mast">
+  <div class="mast-inner">
+    <a class="brand" href="/">Observatory<small>Ratul Hasan Ruhan</small></a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <section class="panel bracketed not-found" aria-labelledby="missing-title">
+    <p class="kicker">404</p>
+    <h1 id="missing-title">This coordinate is not on the chart.</h1>
+    <p>The link may be out of date, or the page may have moved.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="/">Back to the observatory</a>
+      <a class="btn" href="/#contact">Contact</a>
     </div>
-    <main class="page">
-      <section class="grid section" style="margin-top:48px">
-        <div class="margin-col"><span class="label">404</span></div>
-        <div class="hero">
-          <div>
-            <h1>We couldn’t find that page.</h1>
-            <p class="meta">The link may be outdated or the page may have moved.</p>
-            <div class="cta-row">
-              <a class="btn btn-primary" href="/">Back to home</a>
-              <a class="btn" href="/#contact">Contact</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-    <script src="/assets/js/meridian.js"></script>
-  </body>
-  </html>
+  </section>
+</main>
+<script src="/assets/js/observatory.js"></script>
+</body>
+</html>
