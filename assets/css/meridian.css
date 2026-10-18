@@ -234,7 +234,7 @@ html[lang="bn"] .at-a-glance p strong { font-size: 13.5px; }
   grid-column: 2 / 3;
   display: block;
   min-width: 0;
-  overflow-wrap: break-word;
+  overflow-wrap: normal;
   word-break: normal;
   hyphens: none;
 }
