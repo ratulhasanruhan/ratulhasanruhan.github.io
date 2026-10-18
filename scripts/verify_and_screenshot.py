@@ -25,11 +25,26 @@ async def capture(page, url: str, locale: str, width: int, dark: bool):
     # Compute scrollWidth
     scroll_w = await page.evaluate("document.scrollingElement ? document.scrollingElement.scrollWidth : document.documentElement.scrollWidth")
     inner_w = await page.evaluate("window.innerWidth")
+    scroll_h = await page.evaluate("document.scrollingElement ? document.scrollingElement.scrollHeight : document.documentElement.scrollHeight")
+    has_legacy = await page.evaluate("""(() => {
+      const t = (document.body && document.body.innerText) || '';
+      return /Show Contacts|Quick sync with Ratul/.test(t);
+    })()""")
     # Screenshot
     theme = "dark" if dark else "light"
     fn = OUT_DIR / f"{'desktop' if width>=1024 else 'mobile'}-{locale}-{theme}-{width}.png"
     await page.screenshot(path=str(fn), full_page=True)
-    return {"url": url, "locale": locale, "width": width, "theme": theme, "scrollWidth": scroll_w, "innerWidth": inner_w, "consoleErrors": errors}
+    return {
+        "url": url,
+        "locale": locale,
+        "width": width,
+        "theme": theme,
+        "scrollWidth": scroll_w,
+        "innerWidth": inner_w,
+        "scrollHeight": scroll_h,
+        "legacyStrings": has_legacy,
+        "consoleErrors": errors,
+    }
 
 
 async def main():
@@ -55,7 +70,11 @@ async def main():
     # Summarize results
     for r in results:
         ok = "OK" if r["scrollWidth"] <= r["innerWidth"] else "OVERFLOW"
-        report_lines.append(f"- {r['url']} [{r['locale']}] {r['theme']} {r['width']} => scrollWidth {r['scrollWidth']} / innerWidth {r['innerWidth']} — {ok}")
+        report_lines.append(
+            f"- {r['url']} [{r['locale']}] {r['theme']} {r['width']} => "
+            f"scrollWidth {r['scrollWidth']} / innerWidth {r['innerWidth']} — {ok}; "
+            f"scrollHeight {r['scrollHeight']}; legacyStrings={r['legacyStrings']}"
+        )
     if not_founds:
         report_lines.append("")
         report_lines.append("## 404s")

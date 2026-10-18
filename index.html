@@ -496,15 +496,18 @@
   <div class="topnav-wrap">
     <nav class="topnav" aria-label="Top navigation">
       <div class="brand">Ratul&nbsp;Hasan&nbsp;Ruhan</div>
-      <a href="#about">About</a>
-      <a href="#research">Research</a>
-      <a href="#projects">Projects</a>
-      <a href="#awards">Awards</a>
-      <a href="#experience">Experience</a>
-      <a href="#writings">Writings</a>
-      <a href="#contact">Contact</a>
-      <a class="lang-link" href="/bn/" hreflang="bn">বাংলা</a>
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">Theme</button>
+      <button id="menu-toggle" class="menu-toggle" aria-controls="topnav-menu" aria-expanded="false">Menu</button>
+      <div id="topnav-menu" class="topnav-menu" role="menu">
+        <a href="#about" role="menuitem">About</a>
+        <a href="#research" role="menuitem">Research</a>
+        <a href="#projects" role="menuitem">Projects</a>
+        <a href="#awards" role="menuitem">Awards</a>
+        <a href="#experience" role="menuitem">Experience</a>
+        <a href="#writings" role="menuitem">Writings</a>
+        <a href="#contact" role="menuitem">Contact</a>
+        <a class="lang-link" href="/bn/" hreflang="bn" role="menuitem">বাংলা</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">Theme</button>
+      </div>
     </nav>
   </div>
 
@@ -708,29 +711,20 @@
     </section>
   </main>
 
-        <figure class="avatar-box">
-          <img src="./assets/images/ratulhasan-avatar.png" alt="Ratul Hasan Ruhan" width="80">
-        </figure>
+  <!--
+    - custom js link
+  -->
+  <script src="/assets/js/meridian.js"></script>
 
-        <div class="info-content">
-          <h1 class="name" title="Ratul Hasan Ruhan">Ratul Hasan Ruhan</h1>
+  <!--
+    - WebMCP tools for in-browser AI agents (no-op where unsupported)
+  -->
 
-          <p class="title">Software Engineer</p>
-        </div>
+</body>
 
-        <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contacts</span>
+</html>
 
-          <ion-icon name="chevron-down"></ion-icon>
-        </button>
-
-      </div>
-
-      <div class="sidebar-info_more">
-
-        <div class="separator"></div>
-
-        <ul class="contacts-list">
+<!-- end -->
 
           <li class="contact-item">
 

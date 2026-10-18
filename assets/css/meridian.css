@@ -40,6 +40,18 @@ body {
   line-height: 1.65;
   text-rendering: optimizeLegibility;
 }
+/* Hard-hide any legacy SPA blocks that might exist as body-level siblings */
+body > .sidebar,
+body > .main-content,
+body > .navbar,
+body > article.about,
+body > article.resume,
+body > article.projects,
+body > article.recognition,
+body > article.writings,
+body > article.contact,
+body > .contacts-list,
+body > .sidebar-info_more { display: none !important; }
 img { max-width: 100%; height: auto; }
 a { color: var(--accent); text-underline-offset: 2px; text-decoration-thickness: 1px; }
 a:hover { text-decoration: underline; }
@@ -138,6 +150,18 @@ h4 { font-size: 18px; }
   padding: 2px 0;
 }
 .topnav a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.menu-toggle {
+  display: none;
+  border: 1px solid var(--hairline);
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 15.5px;
+}
+.topnav-menu { display: flex; align-items: center; gap: 18px; }
 .theme-toggle {
   margin-left: 6px;
   border: 1px solid var(--hairline);
@@ -151,6 +175,12 @@ h4 { font-size: 18px; }
 @media (max-width: 420px) {
   .topnav { gap: 10px; }
   .topnav .brand { font-size: 18px; }
+}
+@media (max-width: 768px) {
+  .menu-toggle { display: inline-flex; margin-left: auto; }
+  .topnav { flex-wrap: wrap; }
+  .topnav-menu { display: none; width: 100%; padding: 8px 0; gap: 12px; border-top: var(--rule); }
+  .topnav-menu.open { display: flex; flex-wrap: wrap; }
 }
 
 /* Hero */
@@ -174,6 +204,9 @@ h4 { font-size: 18px; }
 }
 .kicker { color: var(--slate); text-transform: uppercase; font-size: 12px; letter-spacing: 0.12em; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 10px 14px; margin-top: 16px; }
+.at-a-glance p { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.at-a-glance #copy-email { padding: 6px 10px; font-size: 14px; white-space: nowrap; }
+.hero .role.bengali { font-size: 1.14rem; color: var(--ink); font-weight: 500; }
 .btn {
   display: inline-flex;
   align-items: center;

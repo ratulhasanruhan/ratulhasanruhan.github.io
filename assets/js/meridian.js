@@ -185,5 +185,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setupArchiveToggle();
   });
   setupCopyEmail();
+  const menuBtn = document.getElementById('menu-toggle');
+  const menu = document.getElementById('topnav-menu');
+  if (menuBtn && menu) {
+    menuBtn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
 });
 
