@@ -3,6 +3,8 @@
 <head>
   <script>
     (function () {
+      document.documentElement.classList.add('has-js');
+      try { if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('reduce'); } catch (err) {}
       try {
         var saved = localStorage.getItem('theme');
         if (saved === 'dark' || saved === 'light') document.documentElement.setAttribute('data-theme', saved);
@@ -53,6 +55,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,500&family=Fraunces:ital,opsz,wght@0,9..144,560;0,9..144,700;1,9..144,560&family=Noto+Serif+Bengali:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/broadsheet.css">
+  <link rel="preload" as="image" type="image/webp" href="/assets/images/portrait/ratul-800.webp" imagesrcset="/assets/images/portrait/ratul-480.webp 480w, /assets/images/portrait/ratul-800.webp 800w, /assets/images/portrait/ratul-1254.webp 1254w" imagesizes="(min-width: 800px) 42vw, 38vw">
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -60,7 +64,7 @@
     "name": "রাতুল হাসান রুহান",
     "alternateName": ["রাতুল হাসান", "রাতুল রুহান", "Ratul Hasan Ruhan"],
     "url": "https://also.ratulruhan.cv/bn/",
-    "image": "https://also.ratulruhan.cv/assets/images/ratulhasan-avatar.png",
+    "image": "https://also.ratulruhan.cv/assets/images/portrait/ratul-1254.jpg",
     "jobTitle": ["সফটওয়্যার ইঞ্জিনিয়ার", "মোবাইল আর্কিটেক্ট", "প্রতিষ্ঠাতা", "ফুল-স্ট্যাক ডেভেলপার"],
     "sameAs": [
       "https://also.ratulruhan.cv/",
@@ -145,16 +149,72 @@
     "about": { "@type": "Person", "name": "রাতুল হাসান রুহান" }
   }
   </script>
+  <script type="application/ld+json" id="faq-jsonld">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "bn",
+    "mainEntity": [
+      { "@type": "Question", "name": "রাতুল হাসান রুহান কে?", "acceptedAnswer": { "@type": "Answer", "text": "রাতুল হাসান রুহান ঢাকাভিত্তিক সফটওয়্যার ইঞ্জিনিয়ার ও সিস্টেমস রিসার্চার। তিনি বাংলাভাষীদের জন্য প্রযুক্তি নির্মাণ করেন এবং অজগর—প্রথম বাংলা প্রোগ্রামিং ভাষার নির্মাতা।" } },
+      { "@type": "Question", "name": "অজগর কী?", "acceptedAnswer": { "@type": "Answer", "text": "অজগর (Ojogor) হলো প্রথম বাংলা প্রোগ্রামিং ভাষা—বাংলা সিনট্যাক্সে কোড লেখা যায়। এটি বাংলাদেশ ICT & Innovation Award ২০২৫ পেয়েছে।" } },
+      { "@type": "Question", "name": "ইশারা কী?", "acceptedAnswer": { "@type": "Answer", "text": "ইশারা একটি রিয়েল-টাইম বাংলা সাংকেতিক ভাষা অনুবাদ ব্যবস্থা—অ্যাক্সেসিবিলিটির জন্য তৈরি। এটি National Tech Award ২০২৫ পেয়েছে।" } },
+      { "@type": "Question", "name": "তিনি কোন কোন স্বীকৃতি পেয়েছেন?", "acceptedAnswer": { "@type": "Answer", "text": "National AI BUILD-A-THON – Trailblazer (জানুয়ারি ২০২৬), Coding Fest ২০২৬ – ১ম, Bangladesh ICT & Innovation Award ২০২৫, Startup World Cup ২০২৫ Regional Finalist, DIA ICT Fest ২০২৫-এ একাধিক পুরস্কার।" } },
+      { "@type": "Question", "name": "তার গবেষণা কী?", "acceptedAnswer": { "@type": "Answer", "text": "Caller Collision Resolution Protocol (CCRP)—রিসার্চগেটে প্রিপ্রিন্ট (অক্টোবর ২০২৫), DOI: 10.13140/RG.2.2.26499.98081।" } },
+      { "@type": "Question", "name": "কোথায় পড়াশোনা করছেন?", "acceptedAnswer": { "@type": "Answer", "text": "ইউনিভার্সিটি অব গ্রিনউইচ (NCC Pathway)-এ BSc (Hons) Computing; পূর্বে ড্যাফোডিল আন্তর্জাতিক বিশ্ববিদ্যালয়ে CSE।" } },
+      { "@type": "Question", "name": "নতুন সুযোগের জন্য উন্মুক্ত?", "acceptedAnswer": { "@type": "Answer", "text": "হ্যাঁ — রিসার্চ কলাবোরেশন, MSc/PhD ও পূর্ণকালীন ভূমিকার জন্য উন্মুক্ত।" } },
+      { "@type": "Question", "name": "কীভাবে যোগাযোগ করবেন?", "acceptedAnswer": { "@type": "Answer", "text": "ইমেইল: ratulhasan1644@gmail.com অথবা LinkedIn: linkedin.com/in/ratul-hasan-ruhan।" } }
+    ]
+  }
+  </script>
 </head>
+
 <body>
   <a class="skip" href="#main">মূল অংশে যান</a>
-  <div class="sheet">
-    <header class="masthead">
-      <div class="ticker" role="region" aria-label="নির্বাচিত সম্মান">
-        <p class="ticker-kicker">সম্মান</p>
-        <div class="marquee" aria-hidden="true">
-          <div class="marquee-track">
-            <ul>
+  <div id="fold" class="fold" hidden>
+    <div class="fold-stage" aria-hidden="true">
+      <div class="leaf leaf-l"></div>
+      <div class="leaf leaf-r"></div>
+      <div class="fold-mast"></div>
+    </div>
+    <button type="button" class="btn fold-skip" id="fold-skip">এড়িয়ে যান</button>
+  </div>
+  <div class="motion-root">
+    <div class="page-progress">
+      <p class="page-label" id="page-label" data-tpl="পাতা {n} / {total}">পাতা ১ / ১১</p>
+      <div class="page-bar" aria-hidden="true"><span id="page-fill"></span></div>
+      <details class="index-pop" id="section-index">
+        <summary>সূচি</summary>
+        <nav class="section-nav" aria-label="বিভাগ">
+          <ul>
+            <li><a href="#research">গবেষণা</a></li>
+<li><a href="#projects">প্রকল্প</a></li>
+<li><a href="#recognition">স্বীকৃতি</a></li>
+<li><a href="#press">সংবাদ</a></li>
+<li><a href="#resume">অভিজ্ঞতা</a></li>
+<li><a href="#education">শিক্ষা</a></li>
+<li><a href="#communities">কমিউনিটি</a></li>
+<li><a href="#writings">লেখালেখি</a></li>
+<li><a href="#letters">প্রশ্নোত্তর</a></li>
+<li><a href="#contact">যোগাযোগ</a></li>
+            <li class="lang"><a href="/" hreflang="en" lang="en">English</a></li>
+            <li><button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false"><span class="when-day">রাতের সংস্করণ</span><span class="when-night">দিনের সংস্করণ</span></button></li>
+          </ul>
+        </nav>
+      </details>
+      <script>
+        if (window.matchMedia('(min-width: 1024px)').matches) {
+          var indexEl = document.getElementById('section-index');
+          if (indexEl) indexEl.open = true;
+        }
+      </script>
+    </div>
+    <div class="anim-clip">
+      
+      <header class="masthead">
+        <div class="ticker" role="region" aria-label="নির্বাচিত সম্মান">
+          <p class="ticker-kicker">সম্মান</p>
+          <div class="marquee" aria-hidden="true">
+            <div class="marquee-track"><ul>
               <li>National AI BUILD-A-THON, Trailblazer, জানুয়ারি ২০২৬</li>
               <li>Coding Fest 2026, ১ম, ফেব্রুয়ারি ২০২৬</li>
               <li>Bangladesh ICT &amp; Innovation Award 2025, অজগর</li>
@@ -163,8 +223,7 @@
               <li>DIA ICT Fest 2025, প্রোগ্রামিং ১ম</li>
               <li>DIA ICT Fest 2025, প্রজেক্ট শোকেসিং ১ম</li>
               <li>DIA ICT Fest 2025, পাজল হান্ট ২য়</li>
-            </ul>
-            <ul>
+    </ul><ul>
               <li>National AI BUILD-A-THON, Trailblazer, জানুয়ারি ২০২৬</li>
               <li>Coding Fest 2026, ১ম, ফেব্রুয়ারি ২০২৬</li>
               <li>Bangladesh ICT &amp; Innovation Award 2025, অজগর</li>
@@ -173,296 +232,746 @@
               <li>DIA ICT Fest 2025, প্রোগ্রামিং ১ম</li>
               <li>DIA ICT Fest 2025, প্রজেক্ট শোকেসিং ১ম</li>
               <li>DIA ICT Fest 2025, পাজল হান্ট ২য়</li>
-            </ul>
+    </ul></div>
           </div>
+          <ul class="award-static">
+              <li>National AI BUILD-A-THON, Trailblazer, জানুয়ারি ২০২৬</li>
+              <li>Coding Fest 2026, ১ম, ফেব্রুয়ারি ২০২৬</li>
+              <li>Bangladesh ICT &amp; Innovation Award 2025, অজগর</li>
+              <li>Startup World Cup 2025, আঞ্চলিক ফাইনালিস্ট</li>
+              <li>National Tech Award 2025, ইশারা</li>
+              <li>DIA ICT Fest 2025, প্রোগ্রামিং ১ম</li>
+              <li>DIA ICT Fest 2025, প্রজেক্ট শোকেসিং ১ম</li>
+              <li>DIA ICT Fest 2025, পাজল হান্ট ২য়</li>
+    </ul>
         </div>
-        <ul class="award-static">
-          <li>National AI BUILD-A-THON, Trailblazer, জানুয়ারি ২০২৬</li>
-          <li>Coding Fest 2026, ১ম, ফেব্রুয়ারি ২০২৬</li>
-          <li>Bangladesh ICT &amp; Innovation Award 2025, অজগর</li>
-          <li>Startup World Cup 2025, আঞ্চলিক ফাইনালিস্ট</li>
-          <li>National Tech Award 2025, ইশারা</li>
-          <li>DIA ICT Fest 2025 — প্রোগ্রামিং ১ম, প্রজেক্ট শোকেসিং ১ম, পাজল হান্ট ২য়</li>
-        </ul>
-      </div>
-      <div class="nameplate">
-        <div class="ornament" aria-hidden="true">
-          <svg class="press-mark" viewBox="0 0 64 52" width="46" height="38">
-            <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">
-              <path d="M6 49 h52"/><path d="M11 49 V24 h42 v25"/><path d="M18 24 V15 h28 v9"/><path d="M32 15 V6"/>
-              <rect x="22" y="31" width="20" height="7"/><path d="M16 43 h32"/>
-            </g>
-            <circle cx="32" cy="5" r="2.3" fill="#C0281C"/>
-          </svg>
+        <div class="nameplate">
           <p class="blackletter">প্রথম পাতা</p>
-          <svg class="press-mark" viewBox="0 0 64 52" width="46" height="38">
-            <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">
-              <path d="M6 49 h52"/><path d="M11 49 V24 h42 v25"/><path d="M18 24 V15 h28 v9"/><path d="M32 15 V6"/>
-              <rect x="22" y="31" width="20" height="7"/><path d="M16 43 h32"/>
-            </g>
-            <circle cx="32" cy="5" r="2.3" fill="#C0281C"/>
-          </svg>
+          <h1 class="wordmark">রাতুল হাসান রুহান <span class="latin-name" lang="en">Ratul Hasan Ruhan</span></h1>
+          <p class="role-line">সফটওয়্যার ইঞ্জিনিয়ার ও সিস্টেমস রিসার্চার</p>
+          <p class="positioning">বাংলাভাষীদের জন্য প্রযুক্তি নির্মাণে নিবেদিত সফটওয়্যার ইঞ্জিনিয়ার ও সিস্টেমস রিসার্চার; অজগর—প্রথম বাংলা প্রোগ্রামিং ভাষার নির্মাতা।</p>
+          <hr class="rule">
+          <p class="dateline">
+            <span>ঢাকা, বাংলাদেশ</span>
+            <span aria-hidden="true">·</span>
+            <time id="edition-date" datetime="2026-10-19">১৯ অক্টোবর ২০২৬</time>
+            <span aria-hidden="true">·</span>
+            <span class="folio">মোশন ফোলিও</span>
+          </p>
         </div>
-        <h1 class="wordmark">রাতুল হাসান রুহান <span class="latin-name" lang="en">Ratul Hasan Ruhan</span></h1>
-        <p class="role-line">সফটওয়্যার ইঞ্জিনিয়ার ও সিস্টেমস রিসার্চার</p>
-        <p class="positioning">বাংলাভাষীদের জন্য প্রযুক্তি নির্মাণে নিবেদিত সফটওয়্যার ইঞ্জিনিয়ার ও সিস্টেমস রিসার্চার; অজগর—প্রথম বাংলা প্রোগ্রামিং ভাষার নির্মাতা।</p>
-        <hr class="rule">
-        <p class="dateline">
-          <span>ঢাকা, বাংলাদেশ</span>
-          <span aria-hidden="true">·</span>
-          <time id="edition-date" datetime="2026-10-18">১৮ অক্টোবর ২০২৬</time>
-          <span aria-hidden="true">·</span>
-          <span class="folio" aria-hidden="true">Vol.<span class="blank"></span>No.<span class="blank"></span></span>
-          <span>প্রথম পাতা</span>
-        </p>
-        <p class="counts">২৯টি প্রকল্প · ১২টি সংবাদ · ৮টি সম্মান</p>
-        <hr class="rule-thin">
-      </div>
-      <nav class="section-nav" aria-label="বিভাগ">
-        <ul>
-          <li><a href="#research">গবেষণা</a></li>
-          <li><a href="#projects">প্রকল্প</a></li>
-          <li><a href="#recognition">স্বীকৃতি</a></li>
-          <li><a href="#press">সংবাদ</a></li>
-          <li><a href="#resume">অভিজ্ঞতা</a></li>
-          <li><a href="#education">শিক্ষা</a></li>
-          <li><a href="#communities">কমিউনিটি</a></li>
-          <li><a href="#letters">প্রশ্নোত্তর</a></li>
-          <li><a href="#contact">যোগাযোগ</a></li>
-          <li class="lang"><a href="/" hreflang="en" lang="en">English</a></li>
-          <li><button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false"><span class="when-day">রাতের সংস্করণ</span><span class="when-night">দিনের সংস্করণ</span></button></li>
-        </ul>
-      </nav>
-    </header>
-
-    <main id="main">
-      <div class="front" id="about">
-        <article class="lead" aria-labelledby="lead-title">
-          <p class="kicker">প্রধান সংবাদ</p>
-          <h2 class="headline" id="lead-title">বাংলাদেশি শিক্ষার্থী তৈরি করলেন প্রথম বাংলা প্রোগ্রামিং ভাষা</h2>
-          <div class="lead-top">
-            <div>
-              <p class="deck">অজগর বাংলা সিনট্যাক্সে লেখা। এর নির্মাতা ঢাকায় থাকেন, অ্যাপিব্রিয়ামের প্রতিষ্ঠাতা, এবং রিসার্চগেটে একটি টেলিফোনি প্রিপ্রিন্ট পোস্ট করেছেন।</p>
-              <p class="byline">লিখেছেন রাতুল হাসান রুহান</p>
-            </div>
-            <figure class="plate">
-              <div class="shot">
-                <img src="/assets/images/ratulhasan-avatar.png" alt="রাতুল হাসান রুহানের প্রতিকৃতি" width="500" height="500" fetchpriority="high" decoding="async">
-              </div>
-              <figcaption>কাটআউট। রাতুল হাসান রুহান, ঢাকা।</figcaption>
-            </figure>
+      </header>
+      <main id="main">
+        <div class="hero page" id="about" data-page="1" tabindex="-1">
+          <figure class="portrait">
+        <picture>
+          <source type="image/webp" srcset="/assets/images/portrait/ratul-480.webp 480w, /assets/images/portrait/ratul-800.webp 800w, /assets/images/portrait/ratul-1254.webp 1254w" sizes="(min-width: 800px) 42vw, 38vw">
+          <img src="/assets/images/portrait/ratul-800.jpg" srcset="/assets/images/portrait/ratul-480.jpg 480w, /assets/images/portrait/ratul-800.jpg 800w, /assets/images/portrait/ratul-1254.jpg 1254w" sizes="(min-width: 800px) 42vw, 38vw" width="1254" height="1254" alt="রাতুল হাসান রুহানের প্রতিকৃতি, গাঢ় স্যুট ও বেগুনি টাই" fetchpriority="high" decoding="async">
+        </picture>
+        <span class="veil" aria-hidden="true"></span>
+        <figcaption>রাতুল হাসান রুহান, ঢাকা</figcaption>
+      </figure>
+          <div class="hero-copy">
+            <p class="kicker">প্রধান</p>
+            <h2 class="headline">প্রথম বাংলা প্রোগ্রামিং ভাষা</h2>
+            <p class="research-line"><strong>গবেষণা।</strong> সিস্টেম ও সফটওয়্যার আর্কিটেকচার; প্রায়োগিক AI/ML; প্রোগ্রামিং ভাষা ও ডেভেলপার টুল; মানুষকেন্দ্রিক ও স্থানীয় কম্পিউটিং।</p>
+            <p class="awards-line"><strong>সম্মান।</strong> ICT &amp; Innovation Award 2025; AI BUILD-A-THON Trailblazer (জানুয়ারি ২০২৬); Coding Fest 2026, ১ম।</p>
           </div>
-          <div class="columns">
-            <p>রাতুল হাসান রুহান ঢাকাভিত্তিক সফটওয়্যার ইঞ্জিনিয়ার ও সিস্টেমস রিসার্চার। তিনি বাংলাভাষীদের জন্য প্রযুক্তি নির্মাণ করেন এবং অজগর—প্রথম বাংলা প্রোগ্রামিং ভাষার নির্মাতা। অজগরে বাংলা সিনট্যাক্সে কোড লেখা যায়। এটি বাংলাদেশ ICT &amp; Innovation Award ২০২৫ পেয়েছে।</p>
-            <p>অক্টোবর ২০২৫ থেকে তিনি অ্যাপিব্রিয়ামে প্রতিষ্ঠাতা ও ফুল-স্ট্যাক মোবাইল আর্কিটেক্ট। তিনি ইউনিভার্সিটি অব গ্রিনউইচের (NCC Pathway) BSc (Hons) Computing-এ পড়ছেন।</p>
-            <blockquote class="pull">
-              <p lang="en">I value clarity, maintainability, and thoughtful engineering over quick fixes.</p>
-              <footer>Ratul Hasan Ruhan, profile</footer>
-            </blockquote>
-            <p>তাঁর গবেষণাপত্র Caller Collision Resolution Protocol (CCRP) রিসার্চগেটে প্রিপ্রিন্ট হিসেবে অক্টোবর ২০২৫-এ প্রকাশিত। DOI: <span class="doi">10.13140/RG.2.2.26499.98081</span>। তিনি রিসার্চ কলাবোরেশন, MSc/PhD এবং পূর্ণকালীন ভূমিকার জন্য উন্মুক্ত।</p>
-            <p class="continued">পরে পড়ুন: <a href="#research">গবেষণা</a> · <a href="#projects">প্রকল্প</a> · <a href="#recognition">স্বীকৃতি</a> · <a href="#press">সংবাদ</a></p>
-          </div>
-        </article>
-
-        <aside class="quick-facts" id="quick-facts" aria-label="দ্রুত তথ্য">
-          <p class="flag">দ্রুত তথ্য</p>
-          <h2>এক নজরে</h2>
-          <dl>
-            <div class="fact">
-              <dt>ভূমিকা</dt>
-              <dd>সফটওয়্যার ইঞ্জিনিয়ার ও সিস্টেমস রিসার্চার</dd>
-            </div>
-            <div class="fact">
-              <dt>অবস্থান</dt>
-              <dd>ঢাকা, বাংলাদেশ</dd>
-            </div>
-            <div class="fact">
-              <dt>গবেষণা</dt>
-              <dd>সিস্টেম ও সফটওয়্যার আর্কিটেকচার; প্রায়োগিক AI/ML; প্রোগ্রামিং ভাষা ও ডেভেলপার টুল; মানুষকেন্দ্রিক ও স্থানীয় কম্পিউটিং</dd>
-            </div>
-            <div class="fact">
-              <dt>পুরস্কার</dt>
-              <dd>ICT &amp; Innovation Award 2025; AI <span class="nowrap">BUILD-A-THON</span> Trailblazer (জানুয়ারি ২০২৬); Coding Fest 2026, ১ম</dd>
-            </div>
-            <div class="fact">
-              <dt>উন্মুক্ত</dt>
-              <dd>রিসার্চ কলাবোরেশন, MSc/PhD সুযোগ, পূর্ণকালীন ভূমিকা</dd>
-            </div>
-          </dl>
-          <div class="fact-actions">
+          <div class="hero-actions">
             <a class="btn btn-red" href="/assets/Ratul-Hasan-Ruhan-Resume.pdf">রেজিউমে</a>
-            <button type="button" class="btn copy-email" data-email="ratulhasan1644@gmail.com" data-copied="কপি হয়েছে">ইমেইল কপি</button>
+            <button type="button" class="btn email-btn copy-email" data-email="ratulhasan1644@gmail.com" data-copied="কপি হয়েছে"><svg class="plane" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M2 21 23 12 2 3v7l15 2L2 14v7z"/></svg><span class="btn-label">ইমেইল</span></button>
+            <p class="email-line"><a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a></p>
+            <p class="stamp">সহযোগিতার জন্য উন্মুক্ত</p>
           </div>
-          <p class="fact-email"><a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a></p>
-          <p class="fact-also"><a href="https://www.linkedin.com/in/ratul-hasan-ruhan/">লিংকডইন</a> · <a href="https://github.com/ratulhasanruhan">গিটহাব</a> · <a href="https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony">ResearchGate</a></p>
-          <div class="currently">
-            <p class="flag">এখন</p>
-            <h3>বানাচ্ছেন, পড়ছেন, উন্মুক্ত</h3>
-            <ul>
-              <li><strong>বানাচ্ছেন।</strong> অজগর, প্রথম বাংলা প্রোগ্রামিং ভাষা, এবং অ্যাপিব্রিয়ামে মোবাইল সিস্টেম।</li>
-              <li><strong>পড়ছেন।</strong> BSc (Hons) Computing, University of Greenwich (NCC Pathway), <span class="nowrap">জানুয়ারি ২০২৫–বর্তমান</span>।</li>
-              <li><strong>উন্মুক্ত।</strong> রিসার্চ কলাবোরেশন, MSc/PhD, পূর্ণকালীন ভূমিকা।</li>
-            </ul>
-          </div>
-        </aside>
-      </div>
-
-      <section class="desk" id="research" aria-labelledby="research-title">
-        <header class="desk-head">
-          <p class="flag">বিজ্ঞান ও গবেষণা</p>
-          <h2 id="research-title">একযোগে কলের প্রিপ্রিন্ট</h2>
-          <p class="dek">Caller Collision Resolution Protocol (CCRP)। রিসার্চগেটে প্রিপ্রিন্ট, অক্টোবর ২০২৫। এটি জার্নাল নিবন্ধ নয়।</p>
-        </header>
-        <article class="story">
-          <p class="meta">অক্টোবর ২০২৫ · ResearchGate · DOI <span class="doi">10.13140/RG.2.2.26499.98081</span></p>
-          <p>প্রিপ্রিন্টটি একই সময়ে দুই পক্ষের কলের সংঘর্ষ নিয়ে। পড়ুন <a href="https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony">ResearchGate</a>-এ।</p>
-        </article>
-        <h3>আগ্রহ</h3>
-        <ul class="interest-list">
-          <li>কম্পিউটার সিস্টেম ও সফটওয়্যার আর্কিটেকচার</li>
-          <li>বাস্তব ব্যবস্থায় প্রায়োগিক AI/ML</li>
-          <li>মানুষকেন্দ্রিক ও স্থানীয় কম্পিউটিং</li>
-          <li>প্রোগ্রামিং ভাষা ও ডেভেলপার টুলিং</li>
-        </ul>
-      </section>
-
-      <section class="desk" id="projects" aria-labelledby="projects-title">
-        <header class="desk-head">
-          <p class="flag">প্রযুক্তি</p>
-          <h2 id="projects-title">অজগর, তারপর ইশারা</h2>
-          <p class="dek">উল্লেখযোগ্য প্রকল্পের সারাংশ। ২৯টি প্রকল্পের পূর্ণ তালিকা ইংরেজি পাতায়।</p>
-        </header>
-        <article class="story">
-          <p class="kicker">০১</p>
-          <h3><a href="https://ratulhasan.gitbook.io/ojogor">অজগর (Ojogor)</a></h3>
-          <p>প্রথম বাংলা প্রোগ্রামিং ভাষা। বাংলা সিনট্যাক্সে কোড লেখা ও চালানো যায়।</p>
-        </article>
-        <article class="story">
-          <p class="kicker">০২</p>
-          <h3>ইশারা</h3>
-          <p>রিয়েল-টাইম বাংলা সাংকেতিক ভাষা অনুবাদ ব্যবস্থা, অ্যাক্সেসিবিলিটির জন্য। National Tech Award ২০২৫।</p>
-        </article>
-        <article class="story">
-          <p class="kicker">০৩</p>
-          <h3><a href="https://www.facebook.com/gorusheba/">গরুসেবা</a></h3>
-          <p>AI ও IoT ভিত্তিক গবাদিপশু ব্যবস্থাপনা।</p>
-        </article>
-        <article class="story">
-          <p class="kicker">০৪</p>
-          <h3><a href="https://datayon.bd">ডেটায়ন</a></h3>
-          <p>বাংলা মাসিক প্রযুক্তি ম্যাগাজিন।</p>
-        </article>
-        <p class="continued"><a href="/" hreflang="en" lang="en">সব ২৯টি প্রকল্প, ইংরেজি পাতায়</a></p>
-      </section>
-
-      <section class="desk" id="recognition" aria-labelledby="honours-title">
-        <header class="desk-head">
-          <p class="flag">সম্মান</p>
-          <h2 id="honours-title">রেকর্ডে আটটি স্বীকৃতি</h2>
-        </header>
-        <ul class="plain-list">
-          <li>জানুয়ারি ২০২৬ — National AI BUILD-A-THON – Trailblazer</li>
-          <li>ফেব্রুয়ারি ২০২৬ — Coding Fest 2026 – ১ম স্থান</li>
-          <li>অক্টোবর ২০২৫ — Bangladesh ICT &amp; Innovation Award 2025 (অজগর)</li>
-          <li>আগস্ট ২০২৫ — Startup World Cup 2025 – আঞ্চলিক ফাইনালিস্ট</li>
-          <li>২০২৫ — National Tech Award 2025 (ইশারা)</li>
-          <li>ফেব্রুয়ারি ২০২৫ — DIA ICT Fest 2025: প্রোগ্রামিং ১ম, প্রজেক্ট শোকেসিং ১ম, পাজল হান্ট ২য়</li>
-        </ul>
-        <div class="award-grid">
-          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/trophy.jpg" alt="পুরস্কারের ট্রফি (২০২৫)" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>চিত্র ১ — পুরস্কারের ট্রফি (২০২৫)</figcaption></figure>
-          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/winner_trophy.jpg" alt="বিজয়ীর ট্রফি" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>চিত্র ২ — বিজয়ীর ট্রফি</figcaption></figure>
-          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/pitch_session.jpg" alt="পিচ সেশন (২০২৫)" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>চিত্র ৩ — পিচ সেশন (২০২৫)</figcaption></figure>
-          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/project_showcase.jpg" alt="প্রকল্প প্রদর্শনী — DIA ICT Fest ২০২৫" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>চিত্র ৪ — প্রকল্প প্রদর্শনী, DIA ICT Fest ২০২৫</figcaption></figure>
-          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/showcase_session.jpg" alt="শোকেস সেশন — DIA ICT Fest ২০২৫" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>চিত্র ৫ — শোকেস সেশন, DIA ICT Fest ২০২৫</figcaption></figure>
-          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/coding_fest_2026_certificate.jpg" alt="Coding Fest 2026 সার্টিফিকেট" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>চিত্র ৬ — Coding Fest 2026 সার্টিফিকেট</figcaption></figure>
-          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/national_ai_buildathon.jpeg" alt="National AI Build-a-thon পুরস্কারের ছবি" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>চিত্র ৭ — National AI Build-a-thon</figcaption></figure>
-          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/national_tech_award.jpg" alt="National Tech Award 2025 পুরস্কারের ছবি" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>চিত্র ৮ — National Tech Award 2025</figcaption></figure>
-          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/award_receiving.jpg" alt="পুরস্কার গ্রহণের মুহূর্ত" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>চিত্র ৯ — পুরস্কার গ্রহণ</figcaption></figure>
-          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/coding_fest_2026.jpg" alt="Coding Fest 2026 অনুষ্ঠান" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>চিত্র ১০ — Coding Fest 2026 অনুষ্ঠান</figcaption></figure>
-          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/1st_certificate_programming_contest.jpg" alt="প্রোগ্রামিং প্রতিযোগিতা ১ম স্থান সার্টিফিকেট" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>চিত্র ১১ — প্রোগ্রামিং প্রতিযোগিতা, ১ম</figcaption></figure>
-          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/ai_buildathon_award_ceremony.JPG" alt="AI Build-a-thon পুরস্কার বিতরণী" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>চিত্র ১২ — AI Build-a-thon পুরস্কার বিতরণী</figcaption></figure>
-          <figure class="halftone"><div class="shot"><img src="/assets/images/awards/award_ceremony.jpg" alt="পুরস্কার বিতরণী অনুষ্ঠান" loading="lazy" decoding="async" width="800" height="600"></div><figcaption>চিত্র ১৩ — পুরস্কার বিতরণী</figcaption></figure>
         </div>
-      </section>
+        <nav class="proof" aria-label="গণনা">
+          <a href="#projects"><b data-count="29">২৯</b><span>প্রকল্প</span></a>
+          <a href="#press"><b data-count="12">১২</b><span>সংবাদ</span></a>
+          <a href="#award-photos"><b data-count="13">১৩</b><span>পুরস্কারের ছবি</span></a>
+          <a href="#recognition"><b data-count="8">৮</b><span>সম্মান</span></a>
+          <a href="#resume"><b data-count="7">৭</b><span>ভূমিকা</span></a>
+          <a href="#communities"><b data-count="5">৫</b><span>কমিউনিটি</span></a>
+        </nav>
+        <p class="continued"><a href="#research">২ নম্বর পাতায়</a></p>
 
-      <section class="desk" id="press" aria-labelledby="press-title">
-        <header class="desk-head">
+        <section class="page sheet-section" id="research" data-page="2" tabindex="-1" aria-labelledby="research-title">
+          <p class="flag">বিজ্ঞান ও গবেষণা</p>
+          <h2 id="research-title">CCRP</h2>
+          <p class="dek">Caller Collision Resolution Protocol। রিসার্চগেটে প্রিপ্রিন্ট, অক্টোবর ২০২৫। এটি জার্নাল নিবন্ধ নয়।</p>
+          <p class="doi">DOI 10.13140/RG.2.2.26499.98081</p>
+          <p><a href="https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony">প্রিপ্রিন্ট পড়ুন</a></p>
+          <ul class="chips">
+            <li>কম্পিউটার সিস্টেম ও সফটওয়্যার আর্কিটেকচার</li>
+            <li>বাস্তব ব্যবস্থায় প্রায়োগিক AI/ML</li>
+            <li>মানুষকেন্দ্রিক ও স্থানীয় কম্পিউটিং</li>
+            <li>প্রোগ্রামিং ভাষা ও ডেভেলপার টুলিং</li>
+          </ul>
+          <p class="continued"><a href="#projects">৩ নম্বর পাতায়</a></p>
+        </section>
+
+        <section class="page sheet-section" id="projects" data-page="3" tabindex="-1" aria-labelledby="projects-title">
+          <p class="flag">প্রযুক্তি</p>
+          <h2 id="projects-title">২৯টি প্রকল্প</h2>
+          <p class="dek">অজগর, তারপর ইশারা। পুরো তালিকা এই পাতাতেই।</p>
+          <div class="feature-row">
+            <article class="feature curl-card">
+              <img src="/assets/projects/ojogor.webp" alt="" width="512" height="512" loading="lazy" decoding="async">
+              <div>
+                <p class="kicker">০১</p>
+                <h3><a href="https://ratulhasan.gitbook.io/ojogor">অজগর (Ojogor)</a></h3>
+                <p>প্রথম বাংলা প্রোগ্রামিং ভাষা।</p>
+                <p class="extra">ICT &amp; Innovation Award ২০২৫।</p>
+              </div>
+            </article>
+            <article class="feature curl-card">
+              <div class="monogram" aria-hidden="true">ই</div>
+              <div>
+                <p class="kicker">০২</p>
+                <h3>ইশারা</h3>
+                <p>রিয়েল-টাইম বাংলা সাংকেতিক ভাষা অনুবাদ।</p>
+                <p class="extra">National Tech Award ২০২৫।</p>
+              </div>
+            </article>
+          </div>
+          <div class="project-deck">
+            <div class="filters" role="toolbar" aria-label="প্রকল্প বাছুন"><button type="button" class="btn" data-filter-btn="All" aria-pressed="true">All</button><button type="button" class="btn" data-filter-btn="Mobile Apps" aria-pressed="false">Mobile Apps</button><button type="button" class="btn" data-filter-btn="Web Apps" aria-pressed="false">Web Apps</button><button type="button" class="btn" data-filter-btn="Library" aria-pressed="false">Library</button><button type="button" class="btn" data-filter-btn="Compiler" aria-pressed="false">Compiler</button><button type="button" class="btn" data-filter-btn="AI/ML" aria-pressed="false">AI/ML</button><button type="button" class="btn" data-filter-btn="Desktop Apps" aria-pressed="false">Desktop Apps</button><button type="button" class="btn" data-filter-btn="Networking" aria-pressed="false">Networking</button></div>
+            <p class="search-line"><label for="project-search">খুঁজুন</label><input id="project-search" type="search" placeholder="Search projects" autocomplete="off"></p>
+            <p id="filter-status" class="meta" data-noun="টি প্রকল্প">29 টি প্রকল্প</p>
+            <div class="deck-wrap">
+              <button type="button" class="btn deck-btn" id="deck-prev" aria-label="আগের প্রকল্প">পূর্ব</button>
+              <div class="deck" id="project-deck" tabindex="0" aria-label="প্রকল্প কার্ড">
+                <article class="flipcard" data-category="Compiler">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/ojogor.webp" alt="" width="2304" height="1152" loading="lazy" decoding="async">
+                <h3><a href="https://ratulhasan.gitbook.io/ojogor">Ojogor (অজগর)</a></h3>
+                <p>A Bengali programming language</p>
+                <p class="extra">Compiler</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Compiler</p>
+                <p>A Bengali programming language</p>
+                <a class="btn btn-red" href="https://ratulhasan.gitbook.io/ojogor">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/emerge.webp" alt="" width="1270" height="760" loading="lazy" decoding="async">
+                <h3><a href="https://play.google.com/store/apps/details?id=app.goemergeai.emergeai">Emerge AI</a></h3>
+                <p>An AI based mental health and fitness app</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>An AI based mental health and fitness app</p>
+                <a class="btn btn-red" href="https://play.google.com/store/apps/details?id=app.goemergeai.emergeai">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/junior.png" alt="" width="359" height="140" loading="lazy" decoding="async">
+                <h3><a href="https://www.ekushey-tv.com/%E0%A6%96%E0%A7%87%E0%A6%B2%E0%A6%BE%E0%A6%B0-%E0%A6%9B%E0%A6%B2%E0%A7%87-%E0%A6%85%E0%A6%A8%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%A8%E0%A7%87-%E0%A6%AC%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9A%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B0-%E0%A6%B6%E0%A7%87%E0%A6%96%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87-%E0%A6%9C%E0%A7%81%E0%A6%A8%E0%A6%BF%E0%A7%9F%E0%A6%B0-%E0%A6%95%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AE%E0%A6%AC%E0%A7%8D%E0%A6%B0%E0%A6%BF%E0%A7%9F%E0%A6%BE%E0%A6%A8/1360873111111142091">Junior Cambrian</a></h3>
+                <p>A LMS with gamification</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>A LMS with gamification</p>
+                <a class="btn btn-red" href="https://www.ekushey-tv.com/%E0%A6%96%E0%A7%87%E0%A6%B2%E0%A6%BE%E0%A6%B0-%E0%A6%9B%E0%A6%B2%E0%A7%87-%E0%A6%85%E0%A6%A8%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%A8%E0%A7%87-%E0%A6%AC%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9A%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B0-%E0%A6%B6%E0%A7%87%E0%A6%96%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87-%E0%A6%9C%E0%A7%81%E0%A6%A8%E0%A6%BF%E0%A7%9F%E0%A6%B0-%E0%A6%95%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AE%E0%A6%AC%E0%A7%8D%E0%A6%B0%E0%A6%BF%E0%A7%9F%E0%A6%BE%E0%A6%A8/1360873111111142091">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/sydrix_ai.png" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+                <h3><a href="https://sydrixai.com/">Sydrix AI</a></h3>
+                <p>Smart Study Management Ai</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>Smart Study Management Ai</p>
+                <a class="btn btn-red" href="https://sydrixai.com/">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/bionova.webp" alt="" width="512" height="512" loading="lazy" decoding="async">
+                <h3><a href="https://play.google.com/store/apps/details?id=com.bionovabd.bionova">Bionova BD</a></h3>
+                <p>Medical supplies ordering &amp; delivery tracking</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>Medical supplies ordering &amp; delivery tracking</p>
+                <a class="btn btn-red" href="https://play.google.com/store/apps/details?id=com.bionovabd.bionova">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/hello_chatkhil.png" alt="" width="512" height="512" loading="lazy" decoding="async">
+                <h3><a href="https://play.google.com/store/apps/details?id=com.rhrsoft.rokto">Hello Chatkhil</a></h3>
+                <p>A Medical and blood donation app</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>A Medical and blood donation app</p>
+                <a class="btn btn-red" href="https://play.google.com/store/apps/details?id=com.rhrsoft.rokto">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/istt.jpeg" alt="" width="223" height="227" loading="lazy" decoding="async">
+                <h3><a href="https://istt-uni.web.app/">ISTT University</a></h3>
+                <p>Institute of Science, Trade &amp; Technology (ISTT) routine management system</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>Institute of Science, Trade &amp; Technology (ISTT) routine management system</p>
+                <a class="btn btn-red" href="https://istt-uni.web.app/">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/avianicare.jpg" alt="" width="1600" height="781" loading="lazy" decoding="async">
+                <h3><a href="https://play.google.com/store/apps/details?id=com.pet.avianicare">Avianicare | Avian &amp; Animal Care BD</a></h3>
+                <p>A tech-driven e-commerce platform for animal health products and services.</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>A tech-driven e-commerce platform for animal health products and services.</p>
+                <a class="btn btn-red" href="https://play.google.com/store/apps/details?id=com.pet.avianicare">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/forex.png" alt="" width="1321" height="744" loading="lazy" decoding="async">
+                <h3><a href="https://play.google.com/store/apps/details?id=com.appybuilder.mdbillalhossain1.forex_tradingsignal">Forex Signals</a></h3>
+                <p>Forex Signals – Live Trends &amp; Analysis App</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>Forex Signals – Live Trends &amp; Analysis App</p>
+                <a class="btn btn-red" href="https://play.google.com/store/apps/details?id=com.appybuilder.mdbillalhossain1.forex_tradingsignal">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/gold_app.png" alt="" width="1321" height="744" loading="lazy" decoding="async">
+                <h3><a href="https://worldshine.biz/">World Shine</a></h3>
+                <p>This gold investment app offers a user-friendly and secure platform to buy, sell, and track your gold investments</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>This gold investment app offers a user-friendly and secure platform to buy, sell, and track your gold investments</p>
+                <a class="btn btn-red" href="https://worldshine.biz/">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/sikhboi.webp" alt="" width="240" height="240" loading="lazy" decoding="async">
+                <h3><a href="https://play.google.com/store/apps/details?id=com.rhrsoft.sikhboinew">Sikhboi</a></h3>
+                <p>A full-featured app for digital learners</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>A full-featured app for digital learners</p>
+                <a class="btn btn-red" href="https://play.google.com/store/apps/details?id=com.rhrsoft.sikhboinew">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/hello_doctor.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+                <h3><a href="https://play.google.com/store/apps/details?id=com.rhrsoft.hello_doctor">Hello Doctor</a></h3>
+                <p>An app for doctors to manage their patients</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>An app for doctors to manage their patients</p>
+                <a class="btn btn-red" href="https://play.google.com/store/apps/details?id=com.rhrsoft.hello_doctor">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Library">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/gone_board.png" alt="" width="1280" height="720" loading="lazy" decoding="async">
+                <h3><a href="https://pub.dev/packages/gone_board">Gone Board</a></h3>
+                <p>A flutter UI package</p>
+                <p class="extra">Library</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Library</p>
+                <p>A flutter UI package</p>
+                <a class="btn btn-red" href="https://pub.dev/packages/gone_board">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Library">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/flutter_build_uploader.png" alt="" width="1536" height="1024" loading="lazy" decoding="async">
+                <h3><a href="https://pub.dev/packages/flutter_build_uploader">Flutter Build Uploader</a></h3>
+                <p>A Flutter CLI tool for build automation</p>
+                <p class="extra">Library</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Library</p>
+                <p>A Flutter CLI tool for build automation</p>
+                <a class="btn btn-red" href="https://pub.dev/packages/flutter_build_uploader">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Library">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/type_mate.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async">
+                <h3><a href="https://pub.dev/packages/type_mate">TypeMate</a></h3>
+                <p>Overlay tools that follow your text fields on any app</p>
+                <p class="extra">Library</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Library</p>
+                <p>Overlay tools that follow your text fields on any app</p>
+                <a class="btn btn-red" href="https://pub.dev/packages/type_mate">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/productive.jpg" alt="" width="1242" height="2688" loading="lazy" decoding="async">
+                <h3><a href="https://apkpure.net/bn/productive-muslim/com.muslim.productive/download">Productive Muslim</a></h3>
+                <p>A full-featured Islamic app</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>A full-featured Islamic app</p>
+                <a class="btn btn-red" href="https://apkpure.net/bn/productive-muslim/com.muslim.productive/download">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Web Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/richminis.webp" alt="" width="2000" height="2000" loading="lazy" decoding="async">
+                <h3><a href="https://richminis.com">Richminis</a></h3>
+                <p>Modern ecommerce system</p>
+                <p class="extra">Web Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Web Apps</p>
+                <p>Modern ecommerce system</p>
+                <a class="btn btn-red" href="https://richminis.com">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Web Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/ilmpurity.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async">
+                <h3><a href="https://ilmpurity.com">Ilmpurity</a></h3>
+                <p>Learning Management System with AI-based exam</p>
+                <p class="extra">Web Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Web Apps</p>
+                <p>Learning Management System with AI-based exam</p>
+                <a class="btn btn-red" href="https://ilmpurity.com">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Desktop Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/dokanmate_desktop.png" alt="" width="500" height="500" loading="lazy" decoding="async">
+                <h3><a href="https://github.com/ratulhasanruhan/DokanMate">DokanMate</a></h3>
+                <p>A lightweight offline POS system</p>
+                <p class="extra">Desktop Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Desktop Apps</p>
+                <p>A lightweight offline POS system</p>
+                <a class="btn btn-red" href="https://github.com/ratulhasanruhan/DokanMate">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Library">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/apinion_logo.png" alt="" width="1280" height="720" loading="lazy" decoding="async">
+                <h3><a href="https://pub.dev/packages/apinion">apinion</a></h3>
+                <p>A package for easy API handling</p>
+                <p class="extra">Library</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Library</p>
+                <p>A package for easy API handling</p>
+                <a class="btn btn-red" href="https://pub.dev/packages/apinion">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="AI/ML">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/goribli.png" alt="" width="500" height="500" loading="lazy" decoding="async">
+                <h3><a href="https://goribli.web.app/">Goribli</a></h3>
+                <p>A MLOps pipeline for image generation</p>
+                <p class="extra">AI/ML</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">AI/ML</p>
+                <p>A MLOps pipeline for image generation</p>
+                <a class="btn btn-red" href="https://goribli.web.app/">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Web Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/porichoy_white.png" alt="" width="500" height="500" loading="lazy" decoding="async">
+                <h3><a href="https://porichoy.me/">Porichoy</a></h3>
+                <p>A platform for portfolio website and cv showcasing</p>
+                <p class="extra">Web Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Web Apps</p>
+                <p>A platform for portfolio website and cv showcasing</p>
+                <a class="btn btn-red" href="https://porichoy.me/">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/bandhu.png" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+                <h3><a href="https://bandhuai.app/">Bandhu AI</a></h3>
+                <p>A mental wellbeing app</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>A mental wellbeing app</p>
+                <a class="btn btn-red" href="https://bandhuai.app/">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/wavecode.png" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+                <h3><a href="https://github.com/ratulhasanruhan/wavecode">WaveCode</a></h3>
+                <p>Encodes audio into stunning visual representations and decodes them back to audio</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>Encodes audio into stunning visual representations and decodes them back to audio</p>
+                <a class="btn btn-red" href="https://github.com/ratulhasanruhan/wavecode">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/dokanmate.png" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+                <h3><a href="https://www.facebook.com/dokanmate/">DokanMate</a></h3>
+                <p>In a world of overloaded POS apps, we chose simplicity.</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>In a world of overloaded POS apps, we chose simplicity.</p>
+                <a class="btn btn-red" href="https://www.facebook.com/dokanmate/">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/gorusheba.png" alt="" width="1536" height="1024" loading="lazy" decoding="async">
+                <h3><a href="https://www.facebook.com/gorusheba/">GoruSheba</a></h3>
+                <p>Bangladesh&#x27;s first intelligent cattle management system powered by AI &amp; IoT.</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>Bangladesh&#x27;s first intelligent cattle management system powered by AI &amp; IoT.</p>
+                <a class="btn btn-red" href="https://www.facebook.com/gorusheba/">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Web Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/datayon.png" alt="" width="2048" height="2048" loading="lazy" decoding="async">
+                <h3><a href="https://datayon.bd">Datayon</a></h3>
+                <p>A Bengali monthly tech magazine.</p>
+                <p class="extra">Web Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Web Apps</p>
+                <p>A Bengali monthly tech magazine.</p>
+                <a class="btn btn-red" href="https://datayon.bd">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Networking">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/digital_delta.jpg" alt="" width="2002" height="1127" loading="lazy" decoding="async">
+                <h3><a href="https://github.com/ratulhasanruhan/digital_delta_app">Disaster-Resilient Communication System</a></h3>
+                <p>A disaster-ready networking system for resilient communications</p>
+                <p class="extra">Networking</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Networking</p>
+                <p>A disaster-ready networking system for resilient communications</p>
+                <a class="btn btn-red" href="https://github.com/ratulhasanruhan/digital_delta_app">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+<article class="flipcard" data-category="Mobile Apps">
+            <div class="flipcard-inner">
+              <div class="face front curl-card">
+                <img src="/assets/projects/care_life_touch.webp" alt="" width="1426" height="970" loading="lazy" decoding="async">
+                <h3><a href="https://play.google.com/store/apps/details?id=com.appibrium.carelifetouch">Care Life Touch</a></h3>
+                <p>On-demand medicine delivery and healthcare platform.</p>
+                <p class="extra">Mobile Apps</p>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Turn card</button>
+              </div>
+              <div class="face back">
+                <p class="kicker">Mobile Apps</p>
+                <p>On-demand medicine delivery and healthcare platform.</p>
+                <a class="btn btn-red" href="https://play.google.com/store/apps/details?id=com.appibrium.carelifetouch">Open</a>
+                <button type="button" class="btn flip-btn" data-flip aria-expanded="false">Front</button>
+              </div>
+            </div>
+          </article>
+              </div>
+              <button type="button" class="btn deck-btn" id="deck-next" aria-label="পরের প্রকল্প">পর</button>
+            </div>
+          </div>
+          <ul class="project-plain"><li><a href="https://ratulhasan.gitbook.io/ojogor">Ojogor (অজগর)</a><span>A Bengali programming language</span><span class="meta">Compiler</span></li>
+<li><a href="https://play.google.com/store/apps/details?id=app.goemergeai.emergeai">Emerge AI</a><span>An AI based mental health and fitness app</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://www.ekushey-tv.com/%E0%A6%96%E0%A7%87%E0%A6%B2%E0%A6%BE%E0%A6%B0-%E0%A6%9B%E0%A6%B2%E0%A7%87-%E0%A6%85%E0%A6%A8%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%A8%E0%A7%87-%E0%A6%AC%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9A%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B0-%E0%A6%B6%E0%A7%87%E0%A6%96%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87-%E0%A6%9C%E0%A7%81%E0%A6%A8%E0%A6%BF%E0%A7%9F%E0%A6%B0-%E0%A6%95%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AE%E0%A6%AC%E0%A7%8D%E0%A6%B0%E0%A6%BF%E0%A7%9F%E0%A6%BE%E0%A6%A8/1360873111111142091">Junior Cambrian</a><span>A LMS with gamification</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://sydrixai.com/">Sydrix AI</a><span>Smart Study Management Ai</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.bionovabd.bionova">Bionova BD</a><span>Medical supplies ordering &amp; delivery tracking</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.rhrsoft.rokto">Hello Chatkhil</a><span>A Medical and blood donation app</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://istt-uni.web.app/">ISTT University</a><span>Institute of Science, Trade &amp; Technology (ISTT) routine management system</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.pet.avianicare">Avianicare | Avian &amp; Animal Care BD</a><span>A tech-driven e-commerce platform for animal health products and services.</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.appybuilder.mdbillalhossain1.forex_tradingsignal">Forex Signals</a><span>Forex Signals – Live Trends &amp; Analysis App</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://worldshine.biz/">World Shine</a><span>This gold investment app offers a user-friendly and secure platform to buy, sell, and track your gold investments</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.rhrsoft.sikhboinew">Sikhboi</a><span>A full-featured app for digital learners</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.rhrsoft.hello_doctor">Hello Doctor</a><span>An app for doctors to manage their patients</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://pub.dev/packages/gone_board">Gone Board</a><span>A flutter UI package</span><span class="meta">Library</span></li>
+<li><a href="https://pub.dev/packages/flutter_build_uploader">Flutter Build Uploader</a><span>A Flutter CLI tool for build automation</span><span class="meta">Library</span></li>
+<li><a href="https://pub.dev/packages/type_mate">TypeMate</a><span>Overlay tools that follow your text fields on any app</span><span class="meta">Library</span></li>
+<li><a href="https://apkpure.net/bn/productive-muslim/com.muslim.productive/download">Productive Muslim</a><span>A full-featured Islamic app</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://richminis.com">Richminis</a><span>Modern ecommerce system</span><span class="meta">Web Apps</span></li>
+<li><a href="https://ilmpurity.com">Ilmpurity</a><span>Learning Management System with AI-based exam</span><span class="meta">Web Apps</span></li>
+<li><a href="https://github.com/ratulhasanruhan/DokanMate">DokanMate</a><span>A lightweight offline POS system</span><span class="meta">Desktop Apps</span></li>
+<li><a href="https://pub.dev/packages/apinion">apinion</a><span>A package for easy API handling</span><span class="meta">Library</span></li>
+<li><a href="https://goribli.web.app/">Goribli</a><span>A MLOps pipeline for image generation</span><span class="meta">AI/ML</span></li>
+<li><a href="https://porichoy.me/">Porichoy</a><span>A platform for portfolio website and cv showcasing</span><span class="meta">Web Apps</span></li>
+<li><a href="https://bandhuai.app/">Bandhu AI</a><span>A mental wellbeing app</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://github.com/ratulhasanruhan/wavecode">WaveCode</a><span>Encodes audio into stunning visual representations and decodes them back to audio</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://www.facebook.com/dokanmate/">DokanMate</a><span>In a world of overloaded POS apps, we chose simplicity.</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://www.facebook.com/gorusheba/">GoruSheba</a><span>Bangladesh&#x27;s first intelligent cattle management system powered by AI &amp; IoT.</span><span class="meta">Mobile Apps</span></li>
+<li><a href="https://datayon.bd">Datayon</a><span>A Bengali monthly tech magazine.</span><span class="meta">Web Apps</span></li>
+<li><a href="https://github.com/ratulhasanruhan/digital_delta_app">Disaster-Resilient Communication System</a><span>A disaster-ready networking system for resilient communications</span><span class="meta">Networking</span></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.appibrium.carelifetouch">Care Life Touch</a><span>On-demand medicine delivery and healthcare platform.</span><span class="meta">Mobile Apps</span></li></ul>
+          <p class="continued"><a href="#recognition">৪ নম্বর পাতায়</a></p>
+        </section>
+
+        <section class="page sheet-section" id="recognition" data-page="4" tabindex="-1" aria-labelledby="honours-title">
+          <p class="flag">সম্মান</p>
+          <h2 id="honours-title">আটটি স্বীকৃতি</h2>
+          <ul class="rows">
+            <li><span class="when">জানুয়ারি ২০২৬</span><span>National AI BUILD-A-THON – Trailblazer</span></li>
+            <li><span class="when">ফেব্রুয়ারি ২০২৬</span><span>Coding Fest 2026 – ১ম স্থান</span></li>
+            <li><span class="when">অক্টোবর ২০২৫</span><span>Bangladesh ICT &amp; Innovation Award 2025 (অজগর)</span></li>
+            <li><span class="when">আগস্ট ২০২৫</span><span>Startup World Cup 2025 – আঞ্চলিক ফাইনালিস্ট</span></li>
+            <li><span class="when">২০২৫</span><span>National Tech Award 2025 (ইশারা)</span></li>
+            <li><span class="when">ফেব্রুয়ারি ২০২৫</span><span>DIA ICT Fest — প্রোগ্রামিং ১ম</span></li>
+            <li><span class="when">ফেব্রুয়ারি ২০২৫</span><span>DIA ICT Fest — প্রজেক্ট শোকেসিং ১ম</span></li>
+            <li><span class="when">ফেব্রুয়ারি ২০২৫</span><span>DIA ICT Fest — পাজল হান্ট ২য়</span></li>
+          </ul>
+          <div class="award-grid" id="award-photos"><figure class="clip"><div class="shot"><img src="/assets/images/awards/trophy.jpg" alt="পুরস্কারের ট্রফি (২০২৫)" width="3048" height="3369" loading="lazy" decoding="async"></div><figcaption>চিত্র 1 — পুরস্কারের ট্রফি (২০২৫)</figcaption></figure>
+<figure class="clip"><div class="shot"><img src="/assets/images/awards/winner_trophy.jpg" alt="বিজয়ীর ট্রফি" width="902" height="1600" loading="lazy" decoding="async"></div><figcaption>চিত্র 2 — বিজয়ীর ট্রফি</figcaption></figure>
+<figure class="clip"><div class="shot"><img src="/assets/images/awards/pitch_session.jpg" alt="পিচ সেশন (২০২৫)" width="800" height="550" loading="lazy" decoding="async"></div><figcaption>চিত্র 3 — পিচ সেশন (২০২৫)</figcaption></figure>
+<figure class="clip"><div class="shot"><img src="/assets/images/awards/project_showcase.jpg" alt="প্রকল্প প্রদর্শনী, DIA ICT Fest ২০২৫" width="800" height="579" loading="lazy" decoding="async"></div><figcaption>চিত্র 4 — প্রকল্প প্রদর্শনী, DIA ICT Fest ২০২৫</figcaption></figure>
+<figure class="clip"><div class="shot"><img src="/assets/images/awards/showcase_session.jpg" alt="শোকেস সেশন, DIA ICT Fest ২০২৫" width="960" height="1280" loading="lazy" decoding="async"></div><figcaption>চিত্র 5 — শোকেস সেশন, DIA ICT Fest ২০২৫</figcaption></figure>
+<figure class="clip"><div class="shot"><img src="/assets/images/awards/coding_fest_2026_certificate.jpg" alt="Coding Fest 2026 সার্টিফিকেট" width="3036" height="2120" loading="lazy" decoding="async"></div><figcaption>চিত্র 6 — Coding Fest 2026 সার্টিফিকেট</figcaption></figure>
+<figure class="clip"><div class="shot"><img src="/assets/images/awards/national_ai_buildathon.jpeg" alt="National AI Build-a-thon" width="1204" height="1600" loading="lazy" decoding="async"></div><figcaption>চিত্র 7 — National AI Build-a-thon</figcaption></figure>
+<figure class="clip"><div class="shot"><img src="/assets/images/awards/national_tech_award.jpg" alt="National Tech Award 2025" width="963" height="1280" loading="lazy" decoding="async"></div><figcaption>চিত্র 8 — National Tech Award 2025</figcaption></figure>
+<figure class="clip"><div class="shot"><img src="/assets/images/awards/award_receiving.jpg" alt="পুরস্কার গ্রহণ" width="1280" height="853" loading="lazy" decoding="async"></div><figcaption>চিত্র 9 — পুরস্কার গ্রহণ</figcaption></figure>
+<figure class="clip"><div class="shot"><img src="/assets/images/awards/coding_fest_2026.jpg" alt="Coding Fest 2026 অনুষ্ঠান" width="1560" height="958" loading="lazy" decoding="async"></div><figcaption>চিত্র 10 — Coding Fest 2026 অনুষ্ঠান</figcaption></figure>
+<figure class="clip"><div class="shot"><img src="/assets/images/awards/1st_certificate_programming_contest.jpg" alt="প্রোগ্রামিং প্রতিযোগিতা, ১ম" width="800" height="576" loading="lazy" decoding="async"></div><figcaption>চিত্র 11 — প্রোগ্রামিং প্রতিযোগিতা, ১ম</figcaption></figure>
+<figure class="clip"><div class="shot"><img src="/assets/images/awards/ai_buildathon_award_ceremony.JPG" alt="AI Build-a-thon পুরস্কার বিতরণী" width="3698" height="3072" loading="lazy" decoding="async"></div><figcaption>চিত্র 12 — AI Build-a-thon পুরস্কার বিতরণী</figcaption></figure>
+<figure class="clip"><div class="shot"><img src="/assets/images/awards/award_ceremony.jpg" alt="পুরস্কার বিতরণী" width="800" height="449" loading="lazy" decoding="async"></div><figcaption>চিত্র 13 — পুরস্কার বিতরণী</figcaption></figure></div>
+          <p class="continued"><a href="#press">৫ নম্বর পাতায়</a></p>
+        </section>
+
+        <section class="page sheet-section" id="press" data-page="5" tabindex="-1" aria-labelledby="press-title">
           <p class="flag">সংবাদে</p>
           <h2 id="press-title">বারোটি ক্লিপিং</h2>
-        </header>
-        <ol class="clippings print-url">
-          <li><a href="https://tbsgraduates.net/writeup/programming-made-easy-diu-students-ojogor-introduces-bangla-syntax-to-python/"><span class="clip-source">The Business Standard</span>Ojogor — Graduates</a></li>
-          <li><a href="https://protidinerbangladesh.com/technology/132975/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A7%9F-%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A5%E0%A6%AE-%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%BF%E0%A6%82-%E0%A6%AD%E0%A6%BE%E0%A6%B7%E0%A6%BE-%E0%A6%B0%E0%A7%81%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A7%87%E0%A6%B0-%E0%A6%85%E0%A6%9C%E0%A6%97%E0%A6%B0"><span class="clip-source">প্রতিদিনের বাংলাদেশ</span>বাংলায় প্রথম প্রোগ্রামিং ভাষা রুহানের ‘অজগর’</a></li>
-          <li><a href="https://www.linkedin.com/posts/the-business-standard_programming-made-easy-diu-students-ojogor-activity-7308421903390572544-BvIZ/"><span class="clip-source">The Business Standard</span>LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/p/DG7yqCVyWCO/"><span class="clip-source">Daily Blurb</span>Instagram</a></li>
-          <li><a href="https://www.facebook.com/infogrambd/posts/more-details-in-the-comments-section/657991090072772/"><span class="clip-source">InfogramBD</span>Facebook</a></li>
-          <li><a href="https://www.facebook.com/share/p/1Kmhp2zus2/"><span class="clip-source">BongoWiki</span>Facebook</a></li>
-          <li><a href="https://www.tbsnews.net/bangladesh/bangladesh-ict-and-innovation-network-recognises-nations-top-innovators-1265456#:~:text=Ojogor%20from%20Daffodil%20International%20University%20(DIU)"><span class="clip-source">The Business Standard</span>BIIN recognises innovators</a></li>
-          <li><a href="https://en.techworldbd.com/news/98#:~:text=Daffodil%20International%20University%E2%80%94DIU%20(Ajogor)"><span class="clip-source">TechWorld Bangladesh</span>DIU (Ajogor)</a></li>
-          <li><a href="https://www.dhakatribune.com/bangladesh/event/394357/bangladesh-ict-and-innovation-network-honors-the#:~:text=Fraud%20Shield%20(AIUB)%2C-,Ojogor%20(DIU),-%2C%20and%20Sohopathi%20AI"><span class="clip-source">Dhaka Tribune</span>BIIN honors</a></li>
-          <li><a href="https://www.tbsnews.net/economy/corporates/daffodil-international-academy-ict-fest-2025-inaugurated-1075236"><span class="clip-source">The Business Standard</span>Daffodil ICT Fest 2025</a></li>
-          <li><a href="https://www.prothomalo.com/technology/hqdxhziscj"><span class="clip-source">প্রথম আলো</span>ন্যাশনাল এআই বিল্ড-এ-থন</a></li>
-          <li><a href="https://www.a1news24.com/%E0%A6%B0%E0%A6%BE%E0%A6%9C%E0%A6%A7%E0%A6%BE%E0%A6%A8%E0%A7%80%E0%A6%A4%E0%A7%87-%E0%A6%86%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%9C%E0%A6%BF%E0%A6%A4-%E0%A6%B9%E0%A6%B2-%E0%A6%A8%E0%A7%8D%E0%A6%AF/"><span class="clip-source">A1News24</span>কভারেজ</a></li>
-        </ol>
-      </section>
+          <div class="folder"><ol class="clippings print-url"><li><a href="https://tbsgraduates.net/writeup/programming-made-easy-diu-students-ojogor-introduces-bangla-syntax-to-python/" style="--d:0"><span class="clip-source">The Business Standard</span><span class="clip-title">Ojogor introduces Bangla syntax to programming</span></a></li>
+<li><a href="https://protidinerbangladesh.com/technology/132975/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A7%9F-%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A5%E0%A6%AE-%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%BF%E0%A6%82-%E0%A6%AD%E0%A6%BE%E0%A6%B7%E0%A6%BE-%E0%A6%B0%E0%A7%81%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A7%87%E0%A6%B0-%E0%A6%85%E0%A6%9C%E0%A6%97%E0%A6%B0" style="--d:1" lang="bn"><span class="clip-source">Protidiner Bangladesh</span><span class="clip-title">বাংলায় প্রথম প্রোগ্রামিং ভাষা রুহানের ‘অজগর’</span></a></li>
+<li><a href="https://www.linkedin.com/posts/the-business-standard_programming-made-easy-diu-students-ojogor-activity-7308421903390572544-BvIZ/" style="--d:2"><span class="clip-source">The Business Standard (LinkedIn)</span><span class="clip-title">Student creates Python in Bangla to help others learn</span></a></li>
+<li><a href="https://www.instagram.com/p/DG7yqCVyWCO/" style="--d:3"><span class="clip-source">Daily Blurb</span><span class="clip-title">Ojogor — First Bengali Programming Language</span></a></li>
+<li><a href="https://www.facebook.com/infogrambd/posts/more-details-in-the-comments-section/657991090072772/" style="--d:4"><span class="clip-source">InfogramBD</span><span class="clip-title">Ojogor Programming Language</span></a></li>
+<li><a href="https://www.facebook.com/share/p/1Kmhp2zus2/" style="--d:5"><span class="clip-source">BongoWiki</span><span class="clip-title">Ojogor — First Bengali Programming Language</span></a></li>
+<li><a href="https://www.tbsnews.net/bangladesh/bangladesh-ict-and-innovation-network-recognises-nations-top-innovators-1265456#:~:text=Ojogor%20from%20Daffodil%20International%20University%20(DIU)" style="--d:6"><span class="clip-source">The Business Standard</span><span class="clip-title">Bangladesh ICT and Innovation Network recognises nation’s top innovators</span></a></li>
+<li><a href="https://en.techworldbd.com/news/98#:~:text=Daffodil%20International%20University%E2%80%94DIU%20(Ajogor)" style="--d:7"><span class="clip-source">TechWorld Bangladesh</span><span class="clip-title">BIIN honours country’s top innovators</span></a></li>
+<li><a href="https://www.dhakatribune.com/bangladesh/event/394357/bangladesh-ict-and-innovation-network-honors-the#:~:text=Fraud%20Shield%20(AIUB)%2C-,Ojogor%20(DIU),-%2C%20and%20Sohopathi%20AI" style="--d:8"><span class="clip-source">Dhaka Tribune</span><span class="clip-title">Bangladesh ICT and Innovation Network honors the country’s top innovators</span></a></li>
+<li><a href="https://www.tbsnews.net/economy/corporates/daffodil-international-academy-ict-fest-2025-inaugurated-1075236" style="--d:9"><span class="clip-source">The Business Standard</span><span class="clip-title">Daffodil International Academy ICT Fest 2025 inaugurated</span></a></li>
+<li><a href="https://www.prothomalo.com/technology/hqdxhziscj" style="--d:10" lang="bn"><span class="clip-source">Prothom Alo</span><span class="clip-title">ন্যাশনাল এআই বিল্ড-এ-থনে বিজয়ী ৫ দল পেল ল্যাপটপ ও অর্থ পুরস্কার</span></a></li>
+<li><a href="https://www.a1news24.com/%E0%A6%B0%E0%A6%BE%E0%A6%9C%E0%A6%A7%E0%A6%BE%E0%A6%A8%E0%A7%80%E0%A6%A4%E0%A7%87-%E0%A6%86%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%9C%E0%A6%BF%E0%A6%A4-%E0%A6%B9%E0%A6%B2-%E0%A6%A8%E0%A7%8D%E0%A6%AF/" style="--d:11" lang="bn"><span class="clip-source">A1News24</span><span class="clip-title">ন্যাশনাল এআই বিল্ড-এ-থন</span></a></li></ol></div>
+          <p class="continued"><a href="#resume">৬ নম্বর পাতায়</a></p>
+        </section>
 
-      <section class="desk" id="resume" aria-labelledby="careers-title">
-        <header class="desk-head">
+        <section class="page sheet-section" id="resume" data-page="6" tabindex="-1" aria-labelledby="careers-title">
           <p class="flag">পেশা</p>
-          <h2 id="careers-title">অভিজ্ঞতা</h2>
-        </header>
-        <div class="notices">
-          <article class="notice"><p class="when">অক্টোবর ২০২৫–বর্তমান</p><div><h3>অ্যাপিব্রিয়াম — প্রতিষ্ঠাতা ও ফুল-স্ট্যাক মোবাইল আর্কিটেক্ট</h3><p class="meta">ঢাকা · <a href="https://appibrium.com">appibrium.com</a></p></div></article>
-          <article class="notice"><p class="when">আগস্ট ২০২৫–অক্টোবর ২০২৫</p><div><h3>Solution Explorer — Software Engineer</h3><p class="meta">রিমোট, যুক্তরাষ্ট্র</p></div></article>
-          <article class="notice"><p class="when">মে ২০২৫–জুলাই ২০২৫</p><div><h3>Sydrix AI — Mobile Application Developer</h3><p class="meta">রিমোট, ঢাকা</p></div></article>
-          <article class="notice"><p class="when">এপ্রিল ২০২৫–মে ২০২৫</p><div><h3>BdCalling IT Ltd. — Flutter Developer</h3><p class="meta">ঢাকা</p></div></article>
-          <article class="notice"><p class="when">আগস্ট ২০২৪–মার্চ ২০২৫</p><div><h3>Emerge AI — Mobile Application Developer</h3><p class="meta">রিমোট, বেইজিং</p></div></article>
-          <article class="notice"><p class="when">জুলাই ২০২৩–আগস্ট ২০২৪</p><div><h3>Infolook — Mobile Application Developer</h3><p class="meta">ঢাকা</p></div></article>
-          <article class="notice"><p class="when">নভেম্বর ২০১৯–ডিসেম্বর ২০২২</p><div><h3>Spotlight Creative — Android Developer, ফ্রিল্যান্স</h3></div></article>
-        </div>
-      </section>
+          <h2 id="careers-title">সাতটি ভূমিকা</h2>
+          <ul class="rows">
+            <li><span class="when">অক্টোবর ২০২৫–বর্তমান</span><span><strong>অ্যাপিব্রিয়াম</strong> — প্রতিষ্ঠাতা ও ফুল-স্ট্যাক মোবাইল আর্কিটেক্ট · <a href="https://appibrium.com">appibrium.com</a></span></li>
+            <li><span class="when">আগস্ট ২০২৫–অক্টোবর ২০২৫</span><span><strong>Solution Explorer</strong> — Software Engineer · <a href="https://solutionexplorer.com/">solutionexplorer.com</a></span></li>
+            <li><span class="when">মে ২০২৫–জুলাই ২০২৫</span><span><strong>Sydrix AI</strong> — Mobile Application Developer · <a href="https://sydrixai.com">sydrixai.com</a></span></li>
+            <li><span class="when">এপ্রিল ২০২৫–মে ২০২৫</span><span><strong>BdCalling IT Ltd.</strong> — Flutter Developer · <a href="https://bdcalling.com/">bdcalling.com</a></span></li>
+            <li><span class="when">আগস্ট ২০২৪–মার্চ ২০২৫</span><span><strong>Emerge AI</strong> — Mobile Application Developer</span></li>
+            <li><span class="when">জুলাই ২০২৩–আগস্ট ২০২৪</span><span><strong>Infolook</strong> — Mobile Application Developer · <a href="https://infolook.net/">infolook.net</a></span></li>
+            <li><span class="when">নভেম্বর ২০১৯–ডিসেম্বর ২০২২</span><span><strong>Spotlight Creative</strong> — Android Developer, ফ্রিল্যান্স</span></li>
+          </ul>
+          <p class="continued"><a href="#education">৭ নম্বর পাতায়</a></p>
+        </section>
 
-      <section class="desk" id="education" aria-labelledby="edu-title">
-        <header class="desk-head">
+        <section class="page sheet-section" id="education" data-page="7" tabindex="-1" aria-labelledby="edu-title">
           <p class="flag">শিক্ষা</p>
           <h2 id="edu-title">পড়ালেখা</h2>
-        </header>
-        <div class="notices">
-          <article class="notice"><p class="when">জানুয়ারি ২০২৫–বর্তমান</p><div><h3>BSc (Hons) Computing</h3><p class="meta"><a href="https://www.gre.ac.uk/">University of Greenwich</a> (NCC Pathway)</p></div></article>
-          <article class="notice"><p class="when">জানুয়ারি ২০২৪–জানুয়ারি ২০২৫</p><div><h3>BSc in Computer Science &amp; Engineering</h3><p class="meta"><a href="https://daffodilvarsity.edu.bd/">Daffodil International University</a>, ঢাকা</p></div></article>
-          <article class="notice"><p class="when">জানুয়ারি ২০২১–জুন ২০২৩</p><div><h3>উচ্চমাধ্যমিক, বিজ্ঞান</h3><p class="meta"><a href="https://sgc.college.gov.bd/">Shariatpur Govt. College</a></p></div></article>
-          <article class="notice"><p class="when">জানুয়ারি ২০১৬–ডিসেম্বর ২০২০</p><div><h3>মাধ্যমিক, বিজ্ঞান</h3><p class="meta">PTGD Govt. High School</p></div></article>
-        </div>
-      </section>
+          <ul class="rows">
+            <li><span class="when">জানুয়ারি ২০২৫–বর্তমান</span><span><strong>BSc (Hons) Computing</strong> — <a href="https://www.gre.ac.uk/">University of Greenwich</a> (NCC Pathway)</span></li>
+            <li><span class="when">জানুয়ারি ২০২৪–জানুয়ারি ২০২৫</span><span><strong>BSc in CSE</strong> — <a href="https://daffodilvarsity.edu.bd/">Daffodil International University</a>, ঢাকা</span></li>
+            <li><span class="when">জানুয়ারি ২০২১–জুন ২০২৩</span><span><strong>উচ্চমাধ্যমিক, বিজ্ঞান</strong> — <a href="https://sgc.college.gov.bd/">Shariatpur Govt. College</a></span></li>
+            <li><span class="when">জানুয়ারি ২০১৬–ডিসেম্বর ২০২০</span><span><strong>মাধ্যমিক, বিজ্ঞান</strong> — PTGD Govt. High School</span></li>
+            <li><span class="when">জুন ২০২৬</span><span><strong>Data Literacy</strong> — <a href="https://www.datacamp.com/skill-verification/DL0038378814287">DataCamp</a></span></li>
+            <li><span class="when">মার্চ ২০২৬</span><span><strong>Computer Architecture</strong> — <a href="https://www.codecademy.com/profiles/ratulhasan.ruhan/certificates/dee8cc79cfe5e46834989e0d0ec1d2d5">Codecademy</a></span></li>
+            <li><span class="when">২০২৪</span><span><strong>CCNA + Python Network Automation</strong> — <a href="https://www.udemy.com/certificate/UC-42719966-3bd8-47f3-b0ca-d3f67775cfd8/">Udemy</a></span></li>
+          </ul>
+          <p class="continued"><a href="#communities">৮ নম্বর পাতায়</a></p>
+        </section>
 
-      <section class="desk" id="communities" aria-labelledby="comm-title">
-        <header class="desk-head">
+        <section class="page sheet-section" id="communities" data-page="8" tabindex="-1" aria-labelledby="comm-title">
           <p class="flag">কমিউনিটি ও নেতৃত্ব</p>
           <h2 id="comm-title">পাঁচটি দায়িত্ব</h2>
-        </header>
-        <ul class="plain-list">
-          <li><strong>AWS Student Builder Leader</strong> — Amazon Web Services (২০২৬–বর্তমান)</li>
-          <li><strong>Local Ambassador</strong> — Global Logic &amp; Reasoning Challenge (২০২৬–২০২৭)</li>
-          <li><strong>Country Ambassador</strong> — International Computer Science Competition (২০২৬)</li>
-          <li><strong>স্বেচ্ছাসেবক</strong> — বিজ্ঞান জনপ্রিয়করণ সমিতি, বাংলাদেশ (এপ্রিল ২০২৫–বর্তমান)</li>
-          <li><strong>স্বেচ্ছাসেবক</strong> — বাংলাদেশ ওপেন সোর্স নেটওয়ার্ক (এপ্রিল ২০২৫–বর্তমান)</li>
-        </ul>
-      </section>
+          <ul class="rows">
+            <li><span class="when">২০২৬–বর্তমান</span><span><strong>AWS Student Builder Leader</strong> — <a href="https://aws.amazon.com/">Amazon Web Services</a></span></li>
+            <li><span class="when">২০২৬–২০২৭</span><span><strong>Local Ambassador</strong> — <a href="https://gllrc.org/">Global Logic &amp; Reasoning Challenge</a></span></li>
+            <li><span class="when">২০২৬</span><span><strong>Country Ambassador</strong> — <a href="https://icscompetition.org/">International Computer Science Competition</a></span></li>
+            <li><span class="when">এপ্রিল ২০২৫–বর্তমান</span><span><strong>স্বেচ্ছাসেবক</strong> — <a href="https://spsb.org/">বিজ্ঞান জনপ্রিয়করণ সমিতি, বাংলাদেশ</a></span></li>
+            <li><span class="when">এপ্রিল ২০২৫–বর্তমান</span><span><strong>স্বেচ্ছাসেবক</strong> — <a href="https://bdosn.org/">বাংলাদেশ ওপেন সোর্স নেটওয়ার্ক</a></span></li>
+          </ul>
+          <p class="continued"><a href="#writings">৯ নম্বর পাতায়</a></p>
+        </section>
 
-      <section class="desk" id="writings" aria-labelledby="writings-title">
-        <header class="desk-head">
+        <section class="page sheet-section" id="writings" data-page="9" tabindex="-1" aria-labelledby="writings-title">
           <p class="flag">লেখালেখি</p>
           <h2 id="writings-title">সাম্প্রতিক লেখা</h2>
-        </header>
-        <p>সাম্প্রতিক লেখাগুলো: <a href="https://ratulhasanruhan.medium.com">Medium</a>, <a href="https://ratulhasan.hashnode.dev">Hashnode</a>।</p>
-      </section>
+          <div class="link-row">
+            <a class="btn" href="https://ratulhasanruhan.medium.com">Medium</a>
+            <a class="btn" href="https://ratulhasan.hashnode.dev">Hashnode</a>
+          </div>
+          <p class="continued"><a href="#letters">১০ নম্বর পাতায়</a></p>
+        </section>
 
-      <section class="desk" id="letters" aria-labelledby="letters-title">
-        <header class="desk-head">
+        <section class="page sheet-section" id="letters" data-page="10" tabindex="-1" aria-labelledby="letters-title">
           <p class="flag">সম্পাদকের কাছে চিঠি</p>
           <h2 id="letters-title">প্রশ্নোত্তর</h2>
-        </header>
-        <div class="letters">
+          <div class="letters">
           <article class="letter"><h3>রাতুল হাসান রুহান কে?</h3><p>রাতুল হাসান রুহান ঢাকাভিত্তিক সফটওয়্যার ইঞ্জিনিয়ার ও সিস্টেমস রিসার্চার। তিনি বাংলাভাষীদের জন্য প্রযুক্তি নির্মাণ করেন এবং অজগর—প্রথম বাংলা প্রোগ্রামিং ভাষার নির্মাতা।</p></article>
           <article class="letter"><h3>অজগর কী?</h3><p>অজগর (Ojogor) হলো প্রথম বাংলা প্রোগ্রামিং ভাষা—বাংলা সিনট্যাক্সে কোড লেখা যায়। এটি বাংলাদেশ ICT &amp; Innovation Award ২০২৫ পেয়েছে।</p></article>
           <article class="letter"><h3>ইশারা কী?</h3><p>ইশারা একটি রিয়েল-টাইম বাংলা সাংকেতিক ভাষা অনুবাদ ব্যবস্থা—অ্যাক্সেসিবিলিটির জন্য তৈরি। এটি National Tech Award ২০২৫ পেয়েছে।</p></article>
@@ -471,41 +980,41 @@
           <article class="letter"><h3>কোথায় পড়াশোনা করছেন?</h3><p>ইউনিভার্সিটি অব গ্রিনউইচ (NCC Pathway)-এ BSc (Hons) Computing; পূর্বে ড্যাফোডিল আন্তর্জাতিক বিশ্ববিদ্যালয়ে CSE।</p></article>
           <article class="letter"><h3>নতুন সুযোগের জন্য উন্মুক্ত?</h3><p>হ্যাঁ — রিসার্চ কলাবোরেশন, MSc/PhD ও পূর্ণকালীন ভূমিকার জন্য উন্মুক্ত।</p></article>
           <article class="letter"><h3>কীভাবে যোগাযোগ করবেন?</h3><p>ইমেইল: <a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a> অথবা LinkedIn: linkedin.com/in/ratul-hasan-ruhan।</p></article>
+    </div>
+          <p class="continued"><a href="#contact">১১ নম্বর পাতায়</a></p>
+        </section>
+      </main>
+      <footer class="colophon page" id="contact" data-page="11" tabindex="-1">
+        <p class="flag">যোগাযোগ</p>
+        <h2>কলোফন</h2>
+        <div class="colo-grid">
+          <div>
+            <p>রাতুল হাসান রুহান<br>সফটওয়্যার ইঞ্জিনিয়ার ও সিস্টেমস রিসার্চার<br>ঢাকা, বাংলাদেশ</p>
+            <p class="email-line"><a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a></p>
+            <p class="fact-actions"><a class="btn btn-red" href="/assets/Ratul-Hasan-Ruhan-Resume.pdf">রেজিউমে ডাউনলোড</a></p>
+          </div>
+          <div>
+            <p class="meta">যোগাযোগ</p>
+            <ul class="colo-links">
+              <li><a href="https://www.linkedin.com/in/ratul-hasan-ruhan/">লিংকডইন</a></li>
+              <li><a href="https://github.com/ratulhasanruhan">গিটহাব</a></li>
+              <li><a href="https://peerlist.io/ratulhasan">Peerlist</a></li>
+              <li><a href="https://www.youtube.com/@ratulicious">YouTube</a></li>
+              <li><a href="https://ratulruhan.cv/">অনলাইন সিভি</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="meta">ভাষা</p>
+            <p><a href="/" hreflang="en" lang="en">English front page</a></p>
+            <p><a href="/llms.txt">llms.txt</a> · <a href="/ratul-hasan-ruhan.json">JSON</a></p>
+          </div>
         </div>
-      </section>
-    </main>
-
-    <footer class="colophon" id="contact">
-      <p class="flag">যোগাযোগ</p>
-      <h2>কলোফন</h2>
-      <div class="colo-grid">
-        <div>
-          <p>রাতুল হাসান রুহান<br>সফটওয়্যার ইঞ্জিনিয়ার ও সিস্টেমস রিসার্চার<br>ঢাকা, বাংলাদেশ</p>
-          <p>ইমেইল <a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a></p>
-          <p><a class="btn btn-red" href="/assets/Ratul-Hasan-Ruhan-Resume.pdf">রেজিউমে ডাউনলোড</a></p>
-        </div>
-        <div>
-          <p class="meta">যোগাযোগ</p>
-          <ul class="colo-links">
-            <li><a href="https://www.linkedin.com/in/ratul-hasan-ruhan/">লিংকডইন</a></li>
-            <li><a href="https://github.com/ratulhasanruhan">গিটহাব</a></li>
-            <li><a href="https://peerlist.io/ratulhasan">Peerlist</a></li>
-            <li><a href="https://www.youtube.com/@ratulicious">YouTube</a></li>
-            <li><a href="https://ratulruhan.cv/">অনলাইন সিভি</a></li>
-          </ul>
-        </div>
-        <div>
-          <p class="meta">ভাষা</p>
-          <p><a href="/" hreflang="en" lang="en">English front page</a></p>
-          <p><a href="/llms.txt">llms.txt</a> · <a href="/ratul-hasan-ruhan.json">JSON</a></p>
-        </div>
-      </div>
-      <p class="mast-end">
-        <span>দিনের সংস্করণ নিউজপ্রিন্টে · রাতের সংস্করণ সূচি থেকে</span>
-        <span lang="en">Fraunces, Source Serif 4, Noto Serif Bengali</span>
-      </p>
-    </footer>
+        <p class="mast-end"><span>দিনের সংস্করণ নিউজপ্রিন্টে · রাতের সংস্করণ সূচি থেকে</span></p>
+      </footer>
+    
+    </div>
   </div>
   <script src="/assets/js/broadsheet.js"></script>
+  <script src="/assets/js/webmcp.js"></script>
 </body>
 </html>
