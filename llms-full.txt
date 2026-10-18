@@ -1,0 +1,50 @@
+This file provides structured, concise facts to support generative and answer engines about the person and work described below. All facts are sourced from the canonical site and repository.
+
+Canonical home: https://also.ratulruhan.cv/
+Machine profiles:
+- JSON (Person): https://also.ratulruhan.cv/ratul-hasan-ruhan.json
+- Markdown profile: https://also.ratulruhan.cv/ratul-hasan-ruhan.md
+Sitemap: https://also.ratulruhan.cv/sitemap.xml
+
+Identity
+- Full name: Ratul Hasan Ruhan
+- Native name (Bangla): রাতুল হাসান রুহান
+- Role: Software engineer and systems researcher
+- Positioning line: Software engineer and systems researcher building technology for Bangla speakers; creator of Ojogor, the first Bengali programming language.
+- Location: Dhaka, Bangladesh
+
+Affiliations and roles
+- Appibrium — Founder & Full‑Stack Mobile Architect (Oct 2025–present), https://appibrium.com
+
+Selected works and research
+- Ojogor (অজগর): first Bengali programming language. Documentation: https://ratulhasan.gitbook.io/ojogor
+- CCRP (Caller Collision Resolution Protocol): preprint (Oct 2025), DOI 10.13140/RG.2.2.26499.98081, ResearchGate: https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony
+- GoruSheba: AI & IoT cattle management system — https://www.facebook.com/gorusheba/
+- Datayon: Bengali monthly tech magazine — https://datayon.bd
+
+Awards and recognition (subset)
+- National AI BUILD‑A‑THON — Trailblazer (Jan 2026)
+- Coding Fest 2026 — 1st Place (Feb 2026)
+- Bangladesh ICT & Innovation Award 2025 — for Ojogor (Oct 2025)
+- Startup World Cup 2025 — Regional Finalist (Aug 2025)
+- DIA ICT Fest 2025 — 1st (Programming), 1st (Project Showcasing), 2nd (Puzzle Hunt) (Feb 2025)
+
+Education
+- BSc (Hons) Computing — University of Greenwich (NCC Pathway), 2025–present — https://www.gre.ac.uk/
+- BSc in Computer Science & Engineering — Daffodil International University, 2024–2025 — https://daffodilvarsity.edu.bd/
+
+Open to
+- Research collaboration
+- MSc/PhD opportunities
+- Full‑time roles
+
+Contact
+- Email: mailto:ratulhasan1644@gmail.com
+- LinkedIn: https://www.linkedin.com/in/ratul-hasan-ruhan/
+- GitHub: https://github.com/ratulhasanruhan
+
+Language
+- English, Bengali
+
+Licensing and crawling
+- Robots: https://also.ratulruhan.cv/robots.txt (AI crawlers allowed)

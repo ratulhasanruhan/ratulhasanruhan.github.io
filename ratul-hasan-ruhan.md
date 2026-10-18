@@ -1,6 +1,6 @@
-# Ratul Hasan Ruhan - Software Engineer & Systems Researcher
+# Ratul Hasan Ruhan — Software engineer and systems researcher
 
-👋 Welcome! I'm **Ratul Hasan Ruhan**, a Software Engineer & Systems Researcher based in Dhaka, Bangladesh. I'm passionate about building scalable mobile systems, exploring applied AI/ML, and creating innovative solutions that bridge technology with real-world applications.
+👋 Welcome! I'm **Ratul Hasan Ruhan**, a software engineer and systems researcher based in Dhaka, Bangladesh. I build technology for Bangla speakers; creator of **Ojogor**, the first Bengali programming language.
 
 ## 🌟 About Me
 
@@ -26,9 +26,9 @@ Currently serving as **Founder & Full-Stack Mobile Architect** at **Appibrium**,
 
 ### 🎯 Portfolio & CV
 
-- **Portfolio Website**: [https://ratuler.vercel.app/](https://ratuler.vercel.app/)
-- **Online CV**: [http://ratulruhan.cv/](http://ratulruhan.cv/)
-- **Download Resume**: [PDF Download](https://ratuler.vercel.app/resume)
+- **Portfolio Website**: [https://also.ratulruhan.cv/](https://also.ratulruhan.cv/)
+- **Online CV**: [https://ratulruhan.cv/](https://ratulruhan.cv/)
+- **Download Resume (PDF)**: [/assets/Ratul-Hasan-Ruhan-Resume.pdf](https://also.ratulruhan.cv/assets/Ratul-Hasan-Ruhan-Resume.pdf)
 
 ### 📝 Writing & Blogging
 
@@ -151,7 +151,6 @@ I'm always excited to connect with fellow developers, researchers, and tech enth
 
 - **Email**: ratulhasan1644@gmail.com
 - **LinkedIn**: [ratul-hasan-ruhan](https://www.linkedin.com/in/ratul-hasan-ruhan/)
-- **WhatsApp**: [+8801789536985](https://wa.me/8801789536985)
 - **GitHub**: [ratulhasanruhan](https://github.com/ratulhasanruhan)
 - **Peerlist**: [peerlist.io/ratulhasan](https://peerlist.io/ratulhasan/)
 
@@ -165,13 +164,13 @@ My work, especially Ojogor, has been featured in multiple publications:
 - TechWorld Bangladesh
 - And more...
 
-[View All Media Coverage](https://ratuler.vercel.app/recognition)
+[View All Media Coverage](https://also.ratulruhan.cv/recognition)
 
 ---
 
 **Let's build something amazing together! 🚀**
 
-*Last updated: September 2026*
+*Last updated: October 2026*
 
 <!-- NOTE: ratul-hasan-ruhan.md at the repo root is a copy of this file that the
      live site serves to agents (Vercel does not serve README.md). Keep both in

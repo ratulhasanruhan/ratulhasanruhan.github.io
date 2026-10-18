@@ -1,7 +1,7 @@
 [
 	{
 	  "title": "Ojogor (অজগর)",
-	  "subtitle": "A bengali programming language",
+	  "subtitle": "A Bengali programming language",
 	  "category": "Compiler",
 	  "image": "ojogor.webp",
 	  "url": "https://ratulhasan.gitbook.io/ojogor"
@@ -21,7 +21,7 @@
 	  "url": "https://www.ekushey-tv.com/%E0%A6%96%E0%A7%87%E0%A6%B2%E0%A6%BE%E0%A6%B0-%E0%A6%9B%E0%A6%B2%E0%A7%87-%E0%A6%85%E0%A6%A8%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%A8%E0%A7%87-%E0%A6%AC%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9A%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B0-%E0%A6%B6%E0%A7%87%E0%A6%96%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87-%E0%A6%9C%E0%A7%81%E0%A6%A8%E0%A6%BF%E0%A7%9F%E0%A6%B0-%E0%A6%95%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AE%E0%A6%AC%E0%A7%8D%E0%A6%B0%E0%A6%BF%E0%A7%9F%E0%A6%BE%E0%A6%A8/1360873111111142091"
 	},
 	{
-	  "title": "Sydrix Ai",
+	  "title": "Sydrix AI",
 	  "subtitle": "Smart Study Management Ai",
 	  "category": "Mobile Apps",
 	  "image": "sydrix_ai.png",
@@ -71,7 +71,7 @@
 	},
 	{
 	  "title": "Sikhboi",
-	  "subtitle": "A fullfilled app for digital learners",
+	  "subtitle": "A full-featured app for digital learners",
 	  "category": "Mobile Apps",
 	  "image": "sikhboi.webp",
 	  "url": "https://play.google.com/store/apps/details?id=com.rhrsoft.sikhboinew"
@@ -92,7 +92,7 @@
 	},
 	{
 	  "title": "Flutter Build Uploader",
-	  "subtitle": "A flutter CLI tools for build automation",
+	  "subtitle": "A Flutter CLI tool for build automation",
 	  "category": "Library",
 	  "image": "flutter_build_uploader.png",
 	  "url": "https://pub.dev/packages/flutter_build_uploader"
@@ -106,7 +106,7 @@
 	},
 	{
 	  "title": "Productive Muslim",
-	  "subtitle": "A fullfilled islamic app",
+	  "subtitle": "A full-featured Islamic app",
 	  "category": "Mobile Apps",
 	  "image": "productive.jpg",
 	  "url": "https://apkpure.net/bn/productive-muslim/com.muslim.productive/download"
@@ -120,7 +120,7 @@
 	},
 	{
 	  "title": "Ilmpurity",
-	  "subtitle": "Learning Management system with AI based Exam",
+	  "subtitle": "Learning Management System with AI-based exam",
 	  "category": "Web Apps",
 	  "image": "ilmpurity.webp",
 	  "url": "https://ilmpurity.com"
@@ -134,7 +134,7 @@
 	},
 	{
 	  "title": "apinion",
-	  "subtitle": "A packgae for easy API handling",
+	  "subtitle": "A package for easy API handling",
 	  "category": "Library",
 	  "image": "apinion_logo.png",
 	  "url": "https://pub.dev/packages/apinion"
@@ -183,7 +183,7 @@
 	},
 	{
 	  "title": "Datayon",
-	  "subtitle": "A bengali monthly tech magazine.",
+	  "subtitle": "A Bengali monthly tech magazine.",
 	  "category": "Web Apps",
 	  "image": "datayon.png",
 	  "url": "https://datayon.bd"
