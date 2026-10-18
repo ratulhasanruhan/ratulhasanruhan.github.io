@@ -71,7 +71,7 @@ async def main():
                         try:
                             await page.click('#menu-toggle', timeout=1000)
                             await page.wait_for_timeout(200)
-                            fn = OUT_DIR / f\"mobile-{locale}-menu-open.png\"
+                            fn = OUT_DIR / f"mobile-{locale}-menu-open.png"
                             await page.screenshot(path=str(fn), full_page=True)
                             # close menu
                             await page.click('#menu-toggle', timeout=1000)
