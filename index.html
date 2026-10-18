@@ -155,7 +155,6 @@
   <!--
     - custom css link
   -->
-  <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/meridian.css">
 
   <!--
@@ -492,10 +491,6 @@
 <body>
 
   <!-- Meridian editorial layout (new) -->
-  <style>
-    /* Hide legacy single-page content to prevent duplicate sections */
-    body > main:not(.page) { display: none !important; }
-  </style>
 
   <!-- Sticky top nav -->
   <div class="topnav-wrap">
@@ -538,7 +533,7 @@
           <p><strong>Location:</strong> Dhaka, Bangladesh</p>
           <p><strong>Status:</strong> Founder & Full‑Stack Mobile Architect, <a href="https://appibrium.com" target="_blank" rel="noopener">Appibrium</a> (Oct 2025–present)</p>
           <p><strong>Interests:</strong> systems; applied AI/ML; PL & dev tools; Bangla language tech; accessibility; edge AI/IoT.</p>
-          <p><strong>Contact:</strong> <a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a> · <button id="copy-email" class="btn" type="button">Copy email</button></p>
+          <p><strong>Contact:</strong> <a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a> <button id="copy-email" class="btn" type="button" style="margin-left:8px">Copy email</button></p>
         </aside>
       </div>
     </section>
@@ -686,7 +681,7 @@
       <div class="margin-col"><span class="label">07</span></div>
       <div>
         <h2 id="contact-title" class="section-title">Contact</h2>
-        <p>Email: <a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a> · <button id="copy-email" class="btn" type="button">Copy email</button></p>
+        <p>Email: <a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a> <button id="copy-email" class="btn" type="button" style="margin-left:8px">Copy email</button></p>
         <p>LinkedIn: <a href="https://www.linkedin.com/in/ratul-hasan-ruhan/" target="_blank" rel="noopener">ratul-hasan-ruhan</a> · GitHub: <a href="https://github.com/ratulhasanruhan" target="_blank" rel="noopener">ratulhasanruhan</a></p>
         <p>YouTube: <a href="https://www.youtube.com/@ratulicious" target="_blank" rel="noopener">@ratulicious</a> · Facebook: <a href="https://www.facebook.com/ratulhasan.ruhan" target="_blank" rel="noopener">ratulhasan.ruhan</a></p>
       </div>
@@ -713,7 +708,7 @@
     - #MAIN
   -->
 
-  <main>
+  <!--
 
     <!--
       - #SIDEBAR
@@ -2032,7 +2027,7 @@
 
     </div>
 
-  </main>
+  -->
 
 
 
@@ -2042,178 +2037,11 @@
   <!--
     - custom js link
   -->
-  <script src="./assets/js/script.js"></script>
   <script src="/assets/js/meridian.js"></script>
 
   <!--
     - WebMCP tools for in-browser AI agents (no-op where unsupported)
   -->
-  <script src="./assets/js/webmcp.js"></script>
-
-  <!--
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-  <!--
-    - marked.js link
-  -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-  <!-- Improved contact section styles -->
-  <style id="improved-contact-styles">
-    /* At a glance block (editorial style, light integration) */
-    .at-a-glance {
-      border-left: 1px solid var(--jet);
-      padding-left: 16px;
-    }
-    @media (max-width: 700px) {
-      .at-a-glance { border-left: 0; border-top: 1px solid var(--jet); padding-left: 0; padding-top: 12px; }
-    }
-    .improved-contact-card {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: stretch;
-      gap: 32px;
-      background: var(--eerie-black-2);
-      border-radius: 18px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
-      padding: 32px 28px 24px 28px;
-      margin-bottom: 32px;
-      border: 1px solid var(--jet);
-    }
-
-    .contact-info-main {
-      flex: 2 1 220px;
-      min-width: 220px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .contact-heading {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: var(--orange-yellow-crayola);
-    }
-
-    .contact-info-list {
-      margin-bottom: 12px;
-      font-size: 1.05rem;
-    }
-
-    .contact-info-list a {
-      color: var(--orange-yellow-crayola);
-      text-decoration: none;
-    }
-
-    .contact-info-list a:hover {
-      text-decoration: underline;
-    }
-
-    .contact-fun-fact {
-      margin: 0;
-      padding: 12px 18px;
-      background: var(--onyx);
-      border-left: 4px solid var(--orange-yellow-crayola);
-      border-radius: 8px;
-      color: var(--light-gray-70);
-      font-style: italic;
-      font-size: 1.05rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    }
-
-    .contact-qr {
-      flex: 1 1 140px;
-      min-width: 140px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .contact-qr-img {
-      border-radius: 14px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
-      background: #fff;
-      width: 140px;
-      height: 140px;
-    }
-
-    .contact-qr-caption {
-      font-size: 13px;
-      text-align: center;
-      margin-top: 7px;
-      color: var(--light-gray-70);
-    }
-
-    .improved-contact-form {
-      background: var(--eerie-black-2);
-      border-radius: 18px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      padding: 28px 22px 22px 22px;
-      border: 1px solid var(--jet);
-    }
-
-    @media (max-width: 700px) {
-      .improved-contact-card {
-        flex-direction: column;
-        padding: 18px 8px 12px 8px;
-        gap: 18px;
-      }
-
-      .improved-contact-form {
-        padding: 16px 4px 12px 4px;
-      }
-    }
-
-    .contact-info-row {
-      margin-bottom: 8px;
-      font-size: 1.08rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .contact-info-row strong {
-      color: var(--orange-yellow-crayola);
-      font-weight: 600;
-      min-width: 70px;
-    }
-
-    .contact-info-row a {
-      color: var(--white-2);
-      font-weight: 500;
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-
-    .contact-info-row a:hover {
-      color: var(--orange-yellow-crayola);
-      text-decoration: underline;
-    }
-
-    .improved-fun-fact {
-      font-size: 1.12rem;
-      color: var(--light-gray-70);
-      background: var(--onyx);
-      border-left: 4px solid var(--orange-yellow-crayola);
-      border-radius: 8px;
-      padding: 14px 20px;
-      margin-top: 10px;
-      font-style: italic;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    }
-
-    .improved-fun-fact .highlight {
-      color: var(--orange-yellow-crayola);
-      font-weight: 600;
-    }
-  </style>
-
-  <!-- Blog modal is injected/managed by assets/js/script.js -->
 
 </body>
 

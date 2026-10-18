@@ -88,7 +88,7 @@ function rowHTML(item, idx) {
 
 async function loadProjects() {
   try {
-    const res = await fetch('./assets/projects/projects.json', { cache: 'no-store' });
+    const res = await fetch('/assets/projects/projects.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load projects');
     const all = await res.json();
     const featured = [];

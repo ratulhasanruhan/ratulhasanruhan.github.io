@@ -70,8 +70,13 @@ h4 { font-size: 18px; }
   grid-template-columns: 120px repeat(12, minmax(0, 1fr));
   gap: var(--column-gap);
 }
+/* Place margin label in first column; content spans remaining columns */
+.grid > .margin-col { grid-column: 1; }
+.grid > :not(.margin-col) { grid-column: 2 / -1; }
 @media (max-width: 900px) {
-  .grid { grid-template-columns: 80px repeat(12, minmax(0, 1fr)); }
+  .grid { grid-template-columns: 1fr; }
+  .grid > .margin-col { grid-column: 1; margin-bottom: 8px; }
+  .grid > :not(.margin-col) { grid-column: 1; }
 }
 @media (max-width: 680px) {
   .grid { grid-template-columns: 1fr; }
@@ -92,6 +97,8 @@ h4 { font-size: 18px; }
   background: color-mix(in oklab, var(--paper) 96%, transparent);
   border-bottom: var(--rule);
   backdrop-filter: blur(6px);
+  overflow-x: auto; /* contain overflow inside the bar */
+  -webkit-overflow-scrolling: touch;
 }
 .topnav {
   max-width: var(--maxw);
@@ -101,7 +108,15 @@ h4 { font-size: 18px; }
   align-items: center;
   gap: 18px;
   padding: 0 16px;
+  /* Prefer horizontal scroll on very small screens to avoid page overflow */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  white-space: nowrap;
+  min-width: 0;
 }
+.topnav a,
+.topnav .theme-toggle,
+.topnav .lang-link { flex: 0 0 auto; }
 .topnav .brand {
   font-family: var(--serif);
   font-size: 20px;
@@ -125,11 +140,15 @@ h4 { font-size: 18px; }
   cursor: pointer;
 }
 .lang-link { font-family: var(--bengali); }
+@media (max-width: 420px) {
+  .topnav { gap: 10px; }
+  .topnav .brand { font-size: 18px; }
+}
 
 /* Hero */
 .hero {
   display: grid;
-  grid-template-columns: 1fr minmax(240px, 360px);
+  grid-template-columns: 1fr minmax(260px, 360px);
   gap: 40px;
   align-items: start;
 }
@@ -137,6 +156,7 @@ h4 { font-size: 18px; }
   .hero { grid-template-columns: 1fr; }
 }
 .hero .role { margin-top: 10px; font-size: 1.05rem; color: var(--slate); }
+.hero h1 .bengali { display: block; font-size: clamp(18px, 2.8vw, 28px); line-height: 1.15; margin-top: 6px; }
 .hero .at-a-glance {
   border-left: var(--rule);
   padding-left: 20px;
@@ -220,6 +240,10 @@ h4 { font-size: 18px; }
   overflow: hidden; clip: rect(0,0,0,0);
   border: 0;
 }
+
+/* Ensure no horizontal overflow from layout containers */
+.page { width: 100%; max-width: var(--maxw); margin-inline: auto; }
+html, body { width: 100%; }
 
 /* Print */
 @media print {
