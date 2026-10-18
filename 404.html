@@ -1,40 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Not Found — Ratul Hasan Ruhan</title>
-    <meta name="robots" content="noindex">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/meridian.css">
-  </head>
-  <body>
-    <a class="sr-only" href="/">Skip</a>
-    <div class="topnav-wrap">
-      <nav class="topnav" aria-label="Top navigation">
-        <div class="brand">Ratul&nbsp;Hasan&nbsp;Ruhan</div>
-        <a href="/">Home</a>
-        <a href="/#projects">Projects</a>
-        <a href="/#contact">Contact</a>
-      </nav>
-    </div>
-    <main class="page">
-      <section class="grid section" style="margin-top:48px">
-        <div class="margin-col"><span class="label">404</span></div>
-        <div class="hero">
-          <div>
-            <h1>We couldn’t find that page.</h1>
-            <p class="meta">The link may be outdated or the page may have moved.</p>
-            <div class="cta-row">
-              <a class="btn btn-primary" href="/">Back to home</a>
-              <a class="btn" href="/#contact">Contact</a>
-            </div>
-          </div>
-        </div>
-      </section>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Not found — Ratul Hasan Ruhan</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#F4EFE4">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Fraunces:opsz,wght@9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/broadsheet.css">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'dark' || saved === 'light') document.documentElement.setAttribute('data-theme', saved);
+        else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to the record</a>
+  <div class="sheet">
+    <header class="nameplate">
+      <p class="blackletter">The Record</p>
+      <p class="role-line">Ratul Hasan Ruhan · Dhaka</p>
+      <hr class="rule">
+    </header>
+    <nav class="section-nav" aria-label="Section index">
+      <ul>
+        <li><a href="/">Front page</a></li>
+        <li><a href="/#projects">Technology</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li class="lang"><a href="/bn/" hreflang="bn" lang="bn">বাংলা</a></li>
+      </ul>
+    </nav>
+    <main id="main" class="missing">
+      <p class="flag">Not found</p>
+      <h1>This page is not in the edition.</h1>
+      <p>The link may be out of date, or the page may have moved.</p>
+      <p class="fact-actions">
+        <a class="btn btn-red" href="/">Back to the front page</a>
+        <a class="btn" href="/#contact">Contact</a>
+      </p>
     </main>
-    <script src="/assets/js/meridian.js"></script>
-  </body>
-  </html>
+  </div>
+</body>
+</html>
