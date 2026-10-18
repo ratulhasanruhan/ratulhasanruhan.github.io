@@ -55,44 +55,15 @@
   <meta property="twitter:image" content="https://also.ratulruhan.cv/assets/images/og-card-meridian.png">
   <meta property="twitter:creator" content="@ratulhasanruhan">
 
-  <meta name="theme-color" content="#1a1a1a">
+  <meta name="theme-color" content="#16261E">
   <link rel="shortcut icon" href="../assets/images/ratulhasan-favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="../assets/images/ratulhasan-avatar.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link rel="stylesheet" href="../assets/css/meridian.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Hind+Siliguri:wght@300;400;500;600&display=swap"
-    rel="stylesheet">
-
-  <style>
-    /* Bangla typography on top of the shared theme */
-    body,
-    .h2, .h3, .h4, .name, .title,
-    .navbar-link, .timeline-text, .service-item-text, .about-text p {
-      font-family: 'Hind Siliguri', 'Poppins', sans-serif;
-    }
-
-    .navbar-link { text-decoration: none; }
-
-    .lang-note {
-      margin-top: 30px;
-      padding: 16px 20px;
-      border: 1px solid var(--jet);
-      border-radius: 14px;
-      background: var(--border-gradient-onyx);
-      color: var(--light-gray-70);
-      font-size: var(--fs-6);
-      line-height: 1.6;
-    }
-    .lang-note a { color: var(--orange-yellow-crayola); text-decoration: none; }
-    .lang-note a:hover { text-decoration: underline; }
-
-    .link-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-    .link-list a { color: var(--orange-yellow-crayola); text-decoration: none; }
-    .link-list a:hover { text-decoration: underline; }
-  </style>
+  <link rel="stylesheet" href="/assets/css/field-journal.css">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Noto+Serif+Bengali:wght@500;600;700&display=swap" rel="stylesheet">
 
   <!-- Structured Data (Bangla) -->
   <script type="application/ld+json">
@@ -192,193 +163,533 @@
 </head>
 
 <body>
-
-  <!-- Meridian editorial layout for Bangla -->
-
-  <div class="topnav-wrap">
-    <nav class="topnav" aria-label="শীর্ষ নেভিগেশন">
-      <div class="brand bengali">রাতুল&nbsp;হাসান&nbsp;রুহান</div>
-      <button id="menu-toggle" class="menu-toggle" aria-controls="topnav-menu" aria-expanded="false">মেনু</button>
-      <div id="topnav-menu" class="topnav-menu" role="menu">
-        <a href="#about" role="menuitem">পরিচয়</a>
-        <a href="#research" role="menuitem">গবেষণা</a>
-        <a href="#projects" role="menuitem">প্রকল্প</a>
-        <a href="#awards" role="menuitem">স্বীকৃতি</a>
-        <a href="#contact" role="menuitem">যোগাযোগ</a>
-        <a class="lang-link" href="/" hreflang="en" lang="en" role="menuitem">English</a>
-        <button id="theme-toggle" class="theme-toggle" aria-label="ডার্ক মোড টগল">থিম</button>
-      </div>
-    </nav>
-  </div>
-
-  <main class="page">
-    <section id="about" class="grid section" aria-labelledby="hero-title">
-      <div class="margin-col"><span class="label">০০</span></div>
-      <div class="hero">
-        <div>
-          <h1 id="hero-title" class="bengali">রাতুল হাসান রুহান</h1>
-          <p class="role bengali">বাংলাভাষীদের জন্য প্রযুক্তি নির্মাণে নিবেদিত সফটওয়্যার ইঞ্জিনিয়ার ও সিস্টেমস রিসার্চার; অজগর—প্রথম বাংলা প্রোগ্রামিং ভাষার নির্মাতা।</p>
-          <div class="spacer-2"></div>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="/assets/Ratul-Hasan-Ruhan-Resume.pdf" download>রেজিউমে ডাউনলোড</a>
-            <a class="btn" href="mailto:ratulhasan1644@gmail.com">ইমেইল</a>
-            <a class="btn" href="https://www.linkedin.com/in/ratul-hasan-ruhan/" target="_blank" rel="noopener">লিংকডইন</a>
-            <a class="btn" href="https://github.com/ratulhasanruhan" target="_blank" rel="noopener">গিটহাব</a>
+  <a class="skip" href="#main">মূল বিষয়ে যান</a>
+  <nav class="bookmarks" aria-label="জার্নালের বিভাগ">
+    <a href="#cover">প্রচ্ছদ</a>
+    <a href="#ojogor">অজগর</a>
+    <a href="#ishara">ইশারা</a>
+    <a href="#research">CCRP</a>
+    <a href="#projects">প্রকল্প</a>
+    <a href="#awards">স্বীকৃতি</a>
+    <a href="#experience">পথ</a>
+    <a href="#press">সংবাদ</a>
+    <a href="#contact">যোগাযোগ</a>
+    <a class="lang" href="/" hreflang="en" lang="en">English</a>
+  </nav>
+  <main id="main">
+    <article class="journal" lang="bn">
+      <section class="sheet spread" id="cover" aria-labelledby="hero-title">
+        <div class="cover-leaf">
+          <span class="ribbon" aria-hidden="true"></span>
+          <div>
+            <p class="kicker" lang="en">Field Notes · Vol. I · Dhaka</p>
+            <h1 id="hero-title">রাতুল হাসান রুহান</h1>
+            <p class="bn-name" lang="en">Ratul Hasan Ruhan</p>
+            <p class="lede">বাংলাভাষীদের জন্য প্রযুক্তি নির্মাণে নিবেদিত সফটওয়্যার ইঞ্জিনিয়ার ও সিস্টেমস রিসার্চার; অজগর—প্রথম বাংলা প্রোগ্রামিং ভাষার নির্মাতা।</p>
+          </div>
+          <div class="cover-tools">
+            <img class="portrait" src="/assets/images/ratulhasan-avatar.png" alt="রাতুল হাসান রুহানের প্রতিকৃতি" width="84" height="84" decoding="async">
+            <div class="seal-row">
+              <svg class="seal" viewBox="0 0 120 120" width="108" height="108" aria-hidden="true">
+  <defs>
+    <radialGradient id="wax" cx="38%" cy="32%" r="70%">
+      <stop offset="0" stop-color="#b55246"/>
+      <stop offset="0.55" stop-color="#7c332c"/>
+      <stop offset="1" stop-color="#4e1e1c"/>
+    </radialGradient>
+  </defs>
+  <path fill="url(#wax)" d="M60 6c10 1 16 2 22 8 6 5 9 8 14 15 5 7 12 9 14 17 2 9-2 15 0 23 2 8 3 16-2 23-5 7-13 10-20 16-7 5-12 12-22 13-9 1-17-5-25-7-8-2-17-1-23-8-6-6-7-15-11-23-3-8-9-13-9-22 0-9 7-14 9-22 3-8 2-17 9-23 6-6 15-7 22-11 6-3 14-3 22 1z"/>
+  <circle cx="60" cy="62" r="34" fill="none" stroke="#f3ddb0" stroke-width="1.2" opacity="0.85"/>
+  <circle cx="60" cy="62" r="28" fill="none" stroke="#f3ddb0" stroke-width="0.6" opacity="0.7"/>
+  <text x="60" y="58" text-anchor="middle" fill="#F6E6C8" font-family="Newsreader, Georgia, serif" font-size="13" letter-spacing="1.5">OPEN</text>
+  <text x="60" y="74" text-anchor="middle" fill="#F6E6C8" font-family="Newsreader, Georgia, serif" font-size="13" letter-spacing="2">TO</text>
+</svg>
+              <p>গবেষণা সহযোগিতা, MSc/PhD এবং পূর্ণকালীন ভূমিকার জন্য উন্মুক্ত।</p>
+            </div>
           </div>
         </div>
-        <aside class="at-a-glance" aria-label="সংক্ষেপে">
-          <div class="kicker bengali">সংক্ষেপে</div>
-          <p><strong>অবস্থান:</strong> <span class="agl-value">ঢাকা, বাংলাদেশ</span></p>
-          <p><strong>স্ট্যাটাস:</strong> <span class="agl-value">প্রতিষ্ঠাতা ও ফুল‑স্ট্যাক মোবাইল আর্কিটেক্ট, <a href="https://appibrium.com" target="_blank" rel="noopener">Appibrium</a> (অক্টোবর ২০২৫–বর্তমান)</span></p>
-        </aside>
-      </div>
-    </section>
-
-    <section id="research" class="grid section" aria-labelledby="research-title">
-      <div class="margin-col"><span class="label">০১</span></div>
-      <div>
-        <h2 id="research-title" class="section-title bengali">গবেষণা</h2>
-        <div class="row"><div class="tablelike"><div>
-          <a class="toggle" href="https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony" target="_blank" rel="noopener">
-            <div class="title">Caller Collision Resolution Protocol (CCRP)</div>
-            <div class="meta">প্রিপ্রিন্ট, অক্টোবর ২০২৫ — DOI: 10.13140/RG.2.2.26499.98081</div>
-          </a>
-        </div><div class="meta"></div><div class="meta"><span class="mono">ResearchGate</span></div><div></div></div></div>
-      </div>
-    </section>
-
-    <section id="projects" class="grid section" aria-labelledby="projects-title">
-      <div class="margin-col"><span class="label">০২</span></div>
-      <div>
-        <h2 id="projects-title" class="section-title bengali">উল্লেখযোগ্য প্রকল্প</h2>
-        <div class="row"><div class="tablelike"><div><a class="toggle" href="https://ratulhasan.gitbook.io/ojogor" target="_blank" rel="noopener"><div class="title">অজগর (Ojogor)</div><div class="meta">প্রথম বাংলা প্রোগ্রামিং ভাষা</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Compiler</span></div><div></div></div></div>
-        <div class="row"><div class="tablelike"><div><a class="toggle" href="https://www.facebook.com/gorusheba/" target="_blank" rel="noopener"><div class="title bengali">গরুসেবা</div><div class="meta">AI ও IoT খামার ব্যবস্থাপনা</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile · IoT</span></div><div></div></div></div>
-        <p class="meta"><a href="/" hreflang="en" lang="en">See all projects (English) ↗</a></p>
-      </div>
-    </section>
-
-    <section id="awards" class="grid section" aria-labelledby="awards-title">
-      <div class="margin-col"><span class="label">০৩</span></div>
-      <div>
-        <h2 id="awards-title" class="section-title bengali">স্বীকৃতি</h2>
-        <ul>
-          <li><span class="mono">২০২৬‑০১</span> — National AI BUILD‑A‑THON – Trailblazer</li>
-          <li><span class="mono">২০২৬‑০২</span> — Coding Fest 2026 – 1st Place</li>
-          <li><span class="mono">২০২৫‑১০</span> — Bangladesh ICT & Innovation Award 2025 (Ojogor)</li>
-        </ul>
-        <div class="spacer-1"></div>
-        <div class="award-images-grid">
-          <figure class="figure"><img src="/assets/images/awards/trophy.jpg" alt="পুরস্কারের ট্রফি (২০২৫)" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 1</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/winner_trophy.jpg" alt="বিজয়ীর ট্রফি" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 2</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/pitch_session.jpg" alt="পিচ সেশন (২০২৫)" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 3</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/project_showcase.jpg" alt="প্রকল্প প্রদর্শনী — DIA ICT Fest ২০২৫" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 4</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/showcase_session.jpg" alt="শোকেস সেশন — DIA ICT Fest ২০২৫" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 5</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/coding_fest_2026_certificate.jpg" alt="Coding Fest 2026 সার্টিফিকেট" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 6</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/national_ai_buildathon.jpeg" alt="National AI Build-a-thon পুরস্কারের ছবি" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 7</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/national_tech_award.jpg" alt="National Tech Award 2025 পুরস্কারের ছবি" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 8</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/award_receiving.jpg" alt="পুরস্কার গ্রহণের মুহূর্ত" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 9</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/coding_fest_2026.jpg" alt="Coding Fest 2026 অনুষ্ঠান" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 10</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/1st_certificate_programming_contest.jpg" alt="প্রোগ্রামিং প্রতিযোগিতা ১ম স্থান সার্টিফিকেট" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 11</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/ai_buildathon_award_ceremony.JPG" alt="AI Build-a-thon পুরস্কার বিতরণী" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 12</figcaption></figure>
-          <figure class="figure"><img src="/assets/images/awards/award_ceremony.jpg" alt="পুরস্কার বিতরণী অনুষ্ঠান" loading="lazy" width="240" height="180"><figcaption class="mono">Fig. 13</figcaption></figure>
+        <div class="facts-leaf">
+          <section class="quick-facts" aria-label="দ্রুত তথ্য">
+            <h2>দ্রুত তথ্য</h2>
+            <dl>
+              <div><dt>নাম</dt><dd>রাতুল হাসান রুহান <span lang="en">Ratul Hasan Ruhan</span></dd></div>
+              <div><dt>ভূমিকা</dt><dd>প্রতিষ্ঠাতা ও ফুল-স্ট্যাক মোবাইল আর্কিটেক্ট, <a href="https://appibrium.com" target="_blank" rel="noopener">Appibrium</a> (অক্টোবর ২০২৫–বর্তমান)</dd></div>
+              <div><dt>অবস্থান</dt><dd>ঢাকা, বাংলাদেশ</dd></div>
+              <div><dt>গবেষণা</dt><dd>সিস্টেম, প্রায়োগিক AI/ML, প্রোগ্রামিং ভাষা, স্থানীয় কম্পিউটিং</dd></div>
+              <div><dt>স্বীকৃতি</dt><dd>ICT &amp; Innovation Award ২০২৫ · AI BUILD-A-THON Trailblazer · Coding Fest ২০২৬, ১ম</dd></div>
+              <div><dt>উন্মুক্ত</dt><dd>গবেষণা সহযোগিতা, MSc/PhD, পূর্ণকালীন ভূমিকা</dd></div>
+              <div><dt>ইমেইল</dt><dd class="email-line"><a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a> <button type="button" class="btn btn-ghost js-copy" data-copied="কপি হয়েছে">কপি</button></dd></div>
+            </dl>
+            <div class="fact-actions">
+              <a class="btn btn-primary" href="/assets/Ratul-Hasan-Ruhan-Resume.pdf">রেজিউমে</a>
+              <a class="btn" href="mailto:ratulhasan1644@gmail.com">ইমেইল</a>
+            </div>
+          </section>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- কমিউনিটি ও নেতৃত্ব -->
-    <section id="communities" class="grid section" aria-labelledby="comm-title">
-      <div class="margin-col"><span class="label">০৪</span></div>
-      <div>
-        <h2 id="comm-title" class="section-title bengali">কমিউনিটি ও নেতৃত্ব</h2>
-        <ul>
-          <li><strong>AWS Student Builder Leader</strong> — Amazon Web Services (২০২৬–বর্তমান)</li>
-          <li><strong>Local Ambassador</strong> — Global Logic & Reasoning Challenge (২০২৬–২০২৭)</li>
-          <li><strong>Country Ambassador</strong> — International Computer Science Competition (২০২৬)</li>
-          <li><strong>স্বেচ্ছাসেবক</strong> — বিজ্ঞান জনপ্রিয়করণ সমিতি, বাংলাদেশ (এপ্রিল ২০২৫–বর্তমান)</li>
-          <li><strong>স্বেচ্ছাসেবক</strong> — বাংলাদেশ ওপেন সোর্স নেটওয়ার্ক (এপ্রিল ২০২৫–বর্তমান)</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- অভিজ্ঞতা ও শিক্ষা (সংক্ষিপ্ত) -->
-    <section id="experience" class="grid section" aria-labelledby="exp-title">
-      <div class="margin-col"><span class="label">০৫</span></div>
-      <div>
-        <h2 id="exp-title" class="section-title bengali">অভিজ্ঞতা ও শিক্ষা</h2>
-        <div class="row">
-          <div class="tablelike">
-            <div><div class="title bengali">অ্যাপিব্রিয়াম — প্রতিষ্ঠাতা ও ফুল‑স্ট্যাক মোবাইল আর্কিটেক্ট</div><div class="meta">অক্টোবর ২০২৫ – বর্তমান · ঢাকা</div></div>
-            <div class="meta"></div><div class="meta"><span class="mono">Leadership</span></div><div></div>
+      <section class="sheet" id="ojogor" aria-labelledby="ojogor-title">
+        <div class="entry">
+          <header class="entry-head">
+            <div class="stamp" aria-hidden="true"><span>Day 1<br>Oct 2025</span></div>
+            <div>
+              <p class="dateline"><time datetime="2025-10">দিন ১ · অক্টোবর ২০২৫</time></p>
+              <h2 id="ojogor-title">অজগর <span lang="en">(Ojogor)</span></h2>
+              <p class="note">প্রথম বাংলা প্রোগ্রামিং ভাষা</p>
+            </div>
+          </header>
+          <div class="entry-body">
+            <p>অজগর প্রথম বাংলা প্রোগ্রামিং ভাষা—বাংলা সিনট্যাক্সে কোড লেখা ও চালানো যায়। এটি বাংলাভাষীদের, বিশেষ করে নতুন শিখতে আসা মানুষের, জন্য।</p>
+            <p>প্রকল্পটি বাংলাদেশ ICT &amp; Innovation Award ২০২৫ পেয়েছে (অক্টোবর ২০২৫)।</p>
+            <p><a href="https://ratulhasan.gitbook.io/ojogor" target="_blank" rel="noopener">অজগরের নথি ↗</a></p>
           </div>
         </div>
-        <div class="row">
-          <div class="tablelike">
-            <div><div class="title bengali">BSc (Hons) Computing — University of Greenwich (NCC Pathway)</div><div class="meta">২০২৫ – বর্তমান</div></div>
-            <div class="meta"></div><div class="meta"><span class="mono">Education</span></div><div></div>
+        <p class="folio-no" aria-hidden="true"></p>
+      </section>
+
+      <section class="sheet" id="ishara" aria-labelledby="ishara-title">
+        <div class="entry">
+          <header class="entry-head">
+            <div class="stamp" aria-hidden="true"><span>Day 2<br>2025</span></div>
+            <div>
+              <p class="dateline"><time datetime="2025">দিন ২ · ২০২৫</time></p>
+              <h2 id="ishara-title">ইশারা</h2>
+              <p class="note">রিয়েল-টাইম বাংলা সাংকেতিক ভাষা</p>
+            </div>
+          </header>
+          <div class="entry-body">
+            <p>ইশারা একটি রিয়েল-টাইম বাংলা সাংকেতিক ভাষা অনুবাদ ব্যবস্থা—অ্যাক্সেসিবিলিটি ও অন্তর্ভুক্তির জন্য। এটি National Tech Award ২০২৫ পেয়েছে।</p>
           </div>
         </div>
-      </div>
-    </section>
+        <p class="folio-no" aria-hidden="true"></p>
+      </section>
 
-    <!-- লেখালেখি -->
-    <section id="press" class="grid section" aria-labelledby="press-title">
-      <div class="margin-col"><span class="label">০৬</span></div>
-      <div>
-        <h2 id="press-title" class="section-title bengali">গণমাধ্যমে</h2>
-        <ol>
-          <li><a href="https://tbsgraduates.net/writeup/programming-made-easy-diu-students-ojogor-introduces-bangla-syntax-to-python/" target="_blank" rel="noopener">Ojogor — The Business Standard (Graduates)</a></li>
-          <li><a href="https://protidinerbangladesh.com/technology/132975/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A7%9F-%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A5%E0%A6%AE-%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%BF%E0%A6%82-%E0%A6%AD%E0%A6%BE%E0%A6%B7%E0%A6%BE-%E0%A6%B0%E0%A7%81%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A7%87%E0%A6%B0-%E0%A6%85%E0%A6%9C%E0%A6%97%E0%A6%B0" target="_blank" rel="noopener">প্রতিদিনের বাংলাদেশ</a></li>
-          <li><a href="https://www.linkedin.com/posts/the-business-standard_programming-made-easy-diu-students-ojogor-activity-7308421903390572544-BvIZ/" target="_blank" rel="noopener">The Business Standard (LinkedIn)</a></li>
-          <li><a href="https://www.instagram.com/p/DG7yqCVyWCO/" target="_blank" rel="noopener">Daily Blurb (Instagram)</a></li>
-          <li><a href="https://www.facebook.com/infogrambd/posts/more-details-in-the-comments-section/657991090072772/" target="_blank" rel="noopener">InfogramBD (Facebook)</a></li>
-          <li><a href="https://www.facebook.com/share/p/1Kmhp2zus2/" target="_blank" rel="noopener">Facebook press post</a></li>
-          <li><a href="https://www.tbsnews.net/bangladesh/bangladesh-ict-and-innovation-network-recognises-nations-top-innovators-1265456#:~:text=Ojogor%20from%20Daffodil%20International%20University%20(DIU)" target="_blank" rel="noopener">The Business Standard — BIIN recognises innovators</a></li>
-          <li><a href="https://en.techworldbd.com/news/98#:~:text=Daffodil%20International%20University%E2%80%94DIU%20(Ajogor)" target="_blank" rel="noopener">TechworldBD — DIU (Ajogor)</a></li>
-          <li><a href="https://www.dhakatribune.com/bangladesh/event/394357/bangladesh-ict-and-innovation-network-honors-the#:~:text=Fraud%20Shield%20(AIUB)%2C-,Ojogor%20(DIU),-%2C%20and%20Sohopathi%20AI" target="_blank" rel="noopener">Dhaka Tribune — BIIN honors</a></li>
-          <li><a href="https://www.tbsnews.net/economy/corporates/daffodil-international-academy-ict-fest-2025-inaugurated-1075236" target="_blank" rel="noopener">The Business Standard — Daffodil ICT Fest 2025</a></li>
-          <li><a href="https://www.prothomalo.com/technology/hqdxhziscj" target="_blank" rel="noopener">প্রথম আলো — ন্যাশনাল এআই বিল্ড‑এ‑থন</a></li>
-          <li><a href="https://www.a1news24.com/%E0%A6%B0%E0%A6%BE%E0%A6%9C%E0%A6%A7%E0%A6%BE%E0%A6%A8%E0%A7%80%E0%A6%A4%E0%A7%87-%E0%A6%86%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%9C%E0%A6%BF%E0%A6%A4-%E0%A6%B9%E0%A6%B2-%E0%A6%A8%E0%A7%8D%E0%A6%AF/" target="_blank" rel="noopener">A1News24 — কভারেজ</a></li>
-        </ol>
-      </div>
-    </section>
+      <section class="sheet" id="research" aria-labelledby="research-title">
+        <div class="entry">
+          <header class="entry-head">
+            <div class="stamp" aria-hidden="true"><span>Day 3<br>Oct 2025</span></div>
+            <div>
+              <p class="dateline"><time datetime="2025-10">দিন ৩ · অক্টোবর ২০২৫</time></p>
+              <h2 id="research-title">গবেষণা — CCRP</h2>
+              <p class="note">ResearchGate-এ প্রিপ্রিন্ট</p>
+            </div>
+          </header>
+          <div class="entry-body">
+            <p><a href="https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony" target="_blank" rel="noopener">Caller Collision Resolution Protocol (CCRP): Bridging Simultaneous Call Attempts in Real-World Telephony ↗</a></p>
+            <p class="dateline">প্রিপ্রিন্ট, অক্টোবর ২০২৫ · DOI 10.13140/RG.2.2.26499.98081 · ResearchGate</p>
+            <p>একই সময়ে দুই পক্ষ একে অপরকে কল করলে ব্যস্ত সংকেত আসে—সেই সংঘর্ষ সামলানোর জন্য CCRP একটি কাঠামো। এটি ResearchGate-এ প্রকাশিত প্রিপ্রিন্ট (অক্টোবর ২০২৫)।</p>
+            <h3>আগ্রহের ক্ষেত্র</h3>
+            <ul>
+              <li>কম্পিউটার সিস্টেম ও সফটওয়্যার আর্কিটেকচার</li>
+              <li>বাস্তব ব্যবস্থায় প্রায়োগিক AI/ML</li>
+              <li>মানবকেন্দ্রিক ও স্থানীয় কম্পিউটিং</li>
+              <li>প্রোগ্রামিং ভাষা ও ডেভেলপার টুলিং</li>
+            </ul>
+          </div>
+        </div>
+        <p class="folio-no" aria-hidden="true"></p>
+      </section>
 
-    <section id="writings" class="grid section" aria-labelledby="write-title">
-      <div class="margin-col"><span class="label">০৬</span></div>
-      <div>
-        <h2 id="write-title" class="section-title bengali">লেখালেখি</h2>
-        <p class="meta bengali">সাম্প্রতিক লেখাগুলো: <a href="https://ratulhasanruhan.medium.com" target="_blank" rel="noopener">Medium</a>, <a href="https://ratulhasan.hashnode.dev" target="_blank" rel="noopener">Hashnode</a></p>
+      <section class="sheet" id="projects" aria-labelledby="projects-title">
+        <div class="entry">
+          <header class="entry-head">
+            <div class="stamp" aria-hidden="true"><span>Day 4<br>Cabinet</span></div>
+            <div>
+              <p class="kicker">নমুনা কার্ড</p>
+              <h2 id="projects-title">উল্লেখযোগ্য প্রকল্প</h2>
+            </div>
+          </header>
+          <div class="entry-body">
+            <div class="featured">
+              <article class="specimen" data-specimen>
+      <div class="plate"><img src="/assets/projects/ojogor.webp" alt="অজগর — প্রথম বাংলা প্রোগ্রামিং ভাষা" width="400" height="250" loading="lazy" decoding="async"></div>
+      <div class="card-body">
+        <p class="cat-no">RHR-001 · Compiler</p>
+        <h3>অজগর <span lang='en'>(Ojogor)</span></h3>
+        <p>প্রথম বাংলা প্রোগ্রামিং ভাষা</p>
+        <p><a href="https://ratulhasan.gitbook.io/ojogor" target="_blank" rel="noopener">Open record ↗</a></p>
       </div>
-    </section>
-
-    <!-- প্রশ্নোত্তর -->
-    <section id="faq" class="grid section" aria-labelledby="faq-title">
-      <div class="margin-col"><span class="label">০৭</span></div>
-      <div>
-        <h2 id="faq-title" class="section-title bengali">প্রশ্নোত্তর</h2>
-        <details class="row"><summary class="toggle"><div class="title bengali">রাতুল হাসান রুহান কে?</div></summary><div class="details bengali">রাতুল হাসান রুহান ঢাকাভিত্তিক সফটওয়্যার ইঞ্জিনিয়ার ও সিস্টেমস রিসার্চার। তিনি বাংলাভাষীদের জন্য প্রযুক্তি নির্মাণ করেন এবং অজগর—প্রথম বাংলা প্রোগ্রামিং ভাষার নির্মাতা।</div></details>
-        <details class="row"><summary class="toggle"><div class="title bengali">অজগর কী?</div></summary><div class="details bengali">অজগর (Ojogor) হলো প্রথম বাংলা প্রোগ্রামিং ভাষা—বাংলা সিনট্যাক্সে কোড লেখা যায়। এটি বাংলাদেশ ICT & Innovation Award ২০২৫ পেয়েছে।</div></details>
-        <details class="row"><summary class="toggle"><div class="title bengali">ইশারা কী?</div></summary><div class="details bengali">ইশারা একটি রিয়েল-টাইম বাংলা সাংকেতিক ভাষা অনুবাদ ব্যবস্থা—অ্যাক্সেসিবিলিটির জন্য তৈরি। এটি National Tech Award ২০২৫ পেয়েছে।</div></details>
-        <details class="row"><summary class="toggle"><div class="title bengali">তিনি কোন কোন স্বীকৃতি পেয়েছেন?</div></summary><div class="details bengali">National AI BUILD‑A‑THON – Trailblazer (জানুয়ারি ২০২৬), Coding Fest ২০২৬ – ১ম, Bangladesh ICT & Innovation Award ২০২৫, Startup World Cup ২০২৫ Regional Finalist, DIA ICT Fest ২০২৫‑এ একাধিক পুরস্কার।</div></details>
-        <details class="row"><summary class="toggle"><div class="title bengali">তার গবেষণা কী?</div></summary><div class="details bengali">Caller Collision Resolution Protocol (CCRP)—রিসার্চগেটে প্রিপ্রিন্ট (অক্টোবর ২০২৫), DOI: 10.13140/RG.2.2.26499.98081।</div></details>
-        <details class="row"><summary class="toggle"><div class="title bengali">কোথায় পড়াশোনা করছেন?</div></summary><div class="details bengali">ইউনিভার্সিটি অব গ্রিনউইচ (NCC Pathway)‑এ BSc (Hons) Computing; পূর্বে ড্যাফোডিল আন্তর্জাতিক বিশ্ববিদ্যালয়ে CSE।</div></details>
-        <details class="row"><summary class="toggle"><div class="title bengali">নতুন সুযোগের জন্য উন্মুক্ত?</div></summary><div class="details bengali">হ্যাঁ — রিসার্চ কলাবোরেশন, MSc/PhD ও পূর্ণকালীন ভূমিকার জন্য উন্মুক্ত।</div></details>
-        <details class="row"><summary class="toggle"><div class="title bengali">কীভাবে যোগাযোগ করবেন?</div></summary><div class="details bengali">ইমেইল: <a href=\"mailto:ratulhasan1644@gmail.com\">ratulhasan1644@gmail.com</a> অথবা LinkedIn: linkedin.com/in/ratul-hasan-ruhan।</div></details>
+    </article>
+              <article class="specimen" data-specimen>
+      <div class="plate"><svg class="sketch" viewBox="0 0 320 200" aria-hidden="true">
+  <rect width="320" height="200" fill="#EFE4CC"/>
+  <g fill="none" stroke="#1C140E" stroke-width="2" stroke-linecap="round">
+    <path d="M150 150c-8-30 6-58 28-70 6 16 8 28 4 48"/>
+    <path d="M168 86c6-18 18-28 22-22 2 10-4 24-12 36"/>
+    <path d="M178 78c8-16 20-18 22-8 0 12-8 22-16 30"/>
+    <path d="M186 86c10-12 22-8 20 4-2 10-10 16-18 18"/>
+    <path d="M140 150h70"/>
+  </g>
+  <text x="24" y="36" font-family="Caveat, cursive" font-size="22" fill="#6B4E16">field sketch</text>
+</svg></div>
+      <div class="card-body">
+        <p class="cat-no">RHR-002 · AI/ML</p>
+        <h3>ইশারা</h3>
+        <p>রিয়েল-টাইম বাংলা সাংকেতিক ভাষা অনুবাদ। National Tech Award ২০২৫।</p>
+        
       </div>
-    </section>
-
-    <section id="contact" class="grid section" aria-labelledby="contact-title">
-      <div class="margin-col"><span class="label">০৪</span></div>
-      <div>
-        <h2 id="contact-title" class="section-title bengali">যোগাযোগ</h2>
-        <p>ইমেইল: <a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a></p>
-        <p>লিংকডইন: <a href="https://www.linkedin.com/in/ratul-hasan-ruhan/" target="_blank" rel="noopener">ratul-hasan-ruhan</a></p>
+    </article>
+              <article class="specimen" data-specimen>
+      <div class="plate"><img src="/assets/projects/gorusheba.png" alt="গরুসেবা — AI ও IoT" width="400" height="250" loading="lazy" decoding="async"></div>
+      <div class="card-body">
+        <p class="cat-no">RHR-003 · Mobile · IoT</p>
+        <h3>গরুসেবা</h3>
+        <p>AI ও IoT চালিত গবাদিপশু ব্যবস্থাপনা।</p>
+        <p><a href="https://www.facebook.com/gorusheba/" target="_blank" rel="noopener">Open record ↗</a></p>
       </div>
-    </section>
+    </article>
+              <article class="specimen" data-specimen>
+      <div class="plate"><img src="/assets/projects/datayon.png" alt="ডেটায়ন — বাংলা মাসিক প্রযুক্তি ম্যাগাজিন" width="400" height="250" loading="lazy" decoding="async"></div>
+      <div class="card-body">
+        <p class="cat-no">RHR-004 · Web</p>
+        <h3>ডেটায়ন</h3>
+        <p>বাংলা মাসিক প্রযুক্তি ম্যাগাজিন।</p>
+        <p><a href="https://datayon.bd" target="_blank" rel="noopener">Open record ↗</a></p>
+      </div>
+    </article>
+              <article class="specimen" data-specimen>
+      <div class="plate"><svg class="sketch" viewBox="0 0 320 200" aria-hidden="true">
+  <rect width="320" height="200" fill="#EFE4CC"/>
+  <g fill="none" stroke="#1C140E" stroke-width="2" stroke-linecap="round">
+    <path d="M70 120c30-10 50-40 70-20"/>
+    <path d="M250 120c-30-10-50-40-70-20"/>
+    <circle cx="118" cy="92" r="10"/>
+    <circle cx="202" cy="92" r="10"/>
+    <path d="M140 150h40" stroke="#7A3030"/>
+  </g>
+  <text x="24" y="36" font-family="Caveat, cursive" font-size="22" fill="#6B4E16">two calls, one line</text>
+</svg></div>
+      <div class="card-body">
+        <p class="cat-no">RHR-005 · Research</p>
+        <h3>CCRP</h3>
+        <p>টেলিফোনি সংঘর্ষ-সমাধান প্রোটোকল। প্রিপ্রিন্ট, অক্টোবর ২০২৫। DOI 10.13140/RG.2.2.26499.98081।</p>
+        <p><a href="https://www.researchgate.net/publication/397017372_Caller_Collision_Resolution_Protocol_CCRP_Bridging_Simultaneous_Call_Attempts_in_Real-World_Telephony" target="_blank" rel="noopener">Open record ↗</a></p>
+      </div>
+    </article>
+              <article class="specimen" data-specimen>
+      <div class="plate"><svg class="sketch" viewBox="0 0 320 200" aria-hidden="true">
+  <rect width="320" height="200" fill="#EFE4CC"/>
+  <circle cx="160" cy="104" r="36" fill="none" stroke="#1C140E" stroke-width="2"/>
+  <text x="160" y="112" text-anchor="middle" font-family="Newsreader, serif" font-size="28" fill="#1C140E">A</text>
+  <text x="24" y="36" font-family="Caveat, cursive" font-size="22" fill="#6B4E16">Appibrium</text>
+</svg></div>
+      <div class="card-body">
+        <p class="cat-no">RHR-006 · Organization</p>
+        <h3>Appibrium</h3>
+        <p>প্রতিষ্ঠাতা ও ফুল-স্ট্যাক মোবাইল আর্কিটেক্ট (অক্টোবর ২০২৫–বর্তমান)।</p>
+        <p><a href="https://appibrium.com" target="_blank" rel="noopener">Open record ↗</a></p>
+      </div>
+    </article>
+            </div>
+            <p><a href="/" hreflang="en" lang="en">See the full cabinet in English ↗</a></p>
+          </div>
+        </div>
+        <p class="folio-no" aria-hidden="true"></p>
+      </section>
 
+      <section class="sheet" id="awards" aria-labelledby="awards-title">
+        <div class="entry">
+          <header class="entry-head">
+            <div class="stamp" aria-hidden="true"><span>Day 5<br>Medals</span></div>
+            <div>
+              <p class="kicker">পদক ও ফিতা</p>
+              <h2 id="awards-title">স্বীকৃতি</h2>
+            </div>
+          </header>
+          <div class="entry-body">
+            <ul class="medals">
+              <li class="medal"><svg viewBox="0 0 88 120" width="76" height="104" aria-hidden="true">
+      <path d="M24 2h16l7 34H31z" fill="#7A3030"/>
+      <path d="M48 2h16L57 36H41z" fill="#5C2420"/>
+      <circle cx="44" cy="72" r="32" fill="#C4923A"/>
+      <circle cx="44" cy="72" r="26" fill="#F4E7C8" stroke="#6B4E16" stroke-width="1.4"/>
+      <circle cx="44" cy="72" r="21" fill="none" stroke="#7A3030" stroke-width="1"/>
+      <text x="44" y="76" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10" fill="#1C140E">JAN 26</text>
+    </svg><div><p class="dateline"><time datetime="2026-01">জানুয়ারি ২০২৬</time></p><h3>National AI BUILD-A-THON – Trailblazer</h3><p>MillionX Bangladesh।</p></div></li>
+              <li class="medal"><svg viewBox="0 0 88 120" width="76" height="104" aria-hidden="true">
+      <path d="M24 2h16l7 34H31z" fill="#7A3030"/>
+      <path d="M48 2h16L57 36H41z" fill="#5C2420"/>
+      <circle cx="44" cy="72" r="32" fill="#C4923A"/>
+      <circle cx="44" cy="72" r="26" fill="#F4E7C8" stroke="#6B4E16" stroke-width="1.4"/>
+      <circle cx="44" cy="72" r="21" fill="none" stroke="#7A3030" stroke-width="1"/>
+      <text x="44" y="76" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10" fill="#1C140E">1ST</text>
+    </svg><div><p class="dateline"><time datetime="2026-02">ফেব্রুয়ারি ২০২৬</time></p><h3>Coding Fest 2026 – 1st Place</h3><p>Daffodil International Academy।</p></div></li>
+              <li class="medal"><svg viewBox="0 0 88 120" width="76" height="104" aria-hidden="true">
+      <path d="M24 2h16l7 34H31z" fill="#7A3030"/>
+      <path d="M48 2h16L57 36H41z" fill="#5C2420"/>
+      <circle cx="44" cy="72" r="32" fill="#C4923A"/>
+      <circle cx="44" cy="72" r="26" fill="#F4E7C8" stroke="#6B4E16" stroke-width="1.4"/>
+      <circle cx="44" cy="72" r="21" fill="none" stroke="#7A3030" stroke-width="1"/>
+      <text x="44" y="76" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10" fill="#1C140E">ICT</text>
+    </svg><div><p class="dateline"><time datetime="2025-10">অক্টোবর ২০২৫</time></p><h3>Bangladesh ICT &amp; Innovation Award 2025</h3><p>অজগরের জন্য।</p></div></li>
+              <li class="medal"><svg viewBox="0 0 88 120" width="76" height="104" aria-hidden="true">
+      <path d="M24 2h16l7 34H31z" fill="#7A3030"/>
+      <path d="M48 2h16L57 36H41z" fill="#5C2420"/>
+      <circle cx="44" cy="72" r="32" fill="#C4923A"/>
+      <circle cx="44" cy="72" r="26" fill="#F4E7C8" stroke="#6B4E16" stroke-width="1.4"/>
+      <circle cx="44" cy="72" r="21" fill="none" stroke="#7A3030" stroke-width="1"/>
+      <text x="44" y="76" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10" fill="#1C140E">SWC</text>
+    </svg><div><p class="dateline"><time datetime="2025-08">আগস্ট ২০২৫</time></p><h3>Startup World Cup 2025 — Regional Finalist</h3><p>৪৫০০+ স্টার্টআপের মধ্যে।</p></div></li>
+              <li class="medal"><svg viewBox="0 0 88 120" width="76" height="104" aria-hidden="true">
+      <path d="M24 2h16l7 34H31z" fill="#7A3030"/>
+      <path d="M48 2h16L57 36H41z" fill="#5C2420"/>
+      <circle cx="44" cy="72" r="32" fill="#C4923A"/>
+      <circle cx="44" cy="72" r="26" fill="#F4E7C8" stroke="#6B4E16" stroke-width="1.4"/>
+      <circle cx="44" cy="72" r="21" fill="none" stroke="#7A3030" stroke-width="1"/>
+      <text x="44" y="76" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10" fill="#1C140E">2025</text>
+    </svg><div><p class="dateline"><time datetime="2025">২০২৫</time></p><h3>National Tech Award 2025</h3><p>ইশারার জন্য।</p></div></li>
+              <li class="medal"><svg viewBox="0 0 88 120" width="76" height="104" aria-hidden="true">
+      <path d="M24 2h16l7 34H31z" fill="#7A3030"/>
+      <path d="M48 2h16L57 36H41z" fill="#5C2420"/>
+      <circle cx="44" cy="72" r="32" fill="#C4923A"/>
+      <circle cx="44" cy="72" r="26" fill="#F4E7C8" stroke="#6B4E16" stroke-width="1.4"/>
+      <circle cx="44" cy="72" r="21" fill="none" stroke="#7A3030" stroke-width="1"/>
+      <text x="44" y="76" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10" fill="#1C140E">1ST</text>
+    </svg><div><p class="dateline"><time datetime="2025-02">ফেব্রুয়ারি ২০২৫</time></p><h3>DIA ICT Fest 2025 — Programming, 1st</h3></div></li>
+              <li class="medal"><svg viewBox="0 0 88 120" width="76" height="104" aria-hidden="true">
+      <path d="M24 2h16l7 34H31z" fill="#7A3030"/>
+      <path d="M48 2h16L57 36H41z" fill="#5C2420"/>
+      <circle cx="44" cy="72" r="32" fill="#C4923A"/>
+      <circle cx="44" cy="72" r="26" fill="#F4E7C8" stroke="#6B4E16" stroke-width="1.4"/>
+      <circle cx="44" cy="72" r="21" fill="none" stroke="#7A3030" stroke-width="1"/>
+      <text x="44" y="76" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10" fill="#1C140E">1ST</text>
+    </svg><div><p class="dateline"><time datetime="2025-02">ফেব্রুয়ারি ২০২৫</time></p><h3>DIA ICT Fest 2025 — Project Showcasing, 1st</h3></div></li>
+              <li class="medal"><svg viewBox="0 0 88 120" width="76" height="104" aria-hidden="true">
+      <path d="M24 2h16l7 34H31z" fill="#7A3030"/>
+      <path d="M48 2h16L57 36H41z" fill="#5C2420"/>
+      <circle cx="44" cy="72" r="32" fill="#C4923A"/>
+      <circle cx="44" cy="72" r="26" fill="#F4E7C8" stroke="#6B4E16" stroke-width="1.4"/>
+      <circle cx="44" cy="72" r="21" fill="none" stroke="#7A3030" stroke-width="1"/>
+      <text x="44" y="76" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10" fill="#1C140E">2ND</text>
+    </svg><div><p class="dateline"><time datetime="2025-02">ফেব্রুয়ারি ২০২৫</time></p><h3>DIA ICT Fest 2025 — Puzzle Hunt, 2nd</h3></div></li>
+            </ul>
+            <h3>মাঠের ছবি</h3>
+            <div class="polaroids"><figure class="polaroid"><img src="/assets/images/awards/trophy.jpg" alt="পুরস্কারের ট্রফি (২০২৫)" width="240" height="180" loading="lazy" decoding="async"><figcaption>প্লেট ০১ · ট্রফি, ২০২৫</figcaption></figure>
+<figure class="polaroid"><img src="/assets/images/awards/winner_trophy.jpg" alt="বিজয়ীর ট্রফি" width="240" height="180" loading="lazy" decoding="async"><figcaption>প্লেট ০২ · বিজয়ীর ট্রফি</figcaption></figure>
+<figure class="polaroid"><img src="/assets/images/awards/pitch_session.jpg" alt="পিচ সেশন (২০২৫)" width="240" height="180" loading="lazy" decoding="async"><figcaption>প্লেট ০৩ · পিচ, ২০২৫</figcaption></figure>
+<figure class="polaroid"><img src="/assets/images/awards/project_showcase.jpg" alt="প্রকল্প প্রদর্শনী — DIA ICT Fest ২০২৫" width="240" height="180" loading="lazy" decoding="async"><figcaption>প্লেট ০৪ · প্রদর্শনী</figcaption></figure>
+<figure class="polaroid"><img src="/assets/images/awards/showcase_session.jpg" alt="শোকেস সেশন — DIA ICT Fest ২০২৫" width="240" height="180" loading="lazy" decoding="async"><figcaption>প্লেট ০৫ · শোকেস</figcaption></figure>
+<figure class="polaroid"><img src="/assets/images/awards/coding_fest_2026_certificate.jpg" alt="Coding Fest 2026 সার্টিফিকেট" width="240" height="180" loading="lazy" decoding="async"><figcaption>প্লেট ০৬ · সার্টিফিকেট</figcaption></figure>
+<figure class="polaroid"><img src="/assets/images/awards/national_ai_buildathon.jpeg" alt="National AI Build-a-thon পুরস্কারের ছবি" width="240" height="180" loading="lazy" decoding="async"><figcaption>প্লেট ০৭ · AI Build-a-thon</figcaption></figure>
+<figure class="polaroid"><img src="/assets/images/awards/national_tech_award.jpg" alt="National Tech Award 2025 পুরস্কারের ছবি" width="240" height="180" loading="lazy" decoding="async"><figcaption>প্লেট ০৮ · National Tech Award</figcaption></figure>
+<figure class="polaroid"><img src="/assets/images/awards/award_receiving.jpg" alt="পুরস্কার গ্রহণের মুহূর্ত" width="240" height="180" loading="lazy" decoding="async"><figcaption>প্লেট ০৯ · গ্রহণ</figcaption></figure>
+<figure class="polaroid"><img src="/assets/images/awards/coding_fest_2026.jpg" alt="Coding Fest 2026 অনুষ্ঠান" width="240" height="180" loading="lazy" decoding="async"><figcaption>প্লেট ১০ · অনুষ্ঠান</figcaption></figure>
+<figure class="polaroid"><img src="/assets/images/awards/1st_certificate_programming_contest.jpg" alt="প্রোগ্রামিং প্রতিযোগিতা ১ম স্থান সার্টিফিকেট" width="240" height="180" loading="lazy" decoding="async"><figcaption>প্লেট ১১ · সার্টিফিকেট</figcaption></figure>
+<figure class="polaroid"><img src="/assets/images/awards/ai_buildathon_award_ceremony.JPG" alt="AI Build-a-thon পুরস্কার বিতরণী" width="240" height="180" loading="lazy" decoding="async"><figcaption>প্লেট ১২ · বিতরণী</figcaption></figure>
+<figure class="polaroid"><img src="/assets/images/awards/award_ceremony.jpg" alt="পুরস্কার বিতরণী অনুষ্ঠান" width="240" height="180" loading="lazy" decoding="async"><figcaption>প্লেট ১৩ · অনুষ্ঠান</figcaption></figure></div>
+          </div>
+        </div>
+        <p class="folio-no" aria-hidden="true"></p>
+      </section>
+
+      <section class="sheet" id="experience" aria-labelledby="exp-title">
+        <div class="entry">
+          <header class="entry-head">
+            <div class="stamp" aria-hidden="true"><span>পথ</span></div>
+            <div>
+              <h2 id="exp-title">অভিজ্ঞতা ও শিক্ষা</h2>
+              <p class="note">শরীয়তপুর → ঢাকা → গ্রিনউইচ</p>
+            </div>
+          </header>
+          <div class="entry-body">
+            <svg class="route-map" viewBox="0 0 680 250" role="img" aria-label="Hand-drawn sketch of places on record: Shariatpur, Dhaka, and Greenwich, London. Not to scale.">
+  <rect x="1" y="1" width="678" height="248" fill="none" stroke="#6B4E16" stroke-width="1" stroke-dasharray="3 4"/>
+  <path class="ink-base" d="M70 168 C 150 150, 180 110, 250 124 S 360 70, 430 96 S 540 58, 600 88"/>
+  <path class="ink-stroke" pathLength="1" d="M70 168 C 150 150, 180 110, 250 124 S 360 70, 430 96 S 540 58, 600 88"/>
+  <circle cx="70" cy="168" r="5" fill="#1C140E"/>
+  <circle cx="250" cy="124" r="5" fill="#7A3030"/>
+  <circle cx="600" cy="88" r="5" fill="#1C140E"/>
+  <text class="map-label" x="40" y="196">Shariatpur</text>
+  <text class="map-label" x="40" y="210">23.2° N</text>
+  <text class="map-label" x="214" y="112">Dhaka</text>
+  <text class="map-label" x="200" y="98">23.8° N · 90.4° E</text>
+  <text class="map-label" x="520" y="70">Greenwich</text>
+  <text class="map-label" x="528" y="116">London · 51.5° N</text>
+  <text class="map-hand" x="300" y="168">education bearing · not a survey</text>
+  <g transform="translate(620 190)" fill="none" stroke="#1C140E" stroke-width="1.2">
+    <circle cx="16" cy="16" r="14"/>
+    <path d="M16 4 L16 28 M4 16 L28 16"/>
+    <path d="M16 6 L19 16 L16 14 L13 16 Z" fill="#7A3030" stroke="none"/>
+  </g>
+  <text class="map-label" x="628" y="214">N</text>
+</svg>
+            <h3>ভূমিকা</h3>
+            <article class="log"><p class="when">অক্টোবর ২০২৫ – বর্তমান</p><div><h3>Appibrium — প্রতিষ্ঠাতা ও ফুল-স্ট্যাক মোবাইল আর্কিটেক্ট</h3><p class="dateline">ঢাকা</p></div></article>
+            <article class="log"><p class="when">আগস্ট ২০২৫ – অক্টোবর ২০২৫</p><div><h3>Solution Explorer — Software Engineer</h3><p class="dateline">রিমোট (ম্যারিল্যান্ড, যুক্তরাষ্ট্র)</p></div></article>
+            <article class="log"><p class="when">মে ২০২৫ – জুলাই ২০২৫</p><div><h3>Sydrix AI — Mobile Application Developer</h3><p class="dateline">রিমোট (ঢাকা)</p></div></article>
+            <article class="log"><p class="when">এপ্রিল ২০২৫ – মে ২০২৫</p><div><h3>BdCalling IT Ltd. — Flutter Developer</h3><p class="dateline">ঢাকা</p></div></article>
+            <article class="log"><p class="when">আগস্ট ২০২৪ – মার্চ ২০২৫</p><div><h3>Emerge AI — Mobile Application Developer</h3><p class="dateline">রিমোট (বেইজিং)</p></div></article>
+            <article class="log"><p class="when">জুলাই ২০২৩ – আগস্ট ২০২৪</p><div><h3>Infolook — Mobile Application Developer</h3><p class="dateline">ঢাকা</p></div></article>
+            <article class="log"><p class="when">নভেম্বর ২০১৯ – ডিসেম্বর ২০২২</p><div><h3>Spotlight Creative — Android Developer (Freelance)</h3></div></article>
+            <h3>শিক্ষা</h3>
+            <article class="log"><p class="when">জানুয়ারি ২০২৫ – বর্তমান</p><div><h3>BSc (Hons) Computing — University of Greenwich (NCC Pathway)</h3></div></article>
+            <article class="log"><p class="when">জানুয়ারি ২০২৪ – জানুয়ারি ২০২৫</p><div><h3>BSc in CSE — Daffodil International University</h3></div></article>
+            <article class="log"><p class="when">জানুয়ারি ২০২১ – জুন ২০২৩</p><div><h3>Higher Secondary Certificate (Science) — Shariatpur Govt. College</h3></div></article>
+            <article class="log"><p class="when">জানুয়ারি ২০১৬ – ডিসেম্বর ২০২০</p><div><h3>Secondary School Certificate (Science) — PTGD Govt. High School</h3></div></article>
+          </div>
+        </div>
+        <p class="folio-no" aria-hidden="true"></p>
+      </section>
+
+      <section class="sheet" id="communities" aria-labelledby="comm-title">
+        <div class="entry">
+          <header class="entry-head">
+            <div class="stamp" aria-hidden="true"><span>ক্যাম্প</span></div>
+            <div><h2 id="comm-title">কমিউনিটি ও নেতৃত্ব</h2></div>
+          </header>
+          <div class="entry-body">
+            <ul>
+              <li><strong>AWS Student Builder Leader</strong> — Amazon Web Services (২০২৬–বর্তমান)</li>
+              <li><strong>Local Ambassador</strong> — Global Logic &amp; Reasoning Challenge (২০২৬–২০২৭)</li>
+              <li><strong>Country Ambassador</strong> — International Computer Science Competition (২০২৬)</li>
+              <li><strong>স্বেচ্ছাসেবক</strong> — বিজ্ঞান জনপ্রিয়করণ সমিতি, বাংলাদেশ (এপ্রিল ২০২৫–বর্তমান)</li>
+              <li><strong>স্বেচ্ছাসেবক</strong> — বাংলাদেশ ওপেন সোর্স নেটওয়ার্ক (এপ্রিল ২০২৫–বর্তমান)</li>
+            </ul>
+          </div>
+        </div>
+        <p class="folio-no" aria-hidden="true"></p>
+      </section>
+
+      <section class="sheet" id="press" aria-labelledby="press-title">
+        <div class="entry">
+          <header class="entry-head">
+            <div class="stamp" aria-hidden="true"><span>Day 8<br>Clips</span></div>
+            <div>
+              <p class="kicker">বারোটি কাটিং</p>
+              <h2 id="press-title">গণমাধ্যমে</h2>
+            </div>
+          </header>
+          <div class="entry-body"><ol class="cuttings">
+<li class="cutting"><a href="https://tbsgraduates.net/writeup/programming-made-easy-diu-students-ojogor-introduces-bangla-syntax-to-python/" target="_blank" rel="noopener">
+              <p class="mast">The Business Standard</p>
+              <h3>Ojogor introduces Bangla syntax to programming</h3>
+            </a></li>
+<li class="cutting"><a href="https://protidinerbangladesh.com/technology/132975/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A7%9F-%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A5%E0%A6%AE-%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%BF%E0%A6%82-%E0%A6%AD%E0%A6%BE%E0%A6%B7%E0%A6%BE-%E0%A6%B0%E0%A7%81%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A7%87%E0%A6%B0-%E0%A6%85%E0%A6%9C%E0%A6%97%E0%A6%B0" target="_blank" rel="noopener">
+              <p class="mast">Protidiner Bangladesh</p>
+              <h3>বাংলায় প্রথম প্রোগ্রামিং ভাষা রুহানের &#x27;অজগর&#x27;</h3>
+            </a></li>
+<li class="cutting"><a href="https://www.linkedin.com/posts/the-business-standard_programming-made-easy-diu-students-ojogor-activity-7308421903390572544-BvIZ/" target="_blank" rel="noopener">
+              <p class="mast">The Business Standard (LinkedIn)</p>
+              <h3>Student creates Python in Bangla to help others learn</h3>
+            </a></li>
+<li class="cutting"><a href="https://www.instagram.com/p/DG7yqCVyWCO/" target="_blank" rel="noopener">
+              <p class="mast">Daily Blurb</p>
+              <h3>Ojogor — First Bengali Programming Language</h3>
+            </a></li>
+<li class="cutting"><a href="https://www.facebook.com/infogrambd/posts/more-details-in-the-comments-section/657991090072772/" target="_blank" rel="noopener">
+              <p class="mast">InfogramBD</p>
+              <h3>Ojogor Programming Language</h3>
+            </a></li>
+<li class="cutting"><a href="https://www.facebook.com/share/p/1Kmhp2zus2/" target="_blank" rel="noopener">
+              <p class="mast">BongoWiki</p>
+              <h3>Ojogor — First Bengali Programming Language</h3>
+            </a></li>
+<li class="cutting"><a href="https://www.tbsnews.net/bangladesh/bangladesh-ict-and-innovation-network-recognises-nations-top-innovators-1265456#:~:text=Ojogor%20from%20Daffodil%20International%20University%20(DIU)" target="_blank" rel="noopener">
+              <p class="mast">The Business Standard</p>
+              <h3>Bangladesh ICT and Innovation Network recognises nation&#x27;s top innovators</h3>
+            </a></li>
+<li class="cutting"><a href="https://en.techworldbd.com/news/98#:~:text=Daffodil%20International%20University%E2%80%94DIU%20(Ajogor)" target="_blank" rel="noopener">
+              <p class="mast">TechWorld Bangladesh</p>
+              <h3>BIIN honours country&#x27;s top innovators</h3>
+            </a></li>
+<li class="cutting"><a href="https://www.dhakatribune.com/bangladesh/event/394357/bangladesh-ict-and-innovation-network-honors-the#:~:text=Fraud%20Shield%20(AIUB)%2C-,Ojogor%20(DIU),-%2C%20and%20Sohopathi%20AI" target="_blank" rel="noopener">
+              <p class="mast">Dhaka Tribune</p>
+              <h3>Bangladesh ICT and Innovation Network honors the country&#x27;s top innovators</h3>
+            </a></li>
+<li class="cutting"><a href="https://www.tbsnews.net/economy/corporates/daffodil-international-academy-ict-fest-2025-inaugurated-1075236" target="_blank" rel="noopener">
+              <p class="mast">The Business Standard</p>
+              <h3>Daffodil International Academy ICT Fest 2025 inaugurated</h3>
+            </a></li>
+<li class="cutting"><a href="https://www.prothomalo.com/technology/hqdxhziscj" target="_blank" rel="noopener">
+              <p class="mast">Prothom Alo</p>
+              <h3>ন্যাশনাল এআই বিল্ড-এ-থনে বিজয়ী ৫ দল পেল ল্যাপটপ ও অর্থ পুরস্কার</h3>
+            </a></li>
+<li class="cutting"><a href="https://www.a1news24.com/%E0%A6%B0%E0%A6%BE%E0%A6%9C%E0%A6%A7%E0%A6%BE%E0%A6%A8%E0%A7%80%E0%A6%A4%E0%A7%87-%E0%A6%86%E0%A6%AF%E0%A6%BC%E0%A7%8B%E0%A6%9C%E0%A6%BF%E0%A6%A4-%E0%A6%B9%E0%A6%B2-%E0%A6%A8%E0%A7%8D%E0%A6%AF/" target="_blank" rel="noopener">
+              <p class="mast">A1News24</p>
+              <h3>ন্যাশনাল এআই বিল্ড-এ-থন</h3>
+            </a></li>
+</ol></div>
+        </div>
+        <p class="folio-no" aria-hidden="true"></p>
+      </section>
+
+      <section class="sheet" id="writings" aria-labelledby="writings-title">
+        <div class="entry">
+          <header class="entry-head">
+            <div class="stamp" aria-hidden="true"><span>চিঠি</span></div>
+            <div><h2 id="writings-title">লেখালেখি</h2></div>
+          </header>
+          <div class="entry-body">
+            <p>সাম্প্রতিক লেখা: <a href="https://ratulhasanruhan.medium.com" target="_blank" rel="noopener">Medium</a>, <a href="https://ratulhasan.hashnode.dev" target="_blank" rel="noopener">Hashnode</a>, <a href="https://github.com/ratulhasanruhan/blogs" target="_blank" rel="noopener">blogs repo</a>।</p>
+          </div>
+        </div>
+        <p class="folio-no" aria-hidden="true"></p>
+      </section>
+
+      <section class="sheet" id="faq" aria-labelledby="faq-title">
+        <div class="entry">
+          <header class="entry-head">
+            <div class="stamp" aria-hidden="true"><span>প্রশ্ন</span></div>
+            <div><h2 id="faq-title">প্রশ্নোত্তর</h2></div>
+          </header>
+          <div class="entry-body">
+            <div class="faq">
+              <article><h3>রাতুল হাসান রুহান কে?</h3><p>রাতুল হাসান রুহান ঢাকাভিত্তিক সফটওয়্যার ইঞ্জিনিয়ার ও সিস্টেমস রিসার্চার। তিনি বাংলাভাষীদের জন্য প্রযুক্তি নির্মাণ করেন এবং অজগর—প্রথম বাংলা প্রোগ্রামিং ভাষার নির্মাতা।</p></article>
+              <article><h3>অজগর কী?</h3><p>অজগর (Ojogor) হলো প্রথম বাংলা প্রোগ্রামিং ভাষা—বাংলা সিনট্যাক্সে কোড লেখা যায়। এটি বাংলাদেশ ICT &amp; Innovation Award ২০২৫ পেয়েছে।</p></article>
+              <article><h3>ইশারা কী?</h3><p>ইশারা একটি রিয়েল-টাইম বাংলা সাংকেতিক ভাষা অনুবাদ ব্যবস্থা—অ্যাক্সেসিবিলিটির জন্য তৈরি। এটি National Tech Award ২০২৫ পেয়েছে।</p></article>
+              <article><h3>তিনি কোন কোন স্বীকৃতি পেয়েছেন?</h3><p>National AI BUILD‑A‑THON – Trailblazer (জানুয়ারি ২০২৬), Coding Fest ২০২৬ – ১ম, Bangladesh ICT &amp; Innovation Award ২০২৫, Startup World Cup ২০২৫ Regional Finalist, DIA ICT Fest ২০২৫‑এ একাধিক পুরস্কার।</p></article>
+              <article><h3>তার গবেষণা কী?</h3><p>Caller Collision Resolution Protocol (CCRP)—রিসার্চগেটে প্রিপ্রিন্ট (অক্টোবর ২০২৫), DOI: 10.13140/RG.2.2.26499.98081।</p></article>
+              <article><h3>কোথায় পড়াশোনা করছেন?</h3><p>ইউনিভার্সিটি অব গ্রিনউইচ (NCC Pathway)‑এ BSc (Hons) Computing; পূর্বে ড্যাফোডিল আন্তর্জাতিক বিশ্ববিদ্যালয়ে CSE।</p></article>
+              <article><h3>নতুন সুযোগের জন্য উন্মুক্ত?</h3><p>হ্যাঁ — রিসার্চ কলাবোরেশন, MSc/PhD ও পূর্ণকালীন ভূমিকার জন্য উন্মুক্ত।</p></article>
+              <article><h3>কীভাবে যোগাযোগ করবেন?</h3><p>ইমেইল: <a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a> অথবা LinkedIn: <a href="https://www.linkedin.com/in/ratul-hasan-ruhan/" target="_blank" rel="noopener">linkedin.com/in/ratul-hasan-ruhan</a>।</p></article>
+            </div>
+          </div>
+        </div>
+        <p class="folio-no" aria-hidden="true"></p>
+      </section>
+
+      <section class="sheet" id="contact" aria-labelledby="contact-title">
+        <div class="entry">
+          <header class="entry-head">
+            <div class="stamp" aria-hidden="true"><span>দিক</span></div>
+            <div>
+              <h2 id="contact-title">যোগাযোগ</h2>
+              <p class="note">আগে চিঠি</p>
+            </div>
+          </header>
+          <div class="entry-body">
+            <div class="compass-block">
+              <svg class="compass" viewBox="0 0 220 220" role="img" aria-label="Compass rose marking the contact entry.">
+  <circle cx="110" cy="110" r="100" fill="none" stroke="#6B4E16" stroke-width="1.2"/>
+  <circle cx="110" cy="110" r="78" fill="none" stroke="#6B4E16" stroke-width="0.6"/>
+  <circle cx="110" cy="110" r="4" fill="#7A3030"/>
+  <path d="M110 18 L122 110 L110 96 L98 110 Z" fill="#7A3030"/>
+  <path d="M110 202 L98 110 L110 124 L122 110 Z" fill="#1C140E"/>
+  <path d="M18 110 L110 98 L96 110 L110 122 Z" fill="#1C140E"/>
+  <path d="M202 110 L110 122 L124 110 L110 98 Z" fill="#1C140E"/>
+  <text x="110" y="16" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#1C140E">N</text>
+  <text x="110" y="214" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#1C140E">S</text>
+  <text x="14" y="114" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#1C140E">W</text>
+  <text x="206" y="114" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#1C140E">E</text>
+  <text x="110" y="118" text-anchor="middle" font-family="Caveat, cursive" font-size="22" fill="#6B4E16">Dhaka</text>
+</svg>
+              <ul class="contacts">
+                <li>ইমেইল: <a href="mailto:ratulhasan1644@gmail.com">ratulhasan1644@gmail.com</a> <button type="button" class="btn btn-ghost js-copy" data-copied="কপি হয়েছে">কপি</button></li>
+                <li>রেজিউমে: <a href="/assets/Ratul-Hasan-Ruhan-Resume.pdf">PDF</a> · <a href="https://ratulruhan.cv/" target="_blank" rel="noopener">অনলাইন সিভি ↗</a></li>
+                <li>লিংকডইন: <a href="https://www.linkedin.com/in/ratul-hasan-ruhan/" target="_blank" rel="noopener">ratul-hasan-ruhan ↗</a></li>
+                <li>গিটহাব: <a href="https://github.com/ratulhasanruhan" target="_blank" rel="noopener">ratulhasanruhan ↗</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <p class="folio-no" aria-hidden="true"></p>
+      </section>
+    </article>
   </main>
-
-  <script src="/assets/js/meridian.js"></script>
-
+  <footer class="colophon">
+    <p lang="bn">রাতুল হাসান রুহানের ফিল্ড নোট। সর্বশেষ হালনাগাদ অক্টোবর ২০২৬।</p>
+    <p><a href="/" hreflang="en" lang="en">English</a> · <a href="/ratul-hasan-ruhan.json">JSON</a> · <a href="/llms.txt">llms.txt</a></p>
+  </footer>
+  <script src="/assets/js/field-journal.js"></script>
 </body>
-
 </html>
