@@ -208,15 +208,31 @@ h4 { font-size: 18px; }
 }
 .kicker { color: var(--slate); text-transform: uppercase; font-size: 12px; letter-spacing: 0.12em; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 10px 14px; margin-top: 16px; }
-.at-a-glance p { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.at-a-glance #copy-email { padding: 6px 10px; font-size: 14px; white-space: nowrap; }
+.at-a-glance p {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  align-items: baseline;
+  column-gap: 12px;
+}
+@media (max-width: 380px) {
+  .at-a-glance p { grid-template-columns: 6rem 1fr; }
+}
+.at-a-glance #copy-email { padding: 6px 10px; font-size: 14px; white-space: nowrap; flex: none; }
 .at-a-glance p strong {
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 0.08em;
   color: var(--slate);
-  min-width: 92px;
   display: inline-block;
+}
+html[lang="bn"] .at-a-glance p strong { font-size: 13.5px; }
+.at-a-glance p .agl-value {
+  grid-column: 2 / 3;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  overflow-wrap: anywhere;
 }
 .hero .role.bengali { font-size: 1.14rem; color: var(--ink); font-weight: 500; }
 .btn {
@@ -294,6 +310,30 @@ h4 { font-size: 18px; }
   color: var(--slate);
   padding: 6px 10px;
   border-top: var(--rule);
+}
+/* Awards gallery */
+.award-images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.award-images-grid figure { margin: 0; border: var(--rule); }
+.award-images-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.award-images-grid figcaption {
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 6px 8px;
+  color: var(--slate);
+}
+@media (max-width: 560px) {
+  .award-images-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* Utilities */
