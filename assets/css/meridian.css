@@ -240,6 +240,7 @@ h4 { font-size: 18px; }
 .btn:hover { text-decoration: underline; }
 .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .theme-toggle { font-family: var(--sans); font-size: 15.5px; }
+.topnav-menu .theme-toggle { margin-left: 0; }
 #project-search {
   font-family: var(--sans);
   font-size: 15.5px;

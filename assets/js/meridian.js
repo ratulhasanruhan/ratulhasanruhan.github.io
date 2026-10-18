@@ -91,6 +91,9 @@ async function loadProjects() {
     const res = await fetch('/assets/projects/projects.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load projects');
     const all = await res.json();
+    // Update heading counts
+    const countEl = document.getElementById('projects-count');
+    if (countEl) countEl.textContent = ` (${all.length})`;
     const featured = [];
     const archive = [];
     for (const p of all) {
@@ -123,6 +126,9 @@ async function loadProjects() {
     if (archiveBox) {
       archiveBox.innerHTML = dedupedArchive.map((it) => rowHTML(it)).join('');
     }
+    // Update toggle label with count
+    const toggleBtn = document.getElementById('toggle-archive');
+    if (toggleBtn) toggleBtn.textContent = `Show all ${dedupedArchive.length} projects`;
   } catch (e) {
     const featuredBox = document.getElementById('featured-projects');
     const archiveBox = document.getElementById('projects-archive');
