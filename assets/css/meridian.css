@@ -218,6 +218,10 @@ h4 { font-size: 18px; }
   .at-a-glance p { grid-template-columns: 6rem 1fr; }
 }
 .at-a-glance #copy-email { padding: 6px 10px; font-size: 14px; white-space: nowrap; flex: none; }
+@media (max-width: 420px) {
+  .at-a-glance p { grid-template-columns: 6rem 1fr; }
+  .at-a-glance #copy-email { padding: 4px 8px; font-size: 13px; }
+}
 .at-a-glance p strong {
   font-family: var(--mono);
   font-size: 12px;
