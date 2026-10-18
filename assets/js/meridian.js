@@ -78,9 +78,9 @@ function rowHTML(item, idx) {
           ${linkClose}
           <div class="details"></div>
         </div>
-        <div class="meta"></div>
+        <div class="meta">${item.year ? `<span class="mono">${item.year}</span>` : ''}</div>
         <div class="meta">${tagsHTML}</div>
-        <div></div>
+        <div class="action">${item.url ? `<a class="btn" href="${item.url}" target="_blank" rel="noopener">Details ↗</a>` : ''}</div>
       </div>
     </div>
   `;
@@ -102,6 +102,15 @@ async function loadProjects() {
       ...featured,
       ...EXTRA_FEATURED
     ].slice(0, 6);
+    // Deduplicate archive: exclude featured titles and duplicates by title (e.g., DokanMate)
+    const exclude = new Set(mergedFeatured.map(it => it.title));
+    const seen = new Set();
+    const dedupedArchive = archive.filter(it => {
+      if (exclude.has(it.title)) return false;
+      if (seen.has(it.title.toLowerCase())) return false;
+      seen.add(it.title.toLowerCase());
+      return true;
+    });
 
     // Render featured
     const featuredBox = document.getElementById('featured-projects');
@@ -111,7 +120,7 @@ async function loadProjects() {
     // Render archive
     const archiveBox = document.getElementById('projects-archive');
     if (archiveBox) {
-      archiveBox.innerHTML = archive.map((it) => rowHTML(it)).join('');
+      archiveBox.innerHTML = dedupedArchive.map((it) => rowHTML(it)).join('');
     }
   } catch (e) {
     const featuredBox = document.getElementById('featured-projects');
@@ -137,6 +146,23 @@ function setupProjectSearch() {
   });
 }
 
+// Toggle archive visibility
+function setupArchiveToggle() {
+  const btn = document.getElementById('toggle-archive');
+  const archive = document.getElementById('projects-archive-wrap');
+  if (!btn || !archive) return;
+  btn.addEventListener('click', () => {
+    const isHidden = archive.hasAttribute('hidden');
+    if (isHidden) {
+      archive.removeAttribute('hidden');
+      btn.textContent = 'Hide project archive';
+    } else {
+      archive.setAttribute('hidden', '');
+      btn.textContent = 'Show all projects';
+    }
+  });
+}
+
 // Copy email button
 function setupCopyEmail() {
   const btn = document.getElementById('copy-email');
@@ -154,7 +180,10 @@ function setupCopyEmail() {
 document.addEventListener('DOMContentLoaded', () => {
   const themeBtn = document.getElementById('theme-toggle');
   if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
-  loadProjects().then(setupProjectSearch);
+  loadProjects().then(() => {
+    setupProjectSearch();
+    setupArchiveToggle();
+  });
   setupCopyEmail();
 });
 

@@ -583,8 +583,11 @@
         </div>
         <div class="spacer-2"></div>
         <h3>Archive</h3>
-        <input id="project-search" type="search" placeholder="Search projects…" aria-label="Search projects" style="max-width:420px;padding:10px;border:1px solid var(--hairline);background:transparent">
-        <div id="projects-archive">
+        <button id="toggle-archive" class="btn" type="button">Show all projects</button>
+        <div id="projects-archive-wrap" hidden>
+          <div class="spacer-1"></div>
+          <input id="project-search" type="search" placeholder="Search projects…" aria-label="Search projects" style="max-width:420px;">
+          <div id="projects-archive">
           <div class="row"><div class="tablelike"><div><a class="toggle" href="https://ratulhasan.gitbook.io/ojogor" target="_blank" rel="noopener"><div class="title">Ojogor (অজগর)</div><div class="meta">A Bengali programming language</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Compiler</span></div><div></div></div></div>
           <div class="row"><div class="tablelike"><div><a class="toggle" href="https://play.google.com/store/apps/details?id=app.goemergeai.emergeai" target="_blank" rel="noopener"><div class="title">Emerge AI</div><div class="meta">An AI based mental health and fitness app</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
           <div class="row"><div class="tablelike"><div><a class="toggle" href="https://www.ekushey-tv.com/%E0%A6%96%E0%A7%87%E0%A6%B2%E0%A6%BE%E0%A6%B0-%E0%A6%9B%E0%A6%B2%E0%A7%87-%E0%A6%85%E0%A6%A8%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%A8%E0%A7%87-%E0%A6%AC%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9A%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B0-%E0%A6%B6%E0%A7%87%E0%A6%96%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87-%E0%A6%9C%E0%A7%81%E0%A6%A8%E0%A6%BF%E0%A7%9F%E0%A6%B0-%E0%A6%95%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AE%E0%A6%AC%E0%A7%8D%E0%A6%B0%E0%A6%BF%E0%A7%9F%E0%A6%BE%E0%A6%A8/1360873111111142091" target="_blank" rel="noopener"><div class="title">Junior Cambrian</div><div class="meta">A LMS with gamification</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
@@ -614,6 +617,7 @@
           <div class="row"><div class="tablelike"><div><a class="toggle" href="https://datayon.bd" target="_blank" rel="noopener"><div class="title">Datayon</div><div class="meta">Bengali monthly tech magazine</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Web Apps</span></div><div></div></div></div>
           <div class="row"><div class="tablelike"><div><a class="toggle" href="https://github.com/ratulhasanruhan/digital_delta_app" target="_blank" rel="noopener"><div class="title">Disaster‑Resilient Communication System</div><div class="meta">Resilient networking for disasters</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Networking</span></div><div></div></div></div>
           <div class="row"><div class="tablelike"><div><a class="toggle" href="https://play.google.com/store/apps/details?id=com.appibrium.carelifetouch" target="_blank" rel="noopener"><div class="title">Care Life Touch</div><div class="meta">On‑demand medicine & healthcare</div></a></div><div class="meta"></div><div class="meta"><span class="mono">Mobile Apps</span></div><div></div></div></div>
+          </div>
         </div>
       </div>
     </section>
@@ -703,20 +707,6 @@
       </div>
     </section>
   </main>
-
-  <!--
-    - #MAIN
-  -->
-
-  <!--
-
-    <!--
-      - #SIDEBAR
-    -->
-
-    <aside class="sidebar" data-sidebar role="complementary" aria-label="Profile Information">
-
-      <div class="sidebar-info">
 
         <figure class="avatar-box">
           <img src="./assets/images/ratulhasan-avatar.png" alt="Ratul Hasan Ruhan" width="80">
@@ -2028,12 +2018,6 @@
     </div>
 
   -->
-
-
-
-
-
-
   <!--
     - custom js link
   -->
