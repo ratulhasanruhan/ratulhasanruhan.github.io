@@ -66,6 +66,17 @@ async def main():
                 for theme, dark in THEMES:
                     res = await capture(page, url, locale, width, dark)
                     results.append(res)
+                    # Capture menu-open screenshot on mobile light only
+                    if width == 390 and not dark:
+                        try:
+                            await page.click('#menu-toggle', timeout=1000)
+                            await page.wait_for_timeout(200)
+                            fn = OUT_DIR / f\"mobile-{locale}-menu-open.png\"
+                            await page.screenshot(path=str(fn), full_page=True)
+                            # close menu
+                            await page.click('#menu-toggle', timeout=1000)
+                        except Exception:
+                            pass
         await browser.close()
     # Summarize results
     for r in results:

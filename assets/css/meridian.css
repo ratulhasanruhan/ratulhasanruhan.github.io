@@ -40,18 +40,6 @@ body {
   line-height: 1.65;
   text-rendering: optimizeLegibility;
 }
-/* Hard-hide any legacy SPA blocks that might exist as body-level siblings */
-body > .sidebar,
-body > .main-content,
-body > .navbar,
-body > article.about,
-body > article.resume,
-body > article.projects,
-body > article.recognition,
-body > article.writings,
-body > article.contact,
-body > .contacts-list,
-body > .sidebar-info_more { display: none !important; }
 img { max-width: 100%; height: auto; }
 a { color: var(--accent); text-underline-offset: 2px; text-decoration-thickness: 1px; }
 a:hover { text-decoration: underline; }
@@ -109,7 +97,7 @@ h4 { font-size: 18px; }
   background: color-mix(in oklab, var(--paper) 96%, transparent);
   border-bottom: var(--rule);
   backdrop-filter: blur(6px);
-  overflow-x: auto; /* contain overflow inside the bar */
+  overflow: visible; /* allow dropdown menu to overflow */
   -webkit-overflow-scrolling: touch;
   position: sticky;
 }
@@ -133,6 +121,7 @@ h4 { font-size: 18px; }
   overflow-x: auto;
   white-space: nowrap;
   min-width: 0;
+  position: relative;
 }
 .topnav a,
 .topnav .theme-toggle,
@@ -179,8 +168,22 @@ h4 { font-size: 18px; }
 @media (max-width: 768px) {
   .menu-toggle { display: inline-flex; margin-left: auto; }
   .topnav { flex-wrap: wrap; }
-  .topnav-menu { display: none; width: 100%; padding: 8px 0; gap: 12px; border-top: var(--rule); }
+  .topnav-menu {
+    display: none;
+    width: 100%;
+    padding: 8px 16px;
+    gap: 12px;
+    border-top: var(--rule);
+    position: absolute;
+    left: 0;
+    top: 56px;
+    background: var(--paper);
+    border-bottom: var(--rule);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    z-index: 30;
+  }
   .topnav-menu.open { display: flex; flex-wrap: wrap; }
+  .topnav-menu a, .topnav-menu .theme-toggle, .topnav-menu .lang-link { padding: 8px 0; }
 }
 
 /* Hero */
@@ -206,6 +209,14 @@ h4 { font-size: 18px; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 10px 14px; margin-top: 16px; }
 .at-a-glance p { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .at-a-glance #copy-email { padding: 6px 10px; font-size: 14px; white-space: nowrap; }
+.at-a-glance p strong {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--slate);
+  min-width: 92px;
+  display: inline-block;
+}
 .hero .role.bengali { font-size: 1.14rem; color: var(--ink); font-weight: 500; }
 .btn {
   display: inline-flex;

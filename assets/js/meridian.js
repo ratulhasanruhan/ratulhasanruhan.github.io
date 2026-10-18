@@ -192,6 +192,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const open = menu.classList.toggle('open');
       menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+    menu.querySelectorAll('a[href^=\"#\"]').forEach(a => {
+      a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
   }
 });
 
