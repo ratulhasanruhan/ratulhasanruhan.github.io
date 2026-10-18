@@ -233,7 +233,10 @@ html[lang="bn"] .at-a-glance p strong { font-size: 13.5px; }
   gap: 8px;
   align-items: center;
   overflow-wrap: anywhere;
+  min-width: 0;
 }
+.at-a-glance p .agl-value a[href^="mailto:"] { flex: 1 1 auto; min-width: 0; }
+.at-a-glance p .agl-value #copy-email { flex: 0 0 auto; }
 .hero .role.bengali { font-size: 1.14rem; color: var(--ink); font-weight: 500; }
 .btn {
   display: inline-flex;
