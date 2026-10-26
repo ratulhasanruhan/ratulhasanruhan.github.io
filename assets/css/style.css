@@ -319,6 +319,13 @@ main {
 .avatar-box {
   background: var(--bg-gradient-onyx);
   border-radius: 20px;
+  overflow: hidden;
+}
+
+.avatar-box img {
+  border-radius: inherit;
+  object-fit: cover;
+  display: block;
 }
 
 .info-content .name {
