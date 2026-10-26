@@ -171,7 +171,7 @@ My work, especially Ojogor, has been featured in multiple publications:
 
 **Let's build something amazing together! 🚀**
 
-*Last updated: September 2026*
+*Last updated: October 2026*
 
 <!-- NOTE: ratul-hasan-ruhan.md at the repo root is a copy of this file that the
      live site serves to agents (Vercel does not serve README.md). Keep both in

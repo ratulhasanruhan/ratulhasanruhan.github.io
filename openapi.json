@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Ratul Hasan Ruhan — Profile Data API",
-    "version": "2026-09-15",
+    "version": "2026-10-26",
     "summary": "Public, read-only, machine-readable profile data for Ratul Hasan Ruhan.",
     "description": "Static JSON and Markdown documents published alongside the portfolio site. All endpoints are unauthenticated GET requests, CORS-enabled, and safe to cache. There are no write operations. Content changes only when the site is redeployed.",
     "contact": {
