@@ -282,6 +282,17 @@
   "memberOf": [
     {
       "@type": "OrganizationRole",
+      "roleName": "Campus Director",
+      "startDate": "2026",
+      "description": "Leading the EF Hult Prize program on campus for the 2026–27 tenure. Organize the campus round, guide teams, and connect them with mentors and judges.",
+      "memberOf": {
+        "@type": "Organization",
+        "name": "Hult Prize",
+        "url": "https://www.hultprize.org/"
+      }
+    },
+    {
+      "@type": "OrganizationRole",
       "roleName": "AWS Student Builder Leader",
       "startDate": "2026",
       "description": "Building cloud skills in the Bangladeshi student community",
