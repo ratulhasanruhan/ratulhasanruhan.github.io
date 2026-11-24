@@ -1301,16 +1301,18 @@ kbd {
   z-index: 51;
   top: 50%;
   right: max(24px, calc((100vw - 1450px) / 2));
+  translate: 0 -50%;
   display: flex;
   width: min(440px, calc(100vw - 48px));
   max-height: min(82vh, 900px);
   flex-direction: column;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   border: 1px solid rgba(87, 90, 62, 0.18);
   border-radius: 24px;
   background: #f7f4eb;
   box-shadow: 0 30px 100px rgba(29, 37, 24, 0.3);
-  transform: translateY(-50%);
 }
 
 .panel-scrim {
