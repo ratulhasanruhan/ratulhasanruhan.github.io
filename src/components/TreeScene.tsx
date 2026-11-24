@@ -46,8 +46,8 @@ export const crownLayout: Record<BranchId, TreeLobe> = {
     rx: 282,
     ry: 202,
     seed: 9103,
-    label: { x: 102, y: 405 },
-    leader: { from: { x: 65, y: 405 }, to: { x: 102, y: 405 } },
+    label: { x: 102, y: 520 },
+    leader: { from: { x: 65, y: 520 }, to: { x: 102, y: 520 } },
     hit: { x: 208, y: 335, width: 226, height: 145 },
   },
   awards: {
