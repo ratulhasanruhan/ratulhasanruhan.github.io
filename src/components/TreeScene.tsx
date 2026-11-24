@@ -1,4 +1,4 @@
-import { awards, branches, certifications, communities, experience, mediaCoverage, projects, researchItems, resumeLeaf } from "@/data/catalog";
+import { awards, branches, certifications, communities, educationItems, experience, mediaCoverage, projects, researchItems, resumeLeaf } from "@/data/catalog";
 import type { BranchId, Writing } from "@/data/types";
 import { useSyncExternalStore, type CSSProperties } from "react";
 
@@ -420,7 +420,7 @@ function TreeScene({
   const visibleCommunities = filterBySelectedYear(communities, selectedYear);
   const visibleResearch = filterBySelectedYear(researchItems, selectedYear);
   const visibleWritings = filterBySelectedYear(writings, selectedYear);
-  const treeExperience = filterBySelectedYear([...experience, ...certifications, resumeLeaf], selectedYear);
+  const treeExperience = filterBySelectedYear([...experience, ...certifications, ...educationItems, resumeLeaf], selectedYear);
   const visibleFreshBuds = filterBySelectedYear(freshBuds, selectedYear);
   const visibleMediaCoverage = filterBySelectedYear(mediaCoverage, selectedYear);
 
@@ -696,6 +696,7 @@ function TreeScene({
                       <path className="mango-stem" d="M0-18q2-10 10-12m-7 5q8-6 13-1" />
                       <path className="mango-fruit" d="M-1-17C-18-27-24-7-12 12-4 26 9 24 16 12 29-12 13-29-1-17Z" />
                       <path className="mango-glint" d="M-8-12q-6 11 1 22" />
+                      <text className="award-medal-glyph" x="0" y="6" textAnchor="middle">★</text>
                     </g>
                   </a>
                 );
@@ -729,6 +730,10 @@ function TreeScene({
                         preserveAspectRatio="xMidYMid meet"
                         clipPath="url(#community-disc)"
                       />
+                      <circle className="community-role-badge" cx="15" cy="-15" r="9" />
+                      <text className="community-role-glyph" x="15" y="-12" textAnchor="middle">
+                        {/ambassador/i.test(community.role) ? "A" : /volunteer/i.test(community.role) ? "V" : "U"}
+                      </text>
                     </g>
                   </a>
                 );
