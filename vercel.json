@@ -10,12 +10,126 @@
       ],
       "destination": "https://also.ratulruhan.cv/$1",
       "permanent": true
+    },
+    {
+      "source": "/recognition",
+      "destination": "/awards/",
+      "permanent": true
+    },
+    {
+      "source": "/writings",
+      "destination": "/writing/",
+      "permanent": true
+    },
+    {
+      "source": "/writting",
+      "destination": "/writing/",
+      "permanent": true
+    },
+    {
+      "source": "/resume",
+      "destination": "/experience/",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/profile",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(.*)text/markdown(.*)"
+        }
+      ],
+      "destination": "/ratul-hasan-ruhan.md"
+    },
+    {
+      "source": "/projects/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(.*)text/markdown(.*)"
+        }
+      ],
+      "destination": "/ratul-hasan-ruhan.md"
+    },
+    {
+      "source": "/awards/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(.*)text/markdown(.*)"
+        }
+      ],
+      "destination": "/ratul-hasan-ruhan.md"
+    },
+    {
+      "source": "/communities/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(.*)text/markdown(.*)"
+        }
+      ],
+      "destination": "/ratul-hasan-ruhan.md"
+    },
+    {
+      "source": "/research/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(.*)text/markdown(.*)"
+        }
+      ],
+      "destination": "/ratul-hasan-ruhan.md"
+    },
+    {
+      "source": "/writing/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(.*)text/markdown(.*)"
+        }
+      ],
+      "destination": "/ratul-hasan-ruhan.md"
+    },
+    {
+      "source": "/experience/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(.*)text/markdown(.*)"
+        }
+      ],
+      "destination": "/ratul-hasan-ruhan.md"
+    },
+    {
+      "source": "/contact/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(.*)text/markdown(.*)"
+        }
+      ],
+      "destination": "/ratul-hasan-ruhan.md"
     }
   ],
   "headers": [

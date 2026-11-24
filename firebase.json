@@ -1,7 +1,7 @@
 {
   "hosting": {
     "site": "ratulhasan",
-    "public": ".",
+    "public": "out",
     "ignore": [
       "firebase.json",
       "middleware.js",
@@ -12,10 +12,37 @@
       ".nojekyll",
       "**/node_modules/**"
     ],
-    "rewrites": [
+    "cleanUrls": true,
+    "redirects": [
       {
-        "source": "**",
-        "destination": "/index.html"
+        "source": "/recognition",
+        "destination": "/awards/",
+        "type": 301
+      },
+      {
+        "source": "/writings",
+        "destination": "/writing/",
+        "type": 301
+      },
+      {
+        "source": "/writting",
+        "destination": "/writing/",
+        "type": 301
+      },
+      {
+        "source": "/resume",
+        "destination": "/experience/",
+        "type": 301
+      },
+      {
+        "source": "/about",
+        "destination": "/",
+        "type": 301
+      },
+      {
+        "source": "/profile",
+        "destination": "/",
+        "type": 301
       }
     ],
     "headers": [
