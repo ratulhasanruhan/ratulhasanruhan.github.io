@@ -677,7 +677,7 @@ export default function MangoExperience({
     getServerBooleanSnapshot,
   );
   const [listModeOverride, setListModeOverride] = useState<boolean | null>(null);
-  const listView = listModeOverride ?? (initialBranch ? false : storedListView);
+  const listView = listModeOverride ?? (initialBranch || initialFocus ? false : storedListView);
   const [growthSkipped, setGrowthSkipped] = useState(false);
   const growthComplete = growthSkipped || prefersReducedMotion;
   const [searchOpen, setSearchOpen] = useState(false);
@@ -735,6 +735,7 @@ export default function MangoExperience({
     [repositories, writings],
   );
   const focusedItem = visibleItems.find((item) => item.slug === (hoveredSlug ?? focusedSlug));
+  const initialFocusedItem = visibleItems.find((item) => item.slug === initialFocus);
   const currentTourStop = tourIndex === null ? null : tourStops[tourIndex];
   const branchItems = selectedBranch
     ? visibleItems.filter((item) => {
@@ -765,6 +766,20 @@ export default function MangoExperience({
       window.setTimeout(() => document.getElementById("roots")?.scrollIntoView({ behavior: "smooth" }), 250);
     }
   }, [initialBranch]);
+
+  useEffect(() => {
+    if (!initialFocus) return;
+    const frame = window.requestAnimationFrame(() => {
+      const detail = document.querySelector<HTMLElement>("#item-detail");
+      if (!detail) return;
+      detail.focus({ preventScroll: true });
+      detail.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [initialFocus, prefersReducedMotion]);
 
   useEffect(() => {
     if (tourIndex === null || tourPaused) return;
@@ -1015,8 +1030,9 @@ export default function MangoExperience({
                 <TreeScene
                   season={season}
                   night={night}
-                  focusBranch={currentTourStop?.branch ?? selectedBranch}
+                  focusBranch={currentTourStop?.branch ?? selectedBranch ?? initialFocusedItem?.branch}
                   expandedBranch={selectedBranch}
+                  focusedSlug={focusedItem?.slug ?? null}
                   highlightedBranches={highlightedBranches}
                   writings={writings}
                   freshBuds={freshBuds}

@@ -2091,6 +2091,7 @@ kbd {
 
 .item-detail {
   margin: 16px 0 54px;
+  scroll-margin-top: 88px;
   border: 1px solid rgba(66, 77, 53, 0.16);
   border-radius: 24px;
   background: rgba(255, 253, 246, 0.7);
@@ -3064,6 +3065,10 @@ kbd {
 .tree-items a:hover .community-disc,
 .tree-items a:focus-visible .community-disc {
   filter: drop-shadow(0 0 8px rgba(255, 237, 148, 0.94));
+}
+
+.tree-items a.tree-item-focused {
+  filter: drop-shadow(0 0 9px rgba(255, 221, 129, 0.95));
 }
 
 .tree-items a:focus-visible {

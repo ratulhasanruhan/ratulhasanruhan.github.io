@@ -21,7 +21,7 @@ export default function ItemDetail({ item }: { item: PortfolioItem }) {
   const images = itemImages(item);
 
   return (
-    <article className="item-detail" aria-labelledby="item-detail-title">
+    <article id="item-detail" className="item-detail" tabIndex={-1} aria-labelledby="item-detail-title">
       <div className="item-detail-heading">
         <div className="item-detail-copy">
           <Link className="detail-backlink" href={`/${item.branch}/`}>

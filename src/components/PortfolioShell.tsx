@@ -24,7 +24,7 @@ export default async function PortfolioShell({
       key={`${initialBranch ?? "home"}:${slug ?? ""}`}
       writings={writings}
       repositories={repositories}
-      initialBranch={item?.branch ?? initialBranch}
+      initialBranch={item ? undefined : initialBranch}
       initialFocus={item?.slug}
     >
       {item && <ItemDetail item={item} />}

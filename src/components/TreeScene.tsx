@@ -369,6 +369,7 @@ export interface TreeSceneProps {
   night: boolean;
   focusBranch?: BranchId | null;
   expandedBranch?: BranchId | null;
+  focusedSlug?: string | null;
   highlightedBranches: Set<BranchId>;
   writings: Writing[];
   freshBuds: { title: string; href: string; external?: boolean }[];
@@ -381,6 +382,7 @@ function TreeScene({
   night,
   focusBranch,
   expandedBranch,
+  focusedSlug,
   highlightedBranches,
   writings,
   freshBuds,
@@ -647,6 +649,7 @@ function TreeScene({
                 return (
                   <a
                     key={project.slug}
+                    className={focusedSlug === project.slug ? "tree-item-focused" : undefined}
                     href={`/projects/${project.slug}/`}
                     aria-label={`Project: ${project.title}`}
                     title={project.title}
@@ -666,6 +669,7 @@ function TreeScene({
                 return (
                   <a
                     key={award.slug}
+                    className={focusedSlug === award.slug ? "tree-item-focused" : undefined}
                     href={`/awards/${award.slug}/`}
                     aria-label={`Award: ${award.title}`}
                     title={award.title}
@@ -687,6 +691,7 @@ function TreeScene({
                 return (
                   <a
                     key={community.slug}
+                    className={focusedSlug === community.slug ? "tree-item-focused" : undefined}
                     href={`/communities/${community.slug}/`}
                     aria-label={`Community: ${community.title}, ${community.role}`}
                     title={`${community.title} — ${community.role}`}
@@ -719,6 +724,7 @@ function TreeScene({
                 return (
                   <a
                     key={item.slug}
+                    className={focusedSlug === item.slug ? "tree-item-focused" : undefined}
                     href={`/research/${item.slug}/`}
                     aria-label={`Research: ${item.title}`}
                     title={item.title}
@@ -738,6 +744,7 @@ function TreeScene({
                 return (
                   <a
                     key={writing.slug}
+                    className={focusedSlug === writing.slug ? "tree-item-focused" : undefined}
                     href={`/writing/${writing.slug}/`}
                     aria-label={`Writing: ${writing.title}`}
                     title={writing.title}
@@ -758,6 +765,7 @@ function TreeScene({
                 return (
                   <a
                     key={item.slug}
+                    className={focusedSlug === item.slug ? "tree-item-focused" : undefined}
                     href={`/experience/${item.slug}/`}
                     aria-label={`${item.kind === "certification" ? "Certification" : "Experience"}: ${item.title}`}
                     title={item.title}
