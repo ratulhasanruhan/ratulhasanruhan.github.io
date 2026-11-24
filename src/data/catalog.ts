@@ -1,12 +1,14 @@
 import projectsSnapshot from "./projects.snapshot.json";
 import profileSnapshot from "./profile.snapshot.json";
 import eventsSnapshot from "./events.snapshot.json";
+import linkedinSnapshot from "./linkedin.snapshot.json";
 import { toSlug } from "./slug";
 import type {
   Award,
   BranchId,
   Community,
   EducationItem,
+  LinkedInPost,
   PortfolioEvent,
   Experience,
   PortfolioItem,
@@ -508,6 +510,8 @@ export const educationItems: EducationItem[] = education.map((entry) => ({
 }));
 
 export const events: PortfolioEvent[] = eventsSnapshot as PortfolioEvent[];
+
+export const linkedinPosts: LinkedInPost[] = linkedinSnapshot as LinkedInPost[];
 
 export function getEventsForItem(item: Pick<PortfolioItem, "branch" | "slug">) {
   return events.filter((event) =>
