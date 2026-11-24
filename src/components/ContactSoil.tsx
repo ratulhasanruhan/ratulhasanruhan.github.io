@@ -129,7 +129,12 @@ export default function ContactSoil({ bangla = false }: { bangla?: boolean }) {
               <span className="seed-leaf seed-leaf-right" />
             </div>
             <p className="eyebrow-kicker">{bangla ? "আগামী মৌসুমের জন্য একটি বার্তা" : "A note for the next season"}</p>
-            <form className="seed-form" onSubmit={submitForm}>
+            <form
+              className="seed-form"
+              action="https://formspree.io/f/mkgrbazr"
+              method="POST"
+              onSubmit={submitForm}
+            >
               <label>
                 <span>{bangla ? "আপনার নাম" : "Your name"}</span>
                 <input name="fullname" autoComplete="name" placeholder={bangla ? "আপনাকে কী নামে ডাকব?" : "How should I address you?"} required />
