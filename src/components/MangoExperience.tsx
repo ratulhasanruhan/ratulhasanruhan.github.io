@@ -1042,7 +1042,7 @@ export default function MangoExperience({
 
   return (
     <MotionConfig reducedMotion="user">
-    <div className={`portfolio-page${growthComplete ? " growth-complete" : " growth-playing"}${listView ? " list-view-mode" : ""}`} id="top">
+    <div className={`portfolio-page${growthComplete ? " growth-complete" : " growth-playing"}${listView ? " list-view-mode" : ""}${tourIndex !== null ? " touring" : ""}`} id="top">
       <header className="site-header">
         <Link className="brand" href="/" aria-label="Ratul Hasan Ruhan — home">
           <span className="brand-fruit" aria-hidden="true"><i /></span>

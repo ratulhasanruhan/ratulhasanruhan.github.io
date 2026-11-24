@@ -880,6 +880,11 @@ kbd {
   display: none;
 }
 
+.portfolio-page.touring .tree-control-dock {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .tour-actions {
   display: flex;
   min-height: 92px;
