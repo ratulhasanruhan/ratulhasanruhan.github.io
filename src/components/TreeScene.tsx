@@ -1,4 +1,4 @@
-import { awards, branches, certifications, communities, experience, mediaCoverage, projects, researchItems } from "@/data/catalog";
+import { awards, branches, certifications, communities, experience, mediaCoverage, projects, researchItems, resumeLeaf } from "@/data/catalog";
 import type { BranchId, Writing } from "@/data/types";
 import { useSyncExternalStore, type CSSProperties } from "react";
 
@@ -420,7 +420,7 @@ function TreeScene({
   const visibleCommunities = filterBySelectedYear(communities, selectedYear);
   const visibleResearch = filterBySelectedYear(researchItems, selectedYear);
   const visibleWritings = filterBySelectedYear(writings, selectedYear);
-  const treeExperience = filterBySelectedYear([...experience, ...certifications], selectedYear);
+  const treeExperience = filterBySelectedYear([...experience, ...certifications, resumeLeaf], selectedYear);
   const visibleFreshBuds = filterBySelectedYear(freshBuds, selectedYear);
   const visibleMediaCoverage = filterBySelectedYear(mediaCoverage, selectedYear);
 
