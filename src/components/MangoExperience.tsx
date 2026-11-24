@@ -1085,6 +1085,27 @@ export default function MangoExperience({
                 onReset={() => setSelectedYear(null)}
                 bangla={bangla}
               />
+              <div className="tour-actions">
+                <div className="tour-buttons">
+                  {tourIndex === null ? (
+                    <button className="tour-start" type="button" onClick={startTour}>
+                      {bangla ? "৩০ সেকেন্ডের ভ্রমণ" : "Take the 30-second tour"} <span aria-hidden="true">→</span>
+                    </button>
+                  ) : (
+                    <>
+                      <button className="tour-start" type="button" onClick={() => setTourPaused((current) => !current)}>
+                        {bangla ? (tourPaused ? "চালু" : "বিরতি") : (tourPaused ? "Resume tour" : "Pause tour")}
+                      </button>
+                      <button className="text-action tour-exit" type="button" onClick={() => { setTourIndex(null); setTourPaused(false); }}>
+                        {bangla ? "শেষ" : "Exit tour"}
+                      </button>
+                    </>
+                  )}
+                </div>
+                <button className="share-leaf" type="button" onClick={sharePage}>
+                  {bangla ? "গাছটি শেয়ার করুন" : "Share this tree"} <span aria-hidden="true">↗</span>
+                </button>
+              </div>
             </div>
           )}
 
@@ -1109,35 +1130,6 @@ export default function MangoExperience({
               ))}
             </div>
           )}
-
-          <div className="tour-actions">
-            <div className="tour-intro">
-              <span className="tour-stamp">30<br />SEC</span>
-              <span>
-                <strong>{bangla ? "সময় কম?" : "Short on time?"}</strong>
-                <small>{bangla ? "নির্দেশিত ভ্রমণটি দেখুন।" : "Take the guided walk."}</small>
-              </span>
-            </div>
-            <div className="tour-buttons">
-              {tourIndex === null ? (
-                <button className="tour-start" type="button" onClick={startTour}>
-                  {bangla ? "৩০ সেকেন্ডের ভ্রমণ" : "Start 30-second tour"} <span aria-hidden="true">→</span>
-                </button>
-              ) : (
-                <>
-                  <button className="tour-start" type="button" onClick={() => setTourPaused((current) => !current)}>
-                    {bangla ? (tourPaused ? "চালু" : "বিরতি") : (tourPaused ? "Resume tour" : "Pause tour")}
-                  </button>
-                  <button className="text-action tour-exit" type="button" onClick={() => { setTourIndex(null); setTourPaused(false); }}>
-                    {bangla ? "শেষ" : "Exit tour"}
-                  </button>
-                </>
-              )}
-            </div>
-            <button className="share-leaf" type="button" onClick={sharePage}>
-              {bangla ? "গাছটি শেয়ার করুন" : "Share this tree"} <span aria-hidden="true">↗</span>
-            </button>
-          </div>
 
           {currentTourStop && (
             <motion.div

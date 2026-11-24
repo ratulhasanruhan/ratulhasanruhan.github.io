@@ -457,6 +457,32 @@ kbd {
   backdrop-filter: blur(15px);
 }
 
+.tree-control-dock .tour-actions {
+  min-height: 0;
+  flex: 0 0 auto;
+  gap: 0;
+  padding: 0;
+  border: 0;
+}
+
+.tree-control-dock .tour-buttons {
+  gap: 0;
+}
+
+.tree-control-dock .tour-start {
+  min-height: 34px;
+  gap: 6px;
+  font-size: 9px;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+@media (min-width: 961px) {
+  .tree-control-dock .share-leaf {
+    display: none;
+  }
+}
+
 .growth-dial-compact {
   width: clamp(235px, 22vw, 310px);
   min-height: 48px;
@@ -3211,13 +3237,13 @@ kbd {
 }
 
 @keyframes valley-fog {
-  from { transform: translateX(-12%); opacity: 0.3; }
-  to { transform: translateX(12%); opacity: 0.75; }
+  from { opacity: 0.3; }
+  to { opacity: 0.75; }
 }
 
 @keyframes heat-haze {
-  from { opacity: 0.12; transform: translateY(0); }
-  to { opacity: 0.42; transform: translateY(-4px); }
+  from { opacity: 0.12; }
+  to { opacity: 0.42; }
 }
 
 @keyframes fruit-ripen {
@@ -3249,7 +3275,7 @@ kbd {
 
 @media (min-width: 641px) and (max-width: 1280px) {
   .hero-copy {
-    width: min(480px, 50vw);
+    width: min(440px, 50vw);
     padding: 14px 18px 16px;
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 22px;
