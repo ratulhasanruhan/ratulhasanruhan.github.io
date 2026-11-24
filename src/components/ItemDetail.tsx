@@ -14,7 +14,18 @@ function itemTypeLabel(item: PortfolioItem) {
   if (item.kind === "certification") return "Certification";
   if (item.kind === "publication") return "Research publication";
   if (item.kind === "interest") return "Research interest";
+  if (item.kind === "education") return "Education";
   return item.kind;
+}
+
+function formatMonthYear(value: string) {
+  const match = /^(\d{4})-(\d{2})$/.exec(value);
+  if (!match) return value;
+  const month = new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, 1)).toLocaleString("en", {
+    month: "short",
+    timeZone: "UTC",
+  });
+  return `${month} ${match[1]}`;
 }
 
 export default function ItemDetail({ item }: { item: PortfolioItem }) {
@@ -34,13 +45,16 @@ export default function ItemDetail({ item }: { item: PortfolioItem }) {
           <div className="item-detail-facts">
             {"category" in item && <span>{item.category}</span>}
             {"issuer" in item && item.issuer && <span>Issued by {item.issuer}</span>}
+            {"organization" in item && item.organization && <span>{item.organization}</span>}
             {"role" in item && item.role && <span>{item.role}</span>}
             {"tenure" in item && item.tenure && <span>{item.tenure}</span>}
+            {item.kind === "project" && item.period && <span>{item.period}</span>}
+            {item.kind === "award" && item.receivedAt && <span>Received {formatMonthYear(item.receivedAt)}</span>}
             {item.kind === "writing" && <time dateTime={item.publishedAt}>{item.publishedAt} · UTC</time>}
           </div>
           {item.href && (
             <a className="primary-action item-detail-action" href={item.href} target="_blank" rel="noreferrer">
-              {item.kind === "writing" ? "Read the article" : item.kind === "publication" ? "View publication" : "Visit source"}
+              {item.kind === "writing" ? "Read the article" : item.kind === "publication" ? "View publication" : `Visit ${item.organization ?? "source"}`}
               <span aria-hidden="true">↗</span>
             </a>
           )}

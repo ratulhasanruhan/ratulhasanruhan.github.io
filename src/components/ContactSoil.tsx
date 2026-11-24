@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import { education, expertise, profile } from "@/data/catalog";
+import { education, expertise, profile, skillGroups } from "@/data/catalog";
 
 const socialNames: Record<string, string> = {
   "https://www.linkedin.com/in/ratul-hasan-ruhan/": "LinkedIn",
@@ -14,6 +14,7 @@ const socialNames: Record<string, string> = {
   "https://github.com/ratulhasanruhan": "GitHub",
   "https://ratuler.vercel.app/": "Portfolio",
   "https://ratulhasan.web.app/": "Web profile",
+  "https://ratulhasan.link": "Website",
 };
 
 export default function ContactSoil({ bangla = false }: { bangla?: boolean }) {
@@ -85,6 +86,19 @@ export default function ContactSoil({ bangla = false }: { bangla?: boolean }) {
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
               </article>
+            ))}
+          </div>
+          <div className="skill-groups">
+            {skillGroups.map((group) => (
+              <section className="skill-group" key={group.category}>
+                <div>
+                  <h3>{group.category}</h3>
+                  <p>{group.description}</p>
+                </div>
+                <ul className="skill-pills">
+                  {group.technologies.map((technology) => <li key={technology}>{technology}</li>)}
+                </ul>
+              </section>
             ))}
           </div>
         </div>
