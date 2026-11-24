@@ -687,7 +687,6 @@ export default function MangoExperience({
   const [tourPaused, setTourPaused] = useState(false);
   const [projectFilter, setProjectFilter] = useState("");
   const treeStageRef = useRef<HTMLDivElement>(null);
-  const tourCaptionRef = useRef<HTMLDivElement>(null);
   const tourPauseButtonRef = useRef<HTMLButtonElement>(null);
   const tourStartTimeoutRef = useRef<number | null>(null);
   const focusTourPauseOnStartRef = useRef(false);
@@ -796,11 +795,22 @@ export default function MangoExperience({
     if (tourIndex === null || !focusTourPauseOnStartRef.current) return;
     focusTourPauseOnStartRef.current = false;
     const frame = window.requestAnimationFrame(() => {
-      tourCaptionRef.current?.scrollIntoView({
-        block: "nearest",
-        behavior: prefersReducedMotion ? "instant" : "smooth",
-      });
       tourPauseButtonRef.current?.focus({ preventScroll: true });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [tourIndex]);
+
+  useEffect(() => {
+    if (tourIndex === null) return;
+    const branch = tourStops[tourIndex]?.branch;
+    if (!branch) return;
+    const frame = window.requestAnimationFrame(() => {
+      document
+        .querySelector<HTMLButtonElement>(`.crown-cluster[data-branch="${branch}"] .crown-hit`)
+        ?.scrollIntoView({
+          block: "nearest",
+          behavior: prefersReducedMotion ? "instant" : "smooth",
+        });
     });
     return () => window.cancelAnimationFrame(frame);
   }, [prefersReducedMotion, tourIndex]);
@@ -1219,7 +1229,6 @@ export default function MangoExperience({
           {currentTourStop && (
             <motion.div
               className="tour-caption"
-              ref={tourCaptionRef}
               role="group"
               aria-label={bangla ? "নির্দেশিত ভ্রমণ" : "Guided tour"}
               initial={{ opacity: 0, y: 12 }}
