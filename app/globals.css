@@ -3812,6 +3812,7 @@ kbd {
     border-radius: 23px 23px 0 0;
     padding-bottom: env(safe-area-inset-bottom);
     transform: none;
+    translate: none !important;
   }
 
   .panel-topline {
