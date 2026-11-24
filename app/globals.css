@@ -702,12 +702,14 @@ kbd {
   position: absolute;
   z-index: 6;
   inset: 0;
+  pointer-events: none;
 }
 
 .branch-label {
   position: absolute;
   display: inline-flex;
   z-index: 1;
+  pointer-events: auto;
   min-width: 132px;
   min-height: 40px;
   align-items: center;
