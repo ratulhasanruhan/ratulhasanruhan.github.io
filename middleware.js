@@ -14,8 +14,10 @@ export const config = {
   matcher: [
     '/',
     '/about',
+    '/profile',
     '/resume',
     '/projects',
+    '/communities',
     '/writings',
     '/writting',
     '/research',

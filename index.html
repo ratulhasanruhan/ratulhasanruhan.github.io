@@ -98,10 +98,6 @@
       if (ogUrl) {
         ogUrl.setAttribute('content', fullUrl);
       }
-      // hreflang pairs must be reciprocal; sub-routes have no /bn/ counterpart
-      if (cleanPath !== '/') {
-        document.querySelectorAll('link[data-hreflang]').forEach(function (l) { l.remove(); });
-      }
     })();
   </script>
 
@@ -126,8 +122,8 @@
   <link rel="alternate" href="http://ratulruhan.cv/" type="text/html" title="Ratul Hasan Ruhan - CV">
 
   <!-- Additional Meta Tags -->
-  <meta name="theme-color" content="#1a1a1a">
-  <meta name="msapplication-TileColor" content="#1a1a1a">
+  <meta name="theme-color" content="#0c0e18">
+  <meta name="msapplication-TileColor" content="#0c0e18">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -149,30 +145,18 @@
   <link rel="apple-touch-icon" sizes="57x57" href="./assets/images/ratulhasan-avatar.png">
 
   <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://www.googletagmanager.com">
-  <link rel="preconnect" href="https://unpkg.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="preconnect" href="https://api.github.com">
   <link rel="preconnect" href="https://api.qrserver.com">
   <link rel="preconnect" href="https://formspree.io">
 
   <!-- DNS Prefetch for additional performance -->
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-  <link rel="dns-prefetch" href="https://unpkg.com">
-  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
   <!--
     - custom css link
   -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-
-  <!--
-    - google font link
-  -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/portfolio.css">
 
   <!-- Enhanced Structured Data -->
   <script type="application/ld+json">
@@ -509,7 +493,7 @@
     "url": "https://also.ratulruhan.cv/",
     "speakable": {
       "@type": "SpeakableSpecification",
-      "cssSelector": [".about-text", ".name", ".title", ".h2.article-title", ".service-item-title", ".service-item-text"]
+      "cssSelector": [".about-text", ".name", ".role", ".intro", ".article-title"]
     },
     "dateModified": "2026-10-26",
     "lastReviewed": "2026-10-26"
@@ -543,393 +527,195 @@
 </head>
 
 <body>
-
-  <!--
-    - #MAIN
-  -->
-
-  <main>
-
-    <!--
-      - #SIDEBAR
-    -->
-
-    <aside class="sidebar" data-sidebar role="complementary" aria-label="Profile Information">
-
-      <div class="sidebar-info">
-
-        <figure class="avatar-box">
-          <img src="./assets/images/ratulhasan-avatar.png" alt="Ratul Hasan Ruhan" width="80">
-        </figure>
-
-        <div class="info-content">
-          <h1 class="name" title="Ratul Hasan Ruhan">Ratul Hasan Ruhan</h1>
-
-          <p class="title">Software Engineer</p>
-        </div>
-
-        <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contacts</span>
-
-          <ion-icon name="chevron-down"></ion-icon>
-        </button>
-
-      </div>
-
-      <div class="sidebar-info_more">
-
-        <div class="separator"></div>
-
-        <ul class="contacts-list">
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <a class="wordmark" href="/" data-route="about" aria-label="Ratul Ruhan, home">
+        <span class="asterisk" aria-hidden="true"></span> Ratul Ruhan<span class="brand-dot">.</span>
+      </a>
+      <nav aria-label="Main navigation" class="primary-nav">
+        <a href="/" data-route="about">Universe</a>
+        <a href="/projects" data-route="projects">Projects</a>
+        <a href="/communities" data-route="communities">Communities</a>
+        <a href="/recognition" data-route="recognition">Awards</a>
+        <details class="more-menu">
+          <summary><span class="wide-label">More</span><span class="small-label">Menu</span> <span class="chevron" aria-hidden="true"></span></summary>
+          <div class="menu-panel">
+            <div class="small-links">
+              <a href="/" data-route="about">Universe</a>
+              <a href="/projects" data-route="projects">Projects</a>
+              <a href="/communities" data-route="communities">Communities</a>
+              <a href="/recognition" data-route="recognition">Awards</a>
             </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Email</p>
-
-              <a href="mailto:ratulhasan1644@gmail.com" class="contact-link">ratulhasan1644@gmail.com</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="logo-linkedin"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">LinkedIn</p>
-
-              <a href="https://www.linkedin.com/in/ratul-hasan-ruhan/" class="contact-link"
-                target="_blank">ratul-hasan-ruhan</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="logo-whatsapp"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">WhatsApp</p>
-
-              <a href="https://wa.me/8801789536985" class="contact-link" target="_blank">+8801789536985</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Location</p>
-
-              <address>Dhaka, Bangladesh</address>
-            </div>
-
-          </li>
-
-        </ul>
-
-        <div class="separator"></div>
-
-        <ul class="social-list">
-
-          <li class="social-item">
-            <a href="https://github.com/ratulhasanruhan" class="social-link">
-              <ion-icon name="logo-github"></ion-icon>
-            </a>
-          </li>
-
-          <li class="social-item">
-            <a href="https://www.facebook.com/ratulhasan.ruhan" class="social-link" target="_blank">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-          </li>
-
-          <li class="social-item">
-            <a href="https://www.youtube.com/@ratulicious" class="social-link">
-              <ion-icon name="logo-youtube"></ion-icon>
-            </a>
-          </li>
-
-          <li class="social-item">
-            <a href="http://ratulruhan.cv/" class="social-link">
-              <ion-icon name="document-text-outline"></ion-icon>
-            </a>
-          </li>
-
-        </ul>
-
-        <div class="separator"></div>
-
-        <div class="appointment-cta">
-          <p class="appointment-cta-text">Got something to discuss?</p>
-          <!-- Google Calendar Appointment Scheduling begin -->
-          <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
-          <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
-          <script>
-            (function () {
-              var target = document.currentScript;
-              window.addEventListener('load', function () {
-                calendar.schedulingButton.load({
-                  url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ01vVQ1tVn35qEWA91zEWLjB0OY56xiZE_gVIc58FSZojPLTSxfHnpbgNrCQudJHp1GyClOtSOs?gv=true',
-                  color: '#FFDB70', /* --orange-yellow-crayola */
-                  label: 'Quick sync with Ratul',
-                  target,
-                });
-              });
-            })();
-          </script>
-          <!-- end Google Calendar Appointment Scheduling -->
-        </div>
-
-      </div>
-
-    </aside>
-
-
-
-
-
-    <!--
-      - #main-content
-    -->
-
-    <div class="main-content">
-
-      <!--
-        - #NAVBAR
-      -->
-
-      <nav class="navbar" role="navigation" aria-label="Main Navigation">
-
-        <ul class="navbar-list">
-
-          <li class="navbar-item">
-            <button class="navbar-link  active" data-nav-link>About</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Resume</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Projects</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Research</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Writings</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Recognition</button>
-          </li>
-
-        </ul>
-
-      </nav>
-
-
-
-
-
-      <!--
-        - #ABOUT
-      -->
-
-      <article class="about  active" data-page="about" id="about">
-
-        <header>
-          <h2 class="h2 article-title">About me</h2>
-        </header>
-
-        <section class="about-text">
-          <p>
-            I'm a <strong>software engineer</strong> working across mobile, web, desktop, embedded systems, and core
-            computer science domains. I started with Android development and gradually expanded into
-            <strong>cross-platform engineering</strong>, <strong>applied AI/ML</strong>, systems programming, and
-            infrastructure work.
-          </p>
-
-          <p>
-            I'm especially interested in how software systems are designed, how components interact, and how research
-            ideas translate into reliable, real-world applications. I value <strong>clarity</strong>,
-            <strong>maintainability</strong>, and thoughtful engineering over quick fixes.
-          </p>
-        </section>
-
-
-        <!--
-          - service
-        -->
-
-        <section class="service">
-
-          <h3 class="h3 service-title">What i'm doing</h3>
-
-          <ul class="service-list">
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <ion-icon name="layers-outline"></ion-icon>
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Product & Systems Engineering</h4>
-
-                <p class="service-item-text">
-                  End-to-end software systems across platforms, built with clean architecture.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-              <div class="service-icon-box">
-                <ion-icon name="phone-portrait-outline"></ion-icon>
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Mobile & Cross-Platform</h4>
-
-                <p class="service-item-text">
-                  Performance-focused mobile applications for real users.
-                </p>
-              </div>
-            </li>
-
-            <li class="service-item">
-              <div class="service-icon-box">
-                <ion-icon name="desktop-outline"></ion-icon>
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Desktop & Core Systems</h4>
-
-                <p class="service-item-text">
-                  Desktop software and foundational system components.
-                </p>
-              </div>
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <ion-icon name="bulb-outline"></ion-icon>
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">AI / ML & Research</h4>
-
-                <p class="service-item-text">
-                  Applied machine learning and system-level research exploration.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <ion-icon name="hardware-chip-outline"></ion-icon>
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Embedded & IoT</h4>
-
-                <p class="service-item-text">
-                  Software for embedded devices and smart systems.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <ion-icon name="server-outline"></ion-icon>
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">DevOps & Cloud Infrastructure</h4>
-
-                <p class="service-item-text">
-                  Build pipelines, deployments, and production tooling.
-                </p>
-              </div>
-
-            </li>
-
-          </ul>
-
-        </section>
-
-
-        <section class="resume-download">
-          <div class="download-card">
-            <div class="card-content">
-              <div class="download-icon">
-                <ion-icon name="document-text-outline"></ion-icon>
-              </div>
-
-              <h3 class="h3 download-title">Download Resume</h3>
-
-              <p class="download-text">
-                A concise overview of my work, research, and experience.
-              </p>
-
-              <div class="download-buttons">
-                <a href="./assets/Ratul-Hasan-Ruhan-Resume.pdf" class="download-btn" download>
-                  <ion-icon name="download-outline"></ion-icon>
-                  <span>Download PDF</span>
-                </a>
-                <a href="http://ratulruhan.cv/" class="view-btn" target="_blank">
-                  <ion-icon name="eye-outline"></ion-icon>
-                  <span>View Online</span>
-                </a>
-              </div>
-            </div>
+            <a href="/profile" data-route="profile">About Ratul</a>
+            <a href="/resume" data-route="resume">Résumé</a>
+            <a href="/research" data-route="research">Research</a>
+            <a href="/writings" data-route="writings">Writings</a>
+            <a href="/bn/" lang="bn" hreflang="bn">বাংলা</a>
           </div>
-        </section>
-
+        </details>
+      </nav>
+      <button class="search-trigger" type="button" aria-label="Search the portfolio" aria-haspopup="dialog" title="Search the portfolio (Ctrl or Command + K)">
+        <span class="search-icon" aria-hidden="true"></span>
+      </button>
+      <a class="contact-link" href="/contact" data-route="contact">Contact <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main class="wrap" id="content" tabindex="-1">
+    <article class="about active" data-page="about" id="about">
+      <div class="atlas-intro">
+        <div><p class="eyebrow identity">Ratul Hasan Ruhan</p>
+          <h1>Ratul’s <em>universe.</em></h1>
+          <p>Software engineer in Dhaka. Founder of Appibrium and creator of Ojogor.</p></div>
+        <a class="profile-chip" href="/profile" data-route="profile"><img src="/assets/images/portfolio/portrait.webp" width="48" height="48" alt=""><span>Meet Ratul ↗</span></a>
+      </div>
+      <section class="atlas-panel" aria-labelledby="map-title">
+        <div class="atlas-bar"><h2 id="map-title" tabindex="-1"><span class="orbit-symbol" aria-hidden="true"></span> Portfolio atlas</h2>
+          <div class="view-switch" role="group" aria-label="Atlas view">
+            <button type="button" data-view="map" aria-pressed="true"><span aria-hidden="true">✧</span> Map</button>
+            <button type="button" data-view="list" aria-pressed="false"><span aria-hidden="true">☷</span> List</button>
+          </div>
+        </div>
+        <nav class="orbital-map" aria-label="Portfolio destinations">
+          <div class="orbit-lines" aria-hidden="true"><i></i><i></i><i></i></div>
+          <a class="planet planet-profile" data-route="profile" href="/profile">
+            <img src="/assets/images/space/profile.webp" alt=""><span class="planet-caption">About Ratul</span>
+            <span class="planet-desc">My background and the work I do at Appibrium.</span>
+          </a>
+          <a class="planet planet-projects" data-route="projects" href="/projects">
+            <img src="/assets/images/space/projects.webp" alt=""><span class="planet-caption">Projects<small data-count="projects">29</small></span>
+            <span class="planet-desc">Mobile apps, programming languages, AI, and developer tools.</span>
+          </a>
+          <a class="planet planet-recognition" data-route="recognition" href="/recognition">
+            <img src="/assets/images/space/recognition.webp" alt=""><span class="planet-caption">Awards<small data-count="recognition">8</small></span>
+            <span class="planet-desc">Trophies, certificates, competition photos, and press.</span>
+          </a>
+          <a class="planet planet-communities" data-route="communities" href="/communities">
+            <img src="/assets/images/space/communities.webp" alt=""><span class="planet-caption">Communities<small data-count="communities">6</small></span>
+            <span class="planet-desc">The people and organizations I build with.</span>
+          </a>
+          <a class="planet planet-research" data-route="research" href="/research">
+            <img src="/assets/images/space/research.webp" alt=""><span class="planet-caption">Research</span>
+            <span class="planet-desc">My publications and current research interests.</span>
+          </a>
+          <a class="planet planet-resume" data-route="resume" href="/resume">
+            <img src="/assets/images/space/resume.webp" alt=""><span class="planet-caption">Résumé</span>
+            <span class="planet-desc">My experience, education, skills, and certifications.</span>
+          </a>
+          <a class="planet planet-writings" data-route="writings" href="/writings">
+            <img src="/assets/images/space/writings.webp" alt=""><span class="planet-caption">Writings</span>
+            <span class="planet-desc">Articles on software engineering and technology.</span>
+          </a>
+        </nav>
+        <div class="atlas-foot"><span><i aria-hidden="true"></i> 7 destinations</span><p id="atlas-hint">Select a planet to explore</p></div>
+      </section>
+      <section class="highlights" aria-labelledby="highlights-title">
+        <div class="section-heading"><h2 id="highlights-title">Featured discoveries</h2></div>
+        <div class="highlight-grid">
+          <a class="highlight-card" href="https://ratulhasan.gitbook.io/ojogor">
+            <div class="cover type-cover ojogor-cover" aria-hidden="true"><span lang="bn">অজগর</span><small>OJOGOR</small></div>
+            <div class="card-copy"><span class="eyebrow">Programming language</span><h3>Ojogor <span aria-hidden="true">↗</span></h3><p>An interpreter that brings Bangla syntax to programming.</p></div>
+          </a>
+          <a class="highlight-card" href="/recognition#ict-award" data-route="recognition">
+            <img class="cover" src="/assets/images/portfolio/ict-award.webp" alt="The Bangladesh ICT &amp; Innovation Award ceremony" width="800" height="449" loading="lazy">
+            <div class="card-copy"><span class="eyebrow">Recognition · 2025</span><h3>ICT &amp; Innovation Award <span aria-hidden="true">↗</span></h3><p>National recognition for my work on Ojogor.</p></div>
+          </a>
+          <a class="highlight-card" href="/communities#hult-prize" data-route="communities">
+            <div class="cover org-cover org-hult-prize"><img src="/assets/images/communities/hult-prize.webp" alt="" loading="lazy"></div>
+            <div class="card-copy"><span class="eyebrow">Community · 2026–27</span><h3>Hult Prize <span aria-hidden="true">↗</span></h3><p>Guiding student founders as campus director.</p></div>
+          </a>
+        </div>
+      </section>
+    </article>
+    <article data-page="profile" id="profile">
+      <a class="back-atlas" data-route="about" href="/#map-title">← Back to atlas</a>
+      <section class="hero" aria-labelledby="hero-name">
+        <div class="hero-copy">
+          <p class="eyebrow location"><i aria-hidden="true"></i> Dhaka, Bangladesh</p>
+          <h2 class="name" id="hero-name">Ratul Hasan<br><em>Ruhan<span>.</span></em></h2>
+          <p class="role">Software engineer &amp; systems researcher.</p>
+          <p class="intro">I founded <a href="https://appibrium.com">Appibrium</a> and created <a href="https://ratulhasan.gitbook.io/ojogor">Ojogor</a>, a programming language that lets you write code in Bangla.</p>
+          <div class="actions">
+            <a class="button primary" href="/projects" data-route="projects">Explore projects <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="/resume" data-route="resume">View résumé <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <div class="gallery">
+          <figure class="photo-card">
+            <div class="photo-window">
+              <img id="gallery-image" src="/assets/images/portfolio/portrait.webp" width="950" height="768" alt="Ratul Hasan Ruhan, in a suit and tie, against an illustrated orange sun" loading="lazy">
+              <span class="photo-tag" lang="bn">রাতুল হাসান রুহান</span>
+            </div>
+            <figcaption>
+              <span class="photo-label" aria-live="polite"><span class="photo-index">01 / 03</span><span id="photo-caption">Portrait, Dhaka</span></span>
+              <span class="photo-controls">
+                <button type="button" data-photo-step="-1" aria-label="Previous photograph">←</button>
+                <button type="button" data-photo-step="1" aria-label="Next photograph">→</button>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="about-text bio">
+        <h2>My background<span>.</span></h2>
+        <div><p>I started with Android development and gradually expanded into cross-platform engineering, applied AI/ML, systems programming, and infrastructure work.</p><p>I'm especially interested in how software systems are designed, how components interact, and how research ideas translate into reliable, real-world applications.</p>
+        <div class="actions"><a class="text-link" href="/research" data-route="research">My research →</a><a class="text-link" href="/writings" data-route="writings">Read my writings →</a></div></div>
+      </section>
+    </article>
+      <article id="communities" data-page="communities">
+        <a class="back-atlas" data-route="about" href="/#map-title">← Back to atlas</a>
+        <header><h2 class="article-title">Communities</h2><p>Working with students across Bangladesh in entrepreneurship, cloud computing, science, and open source.</p></header>
+        <ul class="community-list">
+          <li id="hult-prize">
+            <div class="org-cover org-hult-prize"><img src="/assets/images/communities/hult-prize.webp" loading="lazy" alt=""></div>
+            <span class="eyebrow">2026–27 tenure</span>
+            <div><h3><a href="https://www.hultprize.org/">Hult Prize <span aria-hidden="true">↗</span></a></h3>
+              <p class="role-name">Campus Director</p><p>I organize the campus round, guide student teams, and connect them with mentors and judges.</p></div>
+          </li>
+          <li id="aws">
+            <div class="org-cover org-aws"><img src="/assets/images/communities/aws.webp" loading="lazy" alt=""></div>
+            <span class="eyebrow">2026 – Present</span>
+            <div><h3><a href="https://aws.amazon.com/">Amazon Web Services <span aria-hidden="true">↗</span></a></h3>
+              <p class="role-name">AWS Student Builder Leader</p><p>Helping students in Bangladesh build cloud computing skills.</p></div>
+          </li>
+          <li id="glrc">
+            <div class="org-cover org-glrc"><img src="/assets/images/communities/glrc.webp" loading="lazy" alt=""></div>
+            <span class="eyebrow">2026 – 2027</span>
+            <div><h3><a href="https://gllrc.org/">Global Logic &amp; Reasoning Challenge <span aria-hidden="true">↗</span></a></h3>
+              <p class="role-name">Local Ambassador, Bangladesh</p><p>I organize preparatory sessions and encourage students to take part in logic and reasoning competitions.</p></div>
+          </li>
+          <li id="icsc">
+            <div class="org-cover org-icsc"><img src="/assets/images/communities/icsc.webp" loading="lazy" alt=""></div>
+            <span class="eyebrow">2026 – 2027</span>
+            <div><h3><a href="https://icscompetition.org/">International Computer Science Competition <span aria-hidden="true">↗</span></a></h3>
+              <p class="role-name">Country Ambassador, Bangladesh</p><p>I introduce students to the competition and encourage participation from Bangladesh.</p></div>
+          </li>
+          <li id="spsb">
+            <div class="org-cover org-spsb"><img src="/assets/images/communities/spsb.webp" loading="lazy" alt=""></div>
+            <span class="eyebrow">April 2025 – Present</span>
+            <div><h3><a href="https://spsb.org/">Society for the Popularization of Science, Bangladesh <span aria-hidden="true">↗</span></a></h3>
+              <p class="role-name">Volunteer</p><p>Supporting science education in Bangladesh.</p></div>
+          </li>
+          <li id="bdosn">
+            <div class="org-cover org-bdosn"><img src="/assets/images/communities/bdosn.webp" loading="lazy" alt=""></div>
+            <span class="eyebrow">April 2025 – Present</span>
+            <div><h3><a href="https://bdosn.org/">Bangladesh Open Source Network <span aria-hidden="true">↗</span></a></h3>
+              <p class="role-name">Volunteer</p><p>Contributing to initiatives that promote open-source culture and digital literacy.</p></div>
+          </li>
+        </ul>
       </article>
-
-
-
-
-
-      <!--
-        - #RESUME
-      -->
-
       <article class="resume" data-page="resume" id="resume">
+        <a class="back-atlas" data-route="about" href="/#map-title">← Back to atlas</a>
 
         <header>
-          <h2 class="h2 article-title">Resume</h2>
+          <h2 class="h2 article-title">Résumé</h2>
+          <div class="actions"><a class="button primary" href="/assets/Ratul-Hasan-Ruhan-Resume.pdf" download>Download PDF ↓</a>
+            <a class="text-link" href="https://ratulruhan.cv/">Online CV ↗</a></div>
         </header>
 
         <section class="timeline">
 
           <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
 
             <h3 class="h3">Education</h3>
           </div>
@@ -991,9 +777,6 @@
         <section class="timeline">
 
           <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="briefcase-outline"></ion-icon>
-            </div>
 
             <h3 class="h3">Experience</h3>
           </div>
@@ -1097,9 +880,6 @@
         <section class="skill">
 
           <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="code-slash-outline"></ion-icon>
-            </div>
 
             <h3 class="h3">My skills</h3>
           </div>
@@ -1145,80 +925,11 @@
           </div>
         </section>
 
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="heart-outline"></ion-icon>
-            </div>
-
-            <h3 class="h3">Volunteering</h3>
-          </div>
-
-          <ol class="timeline-list">
-
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Campus Director — Hult Prize</h4>
-              <span>2026 – Present</span>
-              <p class="timeline-text">
-                Leading the EF Hult Prize program on campus for the 2026–27 tenure. Hult Prize, often called the
-                "Nobel Prize for students", challenges students to build startups that solve real social problems.
-                I organize the campus round, guide teams, and connect them with mentors and judges.
-              </p>
-            </li>
-
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">AWS Student Builder Leader — Amazon Web Services</h4>
-              <span>2026 – Present</span>
-              <p class="timeline-text">
-                Building cloud skills in the Bangladeshi student community.
-              </p>
-            </li>
-
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Local Ambassador — GLRC</h4>
-              <span>2026 – 2027</span>
-              <p class="timeline-text">
-                Official Global Logic &amp; Reasoning Challenge ambassador for Bangladesh. Promote logic and
-                reasoning education, organise preparatory sessions, and grow national participation.
-              </p>
-            </li>
-
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Country Ambassador — ICSC</h4>
-              <span>2026</span>
-              <p class="timeline-text">
-                International Computer Science Competition — represent Bangladesh, raise awareness among
-                students, and encourage national participation.
-              </p>
-            </li>
-
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Volunteer — SPSB</h4>
-              <span>April 2025 – Present</span>
-              <p class="timeline-text">
-                Society for the Popularization of Science, Bangladesh
-              </p>
-            </li>
-
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Volunteer — BDOSN</h4>
-              <span>April 2025 – Present</span>
-              <p class="timeline-text">
-                Bangladesh Open Source Network
-              </p>
-            </li>
-
-          </ol>
-
-        </section>
+        <a href="/communities" data-route="communities" class="section-link">Volunteering &amp; community roles →</a>
 
         <section class="timeline">
 
           <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="ribbon-outline"></ion-icon>
-            </div>
 
             <h3 class="h3">Certifications</h3>
           </div>
@@ -1232,7 +943,6 @@
                   <h4 class="h4 timeline-item-title">Data Literacy Certification</h4>
                   <p class="timeline-text">DataCamp - Jun 2026</p>
                 </div>
-                <ion-icon name="arrow-forward-outline" class="certification-arrow-right"></ion-icon>
               </a>
             </li>
 
@@ -1243,7 +953,6 @@
                   <h4 class="h4 timeline-item-title">Computer Architecture Course</h4>
                   <p class="timeline-text">Codecademy - Mar 2026</p>
                 </div>
-                <ion-icon name="arrow-forward-outline" class="certification-arrow-right"></ion-icon>
               </a>
             </li>
 
@@ -1254,7 +963,6 @@
                   <h4 class="h4 timeline-item-title">Cisco CCNA 200-301 + Python Network Automation</h4>
                   <p class="timeline-text">Udemy - 2024</p>
                 </div>
-                <ion-icon name="arrow-forward-outline" class="certification-arrow-right"></ion-icon>
               </a>
             </li>
 
@@ -1273,6 +981,7 @@
       -->
 
       <article class="projects" data-page="projects" id="projects">
+        <a class="back-atlas" data-route="about" href="/#map-title">← Back to atlas</a>
 
         <header>
           <h2 class="h2 article-title">Projects</h2>
@@ -1280,68 +989,8 @@
 
         <section class="projects">
 
-          <ul class="filter-list">
-
-            <li class="filter-item">
-              <button class="active" data-filter-btn>All</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Mobile Apps</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>AI Projects</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Web Apps</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Networking</button>
-            </li>
-
-          </ul>
-
-          <div class="filter-select-box">
-
-            <button class="filter-select" data-select>
-
-              <div class="select-value" data-selecct-value>Select category</div>
-
-              <div class="select-icon">
-                <ion-icon name="chevron-down"></ion-icon>
-              </div>
-
-            </button>
-
-            <ul class="select-list">
-
-              <li class="select-item">
-                <button data-select-item>All</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Mobile Apps</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>AI Projects</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Web Apps</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Networking</button>
-              </li>
-
-            </ul>
-
-          </div>
-
+          <div class="filters" role="group" aria-label="Filter projects by category"></div>
+          <p class="project-status" aria-live="polite">Loading projects…</p>
           <ul class="project-list">
             <!-- Project items will be loaded dynamically -->
           </ul>
@@ -1359,15 +1008,37 @@
       -->
 
       <article class="writings" data-page="writings" id="writings">
+        <a class="back-atlas" data-route="about" href="/#map-title">← Back to atlas</a>
 
         <header>
           <h2 class="h2 article-title">Writings</h2>
         </header>
 
         <section class="blog-posts">
-          <div class="blog-loading">Loading writings...</div>
+          <p class="writing-links">Read on <a href="https://ratulhasanruhan.hashnode.dev">Hashnode ↗</a> or <a href="https://ratulhasanruhan.medium.com">Medium ↗</a>.</p>
+          <div class="blog-loading" role="status"></div>
           <ul class="blog-posts-list">
-            <!-- Blog posts will be loaded dynamically -->
+            <!-- Published articles remain available while the live feed refreshes. -->
+            <li><a href="https://ratulhasanruhan.hashnode.dev/typemate-building-a-system-wide-writing-assistant-for-flutter-on-android">
+              <time class="blog-date" datetime="2025-08-06">Aug 06, 2025</time><h3>TypeMate: Building a System-Wide Writing Assistant for Flutter on Android</h3></a></li>
+            <li><a href="https://ratulhasanruhan.hashnode.dev/automate-your-flutter-build-workflow-with-flutterbuilduploader">
+              <time class="blog-date" datetime="2025-07-03">Jul 03, 2025</time><h3>Automate Your Flutter Build Workflow with flutter_build_uploader 🚀</h3></a></li>
+            <li><a href="https://ratulhasanruhan.hashnode.dev/stop-writing-repetitive-api-code-in-flutter-try-apinion">
+              <time class="blog-date" datetime="2025-05-17">May 17, 2025</time><h3>Stop Writing Repetitive API Code in Flutter — Try apinion</h3></a></li>
+            <li><a href="https://ratulhasanruhan.hashnode.dev/is-wpf-still-relevant-in-2025">
+              <time class="blog-date" datetime="2025-05-08">May 08, 2025</time><h3>Is WPF Still Relevant in 2025? Here’s What Developers Should Know</h3></a></li>
+            <li><a href="https://ratulhasanruhan.hashnode.dev/wpf-bangla">
+              <time class="blog-date" datetime="2025-05-08">May 08, 2025</time><h3>২০২৫ সালেও কি Wpf বেঁচে আছে? একজন ডেভেলপারের অভিজ্ঞতা থেকে…</h3></a></li>
+            <li><a href="https://ratulhasanruhan.hashnode.dev/flutter-aapt-error-resource">
+              <time class="blog-date" datetime="2024-10-30">Oct 30, 2024</time><h3>Flutter AAPT: error: resource android:attr/lStar not found. Solutions</h3></a></li>
+            <li><a href="https://ratulhasanruhan.hashnode.dev/a-common-error-for-flutter-build-apk">
+              <time class="blog-date" datetime="2024-10-20">Oct 20, 2024</time><h3>A common error for Flutter build apk</h3></a></li>
+            <li><a href="https://ratulhasanruhan.hashnode.dev/flutter-package-power-share-your-creations">
+              <time class="blog-date" datetime="2024-03-22">Mar 22, 2024</time><h3>Flutter Package Power: Share Your Creations</h3></a></li>
+            <li><a href="https://ratulhasanruhan.hashnode.dev/flutter-easy-onboarding">
+              <time class="blog-date" datetime="2024-03-22">Mar 22, 2024</time><h3>Flutter easy onboarding</h3></a></li>
+            <li><a href="https://ratulhasanruhan.hashnode.dev/automated-support-chat-with-firebase-and-flutter">
+              <time class="blog-date" datetime="2024-02-19">Feb 19, 2024</time><h3>Automated support chat with Firebase and Flutter</h3></a></li>
           </ul>
         </section>
 
@@ -1382,6 +1053,7 @@
       -->
 
       <article class="research" data-page="research" id="research">
+        <a class="back-atlas" data-route="about" href="/#map-title">← Back to atlas</a>
 
         <header>
           <h2 class="h2 article-title">Research</h2>
@@ -1390,9 +1062,6 @@
         <section class="timeline">
 
           <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="library-outline"></ion-icon>
-            </div>
 
             <h3 class="h3">Publications</h3>
           </div>
@@ -1412,7 +1081,6 @@
                     DOI: 10.13140/RG.2.2.26499.98081
                   </p>
                 </div>
-                <ion-icon name="arrow-forward-outline" class="publication-arrow"></ion-icon>
               </a>
             </li>
 
@@ -1423,9 +1091,6 @@
         <section class="timeline">
 
           <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="bulb-outline"></ion-icon>
-            </div>
 
             <h3 class="h3">Research Interests</h3>
           </div>
@@ -1462,202 +1127,213 @@
       -->
 
       <article class="recognition" data-page="recognition" id="recognition">
+        <a class="back-atlas" data-route="about" href="/#map-title">← Back to atlas</a>
 
         <header>
-          <h2 class="h2 article-title">Recognition</h2>
+          <h2 class="h2 article-title">Awards &amp; recognition</h2>
         </header>
 
         <section class="timeline">
 
           <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="trophy-outline"></ion-icon>
-            </div>
 
-            <h3 class="h3">Awards</h3>
+            <h3 class="h3">Award gallery</h3>
           </div>
 
-          <ol class="timeline-list">
-
+          <ol class="timeline-list award-collection">
             <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">National AI BUILD-A-THON – Trailblazer</h4>
-              <span>Jan 2026</span>
-              <p class="timeline-text timeline-issuer">
-                Issued by MillionX Bangladesh
-              </p>
-              <p class="timeline-text">
-                Recognized as a Trailblazer at the National BUILD-A-THON for leading a team project delivering
-                innovative, technology-driven solutions with real-world impact.
-              </p>
-              <div class="award-images-grid">
-                <a href="./assets/images/awards/ai_buildathon_award_ceremony.JPG" class="award-image-link"
-                  target="_blank" rel="noopener noreferrer">
-                  <img src="./assets/images/awards/ai_buildathon_award_ceremony.JPG"
-                    alt="National AI BUILD-A-THON – Trailblazer Award Ceremony" loading="lazy" class="award-image">
-                </a>
-                <a href="./assets/images/awards/national_ai_buildathon.jpeg" class="award-image-link" target="_blank"
-                  rel="noopener noreferrer">
-                  <img src="./assets/images/awards/national_ai_buildathon.jpeg"
-                    alt="National AI BUILD-A-THON – Trailblazer" loading="lazy" class="award-image">
-                </a>
-              </div>
+              <details class="award-details">
+                <summary><img class="award-thumb" src="/assets/images/awards/previews/ai_buildathon_award_ceremony.webp" alt="National AI BUILD-A-THON – Trailblazer Award Ceremony" loading="lazy">
+                  <span class="award-intro"><span class="eyebrow">Jan 2026</span>
+                    <span class="award-title">National AI BUILD-A-THON – Trailblazer</span><span class="award-toggle">Photos &amp; details</span></span>
+                </summary>
+                <div class="award-body">
+                  <p class="timeline-text timeline-issuer">
+                    Issued by MillionX Bangladesh
+                  </p>
+                  <p class="timeline-text">
+                    Recognized as a Trailblazer at the National BUILD-A-THON for leading a team project delivering
+                    innovative, technology-driven solutions with real-world impact.
+                  </p>
+                  <div class="award-images-grid">
+                    <a class="award-image-link" href="/assets/images/awards/ai_buildathon_award_ceremony.JPG" rel="noopener noreferrer" target="_blank">
+                      <img alt="National AI BUILD-A-THON – Trailblazer Award Ceremony" class="award-image" loading="lazy" src="/assets/images/awards/ai_buildathon_award_ceremony.JPG">
+                    </a>
+                    <a class="award-image-link" href="/assets/images/awards/national_ai_buildathon.jpeg" rel="noopener noreferrer" target="_blank">
+                      <img alt="National AI BUILD-A-THON – Trailblazer" class="award-image" loading="lazy" src="/assets/images/awards/national_ai_buildathon.jpeg">
+                    </a>
+                  </div>
+                </div>
+              </details>
             </li>
-
             <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Coding Fest 2026 – 1st Place</h4>
-              <span>Feb 2026</span>
-              <p class="timeline-text timeline-issuer">
-                Issued by Daffodil International Academy
-              </p>
-              <p class="timeline-text">
-                Achieved 1st Place in a competitive coding event, gaining valuable experience in problem solving and
-                collaborative development.
-              </p>
-              <div class="award-images-grid">
-                <a href="./assets/images/awards/coding_fest_2026.jpg" class="award-image-link" target="_blank"
-                  rel="noopener noreferrer">
-                  <img src="./assets/images/awards/coding_fest_2026.jpg" alt="Coding Fest 2026 Award Ceremony"
-                    loading="lazy" class="award-image">
-                </a>
-                <a href="./assets/images/awards/coding_fest_2026_certificate.jpg" class="award-image-link"
-                  target="_blank" rel="noopener noreferrer">
-                  <img src="./assets/images/awards/coding_fest_2026_certificate.jpg" alt="Coding Fest 2026 Certificate"
-                    loading="lazy" class="award-image">
-                </a>
-              </div>
+              <details class="award-details">
+                <summary><img class="award-thumb" src="/assets/images/awards/previews/coding_fest_2026.webp" alt="Coding Fest 2026 Award Ceremony" loading="lazy">
+                  <span class="award-intro"><span class="eyebrow">Feb 2026</span>
+                    <span class="award-title">Coding Fest 2026 – 1st Place</span><span class="award-toggle">Photos &amp; details</span></span>
+                </summary>
+                <div class="award-body">
+                  <p class="timeline-text timeline-issuer">
+                    Issued by Daffodil International Academy
+                  </p>
+                  <p class="timeline-text">
+                    Achieved 1st Place in a competitive coding event, gaining valuable experience in problem solving and
+                    collaborative development.
+                  </p>
+                  <div class="award-images-grid">
+                    <a class="award-image-link" href="/assets/images/awards/coding_fest_2026.jpg" rel="noopener noreferrer" target="_blank">
+                      <img alt="Coding Fest 2026 Award Ceremony" class="award-image" loading="lazy" src="/assets/images/awards/coding_fest_2026.jpg">
+                    </a>
+                    <a class="award-image-link" href="/assets/images/awards/coding_fest_2026_certificate.jpg" rel="noopener noreferrer" target="_blank">
+                      <img alt="Coding Fest 2026 Certificate" class="award-image" loading="lazy" src="/assets/images/awards/coding_fest_2026_certificate.jpg">
+                    </a>
+                  </div>
+                </div>
+              </details>
             </li>
-
+            <li class="timeline-item" id="ict-award">
+              <details class="award-details">
+                <summary><img class="award-thumb" src="/assets/images/awards/previews/winner_trophy.webp" alt="Bangladesh ICT &amp; Innovation Award 2025 Trophy" loading="lazy">
+                  <span class="award-intro"><span class="eyebrow">Oct 2025</span>
+                    <span class="award-title">Bangladesh ICT &amp; Innovation Award 2025</span><span class="award-toggle">Photos &amp; details</span></span>
+                </summary>
+                <div class="award-body">
+                  <p class="timeline-text timeline-issuer">
+                    Issued by Bangladesh ICT &amp; Innovation Network (BIIN)
+                  </p>
+                  <p class="timeline-text">
+                    Honored to receive the Bangladesh ICT &amp; Innovation Award 2025 for my project Ojogor (অজগর) — the first
+                    Bengali programming language. It was an incredible moment to stand among the nation's top innovators,
+                    with the presence of respected leaders from BTRC, ICT Division, and many others.
+                  </p>
+                  <div class="award-images-grid">
+                    <a class="award-image-link" href="/assets/images/awards/winner_trophy.jpg" rel="noopener noreferrer" target="_blank">
+                      <img alt="Bangladesh ICT &amp; Innovation Award 2025 Trophy" class="award-image" loading="lazy" src="/assets/images/awards/winner_trophy.jpg">
+                    </a>
+                    <a class="award-image-link" href="/assets/images/awards/award_ceremony.jpg" rel="noopener noreferrer" target="_blank">
+                      <img alt="Ratul Hasan Ruhan at the Bangladesh ICT &amp; Innovation Award 2025 ceremony" class="award-image" loading="lazy" src="/assets/images/awards/award_ceremony.jpg">
+                    </a>
+                  </div>
+                </div>
+              </details>
+            </li>
             <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Bangladesh ICT & Innovation Award 2025</h4>
-              <span>Oct 2025</span>
-              <p class="timeline-text timeline-issuer">
-                Issued by Bangladesh ICT & Innovation Network (BIIN)
-              </p>
-              <p class="timeline-text">
-                Honored to receive the Bangladesh ICT & Innovation Award 2025 for my project Ojogor (অজগর) — the first
-                Bengali programming language. It was an incredible moment to stand among the nation's top innovators,
-                with the presence of respected leaders from BTRC, ICT Division, and many others.
-              </p>
-              <div class="award-images-grid">
-                <a href="./assets/images/awards/winner_trophy.jpg" class="award-image-link" target="_blank"
-                  rel="noopener noreferrer">
-                  <img src="./assets/images/awards/winner_trophy.jpg"
-                    alt="Bangladesh ICT & Innovation Award 2025 Trophy" loading="lazy" class="award-image">
-                </a>
-                <a href="./assets/images/awards/award_ceremony.jpg" class="award-image-link" target="_blank"
-                  rel="noopener noreferrer">
-                  <img src="./assets/images/awards/award_ceremony.jpg" alt="Ratul Hasan Ruhan at the Bangladesh ICT & Innovation Award 2025 ceremony" loading="lazy"
-                    class="award-image">
-                </a>
-              </div>
+              <details class="award-details">
+                <summary><img class="award-thumb" src="/assets/images/awards/previews/pitch_session.webp" alt="Startup World Cup Pitch Session" loading="lazy">
+                  <span class="award-intro"><span class="eyebrow">Aug 2025</span>
+                    <span class="award-title">Startup World Cup: 2025 | Regional Finalist</span><span class="award-toggle">Photos &amp; details</span></span>
+                </summary>
+                <div class="award-body">
+                  <p class="timeline-text timeline-issuer">
+                    Issued by Pegasus Tech Venture
+                  </p>
+                  <p class="timeline-text">
+                    From the first round to the final at 🌍 Startup World Cup: Bangladesh– 2025. Grateful to stand among
+                    4500+ innovative startups.
+                  </p>
+                  <div class="award-images-grid">
+                    <a class="award-image-link" href="/assets/images/awards/pitch_session.jpg" rel="noopener noreferrer" target="_blank">
+                      <img alt="Startup World Cup Pitch Session" class="award-image" loading="lazy" src="/assets/images/awards/pitch_session.jpg">
+                    </a>
+                    <a class="award-image-link" href="/assets/images/awards/showcase_session.jpg" rel="noopener noreferrer" target="_blank">
+                      <img alt="Startup World Cup Showcase Session" class="award-image" loading="lazy" src="/assets/images/awards/showcase_session.jpg">
+                    </a>
+                  </div>
+                </div>
+              </details>
             </li>
-
             <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Startup World Cup: 2025 | Regional Finalist</h4>
-              <span>Aug 2025</span>
-              <p class="timeline-text timeline-issuer">
-                Issued by Pegasus Tech Venture
-              </p>
-              <p class="timeline-text">
-                From the first round to the final at 🌍 Startup World Cup: Bangladesh– 2025. Grateful to stand among
-                4500+ innovative startups.
-              </p>
-              <div class="award-images-grid">
-                <a href="./assets/images/awards/pitch_session.jpg" class="award-image-link" target="_blank"
-                  rel="noopener noreferrer">
-                  <img src="./assets/images/awards/pitch_session.jpg" alt="Startup World Cup Pitch Session"
-                    loading="lazy" class="award-image">
-                </a>
-                <a href="./assets/images/awards/showcase_session.jpg" class="award-image-link" target="_blank"
-                  rel="noopener noreferrer">
-                  <img src="./assets/images/awards/showcase_session.jpg" alt="Startup World Cup Showcase Session"
-                    loading="lazy" class="award-image">
-                </a>
-              </div>
+              <details class="award-details">
+                <summary><img class="award-thumb" src="/assets/images/awards/previews/national_tech_award.webp" alt="National Tech Award 2025" loading="lazy">
+                  <span class="award-intro"><span class="eyebrow">2025</span>
+                    <span class="award-title">National Tech Award - 2025</span><span class="award-toggle">Photos &amp; details</span></span>
+                </summary>
+                <div class="award-body">
+                  <p class="timeline-text">
+                    National Tech Award 2025 for Ishara, a real-time Bengali sign language translation system focused on
+                    accessibility and inclusion.
+                  </p>
+                  <div class="award-images-grid">
+                    <a class="award-image-link" href="/assets/images/awards/national_tech_award.jpg" rel="noopener noreferrer" target="_blank">
+                      <img alt="National Tech Award 2025" class="award-image" loading="lazy" src="/assets/images/awards/national_tech_award.jpg">
+                    </a>
+                  </div>
+                </div>
+              </details>
             </li>
-
             <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">National Tech Award - 2025</h4>
-              <span>2025</span>
-              <p class="timeline-text">
-                National Tech Award 2025 for Ishara, a real-time Bengali sign language translation system focused on
-                accessibility and inclusion.
-              </p>
-              <div class="award-images-grid">
-                <a href="./assets/images/awards/national_tech_award.jpg" class="award-image-link" target="_blank"
-                  rel="noopener noreferrer">
-                  <img src="./assets/images/awards/national_tech_award.jpg" alt="National Tech Award 2025"
-                    loading="lazy" class="award-image">
-                </a>
-              </div>
+              <details class="award-details">
+                <summary><img class="award-thumb" src="/assets/images/awards/previews/1st_certificate_programming_contest.webp" alt="1st Place Programming Contest Certificate" loading="lazy">
+                  <span class="award-intro"><span class="eyebrow">Feb 2025</span>
+                    <span class="award-title">1st Place – Programming Contest | DIA ICT Fest 2025</span><span class="award-toggle">Photos &amp; details</span></span>
+                </summary>
+                <div class="award-body">
+                  <p class="timeline-text timeline-issuer">
+                    Issued by Daffodil International Academy · Associated with Daffodil International University-DIU
+                  </p>
+                  <p class="timeline-text">
+                    Thrilled to secure 1st place in the Programming Contest at DIA ICT Fest 2025! 🏆 It was an intense
+                    competition, and I'm grateful for the opportunity to test my skills and problem-solving abilities.
+                    Looking forward to more challenges ahead! 🚀
+                  </p>
+                  <div class="award-images-grid">
+                    <a class="award-image-link" href="/assets/images/awards/1st_certificate_programming_contest.jpg" rel="noopener noreferrer" target="_blank">
+                      <img alt="1st Place Programming Contest Certificate" class="award-image" loading="lazy" src="/assets/images/awards/1st_certificate_programming_contest.jpg">
+                    </a>
+                    <a class="award-image-link" href="/assets/images/awards/trophy.jpg" rel="noopener noreferrer" target="_blank">
+                      <img alt="Programming Contest Trophy" class="award-image" loading="lazy" src="/assets/images/awards/trophy.jpg">
+                    </a>
+                  </div>
+                </div>
+              </details>
             </li>
-
             <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">1st Place – Programming Contest | DIA ICT Fest 2025</h4>
-              <span>Feb 2025</span>
-              <p class="timeline-text timeline-issuer">
-                Issued by Daffodil International Academy · Associated with Daffodil International University-DIU
-              </p>
-              <p class="timeline-text">
-                Thrilled to secure 1st place in the Programming Contest at DIA ICT Fest 2025! 🏆 It was an intense
-                competition, and I'm grateful for the opportunity to test my skills and problem-solving abilities.
-                Looking forward to more challenges ahead! 🚀
-              </p>
-              <div class="award-images-grid">
-                <a href="./assets/images/awards/1st_certificate_programming_contest.jpg" class="award-image-link"
-                  target="_blank" rel="noopener noreferrer">
-                  <img src="./assets/images/awards/1st_certificate_programming_contest.jpg"
-                    alt="1st Place Programming Contest Certificate" loading="lazy" class="award-image">
-                </a>
-                <a href="./assets/images/awards/trophy.jpg" class="award-image-link" target="_blank"
-                  rel="noopener noreferrer">
-                  <img src="./assets/images/awards/trophy.jpg" alt="Programming Contest Trophy" loading="lazy"
-                    class="award-image">
-                </a>
-              </div>
+              <details class="award-details">
+                <summary><img class="award-thumb" src="/assets/images/awards/previews/project_showcase.webp" alt="Project Showcase Award" loading="lazy">
+                  <span class="award-intro"><span class="eyebrow">Feb 2025</span>
+                    <span class="award-title">1st Place – Project Showcasing | DIA ICT Fest 2025</span><span class="award-toggle">Photos &amp; details</span></span>
+                </summary>
+                <div class="award-body">
+                  <p class="timeline-text timeline-issuer">
+                    Issued by Daffodil International Academy · Associated with Daffodil International University-DIU
+                  </p>
+                  <p class="timeline-text">
+                    Feeling grateful to have achieved 1st place in the Project Showcasing category at DIA ICT Fest 2025! 🏆
+                    Presenting my project and receiving valuable feedback was an enriching experience. Huge thanks to my
+                    mentors, peers, and the organizers for creating such a great platform for learning and innovation.
+                    Excited to keep exploring and improving!
+                  </p>
+                  <div class="award-images-grid">
+                    <a class="award-image-link" href="/assets/images/awards/project_showcase.jpg" rel="noopener noreferrer" target="_blank">
+                      <img alt="Project Showcase Award" class="award-image" loading="lazy" src="/assets/images/awards/project_showcase.jpg">
+                    </a>
+                  </div>
+                </div>
+              </details>
             </li>
-
             <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">1st Place – Project Showcasing | DIA ICT Fest 2025</h4>
-              <span>Feb 2025</span>
-              <p class="timeline-text timeline-issuer">
-                Issued by Daffodil International Academy · Associated with Daffodil International University-DIU
-              </p>
-              <p class="timeline-text">
-                Feeling grateful to have achieved 1st place in the Project Showcasing category at DIA ICT Fest 2025! 🏆
-                Presenting my project and receiving valuable feedback was an enriching experience. Huge thanks to my
-                mentors, peers, and the organizers for creating such a great platform for learning and innovation.
-                Excited to keep exploring and improving!
-              </p>
-              <div class="award-images-grid">
-                <a href="./assets/images/awards/project_showcase.jpg" class="award-image-link" target="_blank"
-                  rel="noopener noreferrer">
-                  <img src="./assets/images/awards/project_showcase.jpg" alt="Project Showcase Award" loading="lazy"
-                    class="award-image">
-                </a>
-              </div>
+              <details class="award-details">
+                <summary><img class="award-thumb" src="/assets/images/awards/previews/award_receiving.webp" alt="Receiving the 2nd Place Puzzle Hunt award at DIA ICT Fest 2025" loading="lazy">
+                  <span class="award-intro"><span class="eyebrow">Feb 2025</span>
+                    <span class="award-title">2nd Place – Puzzle Hunt | DIA ICT Fest 2025</span><span class="award-toggle">Photos &amp; details</span></span>
+                </summary>
+                <div class="award-body">
+                  <p class="timeline-text timeline-issuer">
+                    Issued by Daffodil International Academy · Associated with Daffodil International University-DIU
+                  </p>
+                  <p class="timeline-text">
+                    Grateful to have secured 2nd Place in the Puzzle Hunt at DIA ICT Fest 2025 🧩 It was a fun and
+                    challenging experience that pushed my logical thinking and teamwork. Thanks to the organizers and fellow
+                    participants for an engaging competition!
+                  </p>
+                  <div class="award-images-grid">
+                    <a class="award-image-link" href="/assets/images/awards/award_receiving.jpg" rel="noopener noreferrer" target="_blank">
+                      <img alt="Receiving the 2nd Place Puzzle Hunt award at DIA ICT Fest 2025" class="award-image" loading="lazy" src="/assets/images/awards/award_receiving.jpg">
+                    </a>
+                  </div>
+                </div>
+              </details>
             </li>
-
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">2nd Place – Puzzle Hunt | DIA ICT Fest 2025</h4>
-              <span>Feb 2025</span>
-              <p class="timeline-text timeline-issuer">
-                Issued by Daffodil International Academy · Associated with Daffodil International University-DIU
-              </p>
-              <p class="timeline-text">
-                Grateful to have secured 2nd Place in the Puzzle Hunt at DIA ICT Fest 2025 🧩 It was a fun and
-                challenging experience that pushed my logical thinking and teamwork. Thanks to the organizers and fellow
-                participants for an engaging competition!
-              </p>
-              <div class="award-images-grid">
-                <a href="./assets/images/awards/award_receiving.jpg" class="award-image-link" target="_blank"
-                  rel="noopener noreferrer">
-                  <img src="./assets/images/awards/award_receiving.jpg" alt="Receiving the 2nd Place Puzzle Hunt award at DIA ICT Fest 2025" loading="lazy"
-                    class="award-image">
-                </a>
-              </div>
-            </li>
-
           </ol>
 
         </section>
@@ -1665,9 +1341,6 @@
         <section class="timeline">
 
           <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="newspaper-outline"></ion-icon>
-            </div>
 
             <h3 class="h3">Media Coverage</h3>
           </div>
@@ -1803,6 +1476,7 @@
       -->
 
       <article class="contact" data-page="contact" id="contact">
+        <a class="back-atlas" data-route="about" href="/#map-title">← Back to atlas</a>
 
         <header>
           <h2 class="h2 article-title">Contact</h2>
@@ -1817,6 +1491,8 @@
               <div class="contact-info-row"><strong>LinkedIn:</strong> <a
                   href="https://www.linkedin.com/in/ratul-hasan-ruhan/" target="_blank">ratul-hasan-ruhan</a></div>
             </div>
+            <p class="actions"><a class="text-link" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ01vVQ1tVn35qEWA91zEWLjB0OY56xiZE_gVIc58FSZojPLTSxfHnpbgNrCQudJHp1GyClOtSOs?gv=true">Book a quick sync ↗</a>
+              <a class="text-link" href="https://wa.me/8801789536985">WhatsApp ↗</a></p>
             <blockquote class="contact-fun-fact improved-fun-fact">“I love exploring <span class='highlight'>all kinds
                 of frameworks</span>—if it has docs, I've probably tried it!”</blockquote>
           </div>
@@ -1831,12 +1507,11 @@
           <h3 class="h3 form-title">Contact Form</h3>
           <form action="https://formspree.io/f/mkgrbazr" method="POST" class="form" data-form>
             <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+              <input type="text" name="fullname" aria-label="Full name" autocomplete="name" class="form-input" placeholder="Full name" required data-form-input>
+              <input type="email" name="email" aria-label="Email address" autocomplete="email" class="form-input" placeholder="Email address" required data-form-input>
             </div>
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+            <textarea name="message" aria-label="Your message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
             <button class="form-btn" type="submit" data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
               <span>Send Message</span>
             </button>
           </form>
@@ -1844,182 +1519,23 @@
 
       </article>
 
-    </div>
 
   </main>
-
-
-
-
-
-
-  <!--
-    - custom js link
-  -->
-  <script src="./assets/js/script.js"></script>
-
-  <!--
-    - WebMCP tools for in-browser AI agents (no-op where unsupported)
-  -->
-  <script src="./assets/js/webmcp.js"></script>
-
-  <!--
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-  <!--
-    - marked.js link
-  -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-  <!-- Improved contact section styles -->
-  <style id="improved-contact-styles">
-    .improved-contact-card {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: stretch;
-      gap: 32px;
-      background: var(--eerie-black-2);
-      border-radius: 18px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
-      padding: 32px 28px 24px 28px;
-      margin-bottom: 32px;
-      border: 1px solid var(--jet);
-    }
-
-    .contact-info-main {
-      flex: 2 1 220px;
-      min-width: 220px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .contact-heading {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: var(--orange-yellow-crayola);
-    }
-
-    .contact-info-list {
-      margin-bottom: 12px;
-      font-size: 1.05rem;
-    }
-
-    .contact-info-list a {
-      color: var(--orange-yellow-crayola);
-      text-decoration: none;
-    }
-
-    .contact-info-list a:hover {
-      text-decoration: underline;
-    }
-
-    .contact-fun-fact {
-      margin: 0;
-      padding: 12px 18px;
-      background: var(--onyx);
-      border-left: 4px solid var(--orange-yellow-crayola);
-      border-radius: 8px;
-      color: var(--light-gray-70);
-      font-style: italic;
-      font-size: 1.05rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    }
-
-    .contact-qr {
-      flex: 1 1 140px;
-      min-width: 140px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .contact-qr-img {
-      border-radius: 14px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
-      background: #fff;
-      width: 140px;
-      height: 140px;
-    }
-
-    .contact-qr-caption {
-      font-size: 13px;
-      text-align: center;
-      margin-top: 7px;
-      color: var(--light-gray-70);
-    }
-
-    .improved-contact-form {
-      background: var(--eerie-black-2);
-      border-radius: 18px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      padding: 28px 22px 22px 22px;
-      border: 1px solid var(--jet);
-    }
-
-    @media (max-width: 700px) {
-      .improved-contact-card {
-        flex-direction: column;
-        padding: 18px 8px 12px 8px;
-        gap: 18px;
-      }
-
-      .improved-contact-form {
-        padding: 16px 4px 12px 4px;
-      }
-    }
-
-    .contact-info-row {
-      margin-bottom: 8px;
-      font-size: 1.08rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .contact-info-row strong {
-      color: var(--orange-yellow-crayola);
-      font-weight: 600;
-      min-width: 70px;
-    }
-
-    .contact-info-row a {
-      color: var(--white-2);
-      font-weight: 500;
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-
-    .contact-info-row a:hover {
-      color: var(--orange-yellow-crayola);
-      text-decoration: underline;
-    }
-
-    .improved-fun-fact {
-      font-size: 1.12rem;
-      color: var(--light-gray-70);
-      background: var(--onyx);
-      border-left: 4px solid var(--orange-yellow-crayola);
-      border-radius: 8px;
-      padding: 14px 20px;
-      margin-top: 10px;
-      font-style: italic;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    }
-
-    .improved-fun-fact .highlight {
-      color: var(--orange-yellow-crayola);
-      font-weight: 600;
-    }
-  </style>
-
-  <!-- Blog modal is injected/managed by assets/js/script.js -->
-
+  <footer class="wrap footer">
+    <div><a class="wordmark" href="/" data-route="about"><span class="asterisk" aria-hidden="true"></span> Ratul Ruhan<span class="brand-dot">.</span></a>
+      <p>Software engineer in Dhaka, Bangladesh.</p></div>
+    <nav aria-label="Profiles and contact"><a href="https://github.com/ratulhasanruhan">GitHub ↗</a><a href="https://www.linkedin.com/in/ratul-hasan-ruhan/">LinkedIn ↗</a>
+      <a href="https://peerlist.io/ratulhasan/">Peerlist ↗</a><a href="https://www.youtube.com/@ratulicious">YouTube ↗</a>
+      <a href="https://www.facebook.com/ratulhasan.ruhan">Facebook ↗</a><a href="mailto:ratulhasan1644@gmail.com">Email ↗</a><a href="/bn/" hreflang="bn" lang="bn">বাংলা</a></nav>
+  </footer>
+  <dialog id="search-dialog" aria-labelledby="search-label">
+    <div class="search-heading"><h2 id="search-label">Search the portfolio</h2><button type="button" class="close-search" aria-label="Close search">×</button></div>
+    <label for="archive-query" class="visually-hidden">Search by project, organization, topic, or role</label>
+    <input id="archive-query" autocomplete="off" placeholder="Try Ojogor, cloud, or Hult Prize…" type="search">
+    <p class="eyebrow" id="search-status" aria-live="polite"></p>
+    <ul id="search-results"></ul>
+  </dialog>
+  <script src="/assets/js/script.js"></script>
+  <script src="/assets/js/webmcp.js"></script>
 </body>
-
 </html>

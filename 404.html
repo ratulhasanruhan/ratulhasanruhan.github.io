@@ -4,6 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Page Not Found</title>
+    <script>
+      const section = location.pathname.replace(/^\/+|\/+$/g, '');
+      const routes = ['about', 'profile', 'resume', 'projects', 'communities', 'research', 'writings', 'writting', 'recognition', 'contact'];
+      if (routes.includes(section)) {
+        const home = new URL(location.href);
+        home.pathname = '/';
+        home.searchParams.set('portfolio-section', section);
+        location.replace(home.href);
+      }
+    </script>
 
     <style media="screen">
       body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
