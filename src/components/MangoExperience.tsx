@@ -33,6 +33,8 @@ import {
   type ReactNode,
 } from "react";
 import ContactSoil from "@/components/ContactSoil";
+import HomeHero from "@/components/HomeHero";
+import { FeaturedWork, SkillMarquee } from "@/components/HomeSections";
 import TreeScene, { crownLayout, DESKTOP_TREE_OFFSET_X, DESKTOP_TREE_SCALE_X } from "@/components/TreeScene";
 import WeatherCanvas from "@/components/WeatherCanvas";
 import { setWebMcpHandlers } from "@/components/webmcp-actions";
@@ -66,7 +68,7 @@ const tourStops: { branch: BranchId; caption: string; subcaption: string }[] = [
   {
     branch: "projects",
     caption: "Ideas take root here.",
-    subcaption: "Twenty-nine projects, from Ojogor to tools and systems.",
+    subcaption: "Thirty projects, from Ojogor to tools and systems.",
   },
   {
     branch: "awards",
@@ -814,11 +816,10 @@ export default function MangoExperience({
   const [tourIndex, setTourIndex] = useState<number | null>(null);
   const [tourPaused, setTourPaused] = useState(false);
   const [projectFilter, setProjectFilter] = useState("");
-  const [spotlightIndex, setSpotlightIndex] = useState(0);
-  const [spotlightPaused, setSpotlightPaused] = useState(false);
-  const [spotlightStopped, setSpotlightStopped] = useState(false);
   const [activeSection, setActiveSection] = useState<"tree" | "contact">("tree");
   const [scrolled, setScrolled] = useState(false);
+  const showHome = !initialBranch && !initialFocus;
+  const [orchardInView, setOrchardInView] = useState(!showHome);
   const treeStageRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLElement>(null);
   const menuTriggerRef = useRef<HTMLButtonElement>(null);
@@ -837,7 +838,6 @@ export default function MangoExperience({
   }, []);
   const openSearch = useCallback(() => {
     stopTour();
-    setSpotlightStopped(true);
     setMobileMenuOpen(false);
     setSearchOpen(true);
   }, [stopTour]);
@@ -848,10 +848,6 @@ export default function MangoExperience({
     [currentYear],
   );
   const allItems = useMemo(() => getTreeItems(writings), [writings]);
-  const spotlightItems = useMemo(
-    () => [...awards.slice(0, 3), ...projects.filter((item) => ["ishara", "ojogor", "gorusheba"].includes(item.slug))],
-    [],
-  );
   const visibleItems = useMemo(
     () => allItems.filter((item) => activeYear === null || item.year === null || item.year <= activeYear),
     [activeYear, allItems],
@@ -866,6 +862,19 @@ export default function MangoExperience({
           )
         : [],
     [normalizedQuery, searchableItems],
+  );
+  const branchCounts = useMemo(() => {
+    const counts = Object.fromEntries(branches.map((branch) => [branch.id, 0])) as Record<BranchId, number>;
+    for (const item of allItems) counts[item.branch] += 1;
+    return counts;
+  }, [allItems]);
+  const heroStats = useMemo(
+    () => [
+      { label: "Projects shipped", value: branchCounts.projects },
+      { label: "Awards won", value: branchCounts.awards },
+      { label: "Years building", value: currentYear - 2016 },
+    ],
+    [branchCounts, currentYear],
   );
   const highlightedBranches = useMemo(
     () => new Set(matchedSearchResults.map((item) => item.branch)),
@@ -889,7 +898,6 @@ export default function MangoExperience({
   const focusedItem = visibleItems.find((item) => item.slug === (hoveredSlug ?? focusedSlug));
   const initialFocusedItem = visibleItems.find((item) => item.slug === initialFocus);
   const currentTourStop = tourIndex === null ? null : tourStops[tourIndex];
-  const spotlightItem = spotlightItems[spotlightIndex % spotlightItems.length];
   const branchItems = selectedBranch
     ? visibleItems.filter((item) => {
         if (item.branch !== selectedBranch) return false;
@@ -902,7 +910,24 @@ export default function MangoExperience({
     : [];
 
   useEffect(() => {
-    if (prefersReducedMotion || growthSkipped) return;
+    if (orchardInView) return;
+    const stage = treeStageRef.current;
+    if (!stage) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setOrchardInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
+    observer.observe(stage);
+    return () => observer.disconnect();
+  }, [orchardInView]);
+
+  useEffect(() => {
+    if (prefersReducedMotion || growthSkipped || !orchardInView) return;
     const timeout = window.setTimeout(() => {
       if (growthYear >= currentYear) {
         setSelectedYear(null);
@@ -914,10 +939,10 @@ export default function MangoExperience({
       }
     }, Math.max(400, Math.round(6000 / ringYears.length)));
     return () => window.clearTimeout(timeout);
-  }, [currentYear, growthSkipped, growthYear, prefersReducedMotion, ringYears.length]);
+  }, [currentYear, growthSkipped, growthYear, orchardInView, prefersReducedMotion, ringYears.length]);
 
   useEffect(() => {
-    if (growthComplete) return;
+    if (growthComplete || !orchardInView) return;
     const complete = () => {
       setSelectedYear(null);
       setGrowthSkipped(true);
@@ -928,17 +953,7 @@ export default function MangoExperience({
       window.removeEventListener("pointerdown", complete);
       window.removeEventListener("keydown", complete);
     };
-  }, [growthComplete]);
-
-  useEffect(() => {
-    if (prefersReducedMotion || spotlightStopped || spotlightPaused || selectedBranch || searchOpen || tourIndex !== null) {
-      return;
-    }
-    const interval = window.setInterval(() => {
-      setSpotlightIndex((index) => (index + 1) % spotlightItems.length);
-    }, 5000);
-    return () => window.clearInterval(interval);
-  }, [prefersReducedMotion, searchOpen, selectedBranch, spotlightItems.length, spotlightPaused, spotlightStopped, tourIndex]);
+  }, [growthComplete, orchardInView]);
 
   useEffect(() => {
     if (!mobileMenuOpen && !aboutOpen) return;
@@ -1038,7 +1053,6 @@ export default function MangoExperience({
 
   function goToTree() {
     stopTour();
-    setSpotlightStopped(true);
     setMobileMenuOpen(false);
     setSelectedBranch(null);
     setActiveSection("tree");
@@ -1047,7 +1061,6 @@ export default function MangoExperience({
 
   function goToContact() {
     stopTour();
-    setSpotlightStopped(true);
     setMobileMenuOpen(false);
     setSelectedBranch(null);
     setActiveSection("contact");
@@ -1059,7 +1072,6 @@ export default function MangoExperience({
 
   function openAbout() {
     stopTour();
-    setSpotlightStopped(true);
     setMobileMenuOpen(false);
     setSelectedBranch(null);
     setAboutOpen(true);
@@ -1067,7 +1079,6 @@ export default function MangoExperience({
 
   function openMenu() {
     stopTour();
-    setSpotlightStopped(true);
     setMobileMenuOpen(true);
   }
 
@@ -1115,7 +1126,6 @@ export default function MangoExperience({
 
   function openBranch(branch: BranchId) {
     stopTour();
-    setSpotlightStopped(true);
     setMobileMenuOpen(false);
     setListModeOverride(false);
     saveListView(false);
@@ -1136,12 +1146,10 @@ export default function MangoExperience({
     const next = !listView;
     setListModeOverride(next);
     stopTour();
-    setSpotlightStopped(true);
     saveListView(next);
   }
 
   function startTour() {
-    setSpotlightStopped(true);
     setSearchOpen(false);
     setListModeOverride(false);
     saveListView(false);
@@ -1177,7 +1185,6 @@ export default function MangoExperience({
 
   const navigateFromWebMcp = useCallback((page: string) => {
     stopTour();
-    setSpotlightStopped(true);
     setSearchOpen(false);
     const sectionBranches: Record<string, BranchId> = {
       projects: "projects",
@@ -1214,7 +1221,6 @@ export default function MangoExperience({
 
   const filterProjectsFromWebMcp = useCallback((filter: string) => {
     stopTour();
-    setSpotlightStopped(true);
     setSearchOpen(false);
     setListModeOverride(false);
     saveListView(false);
@@ -1227,8 +1233,7 @@ export default function MangoExperience({
   const prefillContactFromWebMcp = useCallback(
     (values: { fullname: string; email: string; message: string }) => {
       stopTour();
-      setSpotlightStopped(true);
-      setSearchOpen(false);
+        setSearchOpen(false);
       setFocusedSlug(null);
       setHoveredSlug(null);
       setSelectedBranch(null);
@@ -1291,8 +1296,7 @@ export default function MangoExperience({
       id="top"
       onClickCapture={(event) => {
         if (event.target instanceof Element && event.target.closest("a[href]")) {
-          setSpotlightStopped(true);
-          if (tourIndex !== null) stopTour();
+                if (tourIndex !== null) stopTour();
         }
       }}
     >
@@ -1302,7 +1306,7 @@ export default function MangoExperience({
           <span className="brand-copy"><strong>Ratul Hasan Ruhan</strong><small>{profile.title} · Dhaka</small></span>
         </Link>
         <nav className="header-links" aria-label="Site navigation">
-          <button className={!selectedBranch && activeSection === "tree" ? "nav-active" : ""} aria-current={!selectedBranch && activeSection === "tree" ? "page" : undefined} type="button" onClick={goToTree}>Tree</button>
+          <button className={!selectedBranch && activeSection === "tree" ? "nav-active" : ""} aria-current={!selectedBranch && activeSection === "tree" ? "page" : undefined} type="button" onClick={goToTree}>Home</button>
           <button className={selectedBranch === "experience" ? "nav-active" : ""} aria-current={selectedBranch === "experience" ? "page" : undefined} type="button" onClick={() => openBranch("experience")}>Road</button>
           <button className={selectedBranch === "projects" ? "nav-active" : ""} aria-current={selectedBranch === "projects" ? "page" : undefined} type="button" onClick={() => openBranch("projects")}>Projects</button>
           <button className={selectedBranch === "awards" ? "nav-active" : ""} aria-current={selectedBranch === "awards" ? "page" : undefined} type="button" onClick={() => openBranch("awards")}>Awards</button>
@@ -1326,10 +1330,34 @@ export default function MangoExperience({
       </header>
 
       <main>
-        <section className="orchard-hero" aria-labelledby="hero-title">
+        {showHome && (
+          <>
+            <HomeHero
+              branchCounts={branchCounts}
+              stats={heroStats}
+              night={night}
+              season={season}
+              bangla={bangla}
+              onSelectBranch={openBranch}
+              onAbout={openAbout}
+            />
+            <SkillMarquee />
+            <FeaturedWork />
+          </>
+        )}
+
+        <section
+          id="orchard"
+          className={`orchard-hero${showHome ? " orchard-below" : ""}`}
+          aria-labelledby={showHome ? "orchard-title" : "hero-title"}
+        >
           <div className="hero-copy">
             <div className="hero-overline"><span className="overline-line" /> A living portfolio · Bangladesh</div>
-            <h1 id="hero-title">A life in full <em>bloom.</em></h1>
+            {showHome ? (
+              <h2 id="orchard-title" className="orchard-title">A life in full <em>bloom.</em></h2>
+            ) : (
+              <h1 id="hero-title">A life in full <em>bloom.</em></h1>
+            )}
             <p className="hero-deck">
               I&apos;m Ratul — a software engineer and systems researcher. My work grows across projects,
               people, ideas, and time.
@@ -1419,24 +1447,6 @@ export default function MangoExperience({
               </div>
             )}
 
-            {!listView && !prefersReducedMotion && !spotlightStopped && tourIndex === null && spotlightItem && (
-              <Link
-                className="spotlight-card"
-                href={itemHref(spotlightItem)}
-                onPointerEnter={() => setSpotlightPaused(true)}
-                onPointerLeave={() => setSpotlightPaused(false)}
-                onFocus={() => setSpotlightPaused(true)}
-                onBlur={(event) => {
-                  if (!event.currentTarget.contains(event.relatedTarget)) setSpotlightPaused(false);
-                }}
-                onClick={() => setSpotlightStopped(true)}
-              >
-                <span className="spotlight-kicker"><Sparkles size={13} /> In the spotlight</span>
-                <strong>{spotlightItem.title}</strong>
-                <span>{spotlightItem.summary}</span>
-                <span className="spotlight-open">Explore <span aria-hidden="true">↗</span></span>
-              </Link>
-            )}
           </div>
 
           {!listView && (
@@ -1561,7 +1571,7 @@ export default function MangoExperience({
 
       <nav className="mobile-tabbar" aria-label="Primary navigation">
         <button className={!selectedBranch && activeSection === "tree" ? "tab-active" : ""} aria-current={!selectedBranch && activeSection === "tree" ? "page" : undefined} type="button" onClick={goToTree}>
-          <House size={19} aria-hidden="true" /><span>Tree</span>
+          <House size={19} aria-hidden="true" /><span>Home</span>
         </button>
         <button className={selectedBranch === "experience" ? "tab-active" : ""} aria-current={selectedBranch === "experience" ? "page" : undefined} type="button" onClick={() => openBranch("experience")}>
           <Signpost size={19} aria-hidden="true" /><span>Road</span>
