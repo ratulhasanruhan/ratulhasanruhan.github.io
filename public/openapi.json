@@ -66,7 +66,7 @@
         "operationId": "getProfileMarkdown",
         "tags": ["profile"],
         "summary": "Human/agent-readable profile overview (Markdown)",
-        "description": "Prose summary of the profile. Also returned for any page route when the request carries `Accept: text/markdown` (canonical domain only).",
+        "description": "Prose summary of the profile. On also.ratulruhan.cv, HTML page routes also return this document when the request carries `Accept: text/markdown`. On Firebase/GitHub Pages, fetch this path directly.",
         "responses": {
           "200": {
             "description": "Markdown document",

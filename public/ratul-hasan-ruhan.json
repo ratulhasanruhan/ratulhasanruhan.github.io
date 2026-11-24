@@ -2,7 +2,11 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Ratul Hasan Ruhan",
-  "alternateName": ["Ratul Hasan", "Ratul Ruhan", "রাতুল হাসান রুহান"],
+  "alternateName": [
+    "Ratul Hasan",
+    "Ratul Ruhan",
+    "রাতুল হাসান রুহান"
+  ],
   "jobTitle": "Software Engineer & Systems Researcher",
   "email": "ratulhasan1644@gmail.com",
   "telephone": "+8801789536985",
@@ -19,7 +23,8 @@
     "https://ratulhasan.hashnode.dev",
     "https://ratulhasanruhan.medium.com",
     "https://peerlist.io/ratulhasan",
-    "http://ratulruhan.cv/"
+    "http://ratulruhan.cv/",
+    "https://ratulhasan.link"
   ],
   "address": {
     "@type": "PostalAddress",
@@ -413,22 +418,38 @@
     "skills": [
       {
         "category": "Mobile & Multiplatform",
-        "technologies": ["Flutter", "Kotlin", ".NET MAUI / C#"],
+        "technologies": [
+          "Flutter",
+          "Kotlin",
+          ".NET MAUI / C#"
+        ],
         "description": "Cross-platform mobile and desktop application development."
       },
       {
         "category": "Systems, Programming & Applied AI",
-        "technologies": ["Rust", "Python", "Java / Spring"],
+        "technologies": [
+          "Rust",
+          "Python",
+          "Java / Spring"
+        ],
         "description": "Systems programming, backend services, and applied machine learning."
       },
       {
         "category": "Embedded, IoT & Networking",
-        "technologies": ["Embedded Systems", "IoT", "Networking"],
+        "technologies": [
+          "Embedded Systems",
+          "IoT",
+          "Networking"
+        ],
         "description": "Hardware–software integration and connected systems."
       },
       {
         "category": "DevOps & Infrastructure",
-        "technologies": ["CI/CD", "Deployment", "System Configuration"],
+        "technologies": [
+          "CI/CD",
+          "Deployment",
+          "System Configuration"
+        ],
         "description": "Reliable builds, deployments, and production workflows."
       }
     ],
@@ -533,4 +554,3 @@
     ]
   }
 }
-
