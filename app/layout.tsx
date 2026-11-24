@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import WebMcp from "@/components/WebMcp";
 import profile from "@/data/profile.snapshot.json";
 import "./globals.css";
 
@@ -90,6 +91,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           dangerouslySetInnerHTML={{ __html: personJson }}
         />
         {children}
+        <WebMcp />
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { getWebMcpHandlers } from "@/components/webmcp-actions";
 import { profile } from "@/data/catalog";
 import profileSnapshot from "@/data/profile.snapshot.json";
 import projectsSnapshot from "@/data/projects.snapshot.json";
@@ -16,28 +17,22 @@ type ModelTool = {
   execute: (input: ToolInput, options?: ToolOptions) => unknown;
 };
 type ModelContext = {
-  provideContext?: (context: { tools: ModelTool[] }) => Promise<unknown>;
-  registerTool?: (tool: ModelTool) => Promise<unknown> | unknown;
+  provideContext?: (context: { tools: ModelTool[]; signal?: AbortSignal }) => Promise<unknown> | unknown;
+  registerTool?: (tool: ModelTool, options?: ToolOptions) => Promise<unknown> | unknown;
+  unregisterTool?: (name: string) => Promise<unknown> | unknown;
 };
 
 const pages = ["about", "resume", "projects", "research", "writings", "recognition", "contact"];
 const categories = [...new Set(projectsSnapshot.map((project) => project.category))];
 
-export default function WebMcp({
-  onNavigate,
-  onFilterProjects,
-  onPrefillContact,
-}: {
-  onNavigate: (page: string) => void;
-  onFilterProjects: (filter: string) => void;
-  onPrefillContact: (values: { fullname: string; email: string; message: string }) => void;
-}) {
+export default function WebMcp() {
   useEffect(() => {
     const browserNavigator = navigator as Navigator & { modelContext?: ModelContext };
     const browserDocument = document as Document & { modelContext?: ModelContext };
     const context = browserNavigator.modelContext ?? browserDocument.modelContext;
     if (!context) return;
 
+    const controller = new AbortController();
     const tools: ModelTool[] = [
       {
         name: "get_profile",
@@ -107,7 +102,9 @@ export default function WebMcp({
         execute: (input) => {
           const page = String(input.page);
           if (!pages.includes(page)) throw new Error("Choose a listed portfolio section.");
-          onNavigate(page);
+          const handlers = getWebMcpHandlers();
+          if (!handlers) throw new Error("The portfolio view is not ready.");
+          handlers.onNavigate(page);
           return { page };
         },
       },
@@ -123,7 +120,9 @@ export default function WebMcp({
         },
         execute: (input) => {
           const filter = String(input.category);
-          onFilterProjects(filter);
+          const handlers = getWebMcpHandlers();
+          if (!handlers) throw new Error("The portfolio view is not ready.");
+          handlers.onFilterProjects(filter);
           return { page: "projects", filter, applied: true };
         },
       },
@@ -148,7 +147,9 @@ export default function WebMcp({
             email: String(input.email),
             message: String(input.message),
           };
-          onPrefillContact(values);
+          const handlers = getWebMcpHandlers();
+          if (!handlers) throw new Error("The portfolio view is not ready.");
+          handlers.onPrefillContact(values);
           return { page: "contact", filled: true, submitted: false };
         },
       },
@@ -172,13 +173,38 @@ export default function WebMcp({
       },
     ];
 
-    const registration = context.provideContext
-      ? context.provideContext({ tools })
-      : context.registerTool
-        ? Promise.all(tools.map((tool) => context.registerTool?.(tool)))
+    const registration = context.registerTool
+      ? Promise.all(tools.map((tool) => context.registerTool?.(tool, { signal: controller.signal })))
+      : context.provideContext
+        ? context.provideContext({ tools, signal: controller.signal })
         : Promise.resolve();
-    void Promise.resolve(registration).catch(() => undefined);
-  }, [onFilterProjects, onNavigate, onPrefillContact]);
+    const usesUnregisterFallback = !context.registerTool;
+    let disposed = false;
+    let registrationSettled = false;
+    let unregistered = false;
+    const unregister = () => {
+      if (unregistered || !usesUnregisterFallback || !context.unregisterTool) return;
+      unregistered = true;
+      for (const tool of tools) {
+        void Promise.resolve(context.unregisterTool(tool.name)).catch(() => undefined);
+      }
+    };
+    void Promise.resolve(registration).then(
+      () => {
+        registrationSettled = true;
+        if (disposed) unregister();
+      },
+      () => {
+        registrationSettled = true;
+        if (disposed) unregister();
+      },
+    );
+    return () => {
+      disposed = true;
+      controller.abort();
+      if (registrationSettled) unregister();
+    };
+  }, []);
 
   return null;
 }

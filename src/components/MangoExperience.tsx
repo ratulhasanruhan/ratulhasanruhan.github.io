@@ -16,7 +16,7 @@ import {
 import ContactSoil from "@/components/ContactSoil";
 import TreeScene, { crownLayout, DESKTOP_TREE_OFFSET_X, DESKTOP_TREE_SCALE_X } from "@/components/TreeScene";
 import WeatherCanvas from "@/components/WeatherCanvas";
-import WebMcp from "@/components/WebMcp";
+import { setWebMcpHandlers } from "@/components/webmcp-actions";
 import {
   awards,
   branches,
@@ -948,6 +948,16 @@ export default function MangoExperience({
     [stopTour],
   );
 
+  useEffect(
+    () =>
+      setWebMcpHandlers({
+        onNavigate: navigateFromWebMcp,
+        onFilterProjects: filterProjectsFromWebMcp,
+        onPrefillContact: prefillContactFromWebMcp,
+      }),
+    [filterProjectsFromWebMcp, navigateFromWebMcp, prefillContactFromWebMcp],
+  );
+
   const branchButtons = branches.map((branch) => {
     const count = visibleItems.filter((item) => item.branch === branch.id).length;
     const isDimmed = selectedYear !== null && count === 0;
@@ -1242,11 +1252,6 @@ export default function MangoExperience({
         <span aria-hidden="true">⌕</span><span>{bangla ? "গাছ খুঁজুন" : "Search the tree"}</span>
       </button>
 
-      <WebMcp
-        onNavigate={navigateFromWebMcp}
-        onFilterProjects={filterProjectsFromWebMcp}
-        onPrefillContact={prefillContactFromWebMcp}
-      />
     </div>
     </MotionConfig>
   );
