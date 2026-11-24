@@ -906,6 +906,7 @@ export default function MangoExperience({
     setFocusedSlug(null);
     setHoveredSlug(null);
     setSelectedBranch(null);
+    setSelectedYear(null);
     setTourPaused(false);
     if (tourStartTimeoutRef.current !== null) {
       window.clearTimeout(tourStartTimeoutRef.current);
