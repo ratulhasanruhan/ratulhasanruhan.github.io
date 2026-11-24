@@ -3717,6 +3717,16 @@ kbd {
     padding: 0 10px;
   }
 
+  .tour-caption {
+    position: fixed;
+    z-index: 30;
+    right: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    left: 12px;
+    width: auto;
+    margin: 0;
+  }
+
   .tour-exit {
     font-size: 9px;
     padding: 0 4px;

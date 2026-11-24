@@ -686,7 +686,16 @@ export default function MangoExperience({
   const [tourIndex, setTourIndex] = useState<number | null>(null);
   const [tourPaused, setTourPaused] = useState(false);
   const [projectFilter, setProjectFilter] = useState("");
+  const treeStageRef = useRef<HTMLDivElement>(null);
+  const tourPauseButtonRef = useRef<HTMLButtonElement>(null);
+  const tourStartTimeoutRef = useRef<number | null>(null);
+  const focusTourPauseOnStartRef = useRef(false);
   const stopTour = useCallback(() => {
+    if (tourStartTimeoutRef.current !== null) {
+      window.clearTimeout(tourStartTimeoutRef.current);
+      tourStartTimeoutRef.current = null;
+    }
+    focusTourPauseOnStartRef.current = false;
     setTourIndex(null);
     setTourPaused(false);
   }, []);
@@ -783,6 +792,15 @@ export default function MangoExperience({
   }, [initialFocus, prefersReducedMotion]);
 
   useEffect(() => {
+    if (tourIndex === null || !focusTourPauseOnStartRef.current) return;
+    focusTourPauseOnStartRef.current = false;
+    const frame = window.requestAnimationFrame(() => {
+      tourPauseButtonRef.current?.focus({ preventScroll: true });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [tourIndex]);
+
+  useEffect(() => {
     if (tourIndex === null || tourPaused) return;
     const timeout = window.setTimeout(() => {
       if (tourIndex >= tourStops.length - 1) {
@@ -793,6 +811,12 @@ export default function MangoExperience({
     }, 5000);
     return () => window.clearTimeout(timeout);
   }, [stopTour, tourIndex, tourPaused]);
+
+  useEffect(() => () => {
+    if (tourStartTimeoutRef.current !== null) {
+      window.clearTimeout(tourStartTimeoutRef.current);
+    }
+  }, []);
 
   function nextTourStop() {
     if (tourIndex === null || tourIndex >= tourStops.length - 1) {
@@ -815,7 +839,11 @@ export default function MangoExperience({
         } else if (selectedBranch) {
           setSelectedBranch(null);
           restoreFocusRef.current?.focus();
-        } else if (tourIndex !== null) {
+        } else if (
+          tourIndex !== null ||
+          tourStartTimeoutRef.current !== null ||
+          focusTourPauseOnStartRef.current
+        ) {
           stopTour();
         }
       }
@@ -863,8 +891,19 @@ export default function MangoExperience({
     setFocusedSlug(null);
     setHoveredSlug(null);
     setSelectedBranch(null);
-    setTourIndex(0);
     setTourPaused(false);
+    if (tourStartTimeoutRef.current !== null) {
+      window.clearTimeout(tourStartTimeoutRef.current);
+    }
+    focusTourPauseOnStartRef.current = true;
+    treeStageRef.current?.scrollIntoView({
+      behavior: prefersReducedMotion ? "instant" : "smooth",
+      block: "center",
+    });
+    tourStartTimeoutRef.current = window.setTimeout(() => {
+      tourStartTimeoutRef.current = null;
+      setTourIndex(0);
+    }, prefersReducedMotion ? 0 : 400);
   }
 
   async function sharePage() {
@@ -1034,7 +1073,7 @@ export default function MangoExperience({
             </div>
           </div>
 
-          <div className="tree-stage">
+          <div className="tree-stage" ref={treeStageRef}>
             {!listView && (
               <>
                 <WeatherCanvas season={season} night={night} />
@@ -1201,6 +1240,7 @@ export default function MangoExperience({
               <div className="tour-caption-controls" key="tour-controls">
                 <button
                   type="button"
+                  ref={tourPauseButtonRef}
                   aria-label={tourPaused ? "Resume tour" : "Pause tour"}
                   onClick={() => setTourPaused((current) => !current)}
                 >
