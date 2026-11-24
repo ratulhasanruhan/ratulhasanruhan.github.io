@@ -5,7 +5,7 @@
 .journey {
   position: relative;
   overflow: hidden;
-  padding: clamp(84px, 12vh, 130px) 0 clamp(64px, 9vh, 100px);
+  padding: clamp(72px, 10vh, 110px) 0 clamp(56px, 8vh, 88px);
   background:
     radial-gradient(ellipse 70% 40% at 50% 0%, rgba(63, 174, 114, 0.22), transparent 70%),
     radial-gradient(ellipse 60% 30% at 50% 100%, rgba(244, 164, 44, 0.16), transparent 70%),
@@ -282,13 +282,41 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 14px 0;
+  padding: 8px 0;
+}
+
+@media (min-width: 761px) {
+  .road-stops {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .road-stop {
+    grid-column: 1;
+    grid-row: var(--row) / span 2;
+    align-self: start;
+    pointer-events: none;
+  }
+
+  .road-stop .road-card-wrap {
+    pointer-events: auto;
+  }
+
+  .road-stop.has-photo .road-card {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+  }
+
+  .road-stop.has-photo .road-card-photo {
+    aspect-ratio: auto;
+    min-height: 100%;
+  }
 }
 
 .road-pin {
   position: absolute;
   z-index: 2;
-  top: 46px;
+  top: 40px;
   left: calc(var(--road-x) + var(--wiggle) * var(--amp));
   display: grid;
   width: 36px;
@@ -311,44 +339,50 @@
 
 .road-year {
   position: absolute;
-  z-index: 1;
-  top: 12px;
-  font-family: "Instrument Serif", Georgia, serif;
-  font-size: clamp(48px, 6vw, 84px);
-  letter-spacing: -0.04em;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.07);
-  transition: color 500ms ease;
+  z-index: 2;
+  top: 40px;
+  padding: 3px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: var(--night);
+  color: rgba(243, 239, 228, 0.62);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  transform: translateY(-50%);
+  transition: color 400ms ease, border-color 400ms ease;
   pointer-events: none;
 }
 
 .road-stop-left .road-year {
-  left: calc(var(--road-x) + var(--amp) + 56px);
+  right: calc(100% - var(--road-x) - var(--wiggle) * var(--amp) + 28px);
 }
 
 .road-stop-right .road-year {
-  right: calc(100% - var(--road-x) + var(--amp) + 56px);
+  left: calc(var(--road-x) + var(--wiggle) * var(--amp) + 28px);
 }
 
 .road-stop.is-reached .road-year {
-  color: rgba(244, 164, 44, 0.32);
+  border-color: rgba(244, 164, 44, 0.5);
+  color: var(--mango-light);
 }
 
 .road-card-wrap {
   width: 100%;
-  max-width: calc(420px + var(--amp) + 52px);
+  max-width: calc(460px + var(--amp) + 84px);
 }
 
 .road-stop-left .road-card-wrap {
   grid-column: 1;
   justify-self: end;
-  padding-right: calc(var(--amp) + 52px);
+  padding-right: calc(var(--amp) + 84px);
 }
 
 .road-stop-right .road-card-wrap {
   grid-column: 2;
   justify-self: start;
-  padding-left: calc(var(--amp) + 52px);
+  padding-left: calc(var(--amp) + 84px);
 }
 
 .road-card {
@@ -399,8 +433,9 @@
 
 .road-card-body {
   display: grid;
-  gap: 6px;
-  padding: 16px 18px 18px;
+  align-content: start;
+  gap: 5px;
+  padding: 14px 16px 15px;
 }
 
 .road-card-meta {
@@ -456,7 +491,7 @@
 }
 
 .road-card-title {
-  font-size: 17.5px;
+  font-size: 16.5px;
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.3;
@@ -478,7 +513,7 @@
 }
 
 .road-card-open {
-  margin-top: 4px;
+  margin-top: 2px;
   color: #ffc96b;
   font-size: 13px;
   font-weight: 700;
@@ -489,7 +524,7 @@
   z-index: 1;
   display: flex;
   justify-content: center;
-  padding-top: 70px;
+  padding-top: 56px;
 }
 
 .road-finish-dot {
@@ -982,7 +1017,7 @@
   gap: 8px;
   padding: 24px;
   border-radius: 24px;
-  background: linear-gradient(150deg, var(--green-dark), #155a3f);
+  background: linear-gradient(150deg, var(--green-dark), var(--green-dark));
   color: #fffdf8;
   text-decoration: none;
   box-shadow: 0 20px 44px rgba(15, 61, 44, 0.25);
@@ -1391,7 +1426,7 @@
   }
 
   .road-pin {
-    top: 34px;
+    top: 30px;
     width: 30px;
     height: 30px;
   }
@@ -1407,9 +1442,20 @@
     right: auto !important;
     left: auto !important;
     grid-column: 1;
-    margin: 0 0 6px 52px;
-    font-size: 34px;
-    color: rgba(255, 255, 255, 0.16);
+    justify-self: start;
+    margin: 0 0 8px 52px;
+    transform: none;
+  }
+
+  .road-stop.has-photo .road-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 96px;
+  }
+
+  .road-stop.has-photo .road-card-photo {
+    order: 2;
+    aspect-ratio: auto;
+    min-height: 100%;
   }
 
   .road-stop-left .road-card-wrap,
@@ -1425,11 +1471,20 @@
   }
 
   .road-card-body {
-    padding: 13px 14px 15px;
+    padding: 12px 13px 13px;
   }
 
   .road-card-title {
     font-size: 16px;
+  }
+
+  .road-card-note,
+  .road-card-open {
+    display: none;
+  }
+
+  .road-stop {
+    padding: 6px 0;
   }
 
   .road-finish {

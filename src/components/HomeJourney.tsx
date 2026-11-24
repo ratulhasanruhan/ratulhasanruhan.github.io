@@ -319,7 +319,7 @@ export default function HomeJourney({ onContact }: { onContact: () => void }) {
           The road <em>so far.</em>
         </h2>
         <p>
-          From a school in Shariatpur to national stages. Scroll down the road: every stop opens the full story.
+          From a school in Shariatpur to national stages. Every stop opens the full story.
         </p>
       </div>
 
@@ -384,7 +384,7 @@ export default function HomeJourney({ onContact }: { onContact: () => void }) {
               <>
                 {stop.photo && (
                   <span className="road-card-photo">
-                    <Image src={stop.photo.src} alt={stop.photo.alt} fill sizes="(max-width: 760px) 80vw, 360px" loading="lazy" />
+                    <Image src={stop.photo.src} alt={stop.photo.alt} fill sizes="(max-width: 760px) 120px, 180px" loading="lazy" />
                   </span>
                 )}
                 <span className="road-card-body">
@@ -406,8 +406,8 @@ export default function HomeJourney({ onContact }: { onContact: () => void }) {
             return (
               <li
                 key={stop.id}
-                className={`road-stop road-stop-${side}${index < reached ? " is-reached" : ""}`}
-                style={{ "--wiggle": Math.sin(index * 1.15 + 0.6).toFixed(3) } as CSSProperties}
+                className={`road-stop road-stop-${side}${stop.photo ? " has-photo" : ""}${index < reached ? " is-reached" : ""}`}
+                style={{ "--wiggle": Math.sin(index * 1.15 + 0.6).toFixed(3), "--row": index + 1 } as CSSProperties}
               >
                 <span className="road-pin" data-road-pin aria-hidden="true">
                   <Icon size={14} strokeWidth={2.4} />
