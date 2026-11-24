@@ -806,8 +806,8 @@ export default function MangoExperience({
   );
   const [listModeOverride, setListModeOverride] = useState<boolean | null>(null);
   const listView = listModeOverride ?? (initialBranch || initialFocus ? false : storedListView);
-  const [growthSkipped, setGrowthSkipped] = useState(Boolean(initialBranch || initialFocus));
-  const [growthYear, setGrowthYear] = useState(2016);
+  const [growthSkipped, setGrowthSkipped] = useState(true);
+  const growthYear = 2016;
   const growthComplete = growthSkipped || prefersReducedMotion;
   const activeYear = growthSkipped || prefersReducedMotion ? null : selectedYear;
   const [searchOpen, setSearchOpen] = useState(false);
@@ -822,7 +822,6 @@ export default function MangoExperience({
   const [scrolled, setScrolled] = useState(false);
   const router = useRouter();
   const showHome = !initialBranch && !initialFocus;
-  const [orchardInView, setOrchardInView] = useState(!showHome);
   const treeStageRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLElement>(null);
   const menuTriggerRef = useRef<HTMLButtonElement>(null);
@@ -846,10 +845,6 @@ export default function MangoExperience({
   }, [stopTour]);
   const restoreFocusRef = useRef<HTMLElement | null>(null);
   const currentYear = useMemo(() => new Date().getFullYear(), []);
-  const ringYears = useMemo(
-    () => Array.from({ length: Math.max(currentYear - 2016 + 1, 1) }, (_, index) => 2016 + index),
-    [currentYear],
-  );
   const allItems = useMemo(() => getTreeItems(writings), [writings]);
   const visibleItems = useMemo(
     () => allItems.filter((item) => activeYear === null || item.year === null || item.year <= activeYear),
@@ -871,14 +866,6 @@ export default function MangoExperience({
     for (const item of allItems) counts[item.branch] += 1;
     return counts;
   }, [allItems]);
-  const heroStats = useMemo(
-    () => [
-      { label: "Projects shipped", value: branchCounts.projects },
-      { label: "Awards won", value: branchCounts.awards },
-      { label: "Years building", value: currentYear - 2016 },
-    ],
-    [branchCounts, currentYear],
-  );
   const highlightedBranches = useMemo(
     () => new Set(matchedSearchResults.map((item) => item.branch)),
     [matchedSearchResults],
@@ -913,52 +900,6 @@ export default function MangoExperience({
     : [];
 
   useEffect(() => {
-    if (orchardInView) return;
-    const stage = treeStageRef.current;
-    if (!stage) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setOrchardInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.35 },
-    );
-    observer.observe(stage);
-    return () => observer.disconnect();
-  }, [orchardInView]);
-
-  useEffect(() => {
-    if (prefersReducedMotion || growthSkipped || !orchardInView) return;
-    const timeout = window.setTimeout(() => {
-      if (growthYear >= currentYear) {
-        setSelectedYear(null);
-        setGrowthSkipped(true);
-      } else {
-        const nextYear = growthYear + 1;
-        setGrowthYear(nextYear);
-        setSelectedYear(nextYear);
-      }
-    }, Math.max(400, Math.round(6000 / ringYears.length)));
-    return () => window.clearTimeout(timeout);
-  }, [currentYear, growthSkipped, growthYear, orchardInView, prefersReducedMotion, ringYears.length]);
-
-  useEffect(() => {
-    if (growthComplete || !orchardInView) return;
-    const complete = () => {
-      setSelectedYear(null);
-      setGrowthSkipped(true);
-    };
-    window.addEventListener("pointerdown", complete, { once: true });
-    window.addEventListener("keydown", complete, { once: true });
-    return () => {
-      window.removeEventListener("pointerdown", complete);
-      window.removeEventListener("keydown", complete);
-    };
-  }, [growthComplete, orchardInView]);
-
-  useEffect(() => {
     if (!mobileMenuOpen && !aboutOpen) return;
     const previousOverflow = document.body.style.overflow;
     const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -982,7 +923,7 @@ export default function MangoExperience({
     const updateHeader = () => {
       setScrolled(window.scrollY > 60);
       let current = "home";
-      for (const id of ["journey", "featured", "writing", "education", "moments", "roots"]) {
+      for (const id of ["featured", "journey", "writing", "education", "moments", "roots"]) {
         const section = document.getElementById(id);
         if (section && section.getBoundingClientRect().top < window.innerHeight * 0.45) current = id;
       }
@@ -1290,8 +1231,8 @@ export default function MangoExperience({
 
   const headerLinks: { id: string; label: string; branch?: BranchId }[] = [
     { id: "home", label: "Home" },
-    { id: "journey", label: "Journey" },
     { id: "featured", label: "Work" },
+    { id: "journey", label: "Journey" },
     { id: "writing", label: "Writing" },
     { id: "education", label: "Education" },
     { id: "awards", label: "Awards", branch: "awards" },
@@ -1374,7 +1315,7 @@ export default function MangoExperience({
           <>
             <HomeHero
               branchCounts={branchCounts}
-              stats={heroStats}
+              yearsBuilding={currentYear - 2016}
               night={night}
               season={season}
               bangla={bangla}
@@ -1382,8 +1323,8 @@ export default function MangoExperience({
               onAbout={openAbout}
               onJump={goToSection}
             />
-            <HomeJourney onContact={goToContact} />
             <FeaturedWork />
+            <HomeJourney onContact={goToContact} />
             <WritingShelf writings={writings} onOpenAll={() => openBranch("writing")} />
             <EducationSection />
             <MomentsGallery />
@@ -1391,193 +1332,193 @@ export default function MangoExperience({
           </>
         )}
 
-        <section
-          id="orchard"
-          className={`orchard-hero${showHome ? " orchard-below" : ""}`}
-          aria-labelledby={showHome ? "orchard-title" : "hero-title"}
-        >
-          <div className="hero-copy">
-            <div className="hero-overline"><span className="overline-line" /> A living portfolio · Bangladesh</div>
-            {showHome ? (
-              <h2 id="orchard-title" className="orchard-title">A life in full <em>bloom.</em></h2>
-            ) : (
-              <h1 id="hero-title">A life in full <em>bloom.</em></h1>
-            )}
-            <p className="hero-deck">
-              I&apos;m Ratul — a software engineer and systems researcher. My work grows across projects,
-              people, ideas, and time.
-            </p>
-            <div className="hero-note">
-              <span className="note-spark" aria-hidden="true">✳</span>
-              <span>Bangladesh&apos;s national tree is the mango. <strong>So this is my kind of family tree.</strong></span>
-            </div>
-          </div>
-
-          <div className="tree-stage" ref={treeStageRef}>
-            {!listView && (
-              <>
-                <WeatherCanvas season={season} night={night} />
-                <TreeScene
-                  season={season}
-                  night={night}
-                  selectedYear={activeYear}
-                  focusBranch={currentTourStop?.branch ?? selectedBranch ?? initialFocusedItem?.branch}
-                  expandedBranch={selectedBranch}
-                  focusedSlug={focusedItem?.slug ?? null}
-                  highlightedBranches={highlightedBranches}
-                  writings={writings}
-                  freshBuds={freshBuds}
-                  onSelectBranch={openBranch}
-                  onItemHover={setHoveredSlug}
-                />
-                {focusedItem && selectedBranch && (
-                  <svg className="relationship-threads" viewBox="0 0 1600 1040" aria-hidden="true">
-                    <defs>
-                      <filter id="thread-glow">
-                        <feGaussianBlur stdDeviation="5" result="blur" />
-                        <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                      </filter>
-                    </defs>
-                    <g transform={`matrix(1.12 0 0 1.12 ${Math.round(desktopTreeX(crownLayout[selectedBranch].cx) * -0.12)} ${Math.round(crownLayout[selectedBranch].cy * -0.12)})`}>
-                      {focusedItem.relatedSlugs?.map((slug) => {
-                        const target = allItems.find((item) => item.slug === slug);
-                        const sourcePosition = crownLayout[focusedItem.branch];
-                        const targetPosition = target ? crownLayout[target.branch] : crownLayout.awards;
-                        return (
-                          <path
-                            key={slug}
-                            d={`M${desktopTreeX(sourcePosition.cx)} ${sourcePosition.cy} Q${desktopTreeX(800)} 520 ${desktopTreeX(targetPosition.cx)} ${targetPosition.cy}`}
-                          />
-                        );
-                      })}
-                    </g>
-                  </svg>
-                )}
-              </>
-            )}
-
-            {!listView && (
-              <button className="trunk-portrait" type="button" onClick={openAbout} aria-label="About Ratul Hasan Ruhan">
-                <Image src={profile.portrait} alt="" width={92} height={92} priority />
-                <span className="portrait-open-label">About</span>
-              </button>
-            )}
-
-            <div className="scene-caption scene-caption-right">
-              <span>Dhaka, Bangladesh</span><span className="compass">N</span>
-            </div>
-
-            {!listView && (
-              <div className="desktop-branch-labels" role="group" aria-label="Explore the six tree branches">
-                {branchButtons}
-              </div>
-            )}
-
-            {!listView && (
-              <output className="growth-year-counter" aria-live="polite">
-                {growthComplete ? `Since 2016 · ${allItems.length} things grown` : growthYear}
-              </output>
-            )}
-
-            {!listView && (
-              <div className="growth-intro" aria-hidden={growthComplete}>
-                <span className="growth-seed" />
-                <span className="growth-intro-copy">A little growth first…</span>
-                {!growthComplete && (
-                  <button type="button" onClick={() => {
-                    setSelectedYear(null);
-                    setGrowthSkipped(true);
-                  }}>Skip</button>
-                )}
-              </div>
-            )}
-
-          </div>
-
-          {!listView && (
-            <div className="tree-control-dock">
-              <div className="tour-actions">
-                <div className="tour-buttons">
-                  <button className="tour-start" type="button" onClick={startTour}>
-                    {bangla ? "৩০ সেকেন্ডের ভ্রমণ" : "Take the 30-second tour"} <span aria-hidden="true">→</span>
-                  </button>
-                </div>
-                <button className="share-leaf" type="button" onClick={sharePage}>
-                  {bangla ? "শেয়ার" : "Share"} <span aria-hidden="true">↗</span>
-                </button>
-              </div>
-            </div>
-          )}
-
-          {!listView && (
-            <div className="mobile-branch-grid" role="group" aria-label="Explore the six tree branches">
-              {branches.map((branch) => (
-                <button
-                  className={`mobile-branch mobile-branch-${branch.id}${
-                    highlightedBranches.has(branch.id) ? " branch-search-hit" : ""
-                  }`}
-                  type="button"
-                  key={branch.id}
-                  aria-expanded={selectedBranch === branch.id}
-                  onClick={() => openBranch(branch.id)}
-                >
-                  <span className="mobile-branch-mark" aria-hidden="true" />
-                  <span>{bangla ? branch.bangla : branch.label}</span>
-                  <small>
-                    {visibleItems.filter((item) => item.branch === branch.id).length} {bangla ? "টি পাতা" : "leaves"}
-                  </small>
-                </button>
-              ))}
-            </div>
-          )}
-
-          {currentTourStop && (
-            <motion.div
-              className="tour-caption"
-              role="group"
-              aria-label={bangla ? "নির্দেশিত ভ্রমণ" : "Guided tour"}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
+        {!showHome && (
+          <>
+            <section
+              id="orchard"
+              className="orchard-hero"
+              aria-labelledby="hero-title"
             >
-              <motion.span
-                className="tour-caption-step"
-                key={`step-${currentTourStop.branch}`}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                0{(tourIndex ?? 0) + 1} / 06
-              </motion.span>
-              <motion.div
-                className="tour-caption-copy"
-                key={`copy-${currentTourStop.branch}`}
-                aria-live="polite"
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                <strong>{currentTourStop.caption}</strong><p>{currentTourStop.subcaption}</p>
-              </motion.div>
-              {tourPaused && <span className="tour-paused">{bangla ? "বিরতি" : "Paused"}</span>}
-              <div className="tour-caption-controls" key="tour-controls">
-                <button
-                  type="button"
-                  ref={tourPauseButtonRef}
-                  aria-label={tourPaused ? "Resume tour" : "Pause tour"}
-                  onClick={() => setTourPaused((current) => !current)}
-                >
-                  {tourPaused ? (bangla ? "চালু" : "Resume") : (bangla ? "বিরতি" : "Pause")}
-                </button>
-                <button type="button" onClick={nextTourStop}>{bangla ? "পরবর্তী" : "Next"}</button>
-                <button type="button" onClick={stopTour}>{bangla ? "শেষ" : "Exit"}</button>
+              <div className="hero-copy">
+                <div className="hero-overline"><span className="overline-line" /> A living portfolio · Bangladesh</div>
+                <h1 id="hero-title">A life in full <em>bloom.</em></h1>
+                <p className="hero-deck">
+                  I&apos;m Ratul — a software engineer and systems researcher. My work grows across projects,
+                  people, ideas, and time.
+                </p>
+                <div className="hero-note">
+                  <span className="note-spark" aria-hidden="true">✳</span>
+                  <span>Bangladesh&apos;s national tree is the mango. <strong>So this is my kind of family tree.</strong></span>
+                </div>
               </div>
-            </motion.div>
-          )}
-        </section>
 
-        <section className="tree-guide" aria-label="How to explore the tree">
-          <p><span className="guide-icon" aria-hidden="true">↗</span> Choose a branch to explore each collection.</p>
-          <p><span className="guide-icon" aria-hidden="true">⌕</span> Search by title or story, even without accents.</p>
-          <p><span className="guide-icon" aria-hidden="true">◉</span> Watch the rings trace each year of the tree.</p>
-        </section>
+              <div className="tree-stage" ref={treeStageRef}>
+                {!listView && (
+                  <>
+                    <WeatherCanvas season={season} night={night} />
+                    <TreeScene
+                      season={season}
+                      night={night}
+                      selectedYear={activeYear}
+                      focusBranch={currentTourStop?.branch ?? selectedBranch ?? initialFocusedItem?.branch}
+                      expandedBranch={selectedBranch}
+                      focusedSlug={focusedItem?.slug ?? null}
+                      highlightedBranches={highlightedBranches}
+                      writings={writings}
+                      freshBuds={freshBuds}
+                      onSelectBranch={openBranch}
+                      onItemHover={setHoveredSlug}
+                    />
+                    {focusedItem && selectedBranch && (
+                      <svg className="relationship-threads" viewBox="0 0 1600 1040" aria-hidden="true">
+                        <defs>
+                          <filter id="thread-glow">
+                            <feGaussianBlur stdDeviation="5" result="blur" />
+                            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                          </filter>
+                        </defs>
+                        <g transform={`matrix(1.12 0 0 1.12 ${Math.round(desktopTreeX(crownLayout[selectedBranch].cx) * -0.12)} ${Math.round(crownLayout[selectedBranch].cy * -0.12)})`}>
+                          {focusedItem.relatedSlugs?.map((slug) => {
+                            const target = allItems.find((item) => item.slug === slug);
+                            const sourcePosition = crownLayout[focusedItem.branch];
+                            const targetPosition = target ? crownLayout[target.branch] : crownLayout.awards;
+                            return (
+                              <path
+                                key={slug}
+                                d={`M${desktopTreeX(sourcePosition.cx)} ${sourcePosition.cy} Q${desktopTreeX(800)} 520 ${desktopTreeX(targetPosition.cx)} ${targetPosition.cy}`}
+                              />
+                            );
+                          })}
+                        </g>
+                      </svg>
+                    )}
+                  </>
+                )}
+
+                {!listView && (
+                  <button className="trunk-portrait" type="button" onClick={openAbout} aria-label="About Ratul Hasan Ruhan">
+                    <Image src={profile.portrait} alt="" width={92} height={92} priority />
+                    <span className="portrait-open-label">About</span>
+                  </button>
+                )}
+
+                <div className="scene-caption scene-caption-right">
+                  <span>Dhaka, Bangladesh</span><span className="compass">N</span>
+                </div>
+
+                {!listView && (
+                  <div className="desktop-branch-labels" role="group" aria-label="Explore the six tree branches">
+                    {branchButtons}
+                  </div>
+                )}
+
+                {!listView && (
+                  <output className="growth-year-counter" aria-live="polite">
+                    {growthComplete ? `Since 2016 · ${allItems.length} things grown` : growthYear}
+                  </output>
+                )}
+
+                {!listView && (
+                  <div className="growth-intro" aria-hidden={growthComplete}>
+                    <span className="growth-seed" />
+                    <span className="growth-intro-copy">A little growth first…</span>
+                    {!growthComplete && (
+                      <button type="button" onClick={() => {
+                        setSelectedYear(null);
+                        setGrowthSkipped(true);
+                      }}>Skip</button>
+                    )}
+                  </div>
+                )}
+
+              </div>
+
+              {!listView && (
+                <div className="tree-control-dock">
+                  <div className="tour-actions">
+                    <div className="tour-buttons">
+                      <button className="tour-start" type="button" onClick={startTour}>
+                        {bangla ? "৩০ সেকেন্ডের ভ্রমণ" : "Take the 30-second tour"} <span aria-hidden="true">→</span>
+                      </button>
+                    </div>
+                    <button className="share-leaf" type="button" onClick={sharePage}>
+                      {bangla ? "শেয়ার" : "Share"} <span aria-hidden="true">↗</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {!listView && (
+                <div className="mobile-branch-grid" role="group" aria-label="Explore the six tree branches">
+                  {branches.map((branch) => (
+                    <button
+                      className={`mobile-branch mobile-branch-${branch.id}${
+                        highlightedBranches.has(branch.id) ? " branch-search-hit" : ""
+                      }`}
+                      type="button"
+                      key={branch.id}
+                      aria-expanded={selectedBranch === branch.id}
+                      onClick={() => openBranch(branch.id)}
+                    >
+                      <span className="mobile-branch-mark" aria-hidden="true" />
+                      <span>{bangla ? branch.bangla : branch.label}</span>
+                      <small>
+                        {visibleItems.filter((item) => item.branch === branch.id).length} {bangla ? "টি পাতা" : "leaves"}
+                      </small>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {currentTourStop && (
+                <motion.div
+                  className="tour-caption"
+                  role="group"
+                  aria-label={bangla ? "নির্দেশিত ভ্রমণ" : "Guided tour"}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  <motion.span
+                    className="tour-caption-step"
+                    key={`step-${currentTourStop.branch}`}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    0{(tourIndex ?? 0) + 1} / 06
+                  </motion.span>
+                  <motion.div
+                    className="tour-caption-copy"
+                    key={`copy-${currentTourStop.branch}`}
+                    aria-live="polite"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    <strong>{currentTourStop.caption}</strong><p>{currentTourStop.subcaption}</p>
+                  </motion.div>
+                  {tourPaused && <span className="tour-paused">{bangla ? "বিরতি" : "Paused"}</span>}
+                  <div className="tour-caption-controls" key="tour-controls">
+                    <button
+                      type="button"
+                      ref={tourPauseButtonRef}
+                      aria-label={tourPaused ? "Resume tour" : "Pause tour"}
+                      onClick={() => setTourPaused((current) => !current)}
+                    >
+                      {tourPaused ? (bangla ? "চালু" : "Resume") : (bangla ? "বিরতি" : "Pause")}
+                    </button>
+                    <button type="button" onClick={nextTourStop}>{bangla ? "পরবর্তী" : "Next"}</button>
+                    <button type="button" onClick={stopTour}>{bangla ? "শেষ" : "Exit"}</button>
+                  </div>
+                </motion.div>
+              )}
+            </section>
+
+            <section className="tree-guide" aria-label="How to explore the tree">
+              <p><span className="guide-icon" aria-hidden="true">↗</span> Choose a branch to explore each collection.</p>
+              <p><span className="guide-icon" aria-hidden="true">⌕</span> Search by title or story, even without accents.</p>
+              <p><span className="guide-icon" aria-hidden="true">◉</span> Watch the rings trace each year of the tree.</p>
+            </section>
+          </>
+        )}
 
         {children}
 
@@ -1587,7 +1528,7 @@ export default function MangoExperience({
           !showHome && <FreshGarden writings={writings} repositories={repositories} />
         )}
 
-        <ContactSoil bangla={bangla} />
+        <ContactSoil bangla={bangla} compact={showHome} />
       </main>
 
       {selectedBranch && !listView && (
@@ -1618,11 +1559,11 @@ export default function MangoExperience({
         <button className={!selectedBranch && activeSection === "home" ? "tab-active" : ""} aria-current={!selectedBranch && activeSection === "home" ? "page" : undefined} type="button" onClick={goToTree}>
           <House size={19} aria-hidden="true" /><span>Home</span>
         </button>
-        <button className={!selectedBranch && activeSection === "journey" ? "tab-active" : ""} aria-current={!selectedBranch && activeSection === "journey" ? "location" : undefined} type="button" onClick={() => goToSection("journey")}>
-          <Signpost size={19} aria-hidden="true" /><span>Journey</span>
-        </button>
         <button className={!selectedBranch && activeSection === "featured" ? "tab-active" : ""} aria-current={!selectedBranch && activeSection === "featured" ? "location" : undefined} type="button" onClick={() => goToSection("featured")}>
           <FolderKanban size={19} aria-hidden="true" /><span>Work</span>
+        </button>
+        <button className={!selectedBranch && activeSection === "journey" ? "tab-active" : ""} aria-current={!selectedBranch && activeSection === "journey" ? "location" : undefined} type="button" onClick={() => goToSection("journey")}>
+          <Signpost size={19} aria-hidden="true" /><span>Journey</span>
         </button>
         <button className={!selectedBranch && activeSection === "writing" ? "tab-active" : ""} aria-current={!selectedBranch && activeSection === "writing" ? "location" : undefined} type="button" onClick={() => goToSection("writing")}>
           <PenLine size={19} aria-hidden="true" /><span>Writing</span>

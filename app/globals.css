@@ -43,6 +43,10 @@
   --mango: #f4a42c;
   --coral: #e8613c;
   --night: #0a2219;
+  --mango-light: #ffd27a;
+  --mango-deep: #a8610f;
+  --sky: #5aa9ff;
+  --rose: #ff6fa5;
   --line: rgba(20, 32, 26, 0.11);
   --shadow: 0 26px 80px rgba(15, 61, 44, 0.14);
   font-family: "DM Sans", "Noto Sans Bengali", sans-serif;
@@ -1786,6 +1790,12 @@ kbd {
   margin: 55px 0 0;
   border-top: 1px solid rgba(76, 73, 53, 0.17);
   padding: 39px 0 48px;
+}
+
+.soil-compact .craft-panel {
+  margin-top: 0;
+  border-top: 0;
+  padding-top: 16px;
 }
 
 .craft-heading {
