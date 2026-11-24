@@ -82,6 +82,17 @@ export interface EventPhoto {
   height: number;
 }
 
+export interface LinkedInPost {
+  slug: string;
+  title: string;
+  date: string;
+  tag: "award" | "event" | "community" | "project" | "announcement";
+  gallery: boolean;
+  caption: string;
+  postUrl: string;
+  photos: EventPhoto[];
+}
+
 export interface PortfolioEvent {
   slug: string;
   event: string;

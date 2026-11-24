@@ -17,7 +17,7 @@ const socialNames: Record<string, string> = {
   "https://ratulhasan.link": "Website",
 };
 
-export default function ContactSoil({ bangla = false }: { bangla?: boolean }) {
+export default function ContactSoil({ bangla = false, compact = false }: { bangla?: boolean; compact?: boolean }) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [seedState, setSeedState] = useState<"idle" | "falling" | "sprout">("idle");
 
@@ -44,39 +44,43 @@ export default function ContactSoil({ bangla = false }: { bangla?: boolean }) {
   }
 
   return (
-    <section className="soil-section" id="roots" aria-labelledby="roots-title">
+    <section className={`soil-section${compact ? " soil-compact" : ""}`} id="roots" aria-labelledby={compact ? "craft-title" : "roots-title"}>
       <div className="soil-section-inner">
-        <div className="section-eyebrow"><span /> {bangla ? "ছায়ার নিচে" : "Beneath the canopy"}</div>
-        <div className="soil-heading">
-          <p className="eyebrow-kicker">{bangla ? "শুরুটা যেখানে" : "Where it all began"}</p>
-          <h2 id="roots-title">{bangla ? <>শক্ত শিকড়। <em>খোলা মাটি।</em></> : <>Strong roots. <em>Open ground.</em></>}</h2>
-          <p className="soil-intro">
-            {bangla
-              ? "আগের অভিজ্ঞতার ওপর ভর করেই গাছ বেড়ে ওঠে। এই জায়গাগুলোই আমার পথ গড়েছে।"
-              : "A tree grows because of what came before it. These are the places that shaped my path."}
-          </p>
-        </div>
+        {!compact && (
+          <>
+            <div className="section-eyebrow"><span /> {bangla ? "ছায়ার নিচে" : "Beneath the canopy"}</div>
+            <div className="soil-heading">
+              <p className="eyebrow-kicker">{bangla ? "শুরুটা যেখানে" : "Where it all began"}</p>
+              <h2 id="roots-title">{bangla ? <>শক্ত শিকড়। <em>খোলা মাটি।</em></> : <>Strong roots. <em>Open ground.</em></>}</h2>
+              <p className="soil-intro">
+                {bangla
+                  ? "আগের অভিজ্ঞতার ওপর ভর করেই গাছ বেড়ে ওঠে। এই জায়গাগুলোই আমার পথ গড়েছে।"
+                  : "A tree grows because of what came before it. These are the places that shaped my path."}
+              </p>
+            </div>
 
-        <div className="root-map">
-          <svg viewBox="0 0 1000 190" aria-hidden="true">
-            <path d="M500 0v34c0 34-82 34-82 75v76M500 34c0 34 82 34 82 75v76M500 34v151M418 109c-72 0-108 10-108 76M582 109c72 0 108 10 108 76" />
-            <path d="M500 0v34c0 34-82 34-82 75v76M500 34c0 34 82 34 82 75v76M500 34v151M418 109c-72 0-108 10-108 76M582 109c72 0 108 10 108 76" />
-          </svg>
-          {education.map((school, index) => (
-            <article className={`root-card root-card-${index + 1}`} key={school.title}>
-              <span className="root-year">{school.tenure}</span>
-              <h3>{school.title}</h3>
-              <p>{school.organization}</p>
-            </article>
-          ))}
-        </div>
+            <div className="root-map">
+              <svg viewBox="0 0 1000 190" aria-hidden="true">
+                <path d="M500 0v34c0 34-82 34-82 75v76M500 34c0 34 82 34 82 75v76M500 34v151M418 109c-72 0-108 10-108 76M582 109c72 0 108 10 108 76" />
+                <path d="M500 0v34c0 34-82 34-82 75v76M500 34c0 34 82 34 82 75v76M500 34v151M418 109c-72 0-108 10-108 76M582 109c72 0 108 10 108 76" />
+              </svg>
+              {education.map((school, index) => (
+                <article className={`root-card root-card-${index + 1}`} key={school.title}>
+                  <span className="root-year">{school.tenure}</span>
+                  <h3>{school.title}</h3>
+                  <p>{school.organization}</p>
+                </article>
+              ))}
+            </div>
+          </>
+        )}
 
         <div className="craft-panel">
           <div className="craft-heading">
             <span className="craft-stamp">{bangla ? <>কাজের<br />নোট</> : <>FIELD<br />NOTES</>}</span>
             <div>
               <p className="eyebrow-kicker">{bangla ? "কাজে যা নিয়ে আসি" : "What I bring to the work"}</p>
-              <h2>{bangla ? <>কৌতূহল, <em>কাজে লাগাই।</em></> : <>Curiosity, <em>made useful.</em></>}</h2>
+              <h2 id="craft-title">{bangla ? <>কৌতূহল, <em>কাজে লাগাই।</em></> : <>Curiosity, <em>made useful.</em></>}</h2>
             </div>
           </div>
           <div className="expertise-grid">
@@ -88,19 +92,21 @@ export default function ContactSoil({ bangla = false }: { bangla?: boolean }) {
               </article>
             ))}
           </div>
-          <div className="skill-groups">
-            {skillGroups.map((group) => (
-              <section className="skill-group" key={group.category}>
-                <div>
-                  <h3>{group.category}</h3>
-                  <p>{group.description}</p>
-                </div>
-                <ul className="skill-pills">
-                  {group.technologies.map((technology) => <li key={technology}>{technology}</li>)}
-                </ul>
-              </section>
-            ))}
-          </div>
+          {!compact && (
+            <div className="skill-groups">
+              {skillGroups.map((group) => (
+                <section className="skill-group" key={group.category}>
+                  <div>
+                    <h3>{group.category}</h3>
+                    <p>{group.description}</p>
+                  </div>
+                  <ul className="skill-pills">
+                    {group.technologies.map((technology) => <li key={technology}>{technology}</li>)}
+                  </ul>
+                </section>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="contact-ground" id="contact">

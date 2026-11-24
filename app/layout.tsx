@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import WebMcp from "@/components/WebMcp";
 import profile from "@/data/profile.snapshot.json";
 import "./globals.css";
+import "./home.css";
+import "./sections.css";
 
 const siteUrl = "https://also.ratulruhan.cv";
 const title = "Ratul Hasan Ruhan | Software Engineer & Creator of Ojogor";
@@ -76,7 +78,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f1eadb",
+  themeColor: "#f7f3ea",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
