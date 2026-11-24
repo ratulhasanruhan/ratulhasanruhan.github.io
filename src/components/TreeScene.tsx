@@ -19,6 +19,7 @@ function getViewportWidth() {
 const getServerViewportWidth = () => 1440;
 
 type Point = { x: number; y: number };
+type YearedItem = { year: number | null };
 type TreeLobe = {
   id: BranchId;
   cx: number;
@@ -30,6 +31,12 @@ type TreeLobe = {
   leader: { from: Point; to: Point };
   hit: { x: number; y: number; width: number; height: number };
 };
+
+function filterBySelectedYear<T extends YearedItem>(items: T[], selectedYear: number | null) {
+  return selectedYear === null
+    ? items
+    : items.filter((item) => item.year === null || item.year <= selectedYear);
+}
 
 export const crownLayout: Record<BranchId, TreeLobe> = {
   projects: {
@@ -367,12 +374,13 @@ const soilGrain = Array.from({ length: 58 }, (_, index) => {
 export interface TreeSceneProps {
   season: string;
   night: boolean;
+  selectedYear?: number | null;
   focusBranch?: BranchId | null;
   expandedBranch?: BranchId | null;
   focusedSlug?: string | null;
   highlightedBranches: Set<BranchId>;
   writings: Writing[];
-  freshBuds: { title: string; href: string; external?: boolean }[];
+  freshBuds: { title: string; href: string; external?: boolean; year: number | null }[];
   onSelectBranch: (branch: BranchId) => void;
   onItemHover: (slug: string | null) => void;
 }
@@ -380,6 +388,7 @@ export interface TreeSceneProps {
 function TreeScene({
   season,
   night,
+  selectedYear = null,
   focusBranch,
   expandedBranch,
   focusedSlug,
@@ -406,7 +415,14 @@ function TreeScene({
     : isMobileScene
       ? undefined
       : `matrix(${DESKTOP_TREE_SCALE_X} 0 0 1 ${DESKTOP_TREE_OFFSET_X} 0)`;
-  const treeExperience = [...experience, ...certifications];
+  const visibleProjects = filterBySelectedYear(projects, selectedYear);
+  const visibleAwards = filterBySelectedYear(awards, selectedYear);
+  const visibleCommunities = filterBySelectedYear(communities, selectedYear);
+  const visibleResearch = filterBySelectedYear(researchItems, selectedYear);
+  const visibleWritings = filterBySelectedYear(writings, selectedYear);
+  const treeExperience = filterBySelectedYear([...experience, ...certifications], selectedYear);
+  const visibleFreshBuds = filterBySelectedYear(freshBuds, selectedYear);
+  const visibleMediaCoverage = filterBySelectedYear(mediaCoverage, selectedYear);
 
   function itemEvents(slug: string) {
     return {
@@ -644,8 +660,8 @@ function TreeScene({
 
           <g className="tree-items">
             <g className="project-tokens">
-              {projects.map((project, index) => {
-                const point = pointForItem("projects", index, projects.length);
+              {visibleProjects.map((project, index) => {
+                const point = pointForItem("projects", index, visibleProjects.length);
                 return (
                   <a
                     key={project.slug}
@@ -664,8 +680,8 @@ function TreeScene({
               })}
             </g>
             <g className="award-tokens">
-              {awards.map((award, index) => {
-                const point = pointForItem("awards", index, awards.length);
+              {visibleAwards.map((award, index) => {
+                const point = pointForItem("awards", index, visibleAwards.length);
                 return (
                   <a
                     key={award.slug}
@@ -686,8 +702,8 @@ function TreeScene({
               })}
             </g>
             <g className="community-tokens">
-              {communities.map((community, index) => {
-                const point = pointForItem("communities", index, communities.length);
+              {visibleCommunities.map((community, index) => {
+                const point = pointForItem("communities", index, visibleCommunities.length);
                 return (
                   <a
                     key={community.slug}
@@ -719,8 +735,8 @@ function TreeScene({
               })}
             </g>
             <g className="research-tokens">
-              {researchItems.map((item, index) => {
-                const point = pointForItem("research", index, researchItems.length);
+              {visibleResearch.map((item, index) => {
+                const point = pointForItem("research", index, visibleResearch.length);
                 return (
                   <a
                     key={item.slug}
@@ -739,8 +755,8 @@ function TreeScene({
               })}
             </g>
             <g className="writing-tokens">
-              {writings.map((writing, index) => {
-                const point = pointForItem("writing", index, writings.length);
+              {visibleWritings.map((writing, index) => {
+                const point = pointForItem("writing", index, visibleWritings.length);
                 return (
                   <a
                     key={writing.slug}
@@ -780,8 +796,8 @@ function TreeScene({
               })}
             </g>
             <g className="fresh-growth-buds">
-              {freshBuds.map((bud, index) => {
-                const point = pointForItem("writing", index + writings.length, writings.length + freshBuds.length);
+              {visibleFreshBuds.map((bud, index) => {
+                const point = pointForItem("writing", index + visibleWritings.length, visibleWritings.length + visibleFreshBuds.length);
                 return (
                   <a
                     key={`${bud.href}-${index}`}
@@ -801,7 +817,7 @@ function TreeScene({
               })}
             </g>
             <g className="press-birds">
-              {mediaCoverage.slice(0, 4).map((story, index) => {
+              {visibleMediaCoverage.slice(0, 4).map((story, index) => {
                 const points = [
                   { x: 545, y: 302 },
                   { x: 1055, y: 302 },

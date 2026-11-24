@@ -725,11 +725,12 @@ export default function MangoExperience({
       ...[...writings]
         .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
         .slice(0, 3)
-        .map((item) => ({ title: item.title, href: itemHref(item) })),
+        .map((item) => ({ title: item.title, href: itemHref(item), year: item.year })),
       ...repositories.slice(0, 6).map((repository) => ({
         title: repository.name,
         href: repository.url,
         external: true,
+        year: Number.parseInt(repository.updatedAt.slice(0, 4), 10) || null,
       })),
     ],
     [repositories, writings],
@@ -1030,6 +1031,7 @@ export default function MangoExperience({
                 <TreeScene
                   season={season}
                   night={night}
+                  selectedYear={selectedYear}
                   focusBranch={currentTourStop?.branch ?? selectedBranch ?? initialFocusedItem?.branch}
                   expandedBranch={selectedBranch}
                   focusedSlug={focusedItem?.slug ?? null}
