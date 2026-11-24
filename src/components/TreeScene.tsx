@@ -368,6 +368,7 @@ export interface TreeSceneProps {
   season: string;
   night: boolean;
   focusBranch?: BranchId | null;
+  expandedBranch?: BranchId | null;
   highlightedBranches: Set<BranchId>;
   writings: Writing[];
   freshBuds: { title: string; href: string; external?: boolean }[];
@@ -379,6 +380,7 @@ function TreeScene({
   season,
   night,
   focusBranch,
+  expandedBranch,
   highlightedBranches,
   writings,
   freshBuds,
@@ -609,7 +611,7 @@ function TreeScene({
                       className="crown-hit"
                       type="button"
                       aria-label={`Explore ${label} branch`}
-                      aria-expanded={focusBranch === branch}
+                      aria-expanded={expandedBranch === branch}
                       aria-controls="branch-panel"
                       onClick={() => onSelectBranch(branch)}
                     />

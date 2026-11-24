@@ -985,21 +985,34 @@ kbd {
 }
 
 .tour-caption {
-  display: flex;
-  margin: 18px 0;
-  align-items: flex-start;
-  gap: 14px;
+  position: absolute;
+  z-index: 11;
+  bottom: clamp(92px, 10vh, 120px);
+  left: clamp(18px, 3vw, 42px);
+  display: grid;
+  width: min(480px, calc(100% - 36px));
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 6px 14px;
   border: 1px solid rgba(172, 133, 71, 0.26);
   border-radius: 16px;
   background: #f4ead3;
-  padding: 14px 17px;
+  margin: 0;
+  padding: 12px 14px;
+  pointer-events: auto;
 }
 
 .tour-caption-step {
+  grid-column: 1;
   flex: 0 0 auto;
   color: #9c7037;
   font-size: 10px;
   font-weight: 800;
+}
+
+.tour-caption-copy {
+  grid-column: 2;
+  min-width: 0;
 }
 
 .tour-caption strong {
@@ -1016,10 +1029,44 @@ kbd {
 }
 
 .tour-paused {
-  margin-left: auto;
+  grid-column: 1 / -1;
   color: #85643b;
   font-size: 10px;
   font-weight: 700;
+}
+
+.tour-caption-controls {
+  display: flex;
+  grid-column: 1 / -1;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.tour-caption-controls button {
+  min-height: 30px;
+  border: 1px solid rgba(87, 90, 62, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.62);
+  color: #4c513d;
+  font-size: 10px;
+  padding: 0 11px;
+  cursor: pointer;
+}
+
+.tour-caption-controls button:focus-visible {
+  outline: 2px solid #7b8c57;
+  outline-offset: 2px;
+}
+
+@media (max-width: 960px) {
+  .tour-caption {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    width: auto;
+    margin: 12px;
+  }
 }
 
 .tree-guide {

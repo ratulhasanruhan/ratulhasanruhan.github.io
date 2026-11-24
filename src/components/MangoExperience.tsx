@@ -686,6 +686,14 @@ export default function MangoExperience({
   const [tourIndex, setTourIndex] = useState<number | null>(null);
   const [tourPaused, setTourPaused] = useState(false);
   const [projectFilter, setProjectFilter] = useState("");
+  const stopTour = useCallback(() => {
+    setTourIndex(null);
+    setTourPaused(false);
+  }, []);
+  const openSearch = useCallback(() => {
+    stopTour();
+    setSearchOpen(true);
+  }, [stopTour]);
   const restoreFocusRef = useRef<HTMLElement | null>(null);
   const currentYear = useMemo(() => new Date().getFullYear(), []);
   const ringYears = useMemo(
@@ -762,22 +770,28 @@ export default function MangoExperience({
     if (tourIndex === null || tourPaused) return;
     const timeout = window.setTimeout(() => {
       if (tourIndex >= tourStops.length - 1) {
-        setTourIndex(null);
-        setSelectedBranch(null);
+        stopTour();
       } else {
-        const nextIndex = tourIndex + 1;
-        setTourIndex(nextIndex);
-        setSelectedBranch(tourStops[nextIndex].branch);
+        setTourIndex(tourIndex + 1);
       }
     }, 5000);
     return () => window.clearTimeout(timeout);
-  }, [tourIndex, tourPaused]);
+  }, [stopTour, tourIndex, tourPaused]);
+
+  function nextTourStop() {
+    if (tourIndex === null || tourIndex >= tourStops.length - 1) {
+      stopTour();
+      return;
+    }
+    setTourIndex(tourIndex + 1);
+    setTourPaused(false);
+  }
 
   useEffect(() => {
     function handleKeydown(event: KeyboardEvent) {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
-        setSearchOpen(true);
+        openSearch();
       }
       if (event.key === "Escape") {
         if (searchOpen) {
@@ -786,8 +800,7 @@ export default function MangoExperience({
           setSelectedBranch(null);
           restoreFocusRef.current?.focus();
         } else if (tourIndex !== null) {
-          setTourIndex(null);
-          setTourPaused(false);
+          stopTour();
         }
       }
       if (!event.metaKey && !event.ctrlKey && !event.altKey && event.key.length === 1) {
@@ -801,11 +814,13 @@ export default function MangoExperience({
     }
     window.addEventListener("keydown", handleKeydown);
     return () => window.removeEventListener("keydown", handleKeydown);
-  }, [searchOpen, selectedBranch, tourIndex]);
+  }, [openSearch, searchOpen, selectedBranch, stopTour, tourIndex]);
 
   function openBranch(branch: BranchId) {
+    stopTour();
     setListModeOverride(false);
     saveListView(false);
+    setSearchOpen(false);
     restoreFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setFocusedSlug(null);
     setHoveredSlug(null);
@@ -821,17 +836,17 @@ export default function MangoExperience({
     setSelectedBranch(null);
     const next = !listView;
     setListModeOverride(next);
-    setTourIndex(null);
-    setTourPaused(false);
+    stopTour();
     saveListView(next);
   }
 
   function startTour() {
+    setSearchOpen(false);
     setListModeOverride(false);
     saveListView(false);
     setFocusedSlug(null);
     setHoveredSlug(null);
-    setSelectedBranch(tourStops[0].branch);
+    setSelectedBranch(null);
     setTourIndex(0);
     setTourPaused(false);
   }
@@ -847,6 +862,8 @@ export default function MangoExperience({
   }
 
   const navigateFromWebMcp = useCallback((page: string) => {
+    stopTour();
+    setSearchOpen(false);
     const sectionBranches: Record<string, BranchId> = {
       projects: "projects",
       awards: "awards",
@@ -878,19 +895,23 @@ export default function MangoExperience({
       setSelectedBranch(null);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, []);
+  }, [stopTour]);
 
   const filterProjectsFromWebMcp = useCallback((filter: string) => {
+    stopTour();
+    setSearchOpen(false);
     setListModeOverride(false);
     saveListView(false);
     setFocusedSlug(null);
     setHoveredSlug(null);
     setSelectedBranch("projects");
     setProjectFilter(filter.toLowerCase() === "all" ? "" : filter);
-  }, []);
+  }, [stopTour]);
 
   const prefillContactFromWebMcp = useCallback(
     (values: { fullname: string; email: string; message: string }) => {
+      stopTour();
+      setSearchOpen(false);
       setFocusedSlug(null);
       setHoveredSlug(null);
       setSelectedBranch(null);
@@ -908,7 +929,7 @@ export default function MangoExperience({
         (form.elements.namedItem("message") as HTMLTextAreaElement | null)?.focus();
       }, 650);
     },
-    [],
+    [stopTour],
   );
 
   const branchButtons = branches.map((branch) => {
@@ -961,7 +982,7 @@ export default function MangoExperience({
           <button
             className="search-trigger"
             type="button"
-            onClick={() => setSearchOpen(true)}
+            onClick={openSearch}
             aria-label={bangla ? "পোর্টফোলিও খুঁজুন" : "Search portfolio"}
           >
             <span aria-hidden="true">⌕</span><span>{bangla ? "খুঁজুন" : "Search"}</span><kbd>⌘ K</kbd>
@@ -994,7 +1015,8 @@ export default function MangoExperience({
                 <TreeScene
                   season={season}
                   night={night}
-                  focusBranch={selectedBranch}
+                  focusBranch={currentTourStop?.branch ?? selectedBranch}
+                  expandedBranch={selectedBranch}
                   highlightedBranches={highlightedBranches}
                   writings={writings}
                   freshBuds={freshBuds}
@@ -1087,19 +1109,10 @@ export default function MangoExperience({
               />
               <div className="tour-actions">
                 <div className="tour-buttons">
-                  {tourIndex === null ? (
+                  {tourIndex === null && (
                     <button className="tour-start" type="button" onClick={startTour}>
                       {bangla ? "৩০ সেকেন্ডের ভ্রমণ" : "Take the 30-second tour"} <span aria-hidden="true">→</span>
                     </button>
-                  ) : (
-                    <>
-                      <button className="tour-start" type="button" onClick={() => setTourPaused((current) => !current)}>
-                        {bangla ? (tourPaused ? "চালু" : "বিরতি") : (tourPaused ? "Resume tour" : "Pause tour")}
-                      </button>
-                      <button className="text-action tour-exit" type="button" onClick={() => { setTourIndex(null); setTourPaused(false); }}>
-                        {bangla ? "শেষ" : "Exit tour"}
-                      </button>
-                    </>
                   )}
                 </div>
                 <button className="share-leaf" type="button" onClick={sharePage}>
@@ -1134,15 +1147,28 @@ export default function MangoExperience({
           {currentTourStop && (
             <motion.div
               className="tour-caption"
-              role="status"
-              aria-live="polite"
+              role="group"
+              aria-label={bangla ? "নির্দেশিত ভ্রমণ" : "Guided tour"}
               key={currentTourStop.branch}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
             >
               <span className="tour-caption-step">0{(tourIndex ?? 0) + 1} / 06</span>
-              <div><strong>{currentTourStop.caption}</strong><p>{currentTourStop.subcaption}</p></div>
-              {tourPaused && <span className="tour-paused">Paused</span>}
+              <div className="tour-caption-copy" aria-live="polite">
+                <strong>{currentTourStop.caption}</strong><p>{currentTourStop.subcaption}</p>
+              </div>
+              {tourPaused && <span className="tour-paused">{bangla ? "বিরতি" : "Paused"}</span>}
+              <div className="tour-caption-controls">
+                <button
+                  type="button"
+                  aria-label={tourPaused ? "Resume tour" : "Pause tour"}
+                  onClick={() => setTourPaused((current) => !current)}
+                >
+                  {tourPaused ? (bangla ? "চালু" : "Resume") : (bangla ? "বিরতি" : "Pause")}
+                </button>
+                <button type="button" onClick={nextTourStop}>{bangla ? "পরবর্তী" : "Next"}</button>
+                <button type="button" onClick={stopTour}>{bangla ? "শেষ" : "Exit"}</button>
+              </div>
             </motion.div>
           )}
         </section>
@@ -1192,7 +1218,7 @@ export default function MangoExperience({
       <button
         className="floating-search"
         type="button"
-        onClick={() => setSearchOpen(true)}
+        onClick={openSearch}
         aria-label={bangla ? "গাছ খুঁজুন" : "Search portfolio"}
       >
         <span aria-hidden="true">⌕</span><span>{bangla ? "গাছ খুঁজুন" : "Search the tree"}</span>
