@@ -3,6 +3,7 @@ import WebMcp from "@/components/WebMcp";
 import profile from "@/data/profile.snapshot.json";
 import "./globals.css";
 import "./home.css";
+import "./sections.css";
 
 const siteUrl = "https://also.ratulruhan.cv";
 const title = "Ratul Hasan Ruhan | Software Engineer & Creator of Ojogor";

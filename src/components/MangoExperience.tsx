@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import {
-  Award as AwardIcon,
   BadgeCheck,
   BriefcaseBusiness,
   Camera,
@@ -34,6 +34,8 @@ import {
 } from "react";
 import ContactSoil from "@/components/ContactSoil";
 import HomeHero from "@/components/HomeHero";
+import { EducationSection, MomentsGallery, WritingShelf } from "@/components/HomeContent";
+import HomeJourney from "@/components/HomeJourney";
 import { FeaturedWork, SkillMarquee } from "@/components/HomeSections";
 import TreeScene, { crownLayout, DESKTOP_TREE_OFFSET_X, DESKTOP_TREE_SCALE_X } from "@/components/TreeScene";
 import WeatherCanvas from "@/components/WeatherCanvas";
@@ -816,8 +818,9 @@ export default function MangoExperience({
   const [tourIndex, setTourIndex] = useState<number | null>(null);
   const [tourPaused, setTourPaused] = useState(false);
   const [projectFilter, setProjectFilter] = useState("");
-  const [activeSection, setActiveSection] = useState<"tree" | "contact">("tree");
+  const [activeSection, setActiveSection] = useState<string>("home");
   const [scrolled, setScrolled] = useState(false);
+  const router = useRouter();
   const showHome = !initialBranch && !initialFocus;
   const [orchardInView, setOrchardInView] = useState(!showHome);
   const treeStageRef = useRef<HTMLDivElement>(null);
@@ -978,8 +981,12 @@ export default function MangoExperience({
   useEffect(() => {
     const updateHeader = () => {
       setScrolled(window.scrollY > 60);
-      const roots = document.getElementById("roots");
-      setActiveSection(roots && roots.getBoundingClientRect().top < window.innerHeight * 0.55 ? "contact" : "tree");
+      let current = "home";
+      for (const id of ["journey", "featured", "writing", "education", "moments", "roots"]) {
+        const section = document.getElementById(id);
+        if (section && section.getBoundingClientRect().top < window.innerHeight * 0.45) current = id;
+      }
+      setActiveSection(current === "roots" ? "contact" : current);
     };
     window.addEventListener("scroll", updateHeader, { passive: true });
     updateHeader();
@@ -1055,8 +1062,25 @@ export default function MangoExperience({
     stopTour();
     setMobileMenuOpen(false);
     setSelectedBranch(null);
-    setActiveSection("tree");
+    setActiveSection("home");
     window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "instant" : "smooth" });
+  }
+
+  function goToSection(id: string) {
+    if (id === "roots" || id === "contact") {
+      goToContact();
+      return;
+    }
+    stopTour();
+    setMobileMenuOpen(false);
+    setSelectedBranch(null);
+    const section = document.getElementById(id);
+    if (!section) {
+      router.push(`/#${id}`);
+      return;
+    }
+    setActiveSection(id);
+    section.scrollIntoView({ behavior: prefersReducedMotion ? "instant" : "smooth", block: "start" });
   }
 
   function goToContact() {
@@ -1264,6 +1288,16 @@ export default function MangoExperience({
     [filterProjectsFromWebMcp, navigateFromWebMcp, prefillContactFromWebMcp],
   );
 
+  const headerLinks: { id: string; label: string; branch?: BranchId }[] = [
+    { id: "home", label: "Home" },
+    { id: "journey", label: "Journey" },
+    { id: "featured", label: "Work" },
+    { id: "writing", label: "Writing" },
+    { id: "education", label: "Education" },
+    { id: "awards", label: "Awards", branch: "awards" },
+    { id: "contact", label: "Contact" },
+  ];
+
   const branchButtons = branches.map((branch) => {
     const count = visibleItems.filter((item) => item.branch === branch.id).length;
     const isDimmed = activeYear !== null && count === 0;
@@ -1306,14 +1340,20 @@ export default function MangoExperience({
           <span className="brand-copy"><strong>Ratul Hasan Ruhan</strong><small>{profile.title} · Dhaka</small></span>
         </Link>
         <nav className="header-links" aria-label="Site navigation">
-          <button className={!selectedBranch && activeSection === "tree" ? "nav-active" : ""} aria-current={!selectedBranch && activeSection === "tree" ? "page" : undefined} type="button" onClick={goToTree}>Home</button>
-          <button className={selectedBranch === "experience" ? "nav-active" : ""} aria-current={selectedBranch === "experience" ? "page" : undefined} type="button" onClick={() => openBranch("experience")}>Road</button>
-          <button className={selectedBranch === "projects" ? "nav-active" : ""} aria-current={selectedBranch === "projects" ? "page" : undefined} type="button" onClick={() => openBranch("projects")}>Projects</button>
-          <button className={selectedBranch === "awards" ? "nav-active" : ""} aria-current={selectedBranch === "awards" ? "page" : undefined} type="button" onClick={() => openBranch("awards")}>Awards</button>
-          <button className={selectedBranch === "communities" ? "nav-active" : ""} aria-current={selectedBranch === "communities" ? "page" : undefined} type="button" onClick={() => openBranch("communities")}>Community</button>
-          <button className={selectedBranch === "research" ? "nav-active" : ""} aria-current={selectedBranch === "research" ? "page" : undefined} type="button" onClick={() => openBranch("research")}>Research</button>
-          <button className={selectedBranch === "writing" ? "nav-active" : ""} aria-current={selectedBranch === "writing" ? "page" : undefined} type="button" onClick={() => openBranch("writing")}>Writing</button>
-          <button className={activeSection === "contact" ? "nav-active" : ""} aria-current={activeSection === "contact" ? "location" : undefined} type="button" onClick={goToContact}>Contact</button>
+          {headerLinks.map((link) => {
+            const active = link.branch ? selectedBranch === link.branch : !selectedBranch && activeSection === link.id;
+            return (
+              <button
+                key={link.id}
+                className={active ? "nav-active" : ""}
+                aria-current={active ? "location" : undefined}
+                type="button"
+                onClick={() => (link.branch ? openBranch(link.branch) : link.id === "home" ? goToTree() : goToSection(link.id))}
+              >
+                {link.label}
+              </button>
+            );
+          })}
         </nav>
         <div className="header-actions">
           <button
@@ -1340,9 +1380,14 @@ export default function MangoExperience({
               bangla={bangla}
               onSelectBranch={openBranch}
               onAbout={openAbout}
+              onJump={goToSection}
             />
-            <SkillMarquee />
+            <HomeJourney onContact={goToContact} />
             <FeaturedWork />
+            <WritingShelf writings={writings} onOpenAll={() => openBranch("writing")} />
+            <EducationSection />
+            <MomentsGallery />
+            <SkillMarquee />
           </>
         )}
 
@@ -1539,7 +1584,7 @@ export default function MangoExperience({
         {listView ? (
           <PlainList writings={writings} onOpenBranch={openBranch} onReturnToTree={toggleListView} />
         ) : (
-          <FreshGarden writings={writings} repositories={repositories} />
+          !showHome && <FreshGarden writings={writings} repositories={repositories} />
         )}
 
         <ContactSoil bangla={bangla} />
@@ -1570,17 +1615,17 @@ export default function MangoExperience({
       />
 
       <nav className="mobile-tabbar" aria-label="Primary navigation">
-        <button className={!selectedBranch && activeSection === "tree" ? "tab-active" : ""} aria-current={!selectedBranch && activeSection === "tree" ? "page" : undefined} type="button" onClick={goToTree}>
+        <button className={!selectedBranch && activeSection === "home" ? "tab-active" : ""} aria-current={!selectedBranch && activeSection === "home" ? "page" : undefined} type="button" onClick={goToTree}>
           <House size={19} aria-hidden="true" /><span>Home</span>
         </button>
-        <button className={selectedBranch === "experience" ? "tab-active" : ""} aria-current={selectedBranch === "experience" ? "page" : undefined} type="button" onClick={() => openBranch("experience")}>
-          <Signpost size={19} aria-hidden="true" /><span>Road</span>
+        <button className={!selectedBranch && activeSection === "journey" ? "tab-active" : ""} aria-current={!selectedBranch && activeSection === "journey" ? "location" : undefined} type="button" onClick={() => goToSection("journey")}>
+          <Signpost size={19} aria-hidden="true" /><span>Journey</span>
         </button>
-        <button className={selectedBranch === "projects" ? "tab-active" : ""} aria-current={selectedBranch === "projects" ? "page" : undefined} type="button" onClick={() => openBranch("projects")}>
+        <button className={!selectedBranch && activeSection === "featured" ? "tab-active" : ""} aria-current={!selectedBranch && activeSection === "featured" ? "location" : undefined} type="button" onClick={() => goToSection("featured")}>
           <FolderKanban size={19} aria-hidden="true" /><span>Work</span>
         </button>
-        <button className={selectedBranch === "awards" ? "tab-active" : ""} aria-current={selectedBranch === "awards" ? "page" : undefined} type="button" onClick={() => openBranch("awards")}>
-          <AwardIcon size={19} aria-hidden="true" /><span>Awards</span>
+        <button className={!selectedBranch && activeSection === "writing" ? "tab-active" : ""} aria-current={!selectedBranch && activeSection === "writing" ? "location" : undefined} type="button" onClick={() => goToSection("writing")}>
+          <PenLine size={19} aria-hidden="true" /><span>Writing</span>
         </button>
         <button
           ref={menuTriggerRef}
@@ -1624,13 +1669,15 @@ export default function MangoExperience({
                 <button className="icon-button" type="button" onClick={closeMenu} aria-label="Close menu">×</button>
               </div>
               <nav className="menu-sheet-links" aria-label="Portfolio sections">
-                <button type="button" onClick={goToTree}>Tree <span>Home</span></button>
-                <button type="button" onClick={() => openBranch("experience")}>Road <span>Experience & education</span></button>
-                <button type="button" onClick={() => openBranch("projects")}>Projects <span>Built things</span></button>
+                <button type="button" onClick={goToTree}>Home <span>Start here</span></button>
+                <button type="button" onClick={() => goToSection("journey")}>Journey <span>2016 → today</span></button>
+                <button type="button" onClick={() => goToSection("featured")}>Best work <span>Highlights</span></button>
+                <button type="button" onClick={() => goToSection("writing")}>Writing <span>Articles & notes</span></button>
+                <button type="button" onClick={() => goToSection("education")}>Education <span>Degrees & research</span></button>
+                <button type="button" onClick={() => goToSection("moments")}>Moments <span>Events & photos</span></button>
+                <button type="button" onClick={() => openBranch("projects")}>All projects <span>Everything I&apos;ve built</span></button>
                 <button type="button" onClick={() => openBranch("awards")}>Awards <span>Milestones</span></button>
                 <button type="button" onClick={() => openBranch("communities")}>Community <span>People & roles</span></button>
-                <button type="button" onClick={() => openBranch("research")}>Research <span>Publications & interests</span></button>
-                <button type="button" onClick={() => openBranch("writing")}>Writing <span>Engineering notes</span></button>
                 <button type="button" onClick={goToContact}>Contact <span>Get in touch</span></button>
               </nav>
               <div className="menu-sheet-actions">

@@ -32,17 +32,19 @@
 
 :root {
   color-scheme: light;
-  --paper: #f4f0e6;
-  --paper-light: #fbf8f0;
-  --paper-deep: #e8dfcc;
-  --ink: #292a20;
-  --ink-soft: #686657;
-  --green: #425b3e;
-  --green-dark: #243d31;
-  --green-bright: #8eaa61;
-  --mango: #df9f42;
-  --line: rgba(66, 77, 53, 0.16);
-  --shadow: 0 26px 80px rgba(49, 48, 34, 0.16);
+  --paper: #f7f3ea;
+  --paper-light: #fffdf8;
+  --paper-deep: #ede4d0;
+  --ink: #14201a;
+  --ink-soft: #56615a;
+  --green: #1f6f4a;
+  --green-dark: #0f3d2c;
+  --green-bright: #3fae72;
+  --mango: #f4a42c;
+  --coral: #e8613c;
+  --night: #0a2219;
+  --line: rgba(20, 32, 26, 0.11);
+  --shadow: 0 26px 80px rgba(15, 61, 44, 0.14);
   font-family: "DM Sans", "Noto Sans Bengali", sans-serif;
   background: var(--paper);
   color: var(--ink);
@@ -273,7 +275,7 @@ kbd {
 .hero-overline,
 .eyebrow-kicker,
 .section-eyebrow {
-  color: #79735e;
+  color: #5f685f;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -291,7 +293,7 @@ kbd {
 .overline-line {
   width: 27px;
   height: 1px;
-  background: #a9976b;
+  background: #e3a24a;
 }
 
 .hero-copy h1,
@@ -315,14 +317,14 @@ kbd {
 .contact-story h2 em,
 .fresh-heading h2 em,
 .list-view-intro h2 em {
-  color: #58724c;
+  color: #1f8a57;
   font-weight: 400;
 }
 
 .hero-deck {
   max-width: 470px;
   margin: 16px 0 0;
-  color: #686657;
+  color: #56615a;
   font-size: 15px;
   line-height: 1.7;
 }
@@ -733,7 +735,7 @@ kbd {
 
 .branch-label:hover,
 .branch-label-selected {
-  background: #455f3e;
+  background: #1f6243;
   box-shadow: 0 10px 28px rgba(39, 64, 43, 0.28);
   color: #fbf5e7;
   transform: translate(-50%, -50%) scale(1.04);
@@ -928,7 +930,7 @@ kbd {
 }
 
 .tour-intro small {
-  color: #85806e;
+  color: #6b7369;
   font-size: 10px;
 }
 
@@ -939,9 +941,9 @@ kbd {
   align-items: center;
   justify-content: center;
   gap: 14px;
-  border: 1px solid #3f5b3b;
+  border: 1px solid #1b5a3e;
   border-radius: 999px;
-  background: #3f5b3b;
+  background: #1b5a3e;
   box-shadow: 0 7px 16px rgba(49, 76, 48, 0.16);
   color: #f9f5e9;
   cursor: pointer;
@@ -1078,7 +1080,7 @@ kbd {
   margin: 0;
   align-items: center;
   gap: 8px;
-  color: #777465;
+  color: #5f685f;
   font-size: 10px;
 }
 
@@ -1120,7 +1122,7 @@ kbd {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #7c985c;
+  background: #4f9e6c;
   box-shadow: 0 0 0 4px rgba(124, 152, 92, 0.15);
 }
 
@@ -1133,7 +1135,7 @@ kbd {
 .fresh-heading > p {
   max-width: 260px;
   margin: 0 0 4px;
-  color: #777465;
+  color: #5f685f;
   font-size: 11px;
   line-height: 1.65;
 }
@@ -1328,7 +1330,7 @@ kbd {
 
 .item-card-summary {
   display: -webkit-box;
-  color: #777465;
+  color: #5f685f;
   font-size: 10px;
   line-height: 1.4;
   -webkit-box-orient: vertical;
@@ -1409,7 +1411,7 @@ kbd {
 
 .panel-heading p {
   margin: 4px 0 0;
-  color: #777465;
+  color: #5f685f;
   font-size: 11px;
 }
 
@@ -1457,7 +1459,7 @@ kbd {
 
 .panel-empty {
   margin: 15px 4px;
-  color: #777465;
+  color: #5f685f;
   font-size: 12px;
 }
 
@@ -1584,7 +1586,7 @@ kbd {
 
 .search-empty {
   margin: 18px 2px;
-  color: #777465;
+  color: #5f685f;
   font-size: 12px;
 }
 
@@ -1704,7 +1706,7 @@ kbd {
 .soil-intro {
   max-width: 480px;
   margin: 16px auto 0;
-  color: #747160;
+  color: #5f685f;
   font-size: 13px;
 }
 
@@ -1843,7 +1845,7 @@ kbd {
 
 .expertise-card p {
   margin: 0;
-  color: #777465;
+  color: #5f685f;
   font-size: 10px;
   line-height: 1.5;
 }
@@ -1888,12 +1890,12 @@ kbd {
   flex-wrap: wrap;
   gap: 9px 16px;
   margin-top: 26px;
-  color: #777465;
+  color: #5f685f;
   font-size: 11px;
 }
 
 .contact-links a {
-  color: #506948;
+  color: #24704b;
   font-weight: 700;
 }
 
@@ -2044,7 +2046,7 @@ kbd {
 .form-status {
   min-height: 18px;
   margin: 0;
-  color: #85806e;
+  color: #6b7369;
   font-size: 10px;
 }
 
@@ -2064,7 +2066,7 @@ kbd {
 }
 
 .site-footer > a:last-child {
-  color: #506948;
+  color: #24704b;
   font-weight: 700;
 }
 
@@ -2082,7 +2084,7 @@ kbd {
   width: 9px;
   height: 13px;
   border-radius: 100% 0;
-  background: #7c985c;
+  background: #4f9e6c;
   transform: rotate(35deg);
 }
 
@@ -2112,14 +2114,14 @@ kbd {
   align-items: center;
   gap: 7px;
   margin-bottom: 20px;
-  color: #5a724d;
+  color: #2a7a52;
   font-size: 11px;
   font-weight: 700;
 }
 
 .item-detail h2 {
   margin: 8px 0 14px;
-  color: #354b37;
+  color: #173f2e;
   font-size: clamp(34px, 4vw, 52px);
   line-height: 1.02;
 }
@@ -2131,7 +2133,7 @@ kbd {
 }
 
 .item-detail-description {
-  color: #737060;
+  color: #5f685f;
   font-size: 13px;
   line-height: 1.75;
   white-space: pre-line;
@@ -2176,7 +2178,7 @@ kbd {
 
 .item-detail-events-copy h3 {
   margin: 6px 0 10px;
-  color: #354b37;
+  color: #173f2e;
   font-family: "Instrument Serif", Georgia, serif;
   font-size: clamp(24px, 3vw, 34px);
   font-weight: 400;
@@ -2185,7 +2187,7 @@ kbd {
 
 .item-detail-events-copy p {
   margin: 0;
-  color: #737060;
+  color: #5f685f;
   font-size: 13px;
   line-height: 1.65;
   max-width: 52ch;
@@ -2221,7 +2223,7 @@ kbd {
 
 .item-detail-events-gallery figcaption {
   padding: 8px 10px 10px;
-  color: #5a724d;
+  color: #2a7a52;
   font-size: 11px;
   font-weight: 600;
   line-height: 1.35;
@@ -2265,7 +2267,7 @@ kbd {
 
 .not-found h1 {
   margin: 10px 0;
-  color: #354b37;
+  color: #173f2e;
   font-family: "Instrument Serif", Georgia, serif;
   font-size: clamp(42px, 8vw, 68px);
   font-weight: 400;
@@ -2274,7 +2276,7 @@ kbd {
 
 .not-found p {
   margin: 8px 0 20px;
-  color: #747160;
+  color: #5f685f;
 }
 
 .visually-hidden {
@@ -2772,7 +2774,7 @@ kbd {
   margin-top: 14px;
   border: 1px solid rgba(63, 72, 47, 0.2);
   border-radius: 999px;
-  background: #455f3e;
+  background: #1f6243;
   color: #fbf5e7;
   cursor: pointer;
   font-size: 11px;
@@ -2813,12 +2815,12 @@ kbd {
 
 .tree-illustration[data-season="Borsha"] {
   --leaf-back-light: #42664c;
-  --leaf-back: #294a3b;
+  --leaf-back: #123d2c;
   --leaf-mid-light: #69916c;
   --leaf-mid: #467455;
   --leaf-sun-light: #9dbd8a;
   --leaf-sun: #719b70;
-  --leaf-under: #294a3b;
+  --leaf-under: #123d2c;
 }
 
 .tree-illustration[data-season="Sharat"] {

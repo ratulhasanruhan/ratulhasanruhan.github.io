@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import { Camera, FolderKanban, GraduationCap, Mail, PenLine, Signpost } from "lucide-react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { branches, profile } from "@/data/catalog";
@@ -17,14 +18,21 @@ const MangoTree3D = dynamic(() => import("@/components/MangoTree3D"), {
   ),
 });
 
-const branchHues: Record<BranchId, string> = {
-  projects: "#5f8f45",
-  awards: "#e19a35",
-  communities: "#4f87a0",
-  research: "#8a6db0",
-  writing: "#c46a4f",
-  experience: "#6f6a4c",
-};
+const quickLinks: {
+  id: string;
+  label: string;
+  hint: string;
+  Icon: typeof Signpost;
+  branch: BranchId | null;
+  hue: string;
+}[] = [
+  { id: "journey", label: "My journey", hint: "2016 → today", Icon: Signpost, branch: "experience", hue: "#f4a42c" },
+  { id: "featured", label: "Best work", hint: "Projects & awards", Icon: FolderKanban, branch: "projects", hue: "#1f9d68" },
+  { id: "writing", label: "Writing", hint: "Articles & notes", Icon: PenLine, branch: "writing", hue: "#e8613c" },
+  { id: "education", label: "Education", hint: "Degrees & research", Icon: GraduationCap, branch: "research", hue: "#3b82c4" },
+  { id: "moments", label: "Moments", hint: "Events & stages", Icon: Camera, branch: "awards", hue: "#c2477a" },
+  { id: "roots", label: "Contact", hint: "Let's talk", Icon: Mail, branch: null, hue: "#0f3d2c" },
+];
 
 type HomeHeroProps = {
   branchCounts: Record<BranchId, number>;
@@ -34,6 +42,7 @@ type HomeHeroProps = {
   bangla: boolean;
   onSelectBranch: (branch: BranchId) => void;
   onAbout: () => void;
+  onJump: (sectionId: string) => void;
 };
 
 function CountUp({ value, run }: { value: number; run: boolean }) {
@@ -69,6 +78,7 @@ export default function HomeHero({
   bangla,
   onSelectBranch,
   onAbout,
+  onJump,
 }: HomeHeroProps) {
   const reduce = useReducedMotion() ?? false;
   const heroRef = useRef<HTMLElement>(null);
@@ -103,8 +113,8 @@ export default function HomeHero({
     count: branchCounts[branch.id] ?? 0,
   }));
 
-  function scrollToFeatured() {
-    document.getElementById("featured")?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  function scrollToJourney() {
+    onJump("journey");
   }
 
   return (
@@ -176,8 +186,8 @@ export default function HomeHero({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.68, duration: 0.7 }}
         >
-          <button type="button" className="home-cta home-cta-primary" onClick={scrollToFeatured}>
-            See my best work <span aria-hidden="true">↓</span>
+          <button type="button" className="home-cta home-cta-primary" onClick={scrollToJourney}>
+            Start the journey <span aria-hidden="true">↓</span>
           </button>
           <a className="home-cta home-cta-secondary" href={profile.booking} target="_blank" rel="noreferrer">
             Book a call <span aria-hidden="true">↗</span>
@@ -228,30 +238,37 @@ export default function HomeHero({
         </p>
       </motion.div>
 
-      <nav className="home-branch-chips" aria-label="Explore Ratul's work by branch">
-        {branches.map((branch, index) => (
-          <motion.button
-            key={branch.id}
-            type="button"
-            className={`home-branch-chip${hoveredBranch === branch.id ? " is-active" : ""}`}
-            style={{ "--chip-hue": branchHues[branch.id] } as CSSProperties}
-            onPointerEnter={() => setHoveredBranch(branch.id)}
-            onPointerLeave={() => setHoveredBranch(null)}
-            onFocus={() => setHoveredBranch(branch.id)}
-            onBlur={() => setHoveredBranch(null)}
-            onClick={() => onSelectBranch(branch.id)}
-            initial={reduce ? false : { opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 + index * 0.06, duration: 0.5 }}
-          >
-            <span className="home-branch-chip-dot" aria-hidden="true" />
-            <span className="home-branch-chip-label">{bangla ? branch.bangla : branch.label}</span>
-            <span className="home-branch-chip-count">{branchCounts[branch.id] ?? 0}</span>
-          </motion.button>
-        ))}
+      <nav className="home-quick" aria-label="Start here">
+        <p className="home-quick-label">Start here</p>
+        <div className="home-quick-grid">
+          {quickLinks.map(({ id, label, hint, Icon, branch, hue }, index) => (
+            <motion.button
+              key={id}
+              type="button"
+              className={`home-quick-tile${branch && hoveredBranch === branch ? " is-active" : ""}`}
+              style={{ "--tile-hue": hue } as CSSProperties}
+              onPointerEnter={() => branch && setHoveredBranch(branch)}
+              onPointerLeave={() => setHoveredBranch(null)}
+              onFocus={() => branch && setHoveredBranch(branch)}
+              onBlur={() => setHoveredBranch(null)}
+              onClick={() => onJump(id)}
+              initial={reduce ? false : { opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 + index * 0.06, duration: 0.5 }}
+            >
+              <span className="home-quick-icon" aria-hidden="true">
+                <Icon size={18} strokeWidth={2.1} />
+              </span>
+              <span className="home-quick-copy">
+                <strong>{label}</strong>
+                <small>{hint}</small>
+              </span>
+            </motion.button>
+          ))}
+        </div>
       </nav>
 
-      <button type="button" className="home-scroll-cue" onClick={scrollToFeatured} aria-label="Scroll to featured work">
+      <button type="button" className="home-scroll-cue" onClick={scrollToJourney} aria-label="Scroll to my journey">
         <span className="home-scroll-cue-line" aria-hidden="true" />
       </button>
     </section>
