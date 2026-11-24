@@ -580,10 +580,12 @@ kbd {
 }
 
 .tree-stage {
-  position: relative;
+  position: absolute;
+  z-index: 0;
+  inset: 0;
   width: 100%;
   max-width: none;
-  height: 100%;
+  height: auto;
   margin: 0;
   aspect-ratio: auto;
   overflow: hidden;
@@ -839,6 +841,9 @@ kbd {
 
 .portfolio-page.list-view-mode .growth-dial,
 .portfolio-page.list-view-mode .tree-stage,
+.portfolio-page.list-view-mode .hero-copy,
+.portfolio-page.list-view-mode .tree-control-dock,
+.portfolio-page.list-view-mode .mobile-branch-grid,
 .portfolio-page.list-view-mode .tour-actions,
 .portfolio-page.list-view-mode .tour-caption,
 .portfolio-page.list-view-mode .tree-guide {
@@ -2964,7 +2969,7 @@ kbd {
 }
 
 .community-disc {
-  fill: #fcf7e5;
+  fill: var(--community-backdrop, #fcf7e5);
   stroke: #f2dea0;
   stroke-width: 3;
 }
@@ -3060,6 +3065,59 @@ kbd {
 
 .tree-illustration[data-night="true"] .crown-leaf-veins {
   stroke: rgba(190, 212, 153, 0.28);
+}
+
+.tree-illustration[data-night="true"] .crown-cluster {
+  filter: brightness(0.62) saturate(0.64);
+}
+
+.tree-illustration[data-night="true"] .crown-cluster[data-branch="awards"],
+.tree-illustration[data-night="true"] .crown-cluster[data-branch="research"],
+.tree-illustration[data-night="true"] .crown-cluster[data-branch="experience"] {
+  filter: brightness(0.72) saturate(0.7) drop-shadow(0 0 8px rgba(190, 222, 229, 0.6));
+}
+
+.tree-illustration[data-night="true"] .tree-trunk,
+.tree-illustration[data-night="true"] .tree-trunk-main,
+.tree-illustration[data-night="true"] .tree-limbs,
+.tree-illustration[data-night="true"] .tree-limb,
+.tree-illustration[data-night="true"] .trunk-ridges,
+.tree-illustration[data-night="true"] .roots {
+  filter: brightness(0.48) saturate(0.62);
+}
+
+.tree-illustration[data-night="true"] .trunk-shade {
+  fill: rgba(13, 26, 25, 0.72);
+}
+
+.tree-illustration[data-night="true"] .distant-hill,
+.tree-illustration[data-night="true"] .far-paddy,
+.tree-illustration[data-night="true"] .middle-paddy,
+.tree-illustration[data-night="true"] .near-paddy {
+  filter: brightness(0.38) saturate(0.62);
+}
+
+.tree-illustration[data-night="true"] .field-water,
+.tree-illustration[data-night="true"] .paddy-lines,
+.tree-illustration[data-night="true"] .field-stalks {
+  filter: brightness(0.56) saturate(0.7);
+}
+
+.tree-illustration[data-night="true"] .soil-cut {
+  filter: brightness(0.44) saturate(0.65);
+}
+
+.tree-illustration[data-night="true"] .soil-surface {
+  stroke: #64655f;
+}
+
+.tree-illustration[data-night="true"] .soil-grain {
+  stroke: rgba(165, 175, 159, 0.16);
+}
+
+.tree-illustration[data-night="true"] .canopy-ground-shadow,
+.tree-illustration[data-night="true"] .tree-shadow {
+  opacity: 0.72;
 }
 
 .growth-playing .tree-trunk,
@@ -3189,6 +3247,22 @@ kbd {
   to { transform: scale(1); }
 }
 
+@media (min-width: 641px) and (max-width: 1280px) {
+  .hero-copy {
+    width: min(480px, 50vw);
+    padding: 14px 18px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 22px;
+    background: rgba(232, 236, 216, 0.48);
+    box-shadow: 0 12px 34px rgba(38, 57, 43, 0.12);
+    backdrop-filter: blur(14px);
+  }
+}
+
+.branch-label.branch-awards {
+  transform: translate(-100%, -50%);
+}
+
 @media (max-width: 960px) {
   .header-links {
     display: none;
@@ -3281,20 +3355,19 @@ kbd {
     height: auto;
     min-height: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   .hero-copy {
-    top: 12px;
-    left: 12px;
-    width: calc(100% - 24px);
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
     max-width: none;
     margin: 0;
-    padding: 9px 12px 11px;
-    border: 1px solid rgba(255, 255, 255, 0.62);
-    border-radius: 15px;
-    background: rgba(248, 246, 231, 0.88);
-    box-shadow: 0 7px 24px rgba(50, 59, 42, 0.12);
-    backdrop-filter: blur(5px);
+    padding: 16px 18px 18px;
+    pointer-events: auto;
   }
 
   .hero-overline {
@@ -3304,7 +3377,7 @@ kbd {
   .hero-copy h1 {
     max-width: 360px;
     margin-top: 8px;
-    font-size: clamp(35px, 10.5vw, 46px);
+    font-size: clamp(32px, 9vw, 40px);
   }
 
   .hero-note {
@@ -3359,14 +3432,18 @@ kbd {
   }
 
   .tree-control-dock {
-    right: 10px;
-    bottom: 9px;
-    left: 10px;
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: 100%;
     display: grid;
     min-height: 0;
     gap: 4px;
-    padding: 6px 8px;
-    border-radius: 16px;
+    margin: 0;
+    padding: 8px 10px;
+    border-radius: 0;
   }
 
   .growth-dial {
@@ -3416,10 +3493,17 @@ kbd {
   }
 
   .tree-stage {
-    height: clamp(420px, 65svh, 580px);
-    min-height: 420px;
+    position: relative;
+    inset: auto;
+    height: 110vw;
+    min-height: 0;
     margin: 0;
     border-radius: 0;
+  }
+
+  .tree-stage::before,
+  .growth-intro {
+    display: none;
   }
 
   .tree-illustration {
@@ -3900,8 +3984,8 @@ kbd {
   }
 
   .tree-stage {
-    height: 65svh;
-    min-height: 420px;
+    height: 110vw;
+    min-height: 0;
   }
 
   .tour-actions {

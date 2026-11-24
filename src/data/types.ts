@@ -42,6 +42,7 @@ export interface Community extends BaseItem<"community", "communities"> {
   role: string;
   tenure: string;
   image: string;
+  logoBackdrop: string;
   href: string;
 }
 

@@ -225,6 +225,15 @@ const communityAssets: Record<string, string> = {
   "Bangladesh Open Source Network (BdOSN)": "bdosn.webp",
 };
 
+const communityLogoBackdrops: Record<string, string> = {
+  "Hult Prize": "#a52f45",
+  "Amazon Web Services": "#242f40",
+  "Global Logic & Reasoning Challenge (GLRC)": "#f4eedf",
+  "International Computer Science Competition (ICSC)": "#274b82",
+  "Society for the Popularization of Science, Bangladesh (SPSB)": "#493657",
+  "Bangladesh Open Source Network (BdOSN)": "#e7f1e8",
+};
+
 const communityDescriptions: Record<string, string> = {
   "Hult Prize":
     'Leading the EF Hult Prize program on campus for the 2026–27 tenure. Organize the campus round, guide teams, and connect them with mentors and judges. Hult Prize, often called the "Nobel Prize for students", challenges students to build startups that solve real social problems.',
@@ -256,6 +265,7 @@ export const communities: Community[] = profileData.memberOf.map((membership) =>
     role,
     tenure: `${membership.startDate}${tenureEnd}`,
     image: `/assets/images/communities/${communityAssets[org.name]}`,
+    logoBackdrop: communityLogoBackdrops[org.name],
   };
 });
 

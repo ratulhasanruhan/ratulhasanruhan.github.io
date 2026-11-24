@@ -14,7 +14,7 @@ import {
   type ReactNode,
 } from "react";
 import ContactSoil from "@/components/ContactSoil";
-import TreeScene, { crownLayout } from "@/components/TreeScene";
+import TreeScene, { crownLayout, DESKTOP_TREE_OFFSET_X, DESKTOP_TREE_SCALE_X } from "@/components/TreeScene";
 import WeatherCanvas from "@/components/WeatherCanvas";
 import WebMcp from "@/components/WebMcp";
 import {
@@ -154,6 +154,10 @@ function saveListView(value: boolean) {
 
 const getServerSeasonSnapshot = () => "Grishma";
 const getServerBooleanSnapshot = () => false;
+
+function desktopTreeX(x: number) {
+  return x * DESKTOP_TREE_SCALE_X + DESKTOP_TREE_OFFSET_X;
+}
 
 function imageForItem(item: PortfolioItem) {
   if (item.kind === "project") return { src: item.image, alt: item.title };
@@ -918,7 +922,7 @@ export default function MangoExperience({
           highlightedBranches.has(branch.id) ? " branch-search-hit" : ""
         }${isDimmed ? " branch-dimmed" : ""}`}
         style={{
-          left: `${(label.x / 1600) * 100}%`,
+          left: `${(desktopTreeX(label.x) / 1600) * 100}%`,
           top: `${(label.y / 1040) * 100}%`,
         }}
         type="button"
@@ -970,6 +974,19 @@ export default function MangoExperience({
 
       <main>
         <section className="orchard-hero" aria-labelledby="hero-title">
+          <div className="hero-copy">
+            <div className="hero-overline"><span className="overline-line" /> A living portfolio · Bangladesh</div>
+            <h1 id="hero-title">A life in full <em>bloom.</em></h1>
+            <p className="hero-deck">
+              I&apos;m Ratul — a software engineer and systems researcher. My work grows across projects,
+              people, ideas, and time.
+            </p>
+            <div className="hero-note">
+              <span className="note-spark" aria-hidden="true">✳</span>
+              <span>Bangladesh&apos;s national tree is the mango. <strong>So this is my kind of family tree.</strong></span>
+            </div>
+          </div>
+
           <div className="tree-stage">
             {!listView && (
               <>
@@ -992,7 +1009,7 @@ export default function MangoExperience({
                         <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
                       </filter>
                     </defs>
-                    <g transform={`matrix(1.12 0 0 1.12 ${Math.round(crownLayout[selectedBranch].cx * -0.12)} ${Math.round(crownLayout[selectedBranch].cy * -0.12)})`}>
+                    <g transform={`matrix(1.12 0 0 1.12 ${Math.round(desktopTreeX(crownLayout[selectedBranch].cx) * -0.12)} ${Math.round(crownLayout[selectedBranch].cy * -0.12)})`}>
                       {focusedItem.relatedSlugs?.map((slug) => {
                         const target = allItems.find((item) => item.slug === slug);
                         const sourcePosition = crownLayout[focusedItem.branch];
@@ -1000,7 +1017,7 @@ export default function MangoExperience({
                         return (
                           <path
                             key={slug}
-                            d={`M${sourcePosition.cx} ${sourcePosition.cy} Q800 520 ${targetPosition.cx} ${targetPosition.cy}`}
+                            d={`M${desktopTreeX(sourcePosition.cx)} ${sourcePosition.cy} Q${desktopTreeX(800)} 520 ${desktopTreeX(targetPosition.cx)} ${targetPosition.cy}`}
                           />
                         );
                       })}
@@ -1010,19 +1027,6 @@ export default function MangoExperience({
               </>
             )}
 
-            <div className="hero-copy">
-              <div className="hero-overline"><span className="overline-line" /> A living portfolio · Bangladesh</div>
-              <h1 id="hero-title">A life in full <em>bloom.</em></h1>
-              <p className="hero-deck">
-                I&apos;m Ratul — a software engineer and systems researcher. My work grows across projects,
-                people, ideas, and time.
-              </p>
-              <div className="hero-note">
-                <span className="note-spark" aria-hidden="true">✳</span>
-                <span>Bangladesh&apos;s national tree is the mango. <strong>So this is my kind of family tree.</strong></span>
-              </div>
-            </div>
-
             <div className="scene-caption scene-caption-right">
               <span>Dhaka, Bangladesh</span><span className="compass">N</span>
             </div>
@@ -1030,46 +1034,6 @@ export default function MangoExperience({
             {!listView && (
               <div className="desktop-branch-labels" role="group" aria-label="Explore the six tree branches">
                 {branchButtons}
-              </div>
-            )}
-
-            {!listView && (
-              <div className="tree-control-dock">
-                <div className="tree-toolbar">
-                  <div className="season-picker" role="group" aria-label="Choose one of Dhaka's six seasons">
-                    {seasons.map((entry) => (
-                      <button
-                        type="button"
-                        key={entry.name}
-                        className={season === entry.name ? "season-active" : ""}
-                        aria-pressed={season === entry.name}
-                        title={bangla ? entry.noteBn : entry.note}
-                        onClick={() => setSeasonOverride(entry.name)}
-                      >
-                        {seasonLabel(entry.name)}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="tree-utilities">
-                    <button className="quiet-toggle" type="button" onClick={() => setNightOverride(!night)} aria-pressed={night}>
-                      <span aria-hidden="true">{night ? "☼" : "☾"}</span>
-                      {bangla ? (night ? "দিন" : "রাত") : (night ? "Night" : "Day")}
-                    </button>
-                    <button className="quiet-toggle" type="button" onClick={() => setBangla((current) => !current)} aria-pressed={bangla}>
-                      বাংলা
-                    </button>
-                    <button className="quiet-toggle" type="button" onClick={toggleListView} aria-pressed={listView}>
-                      {bangla ? "তালিকা" : "List view"}
-                    </button>
-                  </div>
-                </div>
-                <GrowthDial
-                  years={ringYears}
-                  selectedYear={selectedYear}
-                  onChange={setSelectedYear}
-                  onReset={() => setSelectedYear(null)}
-                  bangla={bangla}
-                />
               </div>
             )}
 
@@ -1083,6 +1047,46 @@ export default function MangoExperience({
               </div>
             )}
           </div>
+
+          {!listView && (
+            <div className="tree-control-dock">
+              <div className="tree-toolbar">
+                <div className="season-picker" role="group" aria-label="Choose one of Dhaka's six seasons">
+                  {seasons.map((entry) => (
+                    <button
+                      type="button"
+                      key={entry.name}
+                      className={season === entry.name ? "season-active" : ""}
+                      aria-pressed={season === entry.name}
+                      title={bangla ? entry.noteBn : entry.note}
+                      onClick={() => setSeasonOverride(entry.name)}
+                    >
+                      {seasonLabel(entry.name)}
+                    </button>
+                  ))}
+                </div>
+                <div className="tree-utilities">
+                  <button className="quiet-toggle" type="button" onClick={() => setNightOverride(!night)} aria-pressed={night}>
+                    <span aria-hidden="true">{night ? "☼" : "☾"}</span>
+                    {bangla ? (night ? "দিন" : "রাত") : (night ? "Night" : "Day")}
+                  </button>
+                  <button className="quiet-toggle" type="button" onClick={() => setBangla((current) => !current)} aria-pressed={bangla}>
+                    বাংলা
+                  </button>
+                  <button className="quiet-toggle" type="button" onClick={toggleListView} aria-pressed={listView}>
+                    {bangla ? "তালিকা" : "List view"}
+                  </button>
+                </div>
+              </div>
+              <GrowthDial
+                years={ringYears}
+                selectedYear={selectedYear}
+                onChange={setSelectedYear}
+                onReset={() => setSelectedYear(null)}
+                bangla={bangla}
+              />
+            </div>
+          )}
 
           {!listView && (
             <div className="mobile-branch-grid" role="group" aria-label="Explore the six tree branches">

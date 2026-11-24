@@ -1,9 +1,22 @@
 import { awards, branches, certifications, communities, experience, mediaCoverage, projects, researchItems } from "@/data/catalog";
 import type { BranchId, Writing } from "@/data/types";
-import type { CSSProperties } from "react";
+import { useSyncExternalStore, type CSSProperties } from "react";
 
 const VIEWBOX_WIDTH = 1600;
 const VIEWBOX_HEIGHT = 1040;
+export const DESKTOP_TREE_SCALE_X = 0.82;
+export const DESKTOP_TREE_OFFSET_X = 304;
+
+function subscribeToViewport(callback: () => void) {
+  window.addEventListener("resize", callback, { passive: true });
+  return () => window.removeEventListener("resize", callback);
+}
+
+function getViewportWidth() {
+  return window.innerWidth;
+}
+
+const getServerViewportWidth = () => 1440;
 
 type Point = { x: number; y: number };
 type TreeLobe = {
@@ -372,13 +385,23 @@ function TreeScene({
   onSelectBranch,
   onItemHover,
 }: TreeSceneProps) {
+  const viewportWidth = useSyncExternalStore(
+    subscribeToViewport,
+    getViewportWidth,
+    getServerViewportWidth,
+  );
+  const isMobileScene = viewportWidth <= 640;
+  const preserveAspectRatio = "none";
   const focus = focusBranch ? crownLayout[focusBranch] : null;
   const zoom = focus ? 1.12 : 1;
   const camera = focus
-    ? `matrix(${zoom} 0 0 ${zoom} ${rounded(focus.cx * (1 - zoom))} ${rounded(
-        focus.cy * (1 - zoom),
-      )})`
-    : undefined;
+    ? `matrix(${(isMobileScene ? 1 : DESKTOP_TREE_SCALE_X) * zoom} 0 0 ${zoom} ${rounded(
+        (isMobileScene ? 0 : DESKTOP_TREE_OFFSET_X)
+          + (isMobileScene ? 1 : DESKTOP_TREE_SCALE_X) * focus.cx * (1 - zoom),
+      )} ${rounded(focus.cy * (1 - zoom))})`
+    : isMobileScene
+      ? undefined
+      : `matrix(${DESKTOP_TREE_SCALE_X} 0 0 1 ${DESKTOP_TREE_OFFSET_X} 0)`;
   const treeExperience = [...experience, ...certifications];
 
   function itemEvents(slug: string) {
@@ -402,7 +425,7 @@ function TreeScene({
         viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
         role="group"
         aria-labelledby="tree-title tree-description"
-        preserveAspectRatio="xMidYMid slice"
+        preserveAspectRatio={preserveAspectRatio}
       >
         <title id="tree-title">A living mango tree in a Bangladesh paddy field</title>
         <desc id="tree-description">
@@ -669,7 +692,11 @@ function TreeScene({
                   >
                     <g className="tree-token-community" transform={`translate(${point.x} ${point.y})`}>
                       <circle className="community-halo" r="25" />
-                      <circle className="community-disc" r="22" />
+                      <circle
+                        className="community-disc"
+                        r="22"
+                        style={{ "--community-backdrop": community.logoBackdrop } as CSSProperties}
+                      />
                       <image
                         href={community.image}
                         x="-17"
