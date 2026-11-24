@@ -1205,11 +1205,9 @@ export default function MangoExperience({
               />
               <div className="tour-actions">
                 <div className="tour-buttons">
-                  {tourIndex === null && (
-                    <button className="tour-start" type="button" onClick={startTour}>
-                      {bangla ? "৩০ সেকেন্ডের ভ্রমণ" : "Take the 30-second tour"} <span aria-hidden="true">→</span>
-                    </button>
-                  )}
+                  <button className="tour-start" type="button" onClick={startTour}>
+                    {bangla ? "৩০ সেকেন্ডের ভ্রমণ" : "Take the 30-second tour"} <span aria-hidden="true">→</span>
+                  </button>
                 </div>
                 <button className="share-leaf" type="button" onClick={sharePage}>
                   {bangla ? "গাছটি শেয়ার করুন" : "Share this tree"} <span aria-hidden="true">↗</span>
