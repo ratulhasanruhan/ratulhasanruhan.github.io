@@ -1042,7 +1042,15 @@ export default function MangoExperience({
 
   return (
     <MotionConfig reducedMotion="user">
-    <div className={`portfolio-page${growthComplete ? " growth-complete" : " growth-playing"}${listView ? " list-view-mode" : ""}${tourIndex !== null ? " touring" : ""}`} id="top">
+    <div
+      className={`portfolio-page${growthComplete ? " growth-complete" : " growth-playing"}${listView ? " list-view-mode" : ""}${tourIndex !== null ? " touring" : ""}`}
+      id="top"
+      onClickCapture={(event) => {
+        if (tourIndex !== null && event.target instanceof Element && event.target.closest("a[href]")) {
+          stopTour();
+        }
+      }}
+    >
       <header className="site-header">
         <Link className="brand" href="/" aria-label="Ratul Hasan Ruhan — home">
           <span className="brand-fruit" aria-hidden="true"><i /></span>
@@ -1054,7 +1062,13 @@ export default function MangoExperience({
               {bangla ? branch.bangla : branch.label}
             </button>
           ))}
-          <button type="button" onClick={() => document.getElementById("roots")?.scrollIntoView({ behavior: "smooth" })}>
+          <button
+            type="button"
+            onClick={() => {
+              stopTour();
+              document.getElementById("roots")?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             {bangla ? "যোগাযোগ" : "Contact"}
           </button>
         </nav>
