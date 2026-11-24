@@ -1,50 +1,24 @@
 {
-  "redirects": [
+  "framework": null,
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
+  "outputDirectory": "out",
+  "routes": [
     {
-      "source": "/(.*)",
+      "src": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "www.also.ratulruhan.cv"
         }
       ],
-      "destination": "https://also.ratulruhan.cv/$1",
-      "permanent": true
+      "status": 308,
+      "headers": {
+        "Location": "https://also.ratulruhan.cv/$1"
+      }
     },
     {
-      "source": "/recognition",
-      "destination": "/awards/",
-      "permanent": true
-    },
-    {
-      "source": "/writings",
-      "destination": "/writing/",
-      "permanent": true
-    },
-    {
-      "source": "/writting",
-      "destination": "/writing/",
-      "permanent": true
-    },
-    {
-      "source": "/resume",
-      "destination": "/experience/",
-      "permanent": true
-    },
-    {
-      "source": "/about",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/profile",
-      "destination": "/",
-      "permanent": true
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/",
+      "src": "^/(bn)?/?$",
       "has": [
         {
           "type": "header",
@@ -52,10 +26,18 @@
           "value": "(.*)text/markdown(.*)"
         }
       ],
-      "destination": "/ratul-hasan-ruhan.md"
+      "dest": "/ratul-hasan-ruhan.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "Content-Language": "en",
+        "Vary": "Accept",
+        "Access-Control-Allow-Origin": "*",
+        "Cache-Control": "public, max-age=300, s-maxage=3600",
+        "Link": "<https://also.ratulruhan.cv/>; rel=\"alternate\"; type=\"text/html\", <https://also.ratulruhan.cv/ratul-hasan-ruhan.json>; rel=\"describedby\"; type=\"application/ld+json\""
+      }
     },
     {
-      "source": "/projects/:path*",
+      "src": "^/(projects|awards|communities|research|writing|experience|contact|resume|recognition|writings|writting|about|profile)(/.*)?/?$",
       "has": [
         {
           "type": "header",
@@ -63,165 +45,111 @@
           "value": "(.*)text/markdown(.*)"
         }
       ],
-      "destination": "/ratul-hasan-ruhan.md"
+      "dest": "/ratul-hasan-ruhan.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "Content-Language": "en",
+        "Vary": "Accept",
+        "Access-Control-Allow-Origin": "*",
+        "Cache-Control": "public, max-age=300, s-maxage=3600",
+        "Link": "<https://also.ratulruhan.cv/>; rel=\"alternate\"; type=\"text/html\", <https://also.ratulruhan.cv/ratul-hasan-ruhan.json>; rel=\"describedby\"; type=\"application/ld+json\""
+      }
     },
     {
-      "source": "/awards/:path*",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "(.*)text/markdown(.*)"
-        }
-      ],
-      "destination": "/ratul-hasan-ruhan.md"
+      "src": "^/recognition/?$",
+      "status": 308,
+      "headers": {
+        "Location": "/awards/"
+      }
     },
     {
-      "source": "/communities/:path*",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "(.*)text/markdown(.*)"
-        }
-      ],
-      "destination": "/ratul-hasan-ruhan.md"
+      "src": "^/writings/?$",
+      "status": 308,
+      "headers": {
+        "Location": "/writing/"
+      }
     },
     {
-      "source": "/research/:path*",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "(.*)text/markdown(.*)"
-        }
-      ],
-      "destination": "/ratul-hasan-ruhan.md"
+      "src": "^/writting/?$",
+      "status": 308,
+      "headers": {
+        "Location": "/writing/"
+      }
     },
     {
-      "source": "/writing/:path*",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "(.*)text/markdown(.*)"
-        }
-      ],
-      "destination": "/ratul-hasan-ruhan.md"
+      "src": "^/resume/?$",
+      "status": 308,
+      "headers": {
+        "Location": "/experience/"
+      }
     },
     {
-      "source": "/experience/:path*",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "(.*)text/markdown(.*)"
-        }
-      ],
-      "destination": "/ratul-hasan-ruhan.md"
+      "src": "^/about/?$",
+      "status": 308,
+      "headers": {
+        "Location": "/"
+      }
     },
     {
-      "source": "/contact/:path*",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "(.*)text/markdown(.*)"
-        }
-      ],
-      "destination": "/ratul-hasan-ruhan.md"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Link",
-          "value": "<https://also.ratulruhan.cv/ratul-hasan-ruhan.json>; rel=\"describedby\"; type=\"application/ld+json\", <https://also.ratulruhan.cv/ratul-hasan-ruhan.md>; rel=\"alternate\"; type=\"text/markdown\", <https://also.ratulruhan.cv/sitemap.xml>; rel=\"alternate\"; type=\"application/xml\", <https://also.ratulruhan.cv/.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\""
-        },
-        {
-          "key": "Vary",
-          "value": "Accept"
-        }
-      ]
+      "src": "^/profile/?$",
+      "status": 308,
+      "headers": {
+        "Location": "/"
+      }
     },
     {
-      "source": "/ratul-hasan-ruhan.md",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/markdown; charset=utf-8"
-        },
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        }
-      ]
+      "src": "/(.*)",
+      "headers": {
+        "Link": "<https://also.ratulruhan.cv/ratul-hasan-ruhan.json>; rel=\"describedby\"; type=\"application/ld+json\", <https://also.ratulruhan.cv/ratul-hasan-ruhan.md>; rel=\"alternate\"; type=\"text/markdown\", <https://also.ratulruhan.cv/sitemap.xml>; rel=\"alternate\"; type=\"application/xml\", <https://also.ratulruhan.cv/.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\"",
+        "Vary": "Accept"
+      },
+      "continue": true
     },
     {
-      "source": "/ratul-hasan-ruhan.json",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/ld+json; charset=utf-8"
-        },
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        }
-      ]
+      "src": "/ratul-hasan-ruhan\\.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "Access-Control-Allow-Origin": "*"
+      },
+      "continue": true
     },
     {
-      "source": "/.well-known/api-catalog",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/linkset+json; charset=utf-8"
-        },
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=300, s-maxage=3600"
-        }
-      ]
+      "src": "/ratul-hasan-ruhan\\.json",
+      "headers": {
+        "Content-Type": "application/ld+json; charset=utf-8",
+        "Access-Control-Allow-Origin": "*"
+      },
+      "continue": true
     },
     {
-      "source": "/openapi.json",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/vnd.oai.openapi+json;version=3.1; charset=utf-8"
-        },
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=300, s-maxage=3600"
-        }
-      ]
+      "src": "/\\.well-known/api-catalog",
+      "headers": {
+        "Content-Type": "application/linkset+json; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Cache-Control": "public, max-age=300, s-maxage=3600"
+      },
+      "continue": true
     },
     {
-      "source": "/auth.md",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/markdown; charset=utf-8"
-        },
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=300, s-maxage=3600"
-        }
-      ]
+      "src": "/openapi\\.json",
+      "headers": {
+        "Content-Type": "application/vnd.oai.openapi+json;version=3.1; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Cache-Control": "public, max-age=300, s-maxage=3600"
+      },
+      "continue": true
+    },
+    {
+      "src": "/auth\\.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Cache-Control": "public, max-age=300, s-maxage=3600"
+      },
+      "continue": true
+    },
+    {
+      "handle": "filesystem"
     }
   ]
 }

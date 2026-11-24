@@ -17,8 +17,10 @@ there is nothing to register for.
 | OpenAPI 3.1 description | `https://also.ratulruhan.cv/openapi.json` | `application/vnd.oai.openapi+json` |
 | API catalog (RFC 9727) | `https://also.ratulruhan.cv/.well-known/api-catalog` | `application/linkset+json` |
 
-Any HTML page route (`/`, `/resume`, `/projects`, …) also returns the Markdown
-overview when requested with `Accept: text/markdown`.
+On the canonical Vercel host (`also.ratulruhan.cv`), HTML page routes
+(`/`, `/projects/`, `/bn/`, …) also return the Markdown overview when requested
+with `Accept: text/markdown`. Firebase Hosting and GitHub Pages serve static
+files only, so prefer the direct `/ratul-hasan-ruhan.md` URL there.
 
 ## Usage terms
 

@@ -25,6 +25,11 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "/",
+    languages: {
+      en: "/",
+      bn: "/bn/",
+      "x-default": "/",
+    },
     types: {
       "text/markdown": "/ratul-hasan-ruhan.md",
       "application/ld+json": "/ratul-hasan-ruhan.json",

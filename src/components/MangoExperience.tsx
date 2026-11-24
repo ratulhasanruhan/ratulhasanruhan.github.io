@@ -1307,7 +1307,8 @@ export default function MangoExperience({
           <button className={selectedBranch === "projects" ? "nav-active" : ""} aria-current={selectedBranch === "projects" ? "page" : undefined} type="button" onClick={() => openBranch("projects")}>Projects</button>
           <button className={selectedBranch === "awards" ? "nav-active" : ""} aria-current={selectedBranch === "awards" ? "page" : undefined} type="button" onClick={() => openBranch("awards")}>Awards</button>
           <button className={selectedBranch === "communities" ? "nav-active" : ""} aria-current={selectedBranch === "communities" ? "page" : undefined} type="button" onClick={() => openBranch("communities")}>Community</button>
-          <button className={selectedBranch === "communities" ? "nav-active" : ""} aria-current={selectedBranch === "communities" ? "page" : undefined} type="button" onClick={() => openBranch("communities")}>Events</button>
+          <button className={selectedBranch === "research" ? "nav-active" : ""} aria-current={selectedBranch === "research" ? "page" : undefined} type="button" onClick={() => openBranch("research")}>Research</button>
+          <button className={selectedBranch === "writing" ? "nav-active" : ""} aria-current={selectedBranch === "writing" ? "page" : undefined} type="button" onClick={() => openBranch("writing")}>Writing</button>
           <button className={activeSection === "contact" ? "nav-active" : ""} aria-current={activeSection === "contact" ? "location" : undefined} type="button" onClick={goToContact}>Contact</button>
         </nav>
         <div className="header-actions">
@@ -1571,7 +1572,13 @@ export default function MangoExperience({
         <button className={selectedBranch === "awards" ? "tab-active" : ""} aria-current={selectedBranch === "awards" ? "page" : undefined} type="button" onClick={() => openBranch("awards")}>
           <AwardIcon size={19} aria-hidden="true" /><span>Awards</span>
         </button>
-        <button ref={menuTriggerRef} aria-expanded={mobileMenuOpen} type="button" onClick={openMenu}>
+        <button
+          ref={menuTriggerRef}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="menu-sheet"
+          type="button"
+          onClick={openMenu}
+        >
           <MenuIcon size={19} aria-hidden="true" /><span>Menu</span>
         </button>
       </nav>
@@ -1589,6 +1596,7 @@ export default function MangoExperience({
           >
             <motion.section
               ref={mobileMenuRef}
+              id="menu-sheet"
               className="mobile-menu-sheet"
               role="dialog"
               aria-modal="true"
@@ -1611,7 +1619,8 @@ export default function MangoExperience({
                 <button type="button" onClick={() => openBranch("projects")}>Projects <span>Built things</span></button>
                 <button type="button" onClick={() => openBranch("awards")}>Awards <span>Milestones</span></button>
                 <button type="button" onClick={() => openBranch("communities")}>Community <span>People & roles</span></button>
-                <button type="button" onClick={() => openBranch("communities")}>Events <span>Related event photographs</span></button>
+                <button type="button" onClick={() => openBranch("research")}>Research <span>Publications & interests</span></button>
+                <button type="button" onClick={() => openBranch("writing")}>Writing <span>Engineering notes</span></button>
                 <button type="button" onClick={goToContact}>Contact <span>Get in touch</span></button>
               </nav>
               <div className="menu-sheet-actions">

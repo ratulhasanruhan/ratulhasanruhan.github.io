@@ -9,7 +9,7 @@ const siteUrl = "https://also.ratulruhan.cv";
 export const dynamicParams = false;
 
 const branchDescriptions: Record<string, string> = {
-  projects: "Explore 29 software projects and experiments by Ratul Hasan Ruhan.",
+  projects: "Explore 30 software projects and experiments by Ratul Hasan Ruhan.",
   awards: "Explore awards, recognitions, and milestones in Ratul Hasan Ruhan’s portfolio.",
   communities: "Explore community roles and volunteer work by Ratul Hasan Ruhan.",
   research: "Explore publications and research interests by Ratul Hasan Ruhan.",

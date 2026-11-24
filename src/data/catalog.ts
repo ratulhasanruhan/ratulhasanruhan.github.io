@@ -323,7 +323,7 @@ const experienceEntries = [
     title: "Solution Explorer — Software Engineer",
     tenure: "Aug 2025 – Oct 2025",
     description:
-      "Remote (MaryLand, US) · Developed cross-platform applications for mobile and desktop, focusing on performance, usability, and scalable architecture.",
+      "Remote (Maryland, US) · Developed cross-platform applications for mobile and desktop, focusing on performance, usability, and scalable architecture.",
     year: 2025,
   },
   {

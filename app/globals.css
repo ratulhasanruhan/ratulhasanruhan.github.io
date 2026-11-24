@@ -1260,7 +1260,7 @@ kbd {
   display: grid;
   grid-template-columns: 86px minmax(0, 1fr) 18px;
   min-height: 104px;
-  align-items: center;
+  align-items: start;
   gap: 14px;
   border: 1px solid rgba(66, 77, 53, 0.13);
   border-radius: 15px;
@@ -2152,8 +2152,79 @@ kbd {
   padding: 5px 10px;
 }
 
+.item-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
 .item-detail-action {
   margin-top: 3px;
+}
+
+.item-detail-facts .item-detail-email {
+  color: #4f6744;
+  text-decoration: none;
+}
+
+.item-detail-events {
+  margin-top: clamp(28px, 4vw, 42px);
+  padding-top: clamp(22px, 3vw, 32px);
+  border-top: 1px solid rgba(66, 77, 53, 0.14);
+}
+
+.item-detail-events-copy h3 {
+  margin: 6px 0 10px;
+  color: #354b37;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.item-detail-events-copy p {
+  margin: 0;
+  color: #737060;
+  font-size: 13px;
+  line-height: 1.65;
+  max-width: 52ch;
+}
+
+.item-detail-events-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.item-detail-events-gallery a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.item-detail-events-gallery figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(66, 77, 53, 0.15);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #e6e3d2, #d8dec8);
+}
+
+.item-detail-events-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 320 / 220;
+  object-fit: cover;
+}
+
+.item-detail-events-gallery figcaption {
+  padding: 8px 10px 10px;
+  color: #5a724d;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 .item-detail-gallery {
@@ -4519,11 +4590,14 @@ kbd {
 
 .item-event-photos {
   display: flex;
+  flex-wrap: wrap;
   gap: 5px;
+  max-width: 100%;
   margin-top: 5px;
 }
 
 .item-event-photos img {
+  flex: 0 0 auto;
   width: 58px;
   height: 42px;
   border: 1px solid rgba(72, 79, 56, 0.15);

@@ -22,7 +22,19 @@ type ModelContext = {
   unregisterTool?: (name: string) => Promise<unknown> | unknown;
 };
 
-const pages = ["about", "resume", "projects", "research", "writings", "recognition", "contact"];
+const pages = [
+  "about",
+  "projects",
+  "awards",
+  "communities",
+  "research",
+  "writing",
+  "writings",
+  "experience",
+  "resume",
+  "recognition",
+  "contact",
+];
 const categories = [...new Set(projectsSnapshot.map((project) => project.category))];
 
 export default function WebMcp() {
