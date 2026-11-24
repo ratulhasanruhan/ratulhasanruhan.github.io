@@ -252,17 +252,22 @@ kbd {
 }
 
 .orchard-hero {
-  width: min(100% - 56px, 1360px);
-  margin: 0 auto;
-  padding: 56px 0 0;
+  position: relative;
+  width: 100%;
+  height: calc(100svh - 76px);
+  min-height: 620px;
+  margin: 0;
 }
 
 .hero-copy {
-  position: relative;
-  z-index: 2;
-  max-width: 740px;
-  margin: 0 auto 32px;
-  text-align: center;
+  position: absolute;
+  z-index: 7;
+  top: clamp(40px, 7vh, 82px);
+  left: clamp(28px, 5.2vw, 78px);
+  width: min(500px, 42vw);
+  margin: 0;
+  text-align: left;
+  pointer-events: none;
 }
 
 .hero-overline,
@@ -279,7 +284,7 @@ kbd {
 .hero-overline {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 9px;
 }
 
@@ -315,8 +320,8 @@ kbd {
 }
 
 .hero-deck {
-  max-width: 600px;
-  margin: 18px auto 0;
+  max-width: 470px;
+  margin: 16px 0 0;
   color: #686657;
   font-size: 15px;
   line-height: 1.7;
@@ -324,7 +329,8 @@ kbd {
 
 .hero-note {
   display: inline-flex;
-  margin-top: 20px;
+  max-width: 430px;
+  margin-top: 16px;
   align-items: center;
   gap: 9px;
   border: 1px solid rgba(107, 112, 78, 0.16);
@@ -347,25 +353,38 @@ kbd {
 
 .tree-toolbar {
   display: flex;
-  min-height: 54px;
+  min-width: 0;
+  flex: 1 1 auto;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  gap: 14px;
 }
 
 .season-picker,
 .tree-utilities {
   display: flex;
-  flex-wrap: wrap;
+  min-width: 0;
   align-items: center;
   gap: 4px;
 }
 
+.season-picker {
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 26px), transparent 100%);
+}
+
+.season-picker::-webkit-scrollbar {
+  display: none;
+}
+
 .season-picker button,
 .quiet-toggle {
-  min-height: 40px;
+  min-height: 36px;
+  flex: 0 0 auto;
   border: 0;
   border-radius: 999px;
   background: transparent;
@@ -390,6 +409,7 @@ kbd {
 
 .tree-utilities {
   justify-content: flex-end;
+  flex: 0 0 auto;
 }
 
 .quiet-toggle {
@@ -417,6 +437,65 @@ kbd {
   border-radius: 18px;
   background: rgba(255, 253, 246, 0.63);
   box-shadow: 0 8px 22px rgba(61, 56, 36, 0.04);
+}
+
+.tree-control-dock {
+  position: absolute;
+  z-index: 10;
+  right: clamp(14px, 2.2vw, 32px);
+  bottom: clamp(12px, 2vh, 20px);
+  left: clamp(14px, 2.2vw, 32px);
+  display: flex;
+  min-height: 62px;
+  align-items: center;
+  gap: 14px;
+  padding: 7px 10px 7px 15px;
+  border: 1px solid rgba(75, 77, 57, 0.2);
+  border-radius: 20px;
+  background: rgba(248, 246, 233, 0.9);
+  box-shadow: 0 12px 34px rgba(45, 55, 39, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(15px);
+}
+
+.growth-dial-compact {
+  width: clamp(235px, 22vw, 310px);
+  min-height: 48px;
+  flex: 0 0 auto;
+  gap: 7px;
+  margin: 0;
+  padding: 4px 8px 4px 5px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.54);
+  box-shadow: none;
+}
+
+.growth-dial-compact .rings-graphic {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+}
+
+.growth-dial-compact .rings-graphic svg {
+  width: 32px;
+  height: 32px;
+}
+
+.growth-dial-compact .rings-label-row label {
+  font-size: 10px;
+}
+
+.growth-dial-compact .rings-control input[type="range"] {
+  margin: 6px 0 4px;
+}
+
+.growth-dial-compact .ring-year,
+.growth-dial-compact .ring-range {
+  font-size: 8px;
+}
+
+.growth-dial-compact .ring-range button {
+  font-size: 8px;
+  padding: 0 3px;
 }
 
 .rings-graphic {
@@ -503,17 +582,25 @@ kbd {
 .tree-stage {
   position: relative;
   width: 100%;
-  max-width: 1240px;
-  height: auto;
-  margin-inline: auto;
-  aspect-ratio: 1600 / 1350;
-  margin-top: 6px;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+  aspect-ratio: auto;
   overflow: hidden;
-  border: 1px solid rgba(72, 74, 53, 0.12);
-  border-radius: 28px;
+  border: 0;
+  border-radius: 0;
   background: #dfe8d6;
-  box-shadow: 0 25px 65px rgba(71, 67, 47, 0.12);
+  box-shadow: none;
   isolation: isolate;
+}
+
+.tree-stage::before {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  background: radial-gradient(ellipse 48% 50% at 18% 21%, rgba(248, 246, 231, 0.84) 0, rgba(248, 246, 231, 0.5) 42%, rgba(248, 246, 231, 0) 100%);
+  content: "";
+  pointer-events: none;
 }
 
 .tree-illustration,
@@ -530,6 +617,10 @@ kbd {
   overflow: hidden;
 }
 
+.tree-illustration {
+  z-index: 1;
+}
+
 .weather-canvas {
   z-index: 2;
   pointer-events: none;
@@ -538,7 +629,7 @@ kbd {
 .scene-caption {
   position: absolute;
   z-index: 4;
-  top: 19px;
+  top: 18px;
   display: inline-flex;
   min-height: 31px;
   align-items: center;
@@ -581,15 +672,16 @@ kbd {
 
 .desktop-branch-labels {
   position: absolute;
-  z-index: 5;
+  z-index: 6;
   inset: 0;
 }
 
 .branch-label {
   position: absolute;
   display: inline-flex;
-  min-width: 134px;
-  min-height: 44px;
+  z-index: 1;
+  min-width: 132px;
+  min-height: 40px;
   align-items: center;
   justify-content: space-between;
   gap: 11px;
@@ -600,7 +692,7 @@ kbd {
   box-shadow: 0 9px 24px rgba(49, 58, 36, 0.13), inset 0 1px 0 rgba(255, 255, 255, 0.75);
   color: #354733;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   transform: translate(-50%, -50%);
   transition: background 180ms ease, box-shadow 180ms ease, opacity 180ms ease, transform 180ms ease;
@@ -646,9 +738,9 @@ kbd {
 
 .growth-intro {
   position: absolute;
-  z-index: 6;
-  right: 23px;
-  bottom: 20px;
+  z-index: 8;
+  right: clamp(20px, 2.5vw, 38px);
+  bottom: 91px;
   display: flex;
   min-height: 41px;
   align-items: center;
@@ -2516,6 +2608,541 @@ kbd {
   transition: opacity 400ms ease, fill 400ms ease;
 }
 
+.portfolio-page.list-view-mode .orchard-hero {
+  height: 0;
+  min-height: 0;
+}
+
+.list-view-return {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  gap: 9px;
+  margin-top: 14px;
+  border: 1px solid rgba(63, 72, 47, 0.2);
+  border-radius: 999px;
+  background: #455f3e;
+  color: #fbf5e7;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0 15px;
+}
+
+.floating-search {
+  display: none;
+}
+
+.tree-illustration {
+  --leaf-back-light: #456b43;
+  --leaf-back: #2d5138;
+  --leaf-mid-light: #76984c;
+  --leaf-mid: #527b44;
+  --leaf-sun-light: #b6c976;
+  --leaf-sun: #82a653;
+  --leaf-under: #31513a;
+  overflow: hidden;
+  background: #d4e1c9;
+}
+
+.tree-stage::before,
+.tree-illustration::after {
+  pointer-events: none;
+}
+
+.tree-illustration[data-season="Grishma"] {
+  --leaf-back-light: #49683b;
+  --leaf-back: #2b4c32;
+  --leaf-mid-light: #829846;
+  --leaf-mid: #5f7b3a;
+  --leaf-sun-light: #d0bd5e;
+  --leaf-sun: #9ba64d;
+  --leaf-under: #344d31;
+}
+
+.tree-illustration[data-season="Borsha"] {
+  --leaf-back-light: #42664c;
+  --leaf-back: #294a3b;
+  --leaf-mid-light: #69916c;
+  --leaf-mid: #467455;
+  --leaf-sun-light: #9dbd8a;
+  --leaf-sun: #719b70;
+  --leaf-under: #294a3b;
+}
+
+.tree-illustration[data-season="Sharat"] {
+  --leaf-back-light: #4d7041;
+  --leaf-back: #304f37;
+  --leaf-mid-light: #8a9f55;
+  --leaf-mid: #638348;
+  --leaf-sun-light: #d0c17a;
+  --leaf-sun: #9faf60;
+  --leaf-under: #344f38;
+}
+
+.tree-illustration[data-season="Hemanta"] {
+  --leaf-back-light: #697342;
+  --leaf-back: #3c5735;
+  --leaf-mid-light: #a3a85a;
+  --leaf-mid: #7d8d48;
+  --leaf-sun-light: #e1c36d;
+  --leaf-sun: #bdac58;
+  --leaf-under: #405235;
+}
+
+.tree-illustration[data-season="Sheet"] {
+  --leaf-back-light: #526744;
+  --leaf-back: #344d39;
+  --leaf-mid-light: #839364;
+  --leaf-mid: #627b4e;
+  --leaf-sun-light: #c0c69a;
+  --leaf-sun: #96a879;
+  --leaf-under: #354a38;
+}
+
+.tree-illustration[data-season="Basanta"] {
+  --leaf-back-light: #557245;
+  --leaf-back: #304f36;
+  --leaf-mid-light: #8ba956;
+  --leaf-mid: #628b45;
+  --leaf-sun-light: #c4d47c;
+  --leaf-sun: #95b85f;
+  --leaf-under: #355239;
+}
+
+.tree-illustration[data-night="true"] {
+  --leaf-back-light: #365444;
+  --leaf-back: #223d32;
+  --leaf-mid-light: #567448;
+  --leaf-mid: #3c6140;
+  --leaf-sun-light: #819564;
+  --leaf-sun: #637d4e;
+  --leaf-under: #213a31;
+}
+
+.tree-limbs,
+.tree-trunk,
+.trunk-ridges,
+.roots,
+.crown-back,
+.crown-mid,
+.crown-sunlit,
+.crown-underside,
+.crown-leaves,
+.crown-leaf-veins,
+.tree-items a,
+.press-bird {
+  pointer-events: none;
+}
+
+.tree-limb {
+  fill: url("#limb-bark");
+  stroke: rgba(69, 45, 32, 0.75);
+  stroke-width: 3;
+  filter: drop-shadow(0 5px 4px rgba(39, 36, 25, 0.2));
+}
+
+.tree-limb-sheen {
+  fill: none;
+  stroke: rgba(227, 173, 114, 0.38);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sub-limb {
+  fill: url("#limb-bark");
+  stroke: rgba(71, 48, 34, 0.62);
+  stroke-width: 2;
+}
+
+.tree-trunk {
+  fill: url("#bark");
+  stroke: rgba(65, 43, 31, 0.7);
+  stroke-width: 7;
+  filter: drop-shadow(0 6px 5px rgba(44, 37, 25, 0.18));
+}
+
+.trunk-shade {
+  fill: rgba(48, 33, 25, 0.23);
+  pointer-events: none;
+}
+
+.trunk-ridges {
+  fill: none;
+  stroke: rgba(232, 182, 126, 0.45);
+  stroke-linecap: round;
+  stroke-width: 4;
+}
+
+.roots {
+  fill: none;
+  stroke: url("#limb-bark");
+  stroke-linecap: round;
+  stroke-width: 11;
+}
+
+.roots path:nth-child(even) {
+  stroke: rgba(198, 137, 87, 0.7);
+  stroke-width: 4;
+}
+
+.tree-shadow,
+.canopy-ground-shadow {
+  fill: rgba(43, 57, 38, 0.25);
+  filter: url("#ground-blur");
+}
+
+.crown-back,
+.crown-mid,
+.crown-sunlit,
+.crown-underside {
+  stroke: none;
+}
+
+.crown-back {
+  fill: url("#crown-back");
+}
+
+.crown-mid {
+  fill: url("#crown-mid");
+}
+
+.crown-sunlit {
+  fill: url("#crown-sunlit");
+  opacity: 0.83;
+}
+
+.crown-underside {
+  fill: url("#crown-underside");
+}
+
+.crown-lift {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 260ms ease, filter 260ms ease;
+}
+
+.crown-sway {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: crown-sway 8s ease-in-out infinite alternate;
+}
+
+.crown-cluster:has(.crown-hit:hover) .crown-lift,
+.crown-cluster:focus-within .crown-lift {
+  filter: drop-shadow(0 0 20px rgba(245, 219, 138, 0.62));
+  transform: translateY(-6px) scale(1.025);
+}
+
+.crown-hit-area {
+  overflow: visible;
+}
+
+.crown-hit {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.crown-hit:focus-visible {
+  outline: 3px solid #f6d788;
+  outline-offset: -8px;
+  background: rgba(246, 215, 136, 0.08);
+}
+
+.crown-leaves-0 {
+  fill: var(--leaf-back);
+}
+
+.crown-leaves-1 {
+  fill: var(--leaf-mid);
+}
+
+.crown-leaves-2 {
+  fill: var(--leaf-sun);
+}
+
+.crown-leaves-3 {
+  fill: var(--leaf-under);
+}
+
+.crown-leaf-veins {
+  fill: none;
+  stroke: rgba(229, 229, 169, 0.34);
+  stroke-width: 1.25;
+  stroke-linecap: round;
+}
+
+.tree-items a {
+  pointer-events: auto;
+  cursor: pointer;
+  outline: none;
+}
+
+.token-leaf,
+.token-bud {
+  stroke: rgba(37, 68, 42, 0.74);
+  stroke-width: 1.5;
+}
+
+.token-vein,
+.research-vein {
+  fill: none;
+  stroke: rgba(39, 71, 43, 0.82);
+  stroke-linecap: round;
+  stroke-width: 1.6;
+}
+
+.tree-token-project .token-leaf {
+  fill: #a8c775;
+}
+
+.tree-token-research .token-leaf {
+  fill: #e9e5bc;
+  stroke: #9b9d5d;
+}
+
+.research-vein {
+  stroke: #71804b;
+  stroke-width: 1.2;
+}
+
+.tree-token-writing .token-leaf {
+  fill: #b3ce79;
+}
+
+.writing-bud,
+.fresh-glint {
+  fill: #fff1a8;
+  stroke: rgba(103, 102, 57, 0.5);
+  stroke-width: 1;
+}
+
+.tree-token-experience .token-bud,
+.tree-token-fresh .token-bud {
+  fill: #8eaf5f;
+}
+
+.tree-token-fresh .token-bud {
+  fill: #bddb72;
+}
+
+.award-glow {
+  fill: url("#fruit-glow");
+  filter: url("#fruit-glow-filter");
+}
+
+.mango-fruit {
+  fill: url("#mango-gold");
+  stroke: #ab602e;
+  stroke-width: 1.5;
+  filter: drop-shadow(1px 5px 4px rgba(63, 43, 24, 0.28));
+}
+
+.mango-stem {
+  fill: none;
+  stroke: #5f482c;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.mango-glint {
+  fill: none;
+  stroke: rgba(255, 247, 189, 0.8);
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+.community-halo {
+  fill: rgba(253, 243, 192, 0.33);
+  filter: url("#fruit-glow-filter");
+}
+
+.community-disc {
+  fill: #fcf7e5;
+  stroke: #f2dea0;
+  stroke-width: 3;
+}
+
+.tree-token-community image {
+  pointer-events: none;
+}
+
+.tree-items a:hover .token-leaf,
+.tree-items a:hover .token-bud,
+.tree-items a:focus-visible .token-leaf,
+.tree-items a:focus-visible .token-bud,
+.tree-items a:hover .mango-fruit,
+.tree-items a:focus-visible .mango-fruit,
+.tree-items a:hover .community-disc,
+.tree-items a:focus-visible .community-disc {
+  filter: drop-shadow(0 0 8px rgba(255, 237, 148, 0.94));
+}
+
+.tree-items a:focus-visible {
+  filter: drop-shadow(0 0 8px rgba(255, 237, 148, 0.94));
+}
+
+.branch-leader-lines {
+  fill: none;
+  stroke: rgba(255, 248, 220, 0.92);
+  stroke-width: 3;
+  stroke-linecap: round;
+  filter: drop-shadow(0 1px 2px rgba(47, 57, 35, 0.6));
+  pointer-events: none;
+}
+
+.press-bird {
+  fill: #304737;
+  stroke: rgba(245, 238, 204, 0.86);
+  stroke-width: 1.3;
+}
+
+.bird-eye {
+  fill: #edc56f;
+  stroke: none;
+}
+
+.bird-beak {
+  fill: #d5a54f;
+  stroke: none;
+}
+
+.press-birds a {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.press-birds a:hover .press-bird,
+.press-birds a:focus-visible .press-bird {
+  filter: drop-shadow(0 0 8px rgba(255, 236, 148, 0.95));
+}
+
+.season-blossoms {
+  display: none;
+  fill: #f6d2cf;
+  stroke: rgba(147, 90, 83, 0.62);
+  stroke-width: 1.1;
+  pointer-events: none;
+}
+
+.flower-core {
+  fill: #f5d778;
+  stroke: none;
+}
+
+.tree-illustration[data-season="Basanta"] .season-blossoms {
+  display: block;
+}
+
+.tree-illustration[data-season="Hemanta"]::after,
+.tree-illustration[data-season="Sheet"]::after {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  background:
+    linear-gradient(180deg, transparent 38%, rgba(244, 236, 204, 0.08) 58%, rgba(241, 236, 216, 0.38) 100%),
+    radial-gradient(ellipse at 65% 76%, rgba(246, 241, 219, 0.33), transparent 55%);
+  content: "";
+  pointer-events: none;
+  animation: valley-fog 16s ease-in-out infinite alternate;
+}
+
+.tree-illustration[data-night="true"] .sun-or-moon {
+  fill: #e5e7cc;
+  filter: drop-shadow(0 0 34px rgba(223, 237, 195, 0.6));
+}
+
+.tree-illustration[data-night="true"] .crown-leaf-veins {
+  stroke: rgba(190, 212, 153, 0.28);
+}
+
+.growth-playing .tree-trunk,
+.growth-playing .trunk-ridges,
+.growth-playing .roots {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: trunk-rise 700ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+.growth-playing .tree-limbs {
+  opacity: 0;
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: limbs-rise 560ms ease-out 650ms both;
+}
+
+.growth-playing .tree-limb-sheen {
+  animation: limb-glimmer 800ms ease-out 900ms both;
+}
+
+.growth-playing .crown-lift {
+  opacity: 0;
+  animation: crown-arrive 640ms cubic-bezier(0.18, 0.75, 0.25, 1) calc(1.05s + var(--crown-delay)) both;
+}
+
+.growth-playing .tree-items {
+  opacity: 0;
+  animation: items-arrive 560ms ease-out 1.8s both;
+}
+
+.growth-playing .mango-fruit {
+  opacity: 1;
+  animation: none;
+}
+
+.tree-items .project-tokens,
+.tree-items .writing-tokens,
+.tree-items .research-tokens,
+.tree-items .experience-tokens,
+.tree-items .award-tokens,
+.tree-items .community-tokens,
+.tree-items .fresh-growth-buds,
+.tree-items .press-birds {
+  pointer-events: none;
+}
+
+.tree-items a {
+  pointer-events: auto;
+}
+
+@keyframes crown-sway {
+  from { transform: rotate(-0.7deg); }
+  to { transform: rotate(0.8deg); }
+}
+
+@keyframes trunk-rise {
+  from { opacity: 0; transform: scaleY(0.08); }
+  to { opacity: 1; transform: scaleY(1); }
+}
+
+@keyframes limbs-rise {
+  from { opacity: 0; transform: scale(0.88); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes limb-glimmer {
+  from { opacity: 0.1; }
+  to { opacity: 1; }
+}
+
+@keyframes crown-arrive {
+  from { opacity: 0; transform: scale(0.78) translateY(30px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes items-arrive {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @keyframes draw-tree {
   to { stroke-dashoffset: 0; }
 }
@@ -2568,11 +3195,26 @@ kbd {
   }
 
   .orchard-hero {
-    width: min(100% - 36px, 1360px);
+    width: 100%;
   }
 
   .tree-stage {
-    height: clamp(470px, 75vw, 720px);
+    height: 100%;
+    min-height: 540px;
+  }
+
+  .tree-control-dock {
+    gap: 8px;
+    padding: 6px 8px;
+  }
+
+  .growth-dial-compact {
+    width: 220px;
+  }
+
+  .quiet-toggle {
+    padding-inline: 7px;
+    font-size: 10px;
   }
 
   .branch-label {
@@ -2635,38 +3277,51 @@ kbd {
   }
 
   .orchard-hero {
-    width: calc(100% - 28px);
-    padding-top: 35px;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 0;
   }
 
   .hero-copy {
-    margin-bottom: 24px;
+    top: 12px;
+    left: 12px;
+    width: calc(100% - 24px);
+    max-width: none;
+    margin: 0;
+    padding: 9px 12px 11px;
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    border-radius: 15px;
+    background: rgba(248, 246, 231, 0.88);
+    box-shadow: 0 7px 24px rgba(50, 59, 42, 0.12);
+    backdrop-filter: blur(5px);
+  }
+
+  .hero-overline {
+    font-size: 8px;
   }
 
   .hero-copy h1 {
-    font-size: clamp(43px, 13vw, 58px);
-  }
-
-  .hero-deck {
-    max-width: 440px;
-    margin-top: 14px;
-    font-size: 13px;
+    max-width: 360px;
+    margin-top: 8px;
+    font-size: clamp(35px, 10.5vw, 46px);
   }
 
   .hero-note {
-    max-width: 100%;
-    margin-top: 15px;
-    border-radius: 14px;
-    font-size: 10px;
-    line-height: 1.4;
-    text-align: left;
+    display: none;
+  }
+
+  .hero-deck {
+    max-width: 340px;
+    margin-top: 8px;
+    font-size: 11px;
+    line-height: 1.45;
   }
 
   .tree-toolbar {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 3px;
-    padding: 7px 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
   }
 
   .season-picker {
@@ -2682,9 +3337,14 @@ kbd {
   }
 
   .season-picker button {
-    min-width: 51px;
-    min-height: 40px;
-    padding: 0 9px;
+    min-width: 0;
+    min-height: 30px;
+    font-size: 8px;
+    padding: 0 5px;
+  }
+
+  .season-picker {
+    mask-image: none;
   }
 
   .tree-utilities {
@@ -2693,9 +3353,20 @@ kbd {
   }
 
   .quiet-toggle {
-    min-height: 40px;
+    min-height: 29px;
     padding: 0 8px;
-    font-size: 10px;
+    font-size: 9px;
+  }
+
+  .tree-control-dock {
+    right: 10px;
+    bottom: 9px;
+    left: 10px;
+    display: grid;
+    min-height: 0;
+    gap: 4px;
+    padding: 6px 8px;
+    border-radius: 16px;
   }
 
   .growth-dial {
@@ -2717,6 +3388,24 @@ kbd {
     height: 42px;
   }
 
+  .growth-dial-compact {
+    width: 100%;
+    min-height: 39px;
+    gap: 6px;
+    margin: 0;
+    padding: 3px 7px 3px 4px;
+  }
+
+  .growth-dial-compact .rings-graphic {
+    width: 31px;
+    height: 31px;
+  }
+
+  .growth-dial-compact .rings-graphic svg {
+    width: 27px;
+    height: 27px;
+  }
+
   .rings-label-row label {
     font-size: 10px;
   }
@@ -2727,10 +3416,10 @@ kbd {
   }
 
   .tree-stage {
-    height: clamp(300px, 98vw, 420px);
-    min-height: 300px;
-    margin-top: 3px;
-    border-radius: 19px;
+    height: clamp(420px, 65svh, 580px);
+    min-height: 420px;
+    margin: 0;
+    border-radius: 0;
   }
 
   .tree-illustration {
@@ -2751,7 +3440,9 @@ kbd {
   }
 
   .scene-caption-right {
-    right: 9px;
+    top: 11px;
+    right: 10px;
+    display: none;
   }
 
   .compass {
@@ -2765,7 +3456,7 @@ kbd {
 
   .growth-intro {
     right: 10px;
-    bottom: 10px;
+    bottom: 126px;
     min-height: 34px;
     gap: 7px;
     font-size: 9px;
@@ -3016,10 +3707,7 @@ kbd {
   }
 
   .floating-search {
-    right: 13px;
-    bottom: calc(12px + env(safe-area-inset-bottom));
-    min-height: 44px;
-    padding: 0 12px;
+    display: none;
   }
 
   .floating-search span:last-child {
@@ -3212,7 +3900,8 @@ kbd {
   }
 
   .tree-stage {
-    height: 300px;
+    height: 65svh;
+    min-height: 420px;
   }
 
   .tour-actions {

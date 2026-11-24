@@ -1,16 +1,102 @@
-import { awards, certifications, communities, mediaCoverage, projects, researchItems } from "@/data/catalog";
-import type { BranchId } from "@/data/types";
-import { memo, type CSSProperties } from "react";
+import { awards, branches, certifications, communities, experience, mediaCoverage, projects, researchItems } from "@/data/catalog";
+import type { BranchId, Writing } from "@/data/types";
+import type { CSSProperties } from "react";
 
-const clusters = [
-  { x: 800, y: 257, rx: 218, ry: 144 },
-  { x: 568, y: 369, rx: 248, ry: 170 },
-  { x: 1034, y: 370, rx: 250, ry: 174 },
-  { x: 386, y: 527, rx: 205, ry: 158 },
-  { x: 1214, y: 523, rx: 205, ry: 164 },
-  { x: 595, y: 623, rx: 228, ry: 151 },
-  { x: 1004, y: 633, rx: 228, ry: 154 },
+const VIEWBOX_WIDTH = 1600;
+const VIEWBOX_HEIGHT = 1040;
+
+type Point = { x: number; y: number };
+type TreeLobe = {
+  id: BranchId;
+  cx: number;
+  cy: number;
+  rx: number;
+  ry: number;
+  seed: number;
+  label: Point;
+  leader: { from: Point; to: Point };
+  hit: { x: number; y: number; width: number; height: number };
+};
+
+export const crownLayout: Record<BranchId, TreeLobe> = {
+  projects: {
+    id: "projects",
+    cx: 330,
+    cy: 405,
+    rx: 282,
+    ry: 202,
+    seed: 9103,
+    label: { x: 102, y: 405 },
+    leader: { from: { x: 65, y: 405 }, to: { x: 102, y: 405 } },
+    hit: { x: 208, y: 335, width: 226, height: 145 },
+  },
+  awards: {
+    id: "awards",
+    cx: 1270,
+    cy: 405,
+    rx: 282,
+    ry: 202,
+    seed: 9811,
+    label: { x: 1498, y: 405 },
+    leader: { from: { x: 1535, y: 405 }, to: { x: 1498, y: 405 } },
+    hit: { x: 1167, y: 335, width: 226, height: 145 },
+  },
+  communities: {
+    id: "communities",
+    cx: 470,
+    cy: 610,
+    rx: 255,
+    ry: 184,
+    seed: 10831,
+    label: { x: 370, y: 772 },
+    leader: { from: { x: 430, y: 780 }, to: { x: 370, y: 772 } },
+    hit: { x: 374, y: 545, width: 192, height: 132 },
+  },
+  research: {
+    id: "research",
+    cx: 1130,
+    cy: 610,
+    rx: 255,
+    ry: 184,
+    seed: 11777,
+    label: { x: 1230, y: 772 },
+    leader: { from: { x: 1170, y: 780 }, to: { x: 1230, y: 772 } },
+    hit: { x: 1034, y: 545, width: 192, height: 132 },
+  },
+  writing: {
+    id: "writing",
+    cx: 680,
+    cy: 245,
+    rx: 248,
+    ry: 176,
+    seed: 12721,
+    label: { x: 720, y: 105 },
+    leader: { from: { x: 690, y: 75 }, to: { x: 720, y: 105 } },
+    hit: { x: 586, y: 183, width: 188, height: 124 },
+  },
+  experience: {
+    id: "experience",
+    cx: 920,
+    cy: 245,
+    rx: 248,
+    ry: 176,
+    seed: 13829,
+    label: { x: 960, y: 105 },
+    leader: { from: { x: 910, y: 75 }, to: { x: 960, y: 105 } },
+    hit: { x: 826, y: 183, width: 188, height: 124 },
+  },
+};
+
+const crownOrder: BranchId[] = [
+  "writing",
+  "experience",
+  "projects",
+  "awards",
+  "communities",
+  "research",
 ];
+
+const branchLabel = new Map(branches.map((branch) => [branch.id, branch.label]));
 
 function randomFactory(seed: number) {
   let value = seed;
@@ -20,46 +106,260 @@ function randomFactory(seed: number) {
   };
 }
 
-const random = randomFactory(43192);
-const leaves = Array.from({ length: 430 }, (_, index) => {
-  const cluster = clusters[index % clusters.length];
-  const angle = random() * Math.PI * 2;
-  const radius = Math.sqrt(random());
-  const x = cluster.x + Math.cos(angle) * cluster.rx * radius;
-  const y = cluster.y + Math.sin(angle) * cluster.ry * radius;
-  const angleDeg = Math.round(random() * 150 - 75);
-  const scale = 0.55 + random() * 0.68;
+function rounded(value: number) {
+  return Math.round(value * 10) / 10;
+}
+
+function smoothClosedPath(points: Point[]) {
+  const length = points.length;
+  const first = points[0];
+  let path = `M${rounded(first.x)} ${rounded(first.y)}`;
+
+  for (let index = 0; index < length; index += 1) {
+    const previous = points[(index + length - 1) % length];
+    const current = points[index];
+    const next = points[(index + 1) % length];
+    const afterNext = points[(index + 2) % length];
+    const controlOne = {
+      x: current.x + (next.x - previous.x) / 6,
+      y: current.y + (next.y - previous.y) / 6,
+    };
+    const controlTwo = {
+      x: next.x - (afterNext.x - current.x) / 6,
+      y: next.y - (afterNext.y - current.y) / 6,
+    };
+    path += `C${rounded(controlOne.x)} ${rounded(controlOne.y)} ${rounded(controlTwo.x)} ${rounded(controlTwo.y)} ${rounded(next.x)} ${rounded(next.y)}`;
+  }
+
+  return `${path}Z`;
+}
+
+function lobePath(
+  lobe: TreeLobe,
+  scaleX = 1,
+  scaleY = 1,
+  offsetX = 0,
+  offsetY = 0,
+  seedOffset = 0,
+) {
+  const random = randomFactory(lobe.seed + seedOffset);
+  const points = Array.from({ length: 28 }, (_, index) => {
+    const angle = (index / 28) * Math.PI * 2;
+    const undulation = 0.9 + random() * 0.18 + Math.sin(angle * 5 + lobe.seed) * 0.025;
+    return {
+      x: lobe.cx + offsetX + Math.cos(angle) * lobe.rx * scaleX * undulation,
+      y: lobe.cy + offsetY + Math.sin(angle) * lobe.ry * scaleY * undulation,
+    };
+  });
+  return smoothClosedPath(points);
+}
+
+function leafPath(x: number, y: number, length: number, width: number, angle: number) {
+  const cosine = Math.cos(angle);
+  const sine = Math.sin(angle);
+  const point = (along: number, across: number) => ({
+    x: rounded(x + along * cosine - across * sine),
+    y: rounded(y + along * sine + across * cosine),
+  });
+  const base = point(-length * 0.42, 0);
+  const upper = point(length * 0.1, -width);
+  const tip = point(length * 0.58, 0);
+  const lower = point(length * 0.1, width);
+  const vein = point(length * 0.48, 0);
 
   return {
-    id: index,
-    x: Math.round(x * 10) / 10,
-    y: Math.round(y * 10) / 10,
-    angle: angleDeg,
-    scale: Math.round(scale * 100) / 100,
-    tone: index % 4,
+    shape: `M${base.x} ${base.y}Q${upper.x} ${upper.y} ${tip.x} ${tip.y}Q${lower.x} ${lower.y} ${base.x} ${base.y}Z`,
+    vein: `M${base.x} ${base.y}Q${rounded((base.x + vein.x) / 2)} ${rounded((base.y + vein.y) / 2)} ${vein.x} ${vein.y}`,
   };
+}
+
+const lobeLeaves = Object.fromEntries(
+  crownOrder.map((branch) => {
+    const lobe = crownLayout[branch];
+    const random = randomFactory(lobe.seed + 401);
+    const paths = ["back", "mid", "sun", "under"].map(() => [] as string[]);
+    const veins = [] as string[];
+
+    for (let index = 0; index < 270; index += 1) {
+      const angle = random() * Math.PI * 2;
+      const radius = Math.sqrt(random()) * 0.96;
+      const x = lobe.cx + Math.cos(angle) * lobe.rx * radius;
+      const y = lobe.cy + Math.sin(angle) * lobe.ry * radius;
+      const shape = leafPath(
+        x,
+        y,
+        13 + random() * 16,
+        3.5 + random() * 3.6,
+        random() * Math.PI * 2,
+      );
+      const tone = y < lobe.cy - lobe.ry * 0.2 && random() > 0.27
+        ? 2
+        : y > lobe.cy + lobe.ry * 0.42
+          ? 3
+          : Math.floor(random() * 2);
+      paths[tone].push(shape.shape);
+      if (tone < 3 && index % 3 === 0) veins.push(shape.vein);
+    }
+
+    return [
+      branch,
+      {
+        paths: paths.map((batch) => batch.join("")),
+        veins: veins.join(""),
+      },
+    ];
+  }),
+) as Record<BranchId, { paths: string[]; veins: string }>;
+
+function pointForItem(branch: BranchId, index: number, count: number): Point {
+  const lobe = crownLayout[branch];
+  const random = randomFactory(lobe.seed + 70_001 + index * 137);
+  const angle = index * 2.399963229728653 + random() * 0.22;
+  const radius = Math.sqrt((index + 0.5) / Math.max(count, 1)) * 0.53;
+  return {
+    x: rounded(lobe.cx + Math.cos(angle) * lobe.rx * radius),
+    y: rounded(lobe.cy + Math.sin(angle) * lobe.ry * radius),
+  };
+}
+
+function cubicPoint(start: Point, first: Point, second: Point, end: Point, t: number): Point {
+  const inverse = 1 - t;
+  return {
+    x: inverse ** 3 * start.x
+      + 3 * inverse ** 2 * t * first.x
+      + 3 * inverse * t ** 2 * second.x
+      + t ** 3 * end.x,
+    y: inverse ** 3 * start.y
+      + 3 * inverse ** 2 * t * first.y
+      + 3 * inverse * t ** 2 * second.y
+      + t ** 3 * end.y,
+  };
+}
+
+function taperedLimbPath(start: Point, first: Point, second: Point, end: Point, base: number, tip: number) {
+  const left: Point[] = [];
+  const right: Point[] = [];
+  const segments = 18;
+
+  for (let index = 0; index <= segments; index += 1) {
+    const t = index / segments;
+    const point = cubicPoint(start, first, second, end, t);
+    const next = cubicPoint(start, first, second, end, Math.min(t + 0.01, 1));
+    const previous = cubicPoint(start, first, second, end, Math.max(t - 0.01, 0));
+    const dx = next.x - previous.x;
+    const dy = next.y - previous.y;
+    const magnitude = Math.hypot(dx, dy) || 1;
+    const width = tip + (base - tip) * (1 - t) ** 0.8;
+    const normalX = -dy / magnitude;
+    const normalY = dx / magnitude;
+    left.push({ x: point.x + normalX * width * 0.5, y: point.y + normalY * width * 0.5 });
+    right.push({ x: point.x - normalX * width * 0.5, y: point.y - normalY * width * 0.5 });
+  }
+
+  const outline = [...left, ...right.reverse()];
+  return `${outline.map((point, index) => `${index === 0 ? "M" : "L"}${rounded(point.x)} ${rounded(point.y)}`).join("")}Z`;
+}
+
+const limbs = [
+  {
+    id: "projects",
+    start: { x: 738, y: 790 },
+    first: { x: 648, y: 718 },
+    second: { x: 470, y: 555 },
+    end: { x: 330, y: 405 },
+    base: 66,
+    tip: 12,
+  },
+  {
+    id: "communities",
+    start: { x: 758, y: 840 },
+    first: { x: 680, y: 830 },
+    second: { x: 575, y: 714 },
+    end: { x: 470, y: 610 },
+    base: 58,
+    tip: 11,
+  },
+  {
+    id: "writing",
+    start: { x: 766, y: 716 },
+    first: { x: 736, y: 595 },
+    second: { x: 682, y: 475 },
+    end: { x: 680, y: 245 },
+    base: 62,
+    tip: 13,
+  },
+  {
+    id: "experience",
+    start: { x: 834, y: 716 },
+    first: { x: 864, y: 595 },
+    second: { x: 918, y: 475 },
+    end: { x: 920, y: 245 },
+    base: 62,
+    tip: 13,
+  },
+  {
+    id: "awards",
+    start: { x: 862, y: 790 },
+    first: { x: 952, y: 718 },
+    second: { x: 1130, y: 555 },
+    end: { x: 1270, y: 405 },
+    base: 66,
+    tip: 12,
+  },
+  {
+    id: "research",
+    start: { x: 842, y: 840 },
+    first: { x: 920, y: 830 },
+    second: { x: 1025, y: 714 },
+    end: { x: 1130, y: 610 },
+    base: 58,
+    tip: 11,
+  },
+] as const;
+
+const branchArt = limbs.map((limb, index) => ({
+  id: limb.id,
+  path: taperedLimbPath(limb.start, limb.first, limb.second, limb.end, limb.base, limb.tip),
+  delay: `${index * 90}ms`,
+}));
+
+const seasonalFlowerPoints = crownOrder.flatMap((branch) => {
+  const lobe = crownLayout[branch];
+  return Array.from({ length: 7 }, (_, index) => {
+    const angle = (index / 7) * Math.PI * 2 + lobe.seed;
+    const radius = index % 2 === 0 ? 0.56 : 0.72;
+    return {
+      x: rounded(lobe.cx + Math.cos(angle) * lobe.rx * radius),
+      y: rounded(lobe.cy + Math.sin(angle) * lobe.ry * radius),
+      id: `${branch}-${index}`,
+    };
+  });
 });
 
-const fruitPoints = Array.from({ length: 22 }, (_, index) => {
-  const point = leaves[(index * 17 + 29) % leaves.length];
-  return { x: point.x, y: point.y, size: 10 + (index % 4) * 1.6, id: index };
-});
+const rootPaths = [
+  "M780 918C712 946 658 968 581 966c-56-2-91 9-145 32 62-15 106 4 157-2 82-9 132-37 192-66",
+  "M803 920c-16 47-69 84-125 100-57 17-101 12-152 45 58-15 102-7 153-26 69-26 111-64 145-111",
+  "M828 920c28 44 78 78 142 87 60 8 101 0 161 25-64-5-105 14-164 14-75 0-123-39-155-83",
+  "M846 917c51 30 107 59 180 52 54-5 91-24 153-18-62 17-87 48-141 70-73 30-135 14-196-26",
+  "M784 923c-31 47-42 93-26 142 12 38 35 66 42 107-28-38-61-49-81-91-27-57-10-112 39-158",
+  "M819 923c25 48 35 91 22 141-10 39-32 71-27 108 20-41 52-57 69-101 22-58 2-109-34-153",
+];
 
-const branchAnchors: Record<BranchId, { x: number; y: number }> = {
-  projects: { x: 380, y: 540 },
-  awards: { x: 1220, y: 520 },
-  communities: { x: 420, y: 750 },
-  research: { x: 1180, y: 750 },
-  writing: { x: 800, y: 245 },
-  experience: { x: 800, y: 905 },
-};
+const soilGrain = Array.from({ length: 58 }, (_, index) => {
+  const x = (index * 137) % 1580;
+  const y = 952 + ((index * 43) % 82);
+  return `M${x} ${y}l${3 + (index % 5) * 1.2} -1`;
+}).join("");
 
 export interface TreeSceneProps {
   season: string;
   night: boolean;
   focusBranch?: BranchId | null;
   highlightedBranches: Set<BranchId>;
+  writings: Writing[];
   freshBuds: { title: string; href: string; external?: boolean }[];
+  onSelectBranch: (branch: BranchId) => void;
+  onItemHover: (slug: string | null) => void;
 }
 
 function TreeScene({
@@ -67,15 +367,28 @@ function TreeScene({
   night,
   focusBranch,
   highlightedBranches,
+  writings,
   freshBuds,
+  onSelectBranch,
+  onItemHover,
 }: TreeSceneProps) {
-  const focus = focusBranch ? branchAnchors[focusBranch] : null;
-  const zoom = focus ? 1.16 : 1;
+  const focus = focusBranch ? crownLayout[focusBranch] : null;
+  const zoom = focus ? 1.12 : 1;
   const camera = focus
-    ? `matrix(${zoom} 0 0 ${zoom} ${Math.round(focus.x * (1 - zoom))} ${Math.round(
-        focus.y * (1 - zoom),
+    ? `matrix(${zoom} 0 0 ${zoom} ${rounded(focus.cx * (1 - zoom))} ${rounded(
+        focus.cy * (1 - zoom),
       )})`
     : undefined;
+  const treeExperience = [...experience, ...certifications];
+
+  function itemEvents(slug: string) {
+    return {
+      onMouseEnter: () => onItemHover(slug),
+      onMouseLeave: () => onItemHover(null),
+      onFocus: () => onItemHover(slug),
+      onBlur: () => onItemHover(null),
+    };
+  }
 
   return (
     <div
@@ -86,105 +399,116 @@ function TreeScene({
     >
       <svg
         className="mango-tree-svg"
-        viewBox="0 0 1600 1350"
+        viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
         role="group"
         aria-labelledby="tree-title tree-description"
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="xMidYMid slice"
       >
         <title id="tree-title">A living mango tree in a Bangladesh paddy field</title>
         <desc id="tree-description">
-          A richly layered mango tree represents Ratul Hasan Ruhan&apos;s projects, awards, communities,
-          research, writing, and experience. Its roots hold four stages of education.
+          Six living crowns represent projects, awards, communities, research, writing, and experience.
+          The mango tree stands in the seasons of Bangladesh, with its roots beneath the field.
         </desc>
         <defs>
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#cfe7d7" />
-            <stop offset="0.53" stopColor="#f6e8c7" />
-            <stop offset="1" stopColor="#f2c994" />
+            <stop offset="0" stopColor="#cce5d3" />
+            <stop offset="0.54" stopColor="#f3e7c9" />
+            <stop offset="1" stopColor="#e9c592" />
+          </linearGradient>
+          <linearGradient id="bark" x1="0" y1="0" x2="1" y2="0.4">
+            <stop offset="0" stopColor="#503528" />
+            <stop offset="0.2" stopColor="#956141" />
+            <stop offset="0.46" stopColor="#bd8352" />
+            <stop offset="0.7" stopColor="#805338" />
+            <stop offset="1" stopColor="#503629" />
+          </linearGradient>
+          <linearGradient id="limb-bark" x1="0" y1="0" x2="0.8" y2="1">
+            <stop offset="0" stopColor="#c18a5c" />
+            <stop offset="0.32" stopColor="#986545" />
+            <stop offset="0.68" stopColor="#724a32" />
+            <stop offset="1" stopColor="#50372a" />
           </linearGradient>
           <linearGradient id="soil" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#59412e" />
-            <stop offset="0.34" stopColor="#3e3025" />
-            <stop offset="1" stopColor="#211f19" />
+            <stop offset="0" stopColor="#58432f" />
+            <stop offset="1" stopColor="#27231e" />
           </linearGradient>
-          <linearGradient id="bark" x1="0.1" y1="0" x2="0.9" y2="1">
-            <stop offset="0" stopColor="#9a6340" />
-            <stop offset="0.2" stopColor="#765037" />
-            <stop offset="0.5" stopColor="#bd8150" />
-            <stop offset="0.74" stopColor="#70452f" />
-            <stop offset="1" stopColor="#4f3428" />
+          <linearGradient id="crown-back" x1="0" y1="0" x2="0.9" y2="1">
+            <stop offset="0" stopColor="var(--leaf-back-light)" />
+            <stop offset="1" stopColor="var(--leaf-back)" />
           </linearGradient>
-          <linearGradient id="branch-bark" x1="0" y1="0" x2="0.8" y2="1">
-            <stop offset="0" stopColor="#a8724b" />
-            <stop offset="0.52" stopColor="#70482f" />
-            <stop offset="1" stopColor="#4d3528" />
+          <linearGradient id="crown-mid" x1="0.1" y1="0" x2="0.8" y2="1">
+            <stop offset="0" stopColor="var(--leaf-mid-light)" />
+            <stop offset="1" stopColor="var(--leaf-mid)" />
           </linearGradient>
-          <linearGradient id="canopy-gradient" x1="0.2" y1="0" x2="0.85" y2="1">
-            <stop offset="0" stopColor="#8da965" />
-            <stop offset="0.3" stopColor="#72934f" />
-            <stop offset="0.68" stopColor="#5e8045" />
-            <stop offset="1" stopColor="#3f603b" />
+          <linearGradient id="crown-sunlit" x1="0.3" y1="0" x2="0.7" y2="1">
+            <stop offset="0" stopColor="var(--leaf-sun-light)" stopOpacity="0.95" />
+            <stop offset="1" stopColor="var(--leaf-sun)" stopOpacity="0.42" />
+          </linearGradient>
+          <linearGradient id="crown-underside" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="var(--leaf-under)" stopOpacity="0" />
+            <stop offset="1" stopColor="var(--leaf-under)" stopOpacity="0.64" />
           </linearGradient>
           <linearGradient id="mango-gold" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#ffe68a" />
-            <stop offset="0.5" stopColor="#f3aa45" />
-            <stop offset="1" stopColor="#d77435" />
+            <stop offset="0" stopColor="#fff0a0" />
+            <stop offset="0.46" stopColor="#f3b146" />
+            <stop offset="1" stopColor="#d97132" />
           </linearGradient>
-          <radialGradient id="canopy-light">
-            <stop offset="0" stopColor="#f2d794" stopOpacity=".76" />
-            <stop offset="1" stopColor="#f2d794" stopOpacity="0" />
+          <radialGradient id="canopy-glow">
+            <stop offset="0" stopColor="#f8d997" stopOpacity="0.78" />
+            <stop offset="1" stopColor="#f8d997" stopOpacity="0" />
           </radialGradient>
-          <filter id="soft-shadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="22" />
+          <radialGradient id="fruit-glow">
+            <stop offset="0" stopColor="#ffe98d" stopOpacity="0.8" />
+            <stop offset="1" stopColor="#ffe98d" stopOpacity="0" />
+          </radialGradient>
+          <filter id="ground-blur" x="-30%" y="-200%" width="160%" height="500%">
+            <feGaussianBlur stdDeviation="24" />
           </filter>
-          <filter id="fruit-shadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3" />
+          <filter id="fruit-glow-filter" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="5" />
           </filter>
-          <clipPath id="leaf-image-window">
-            <path d="M4-2c5-9 17-13 29-11-5 11-17 15-29 11Z" />
+          <clipPath id="community-disc">
+            <circle r="17" />
           </clipPath>
         </defs>
 
-        <rect width="1600" height="1350" fill="url(#sky)" />
-        <circle className="sky-glow" cx="1230" cy="192" r="214" fill="url(#canopy-light)" />
-        <circle className="sun-or-moon" cx="1246" cy="194" r="54" />
-        <path
-          className="cloud cloud-a"
-          d="M180 246c-36 0-59-20-59-47 0-24 22-43 52-45 8-44 44-74 89-74 42 0 74 25 88 62 41-4 70 18 70 51 0 30-29 53-67 53H180Z"
-        />
-        <path
-          className="cloud cloud-b"
-          d="M1112 316c-34 0-57-18-57-42 0-21 20-39 46-41 7-39 39-66 78-66 36 0 66 23 77 56 36-3 61 16 61 45 0 27-26 48-59 48h-146Z"
-        />
-        <path className="distant-hill" d="M0 777c190-65 345-70 541-20 209 53 372 40 560-17 174-53 331-44 499 5v206H0Z" />
-        <path className="far-paddy" d="M0 849c230-47 445-34 664 10 237 48 455 34 936-27v222H0Z" />
-        <path className="middle-paddy" d="M0 914c321-26 521 50 771 42 277-10 542-93 829-66v183H0Z" />
-        <path className="near-paddy" d="M0 974c202-26 387 10 577 69 219 67 616 56 1023-14v202H0Z" />
-        <g className="paddy-lines" fill="none" strokeLinecap="round">
-          <path d="M24 946c204-37 364-4 535 58M106 1004c207-27 345 10 498 58M1174 932c134-40 268-61 398-52M941 1006c183-28 372-18 581 20" />
-          <path d="M41 1091c225-58 433-27 596 35M822 1097c239-55 479-58 726-18M136 1154c178-38 350-16 509 33M980 1157c196-45 371-41 572-4" />
+        <rect width={VIEWBOX_WIDTH} height={VIEWBOX_HEIGHT} fill="url(#sky)" />
+        <circle className="sky-glow" cx="1280" cy="135" r="285" fill="url(#canopy-glow)" />
+        <circle className="sun-or-moon" cx="1290" cy="145" r="46" />
+        <path className="cloud cloud-a" d="M145 225c-39 0-63-19-63-47 0-25 23-44 54-46 9-43 45-71 87-71 43 0 73 25 86 61 39-4 67 18 67 51 0 30-26 52-65 52H145Z" />
+        <path className="cloud cloud-b" d="M1180 292c-34 0-56-17-56-40 0-21 20-37 46-40 7-37 38-62 74-62 36 0 64 21 75 53 34-3 58 16 58 43 0 26-24 46-57 46h-140Z" />
+
+        <path className="distant-hill" d="M0 726c214-57 393-68 578-27 218 48 408 40 611-18 162-46 289-41 411-2v143H0Z" />
+        <path className="far-paddy" d="M0 785c234-36 429-25 649 14 228 41 480 29 951-32v151H0Z" />
+        <path className="middle-paddy" d="M0 839c258-28 481 21 704 34 305 17 575-73 896-54v131H0Z" />
+        <path className="near-paddy" d="M0 898c226-21 401 10 602 47 233 43 581 37 998-21v116H0Z" />
+        <path className="field-water" d="M0 914c232-21 430 24 633 40 291 22 551-54 967-25" />
+        <g className="paddy-lines">
+          <path d="M30 855c181-26 316-2 484 31m119 18c196 29 379 8 581-28m88 43c93-21 179-26 266-14M130 941c178-14 319 21 472 44m129-5c231-28 394-34 612-1" />
         </g>
         <g className="field-stalks">
-          {Array.from({ length: 36 }, (_, index) => {
-            const x = 22 + index * 45;
-            const y = 945 + (index % 4) * 36;
-            return (
-              <path
-                key={index}
-                d={`M${x} ${y + 18}q-8-25-16-27m16 27q4-29 13-34m-13 34q-2-22 3-28`}
-              />
-            );
+          {Array.from({ length: 29 }, (_, index) => {
+            const x = 20 + index * 55;
+            const y = 839 + (index % 4) * 24;
+            return <path key={index} d={`M${x} ${y + 28}q-7-25-15-28m15 28q4-30 13-35m-13 35q-2-20 3-27`} />;
           })}
         </g>
 
+        <g className="soil-cut">
+          <path d="M0 927c207-20 399 17 585 20 242 3 428-47 633-40 163 6 255 31 382 5v128H0Z" />
+        </g>
+        <path className="soil-surface" d="M0 927c207-20 399 17 585 20 242 3 428-47 633-40 163 6 255 31 382 5" />
+        <path className="soil-grain" d={soilGrain} />
+
         <g className="tree-camera" transform={camera}>
-          <ellipse className="tree-shadow" cx="807" cy="1055" rx="347" ry="44" />
+          <ellipse className="canopy-ground-shadow" cx="800" cy="815" rx="570" ry="62" />
+          <ellipse className="tree-shadow" cx="800" cy="922" rx="255" ry="30" />
           <g className="kash-flowers">
-            {Array.from({ length: 16 }, (_, index) => {
-              const x = 116 + index * 86;
-              const height = 57 + (index % 4) * 11;
+            {Array.from({ length: 14 }, (_, index) => {
+              const x = 85 + index * 111;
+              const height = 48 + (index % 4) * 10;
               return (
-                <g key={index} transform={`translate(${x} ${934 - (index % 3) * 20})`}>
+                <g key={index} transform={`translate(${x} 893)`}>
                   <path d={`M0 0Q-4-${height / 2} 0-${height}`} />
                   <path className="kash-plume" d={`M0 ${-height}q-10-7-15-2m15 2q8-10 16-7m-16 7q-7-10-13-12`} />
                 </g>
@@ -192,109 +516,227 @@ function TreeScene({
             })}
           </g>
 
-          <g className="roots">
-            <path d="M778 1040c-44 28-102 59-169 65-52 4-90-4-151 16 65-7 103 16 158 19 72 4 125-27 176-62" />
-            <path d="M810 1044c-13 43-52 79-99 103-55 28-100 33-145 74 57-27 94-21 151-38 64-19 105-63 133-111" />
-            <path d="M837 1040c35 38 69 70 132 88 58 17 103 12 159 47-66-18-103-4-162-8-72-5-116-49-151-100" />
-            <path d="M842 1040c48 22 102 47 170 48 54 1 91-12 153-1-64 9-94 37-148 52-68 18-123-4-183-43" />
-            <path d="M792 1046c-29 57-34 91-20 137 11 35 37 59 38 108-25-39-58-53-75-91-23-51-7-103 28-159" />
-            <path d="M823 1042c15 46 25 85 12 134-11 39-32 64-32 115 23-43 56-59 70-100 19-55 1-103-29-149" />
+          <g className="tree-limbs">
+            {branchArt.map((branch) => (
+              <g key={branch.id} style={{ "--branch-delay": branch.delay } as CSSProperties}>
+                <path className="tree-limb" d={branch.path} />
+                <path className="tree-limb-sheen" d={branch.path} />
+              </g>
+            ))}
+            <path className="sub-limb" d={taperedLimbPath({ x: 585, y: 655 }, { x: 520, y: 585 }, { x: 480, y: 510 }, { x: 433, y: 463 }, 18, 5)} />
+            <path className="sub-limb" d={taperedLimbPath({ x: 1015, y: 655 }, { x: 1080, y: 585 }, { x: 1120, y: 510 }, { x: 1167, y: 463 }, 18, 5)} />
+            <path className="sub-limb" d={taperedLimbPath({ x: 688, y: 530 }, { x: 650, y: 474 }, { x: 630, y: 427 }, { x: 611, y: 385 }, 13, 4)} />
+            <path className="sub-limb" d={taperedLimbPath({ x: 912, y: 530 }, { x: 950, y: 474 }, { x: 970, y: 427 }, { x: 989, y: 385 }, 13, 4)} />
           </g>
 
-          <g className="canopy">
-            <ellipse className="canopy-underpaint" cx="804" cy="474" rx="637" ry="342" />
-            <ellipse className="canopy-halo" cx="805" cy="430" rx="549" ry="330" />
-            <path
-              className="canopy-heart"
-              d="M168 480c-10-55 23-103 82-121-9-58 40-107 102-96 22-64 100-89 163-56 43-75 147-85 205-20 70-68 175-54 206 26 82-33 170 7 182 79 82-7 146 56 126 122 59 32 78 105 27 153-9 59-66 94-135 78-27 70-104 97-170 63-52 61-148 55-195-11-65 56-168 39-201-37-76 32-163-8-176-77-71 24-151-11-161-69-49 7-89-19-91-57Z"
-            />
-            {leaves.map((leaf) => (
-              <path
-                key={leaf.id}
-                className={`mango-leaf leaf-tone-${leaf.tone}`}
-                d="M0 0c8-15 25-22 42-21-8 16-25 25-42 21Zm2-2 36-17"
-                transform={`translate(${leaf.x} ${leaf.y}) rotate(${leaf.angle}) scale(${leaf.scale})`}
-                style={{ "--leaf-index": leaf.id } as CSSProperties}
-              />
+          <path className="tree-trunk" d="M715 944c17-83 15-158 19-234 4-84 11-153 29-223 12-49 27-88 36-133 10-53 8-94-1-137 21-16 49-20 72-5-8 51-10 91 0 142 10 45 27 85 42 134 21 67 29 142 31 222 2 81 7 153 26 234-74 26-181 26-254 0Z" />
+          <path className="trunk-shade" d="M846 242c20 55 18 108 34 168 18 67 39 112 44 184 6 91-5 198 18 333-35 15-70 23-110 26 24-167 8-270 1-359-7-88-26-145-12-217 9-48 20-89 25-135Z" />
+          <g className="trunk-ridges">
+            <path d="M755 906c-3-104 30-186 35-265 6-83-18-144 15-224 15-36 34-74 40-125" />
+            <path d="M790 922c-20-72 3-136 20-202 18-71 7-117-5-184-13-72 7-119 25-178" />
+            <path d="M836 909c-6-92 19-155 17-232-2-63-23-124-1-188 13-40 33-69 39-112" />
+            <path d="M730 842c30-14 51-16 78-8m-70-100c27 10 54 8 81-7m-58-112c26 8 47 5 70-10m-29-105c22 6 39 1 56-12" />
+          </g>
+          <g className="roots">
+            {rootPaths.map((path, index) => <path key={index} d={path} />)}
+          </g>
+
+          <g className="crown-forest">
+            {crownOrder.map((branch, index) => {
+              const lobe = crownLayout[branch];
+              const foliage = lobeLeaves[branch];
+              const label = branchLabel.get(branch) ?? branch;
+              const back = lobePath(lobe, 1, 1, 0, 0, 17);
+              const mid = lobePath(lobe, 0.93, 0.86, -lobe.rx * 0.015, -lobe.ry * 0.015, 29);
+              const sun = lobePath(lobe, 0.73, 0.57, -lobe.rx * 0.12, -lobe.ry * 0.2, 41);
+              const underside = lobePath(lobe, 0.91, 0.46, 0, lobe.ry * 0.31, 53);
+
+              return (
+                <g className="crown-cluster" key={branch} data-branch={branch}>
+                  <g
+                    className="crown-lift"
+                    style={{ "--crown-delay": `${index * 120}ms` } as CSSProperties}
+                  >
+                    <g
+                      className="crown-sway"
+                      style={{ animationDelay: `${index * -0.65}s` }}
+                    >
+                      <path className="crown-back" d={back} />
+                      <path className="crown-mid" d={mid} />
+                      <path className="crown-sunlit" d={sun} />
+                      <path className="crown-underside" d={underside} />
+                      {foliage.paths.map((path, tone) => (
+                        <path
+                          className={`crown-leaves crown-leaves-${tone}`}
+                          d={path}
+                          key={tone}
+                        />
+                      ))}
+                      <path className="crown-leaf-veins" d={foliage.veins} />
+                    </g>
+                  </g>
+                  <foreignObject
+                    className="crown-hit-area"
+                    x={lobe.hit.x}
+                    y={lobe.hit.y}
+                    width={lobe.hit.width}
+                    height={lobe.hit.height}
+                  >
+                    <button
+                      className="crown-hit"
+                      type="button"
+                      aria-label={`Explore ${label} branch`}
+                      aria-expanded={focusBranch === branch}
+                      aria-controls="branch-panel"
+                      onClick={() => onSelectBranch(branch)}
+                    />
+                  </foreignObject>
+                </g>
+              );
+            })}
+          </g>
+
+          <g className="season-blossoms">
+            {seasonalFlowerPoints.map((flower) => (
+              <g key={flower.id} transform={`translate(${flower.x} ${flower.y})`}>
+                <circle cx="0" cy="-5" r="4" />
+                <circle cx="5" cy="0" r="4" />
+                <circle cx="0" cy="5" r="4" />
+                <circle cx="-5" cy="0" r="4" />
+                <circle className="flower-core" r="2.5" />
+              </g>
             ))}
-            <g className="project-canopy-leaves">
+          </g>
+
+          <g className="branch-leader-lines" aria-hidden="true">
+            {crownOrder.map((branch) => {
+              const { from, to } = crownLayout[branch].leader;
+              return <path key={branch} d={`M${from.x} ${from.y}Q${(from.x + to.x) / 2} ${(from.y + to.y) / 2} ${to.x} ${to.y}`} />;
+            })}
+          </g>
+
+          <g className="tree-items">
+            <g className="project-tokens">
               {projects.map((project, index) => {
-                const leaf = leaves[(index * 13 + 7) % leaves.length];
+                const point = pointForItem("projects", index, projects.length);
                 return (
                   <a
                     key={project.slug}
                     href={`/projects/${project.slug}/`}
                     aria-label={`Project: ${project.title}`}
+                    title={project.title}
+                    {...itemEvents(project.slug)}
                   >
-                    <g transform={`translate(${leaf.x} ${leaf.y}) rotate(${leaf.angle}) scale(.72)`}>
-                      <path className="project-leaf-frame" d="M0 0c8-15 25-22 42-21-8 16-25 25-42 21Zm2-2 36-17" />
-                      <image
-                        className="project-leaf-image"
-                        href={project.image}
-                        x="4"
-                        y="-15"
-                        width="29"
-                        height="13"
-                        preserveAspectRatio="xMidYMid slice"
-                        clipPath="url(#leaf-image-window)"
-                      />
+                    <g className="tree-token-project" transform={`translate(${point.x} ${point.y}) rotate(${(index * 37) % 70 - 35})`}>
+                      <path className="token-leaf" d="M-18 0Q-8-16 17-8Q10 11-18 0Z" />
+                      <path className="token-vein" d="M-15 0Q0-2 14-7" />
                     </g>
                   </a>
                 );
               })}
             </g>
-            <g className="spring-blossoms">
-              {leaves.filter((_, index) => index % 8 === 0).map((leaf) => (
-                <g key={leaf.id} transform={`translate(${leaf.x} ${leaf.y})`}>
-                  <circle cx="0" cy="0" r="4" />
-                  <circle cx="-5" cy="-2" r="3" />
-                  <circle cx="5" cy="-2" r="3" />
-                  <circle cx="-2" cy="5" r="3" />
-                  <circle cx="3" cy="5" r="3" />
-                </g>
-              ))}
+            <g className="award-tokens">
+              {awards.map((award, index) => {
+                const point = pointForItem("awards", index, awards.length);
+                return (
+                  <a
+                    key={award.slug}
+                    href={`/awards/${award.slug}/`}
+                    aria-label={`Award: ${award.title}`}
+                    title={award.title}
+                    {...itemEvents(award.slug)}
+                  >
+                    <g className="tree-token-award" transform={`translate(${point.x} ${point.y}) scale(.68)`}>
+                      <circle className="award-glow" r="25" />
+                      <path className="mango-stem" d="M0-18q2-10 10-12m-7 5q8-6 13-1" />
+                      <path className="mango-fruit" d="M-1-17C-18-27-24-7-12 12-4 26 9 24 16 12 29-12 13-29-1-17Z" />
+                      <path className="mango-glint" d="M-8-12q-6 11 1 22" />
+                    </g>
+                  </a>
+                );
+              })}
             </g>
-            <g className="community-blossoms">
+            <g className="community-tokens">
               {communities.map((community, index) => {
-                const leaf = leaves[(index * 47 + 21) % leaves.length];
+                const point = pointForItem("communities", index, communities.length);
                 return (
                   <a
                     key={community.slug}
                     href={`/communities/${community.slug}/`}
                     aria-label={`Community: ${community.title}, ${community.role}`}
+                    title={`${community.title} — ${community.role}`}
+                    {...itemEvents(community.slug)}
                   >
-                    <g transform={`translate(${leaf.x} ${leaf.y})`}>
-                      <circle className="community-petal" cx="0" cy="-7" r="6" />
-                      <circle className="community-petal" cx="7" cy="0" r="6" />
-                      <circle className="community-petal" cx="0" cy="7" r="6" />
-                      <circle className="community-petal" cx="-7" cy="0" r="6" />
-                      <circle className="community-flower-core" r="6.5" />
+                    <g className="tree-token-community" transform={`translate(${point.x} ${point.y})`}>
+                      <circle className="community-halo" r="25" />
+                      <circle className="community-disc" r="22" />
                       <image
-                        className="community-logo"
                         href={community.image}
-                        x="-5"
-                        y="-5"
-                        width="10"
-                        height="10"
+                        x="-17"
+                        y="-17"
+                        width="34"
+                        height="34"
                         preserveAspectRatio="xMidYMid meet"
+                        clipPath="url(#community-disc)"
                       />
                     </g>
                   </a>
                 );
               })}
             </g>
-            <g className="research-leaves">
+            <g className="research-tokens">
               {researchItems.map((item, index) => {
-                const leaf = leaves[(index * 59 + 38) % leaves.length];
+                const point = pointForItem("research", index, researchItems.length);
                 return (
                   <a
                     key={item.slug}
                     href={`/research/${item.slug}/`}
                     aria-label={`Research: ${item.title}`}
+                    title={item.title}
+                    {...itemEvents(item.slug)}
                   >
-                    <g transform={`translate(${leaf.x} ${leaf.y})`}>
-                      <circle className="research-leaf" r="7" />
-                      <path className="research-leaf-mark" d="M-3-2h6M-3 1h6M-3 4h4" />
+                    <g className="tree-token-research" transform={`translate(${point.x} ${point.y}) rotate(${(index * 41) % 60 - 30})`}>
+                      <path className="token-leaf" d="M-18 0Q-8-16 17-8Q10 11-18 0Z" />
+                      <path className="research-vein" d="M-15 0Q0-2 14-7m-7 3 3 5m-8-3 3 5" />
+                    </g>
+                  </a>
+                );
+              })}
+            </g>
+            <g className="writing-tokens">
+              {writings.map((writing, index) => {
+                const point = pointForItem("writing", index, writings.length);
+                return (
+                  <a
+                    key={writing.slug}
+                    href={`/writing/${writing.slug}/`}
+                    aria-label={`Writing: ${writing.title}`}
+                    title={writing.title}
+                    {...itemEvents(writing.slug)}
+                  >
+                    <g className="tree-token-writing" transform={`translate(${point.x} ${point.y}) rotate(${(index * 31) % 54 - 27})`}>
+                      <path className="token-leaf" d="M-18 0Q-8-16 17-8Q10 11-18 0Z" />
+                      <path className="token-vein" d="M-15 0Q0-2 14-7" />
+                      <circle className="writing-bud" cx="10" cy="-7" r="3" />
+                    </g>
+                  </a>
+                );
+              })}
+            </g>
+            <g className="experience-tokens">
+              {treeExperience.map((item, index) => {
+                const point = pointForItem("experience", index, treeExperience.length);
+                return (
+                  <a
+                    key={item.slug}
+                    href={`/experience/${item.slug}/`}
+                    aria-label={`${item.kind === "certification" ? "Certification" : "Experience"}: ${item.title}`}
+                    title={item.title}
+                    {...itemEvents(item.slug)}
+                  >
+                    <g className="tree-token-experience" transform={`translate(${point.x} ${point.y}) rotate(${(index * 29) % 58 - 29})`}>
+                      <path className="token-bud" d="M-14 2Q-10-14 1-17 13-13 12-2 10 10-2 15-13 11-14 2Z" />
+                      <path className="token-vein" d="M-10 3Q0-3 9-9" />
                     </g>
                   </a>
                 );
@@ -302,7 +744,7 @@ function TreeScene({
             </g>
             <g className="fresh-growth-buds">
               {freshBuds.map((bud, index) => {
-                const leaf = leaves[(index * 31 + 11) % leaves.length];
+                const point = pointForItem("writing", index + writings.length, writings.length + freshBuds.length);
                 return (
                   <a
                     key={`${bud.href}-${index}`}
@@ -310,139 +752,61 @@ function TreeScene({
                     target={bud.external ? "_blank" : undefined}
                     rel={bud.external ? "noopener noreferrer" : undefined}
                     aria-label={`New growth: ${bud.title}`}
+                    title={bud.title}
                   >
-                    <g transform={`translate(${leaf.x} ${leaf.y}) rotate(${leaf.angle})`}>
-                      <path className="fresh-bud-leaf" d="M0 0c7-14 22-17 31-14-5 13-17 20-31 14Zm2-2 26-10" />
-                      <circle className="fresh-bud-glint" cx="15" cy="-11" r="3" />
+                    <g className="tree-token-fresh" transform={`translate(${point.x} ${point.y}) rotate(${(index * 33) % 60 - 30})`}>
+                      <path className="token-bud" d="M-13 2Q-10-13 1-16 13-12 12-1 10 10-2 14-12 10-13 2Z" />
+                      <path className="token-vein" d="M-9 3Q0-3 8-8" />
+                      <circle className="fresh-glint" cx="8" cy="-9" r="3" />
                     </g>
                   </a>
                 );
               })}
             </g>
-            <g className="mango-fruit">
-              {awards.map((award, index) => {
-                const fruit = fruitPoints[index];
+            <g className="press-birds">
+              {mediaCoverage.slice(0, 4).map((story, index) => {
+                const points = [
+                  { x: 545, y: 302 },
+                  { x: 1055, y: 302 },
+                  { x: 392, y: 536 },
+                  { x: 1208, y: 535 },
+                ];
+                const point = points[index];
                 return (
                   <a
-                    key={award.slug}
-                    href={`/awards/${award.slug}/`}
-                    aria-label={`Award: ${award.title}`}
+                    key={story.slug}
+                    href={story.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open media story: ${story.title}`}
+                    title={story.title}
                   >
-                    <g transform={`translate(${fruit.x} ${fruit.y + 20})`}>
-                      <ellipse cx="4" cy="8" rx={fruit.size * 0.7} ry={fruit.size * 0.42} filter="url(#fruit-shadow)" />
-                      <path
-                        d={`M0 0c${fruit.size * 0.9}-${fruit.size * 0.9} ${fruit.size * 1.8} ${fruit.size * 0.1} ${fruit.size * 0.9} ${fruit.size * 1.55}C${fruit.size * 0.3} ${fruit.size * 2.5}-${fruit.size * 0.9} ${fruit.size * 0.75} 0 0Z`}
-                      />
-                      <path d="M0 0q2-8 8-10" />
+                    <g className="press-bird" transform={`translate(${point.x} ${point.y}) scale(${0.9 + (index % 2) * 0.13})`}>
+                      <path className="bird-shape" d="M-15 4q5-19 18-15 8 2 11 13-8-6-14-3-5 3-8 11l-12 2q8-5 5-8Zm8 4q-3 9-12 8 8-4 10-11" />
+                      <circle className="bird-eye" cx="5" cy="-6" r="1.5" />
+                      <path className="bird-beak" d="m12-8 10 2-9 3Z" />
                     </g>
                   </a>
                 );
               })}
             </g>
-            <path className="canopy-light-dapple" d="M215 515c119-185 247-235 354-219 83 12 126 75 194 68 96-10 164-146 304-126 119 17 196 114 229 239-72-85-139-106-214-61-98 60-132 144-251 121-101-19-135-95-237-71-103 24-203 122-379 49Z" />
           </g>
-          <path
-            className="tree-trunk-main"
-            d="M747 1064c13-61 4-113 13-165 11-62 43-101 37-162-5-55-33-105-18-162 12-46 49-82 51-133l12-18 15 18c1 52 38 89 52 136 17 59-13 108-17 163-4 62 28 104 38 166 9 54-2 106 14 157-62 24-129 28-197 0Z"
-          />
-          <g className="tree-limbs">
-            <path d="M806 1077c-10-113 29-202-5-308-29-91-72-161-51-278 16-93 81-157 66-265" />
-            <path d="M776 772c-92-35-171-99-267-117-92-17-159 2-247-49-48-28-75-62-111-105" />
-            <path d="M750 681c-110-18-170-56-253-119-76-58-122-112-216-120" />
-            <path d="M816 701c87-43 154-115 250-132 86-15 163 6 244-39 46-26 83-64 118-103" />
-            <path d="M830 598c116-38 177-94 252-160 69-61 128-104 225-111" />
-            <path d="M787 542c-31-103-108-165-102-262 5-77 49-128 60-189" />
-            <path d="M816 492c37-88 116-150 123-243 5-62-16-109-26-155" />
-            <path d="M738 861c-100-12-162-54-245-35-63 14-113 54-179 68" />
-            <path d="M864 835c101-21 162-60 250-46 58 9 115 49 179 57" />
-          </g>
-          <g className="branch-gloss">
-            <path d="M806 1077c-10-113 29-202-5-308-29-91-72-161-51-278 16-93 81-157 66-265" />
-            <path d="M776 772c-92-35-171-99-267-117-92-17-159 2-247-49-48-28-75-62-111-105" />
-            <path d="M816 701c87-43 154-115 250-132 86-15 163 6 244-39 46-26 83-64 118-103" />
-            <path d="M787 542c-31-103-108-165-102-262 5-77 49-128 60-189" />
-          </g>
-          <g className="trunk-ridges" fill="none" strokeLinecap="round">
-            <path d="M785 1024c-6-80 42-133 32-209-10-80-44-142-27-215 13-54 48-88 54-152" />
-            <path d="M818 1018c-20-65 8-111 24-165 20-67 0-112-18-172-18-65 12-115 28-171" />
-            <path d="M751 887c30-50 25-95 6-148-18-50-14-99 11-141" />
-            <path d="M842 902c-38-54-38-96-14-155 21-54 5-111-12-157" />
-            <path d="M772 1019c24-16 44-21 69-16m-80-74c27 8 46 4 68-11m-66-94c24 12 45 10 63-2m-46-112c20 8 39 4 54-9" />
-          </g>
-          <g className="certification-buds">
-            {certifications.map((item, index) => {
-              const x = 753 + index * 46;
-              const y = 822 - index * 17;
+
+          <g className="thread-markers" aria-hidden="true">
+            {Array.from(highlightedBranches).map((branch) => {
+              const lobe = crownLayout[branch];
               return (
-                <a
-                  key={item.slug}
-                  href={`/experience/${item.slug}/`}
-                  aria-label={`Certification: ${item.title}`}
-                >
-                  <path className="certification-bud" d={`M${x} ${y}c-18-16-15-35 3-42 18 8 21 26 3 42-2 2-4 2-6 0Z`} />
-                  <path className="certification-bud-stem" d={`M${x + 2} ${y - 2}q7-11 13-20`} />
-                </a>
+                <g key={branch} transform={`translate(${lobe.cx} ${lobe.cy})`}>
+                  <circle r="47" />
+                  <circle r="31" />
+                </g>
               );
             })}
           </g>
-        </g>
-
-        <path className="soil-cut" d="M0 1072c212-20 374 21 548 19 211-3 406-47 596-38 168 9 294 32 456 5v242H0Z" />
-        <path className="soil-surface" d="M0 1072c212-20 374 21 548 19 211-3 406-47 596-38 168 9 294 32 456 5" />
-        <g className="soil-grain" fill="none">
-          {Array.from({ length: 90 }, (_, index) => {
-            const x = (index * 137) % 1580;
-            const y = 1104 + ((index * 43) % 172);
-            const width = 3 + (index % 5) * 1.2;
-            return <path key={index} d={`M${x} ${y}l${width} -1`} />;
-          })}
-        </g>
-        <g className="tree-camera" transform={camera}>
-          <g className="roots-highlight">
-            <path d="M778 1040c-44 28-102 59-169 65-52 4-90-4-151 16" />
-            <path d="M810 1044c-13 43-52 79-99 103-55 28-100 33-145 74" />
-            <path d="M837 1040c35 38 69 70 132 88 58 17 103 12 159 47" />
-            <path d="M842 1040c48 22 102 47 170 48 54 1 91-12 153-1" />
-          </g>
-        </g>
-
-        <g className="thread-markers" aria-hidden="true">
-          {Array.from(highlightedBranches).map((branch) => {
-            const anchor = branchAnchors[branch];
-            return (
-              <g key={branch} transform={`translate(${anchor.x} ${anchor.y})`}>
-                <circle r="42" />
-                <circle r="26" />
-              </g>
-            );
-          })}
-        </g>
-
-        <g className="press-birds">
-          {mediaCoverage.map((story, index) => {
-            const x = 368 + ((index * 191) % 855);
-            const y = 320 + ((index * 73) % 425);
-            return (
-              <a
-                key={story.slug}
-                href={story.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Open media story: ${story.title}`}
-              >
-                <circle className="bird-hit-area" cx={x} cy={y} r="24" />
-                <path
-                  className="bird-shape"
-                  d={`M${x - 9} ${y}q8-13 18 0-8-4-13 6-3-4-10-2 3-3 5-4Zm8 4q-5 8-10 6 6-1 8-7`}
-                />
-                <circle className="bird-eye" cx={x + 5} cy={y - 1} r="1.5" />
-              </a>
-            );
-          })}
         </g>
       </svg>
     </div>
   );
 }
 
-export default memo(TreeScene);
+export default TreeScene;

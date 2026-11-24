@@ -11,11 +11,10 @@ import {
   useState,
   useSyncExternalStore,
   type KeyboardEvent as ReactKeyboardEvent,
-  type CSSProperties,
   type ReactNode,
 } from "react";
 import ContactSoil from "@/components/ContactSoil";
-import TreeScene from "@/components/TreeScene";
+import TreeScene, { crownLayout } from "@/components/TreeScene";
 import WeatherCanvas from "@/components/WeatherCanvas";
 import WebMcp from "@/components/WebMcp";
 import {
@@ -41,24 +40,6 @@ const seasons = [
   { name: "Sheet", bengali: "শীত", note: "soft winter fog", noteBn: "শীতের কুয়াশা" },
   { name: "Basanta", bengali: "বসন্ত", note: "mango blossoms", noteBn: "আমের মুকুল" },
 ];
-
-const branchPositions: Record<BranchId, CSSProperties> = {
-  projects: { left: "13%", top: "38%" },
-  awards: { left: "75%", top: "35%" },
-  communities: { left: "10%", top: "57%" },
-  research: { left: "76%", top: "57%" },
-  writing: { left: "44%", top: "12%" },
-  experience: { left: "44%", top: "70%" },
-};
-
-const treeBranchAnchors: Record<BranchId, { x: number; y: number }> = {
-  projects: { x: 380, y: 540 },
-  awards: { x: 1220, y: 520 },
-  communities: { x: 420, y: 750 },
-  research: { x: 1180, y: 750 },
-  writing: { x: 800, y: 245 },
-  experience: { x: 800, y: 905 },
-};
 
 const tourStops: { branch: BranchId; caption: string; subcaption: string }[] = [
   {
@@ -255,7 +236,7 @@ function GrowthDial({
   const displayedYear = selectedYear ?? years.at(-1) ?? new Date().getFullYear();
 
   return (
-    <div className="growth-dial">
+    <div className="growth-dial growth-dial-compact">
       <div className="rings-graphic" aria-hidden="true">
         <svg viewBox="0 0 104 104">
           {years.map((year, index) => (
@@ -558,9 +539,11 @@ function BranchPanel({
 function PlainList({
   writings,
   onOpenBranch,
+  onReturnToTree,
 }: {
   writings: Writing[];
   onOpenBranch: (branch: BranchId) => void;
+  onReturnToTree: () => void;
 }) {
   return (
     <section className="plain-list" aria-label="Portfolio list view">
@@ -568,6 +551,9 @@ function PlainList({
         <span className="eyebrow-kicker">A quiet walk through the orchard</span>
         <h2>The whole tree, <em>in plain words.</em></h2>
         <p>Every branch, every leaf. Choose a story to open its detail page.</p>
+        <button className="list-view-return" type="button" onClick={onReturnToTree}>
+          Return to the illustrated tree <span aria-hidden="true">↗</span>
+        </button>
       </div>
       {branches.map((branch) => (
         <section className="list-section" key={branch.id} aria-labelledby={`list-${branch.id}`}>
@@ -924,13 +910,17 @@ export default function MangoExperience({
   const branchButtons = branches.map((branch) => {
     const count = visibleItems.filter((item) => item.branch === branch.id).length;
     const isDimmed = selectedYear !== null && count === 0;
+    const label = crownLayout[branch.id].label;
     return (
       <button
         key={branch.id}
         className={`branch-label branch-${branch.id}${selectedBranch === branch.id ? " branch-selected" : ""}${
           highlightedBranches.has(branch.id) ? " branch-search-hit" : ""
         }${isDimmed ? " branch-dimmed" : ""}`}
-        style={branchPositions[branch.id]}
+        style={{
+          left: `${(label.x / 1600) * 100}%`,
+          top: `${(label.y / 1040) * 100}%`,
+        }}
         type="button"
         aria-expanded={selectedBranch === branch.id}
         aria-controls="branch-panel"
@@ -980,118 +970,116 @@ export default function MangoExperience({
 
       <main>
         <section className="orchard-hero" aria-labelledby="hero-title">
-          <div className="hero-copy">
-            <div className="hero-overline"><span className="overline-line" /> A living portfolio · Bangladesh</div>
-            <h1 id="hero-title">A life in full <em>bloom.</em></h1>
-            <p className="hero-deck">
-              I&apos;m Ratul — a software engineer and systems researcher. My work grows across projects,
-              people, ideas, and time.
-            </p>
-            <div className="hero-note">
-              <span className="note-spark" aria-hidden="true">✳</span>
-              <span>Bangladesh&apos;s national tree is the mango. <strong>So this is my kind of family tree.</strong></span>
-            </div>
-          </div>
-
-          <div className="tree-toolbar">
-            <div className="season-picker" role="group" aria-label="Choose one of Dhaka's six seasons">
-              {seasons.map((entry) => (
-                <button
-                  type="button"
-                  key={entry.name}
-                  className={season === entry.name ? "season-active" : ""}
-                  aria-pressed={season === entry.name}
-                  title={bangla ? entry.noteBn : entry.note}
-                  onClick={() => setSeasonOverride(entry.name)}
-                >
-                  {seasonLabel(entry.name)}
-                </button>
-              ))}
-            </div>
-            <div className="tree-utilities">
-              <button className="quiet-toggle" type="button" onClick={() => setNightOverride(!night)} aria-pressed={night}>
-                <span aria-hidden="true">{night ? "☼" : "☾"}</span>
-                {bangla ? (night ? "দিন" : "রাত") : (night ? "Night" : "Day")}
-              </button>
-              <button className="quiet-toggle" type="button" onClick={() => setBangla((current) => !current)} aria-pressed={bangla}>
-                বাংলা
-              </button>
-              <button className="quiet-toggle" type="button" onClick={toggleListView} aria-pressed={listView}>
-                {bangla ? (listView ? "গাছ" : "তালিকা") : (listView ? "View tree" : "List view")}
-              </button>
-            </div>
-          </div>
-
-          <GrowthDial
-            years={ringYears}
-            selectedYear={selectedYear}
-            onChange={setSelectedYear}
-            onReset={() => setSelectedYear(null)}
-            bangla={bangla}
-          />
-
           <div className="tree-stage">
-            <WeatherCanvas season={season} night={night} />
-            <div className="scene-caption scene-caption-left">
-              <span className="caption-dot" />
-              <span>
-                {seasonLabel(season)} · {bangla
-                  ? seasons.find((entry) => entry.name === season)?.noteBn
-                  : seasons.find((entry) => entry.name === season)?.note}
-              </span>
-            </div>
-            <div className="scene-caption scene-caption-right">
-              <span>Dhaka, Bangladesh</span><span className="compass">N</span>
-            </div>
             {!listView && (
               <>
+                <WeatherCanvas season={season} night={night} />
                 <TreeScene
                   season={season}
                   night={night}
                   focusBranch={selectedBranch}
                   highlightedBranches={highlightedBranches}
+                  writings={writings}
                   freshBuds={freshBuds}
+                  onSelectBranch={openBranch}
+                  onItemHover={setHoveredSlug}
                 />
                 {focusedItem && selectedBranch && (
-                  <svg className="relationship-threads" viewBox="0 0 1600 1350" aria-hidden="true">
+                  <svg className="relationship-threads" viewBox="0 0 1600 1040" aria-hidden="true">
                     <defs>
                       <filter id="thread-glow">
                         <feGaussianBlur stdDeviation="5" result="blur" />
                         <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
                       </filter>
                     </defs>
-                    <g transform={`matrix(1.16 0 0 1.16 ${Math.round(treeBranchAnchors[selectedBranch].x * -0.16)} ${Math.round(treeBranchAnchors[selectedBranch].y * -0.16)})`}>
+                    <g transform={`matrix(1.12 0 0 1.12 ${Math.round(crownLayout[selectedBranch].cx * -0.12)} ${Math.round(crownLayout[selectedBranch].cy * -0.12)})`}>
                       {focusedItem.relatedSlugs?.map((slug) => {
                         const target = allItems.find((item) => item.slug === slug);
-                        const sourcePosition = treeBranchAnchors[focusedItem.branch];
-                        const targetPosition = target ? treeBranchAnchors[target.branch] : { x: 1200, y: 580 };
+                        const sourcePosition = crownLayout[focusedItem.branch];
+                        const targetPosition = target ? crownLayout[target.branch] : crownLayout.awards;
                         return (
                           <path
                             key={slug}
-                            d={`M${sourcePosition.x} ${sourcePosition.y} Q800 620 ${targetPosition.x} ${targetPosition.y}`}
+                            d={`M${sourcePosition.cx} ${sourcePosition.cy} Q800 520 ${targetPosition.cx} ${targetPosition.cy}`}
                           />
                         );
                       })}
                     </g>
                   </svg>
                 )}
-                <div className="desktop-branch-labels" role="group" aria-label="Explore the six tree branches">
-                  {branchButtons}
-                </div>
-                <div className="growth-intro" aria-hidden={growthComplete}>
-                  <span className="growth-seed" />
-                  <span className="growth-intro-copy">A little growth first…</span>
-                  {!growthComplete && (
-                    <button type="button" onClick={() => setGrowthSkipped(true)}>Skip growth</button>
-                  )}
-                </div>
               </>
             )}
-            {listView && (
-              <div className="list-stage-note">
-                <span className="list-stage-mark" aria-hidden="true">≋</span>
-                <p>The tree is resting. <strong>Every leaf is still here.</strong></p>
-                <button type="button" onClick={toggleListView}>Return to the illustrated tree</button>
+
+            <div className="hero-copy">
+              <div className="hero-overline"><span className="overline-line" /> A living portfolio · Bangladesh</div>
+              <h1 id="hero-title">A life in full <em>bloom.</em></h1>
+              <p className="hero-deck">
+                I&apos;m Ratul — a software engineer and systems researcher. My work grows across projects,
+                people, ideas, and time.
+              </p>
+              <div className="hero-note">
+                <span className="note-spark" aria-hidden="true">✳</span>
+                <span>Bangladesh&apos;s national tree is the mango. <strong>So this is my kind of family tree.</strong></span>
+              </div>
+            </div>
+
+            <div className="scene-caption scene-caption-right">
+              <span>Dhaka, Bangladesh</span><span className="compass">N</span>
+            </div>
+
+            {!listView && (
+              <div className="desktop-branch-labels" role="group" aria-label="Explore the six tree branches">
+                {branchButtons}
+              </div>
+            )}
+
+            {!listView && (
+              <div className="tree-control-dock">
+                <div className="tree-toolbar">
+                  <div className="season-picker" role="group" aria-label="Choose one of Dhaka's six seasons">
+                    {seasons.map((entry) => (
+                      <button
+                        type="button"
+                        key={entry.name}
+                        className={season === entry.name ? "season-active" : ""}
+                        aria-pressed={season === entry.name}
+                        title={bangla ? entry.noteBn : entry.note}
+                        onClick={() => setSeasonOverride(entry.name)}
+                      >
+                        {seasonLabel(entry.name)}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="tree-utilities">
+                    <button className="quiet-toggle" type="button" onClick={() => setNightOverride(!night)} aria-pressed={night}>
+                      <span aria-hidden="true">{night ? "☼" : "☾"}</span>
+                      {bangla ? (night ? "দিন" : "রাত") : (night ? "Night" : "Day")}
+                    </button>
+                    <button className="quiet-toggle" type="button" onClick={() => setBangla((current) => !current)} aria-pressed={bangla}>
+                      বাংলা
+                    </button>
+                    <button className="quiet-toggle" type="button" onClick={toggleListView} aria-pressed={listView}>
+                      {bangla ? "তালিকা" : "List view"}
+                    </button>
+                  </div>
+                </div>
+                <GrowthDial
+                  years={ringYears}
+                  selectedYear={selectedYear}
+                  onChange={setSelectedYear}
+                  onReset={() => setSelectedYear(null)}
+                  bangla={bangla}
+                />
+              </div>
+            )}
+
+            {!listView && (
+              <div className="growth-intro" aria-hidden={growthComplete}>
+                <span className="growth-seed" />
+                <span className="growth-intro-copy">A little growth first…</span>
+                {!growthComplete && (
+                  <button type="button" onClick={() => setGrowthSkipped(true)}>Skip growth</button>
+                )}
               </div>
             )}
           </div>
@@ -1172,7 +1160,7 @@ export default function MangoExperience({
         {children}
 
         {listView ? (
-          <PlainList writings={writings} onOpenBranch={openBranch} />
+          <PlainList writings={writings} onOpenBranch={openBranch} onReturnToTree={toggleListView} />
         ) : (
           <FreshGarden writings={writings} repositories={repositories} />
         )}
