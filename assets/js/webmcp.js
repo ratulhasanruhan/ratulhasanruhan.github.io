@@ -16,11 +16,11 @@
   if (!ctx) return;
 
   const ORIGIN = 'https://also.ratulruhan.cv';
-  const PROFILE_URL = './ratul-hasan-ruhan.json';
-  const PROJECTS_URL = './assets/projects/projects.json';
+  const PROFILE_URL = '/ratul-hasan-ruhan.json';
+  const PROJECTS_URL = '/assets/projects/projects.json';
   const RESUME_URL = ORIGIN + '/assets/Ratul-Hasan-Ruhan-Resume.pdf';
   const BOOKING_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ01vVQ1tVn35qEWA91zEWLjB0OY56xiZE_gVIc58FSZojPLTSxfHnpbgNrCQudJHp1GyClOtSOs?gv=true';
-  const PAGES = ['about', 'resume', 'projects', 'research', 'writings', 'recognition', 'contact'];
+  const PAGES = ['about', 'profile', 'resume', 'projects', 'communities', 'research', 'writings', 'recognition', 'contact'];
 
   const CONTACT = {
     name: 'Ratul Hasan Ruhan',
@@ -42,15 +42,10 @@
     return res.json();
   }
 
-  // Drive the SPA router from script.js (showPage / updateURL / pageToUrlMap are globals).
+  // Use the same router as the visible navigation.
   function goTo(page) {
     if (!PAGES.includes(page)) throw new Error(`Unknown page "${page}". Use one of: ${PAGES.join(', ')}`);
-    if (typeof showPage === 'function') {
-      showPage(page);
-      if (typeof updateURL === 'function' && typeof pageToUrlMap === 'object') updateURL(pageToUrlMap[page] || `/${page}`);
-    } else {
-      window.location.hash = page; // hash fallback handled by the router on load
-    }
+    navigateToPage(page);
     return { page, url: ORIGIN + (page === 'about' ? '/' : `/${page}`) };
   }
 
@@ -113,7 +108,7 @@
     {
       name: 'navigate',
       title: 'Open a section',
-      description: 'Show one of the site\'s sections in the current tab: about, resume, projects, research, writings, recognition, or contact.',
+      description: 'Show one of the site\'s sections in the current tab: about, profile, resume, projects, communities, research, writings, recognition, or contact.',
       inputSchema: {
         type: 'object',
         properties: { page: { type: 'string', enum: PAGES } },
