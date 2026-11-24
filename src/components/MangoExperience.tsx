@@ -1177,16 +1177,28 @@ export default function MangoExperience({
               className="tour-caption"
               role="group"
               aria-label={bangla ? "নির্দেশিত ভ্রমণ" : "Guided tour"}
-              key={currentTourStop.branch}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <span className="tour-caption-step">0{(tourIndex ?? 0) + 1} / 06</span>
-              <div className="tour-caption-copy" aria-live="polite">
+              <motion.span
+                className="tour-caption-step"
+                key={`step-${currentTourStop.branch}`}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                0{(tourIndex ?? 0) + 1} / 06
+              </motion.span>
+              <motion.div
+                className="tour-caption-copy"
+                key={`copy-${currentTourStop.branch}`}
+                aria-live="polite"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
                 <strong>{currentTourStop.caption}</strong><p>{currentTourStop.subcaption}</p>
-              </div>
+              </motion.div>
               {tourPaused && <span className="tour-paused">{bangla ? "বিরতি" : "Paused"}</span>}
-              <div className="tour-caption-controls">
+              <div className="tour-caption-controls" key="tour-controls">
                 <button
                   type="button"
                   aria-label={tourPaused ? "Resume tour" : "Pause tour"}
