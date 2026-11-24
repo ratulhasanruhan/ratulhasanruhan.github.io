@@ -4924,16 +4924,17 @@ kbd {
   }
 
   .spotlight-card {
-    right: 10px;
-    bottom: 54px;
-    left: auto;
-    width: min(230px, calc(100% - 20px));
+    top: 54px;
+    right: auto;
+    bottom: auto;
+    left: 10px;
+    width: min(190px, calc(100% - 20px));
     gap: 3px;
-    padding: 9px 11px;
+    padding: 8px 10px;
   }
 
   .spotlight-card strong {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .spotlight-card > span:nth-last-child(2) {
@@ -4942,7 +4943,7 @@ kbd {
 
   .spotlight-kicker,
   .spotlight-open {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .growth-intro button {
