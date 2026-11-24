@@ -22,49 +22,49 @@
 
   --bg-gradient-onyx: linear-gradient(
     to bottom right, 
-    hsl(240, 1%, 25%) 3%, 
-    hsl(0, 0%, 19%) 97%
+    hsl(156, 24%, 21%) 3%, 
+    hsl(156, 34%, 13%) 97%
   );
   --bg-gradient-jet: linear-gradient(
     to bottom right, 
-    hsla(240, 1%, 18%, 0.251) 0%, 
-    hsla(240, 2%, 11%, 0) 100%
-  ), hsl(240, 2%, 13%);
+    hsla(156, 26%, 20%, 0.251) 0%, 
+    hsla(156, 40%, 9%, 0) 100%
+  ), hsl(156, 38%, 10%);
   --bg-gradient-yellow-1: linear-gradient(
     to bottom right, 
-    hsl(45, 100%, 71%) 0%, 
-    hsla(36, 100%, 69%, 0) 50%
+    hsl(40, 100%, 74%) 0%, 
+    hsla(36, 90%, 56%, 0) 50%
   );
   --bg-gradient-yellow-2: linear-gradient(
     135deg, 
-    hsla(45, 100%, 71%, 0.251) 0%, 
-    hsla(35, 100%, 68%, 0) 59.86%
-  ), hsl(240, 2%, 13%);
+    hsla(40, 100%, 74%, 0.251) 0%, 
+    hsla(36, 90%, 56%, 0) 59.86%
+  ), hsl(156, 38%, 10%);
   --border-gradient-onyx: linear-gradient(
     to bottom right, 
-    hsl(0, 0%, 25%) 0%, 
-    hsla(0, 0%, 25%, 0) 50%
+    hsl(156, 22%, 24%) 0%, 
+    hsla(156, 22%, 24%, 0) 50%
   );
   --text-gradient-yellow: linear-gradient(
     to right, 
-    hsl(45, 100%, 72%), 
-    hsl(35, 100%, 68%)
+    hsl(40, 100%, 74%), 
+    hsl(36, 90%, 56%)
   );
 
   /* solid */
 
-  --jet: hsl(0, 0%, 22%);
-  --onyx: hsl(240, 1%, 17%);
-  --eerie-black-1: hsl(240, 2%, 13%);
-  --eerie-black-2: hsl(240, 2%, 12%);
-  --smoky-black: hsl(0, 0%, 7%);
+  --jet: hsl(156, 24%, 19%);
+  --onyx: hsl(156, 32%, 14%);
+  --eerie-black-1: hsl(156, 38%, 10%);
+  --eerie-black-2: hsl(156, 40%, 9%);
+  --smoky-black: hsl(157, 55%, 6%);
   --white-1: hsl(0, 0%, 100%);
   --white-2: hsl(0, 0%, 98%);
-  --orange-yellow-crayola: hsl(45, 100%, 72%);
-  --vegas-gold: hsl(45, 54%, 58%);
-  --light-gray: hsl(0, 0%, 84%);
-  --light-gray-70: hsla(0, 0%, 84%, 0.7);
-  --bittersweet-shimmer: hsl(0, 43%, 51%);
+  --orange-yellow-crayola: hsl(40, 100%, 74%);
+  --vegas-gold: hsl(36, 72%, 60%);
+  --light-gray: hsl(42, 30%, 88%);
+  --light-gray-70: hsla(42, 30%, 88%, 0.72);
+  --bittersweet-shimmer: hsl(14, 79%, 57%);
 
   /**
    * typography
@@ -492,7 +492,7 @@ main {
 .appointment-cta button:hover,
 .appointment-cta button:focus-visible {
   background: var(--bg-gradient-yellow-2) !important;
-  border-color: hsla(45, 100%, 72%, 0.35) !important;
+  border-color: hsla(40, 100%, 74%, 0.35) !important;
   transform: translateY(-1px);
 }
 
@@ -508,7 +508,7 @@ main {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: hsla(240, 1%, 17%, 0.75);
+  background: hsla(156, 32%, 14%, 0.75);
   backdrop-filter: blur(10px);
   border: 1px solid var(--jet);
   border-radius: 12px 12px 0 0;
@@ -723,7 +723,7 @@ main {
   left: 0;
   width: 100%;
   height: 100vh;
-  background: hsl(0, 0%, 5%);
+  background: hsl(157, 55%, 5%);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -1157,7 +1157,7 @@ main {
 }
 
 .skill-segment:hover {
-  background-color: hsla(240, 1%, 15%, 0.4);
+  background-color: hsla(156, 34%, 12%, 0.4);
 }
 
 .skill-segment-accent {
@@ -1230,15 +1230,15 @@ main {
 .skill-tag:hover {
   border-color: var(--orange-yellow-crayola);
   transform: translateX(4px);
-  box-shadow: 0 4px 15px rgba(255, 179, 71, 0.2);
+  box-shadow: 0 4px 15px rgba(244, 164, 44, 0.2);
 }
 
 .skill-advanced::before {
-  background: linear-gradient(180deg, #00ff88, #00cc6a);
+  background: linear-gradient(180deg, #3fae72, #1f6f4a);
 }
 
 .skill-intermediate::before {
-  background: linear-gradient(180deg, #ffb347, #ff8c00);
+  background: linear-gradient(180deg, #f4a42c, #e8613c);
 }
 
 .skill-info {
@@ -1278,17 +1278,17 @@ main {
 
 .dot.active {
   background: var(--orange-yellow-crayola);
-  box-shadow: 0 0 6px rgba(255, 179, 71, 0.6);
+  box-shadow: 0 0 6px rgba(244, 164, 44, 0.6);
 }
 
 .skill-advanced .dot.active {
-  background: #00ff88;
-  box-shadow: 0 0 6px rgba(0, 255, 136, 0.6);
+  background: #3fae72;
+  box-shadow: 0 0 6px rgba(63, 174, 114, 0.6);
 }
 
 .skill-intermediate .dot.active {
-  background: #ffb347;
-  box-shadow: 0 0 6px rgba(255, 179, 71, 0.6);
+  background: #f4a42c;
+  box-shadow: 0 0 6px rgba(244, 164, 44, 0.6);
 }
 
 /* Responsive */
@@ -1402,7 +1402,7 @@ main {
   border-radius: 8px;
 }
 
-.select-item button:hover { --eerie-black-2: hsl(240, 2%, 20%); }
+.select-item button:hover { --eerie-black-2: hsl(156, 26%, 17%); }
 
 .project-list {
   display: grid;
