@@ -1,0 +1,222 @@
+[
+	{
+	  "title": "Ojogor (অজগর)",
+	  "subtitle": "A bengali programming language",
+	  "category": "Compiler",
+	  "image": "ojogor.webp",
+	  "url": "https://ratulhasan.gitbook.io/ojogor"
+	},
+	{
+	  "slug": "ishara",
+	  "title": "Ishara",
+	  "subtitle": "Real-time Bengali sign-language translation system",
+	  "description": "An accessibility-focused system translating Bengali sign language in real time.",
+	  "category": "Accessibility",
+	  "image": "ishara.svg",
+	  "url": "https://www.linkedin.com/posts/ratul-hasan-ruhan_national-tech-award-2025-activity-7417973259272474626-a3Rp",
+	  "year": 2025,
+	  "organization": "National Tech Award",
+	  "relatedSlugs": ["national-tech-award-2025"]
+	},
+	{
+	  "title": "Emerge AI",
+	  "subtitle": "An AI based mental health and fitness app",
+	  "category": "Mobile Apps",
+	  "image": "emerge.webp",
+	  "url": "https://play.google.com/store/apps/details?id=app.goemergeai.emergeai"
+	},
+	{
+	  "title": "Junior Cambrian",
+	  "subtitle": "A LMS with gamification",
+	  "category": "Mobile Apps",
+	  "image": "junior.png",
+	  "url": "https://www.ekushey-tv.com/%E0%A6%96%E0%A7%87%E0%A6%B2%E0%A6%BE%E0%A6%B0-%E0%A6%9B%E0%A6%B2%E0%A7%87-%E0%A6%85%E0%A6%A8%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%A8%E0%A7%87-%E0%A6%AC%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9A%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B0-%E0%A6%B6%E0%A7%87%E0%A6%96%E0%A6%BE%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87-%E0%A6%9C%E0%A7%81%E0%A6%A8%E0%A6%BF%E0%A7%9F%E0%A6%B0-%E0%A6%95%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AE%E0%A6%AC%E0%A7%8D%E0%A6%B0%E0%A6%BF%E0%A7%9F%E0%A6%BE%E0%A6%A8/1360873111111142091"
+	},
+	{
+	  "slug": "sydrix-ai",
+	  "title": "Sydrix AI – Study Smart",
+	  "subtitle": "AI-powered study-management mobile app",
+	  "description": "A mobile study-management app with AI features, built for Sydrix AI.",
+	  "category": "Mobile Apps",
+	  "image": "sydrix_ai.png",
+	  "url": "https://sydrixai.com/",
+	  "year": 2025,
+	  "period": "May 2025 – Jul 2025",
+	  "organization": "Sydrix AI"
+	},
+	{
+	  "title": "Bionova BD",
+	  "subtitle": "Medical supplies ordering & delivery tracking",
+	  "category": "Mobile Apps",
+	  "image": "bionova.webp",
+	  "url": "https://play.google.com/store/apps/details?id=com.bionovabd.bionova"
+	},
+	{
+	  "title": "Hello Chatkhil",
+	  "subtitle": "A Medical and blood donation app",
+	  "category": "Mobile Apps",
+	  "image": "hello_chatkhil.png",
+	  "url": "https://play.google.com/store/apps/details?id=com.rhrsoft.rokto"
+	},
+	{
+	  "title": "ISTT University",
+	  "subtitle": "Institute of Science, Trade & Technology (ISTT) routine management system",
+	  "category": "Mobile Apps",
+	  "image": "istt.jpeg",
+	  "url": "https://istt-uni.web.app/"
+	},
+	{
+	  "title": "Avianicare | Avian & Animal Care BD",
+	  "subtitle": "A tech-driven e-commerce platform for animal health products and services.",
+	  "category": "Mobile Apps",
+	  "image": "avianicare.jpg",
+	  "url": "https://play.google.com/store/apps/details?id=com.pet.avianicare"
+	},
+	{
+	  "title": "Forex Signals",
+	  "subtitle": "Forex Signals – Live Trends & Analysis App",
+	  "category": "Mobile Apps",
+	  "image": "forex.png",
+	  "url": "https://play.google.com/store/apps/details?id=com.appybuilder.mdbillalhossain1.forex_tradingsignal"
+	},
+	{
+	  "title": "World Shine",
+	  "subtitle": "This gold investment app offers a user-friendly and secure platform to buy, sell, and track your gold investments",
+	  "category": "Mobile Apps",
+	  "image": "gold_app.png",
+	  "url": "https://worldshine.biz/"
+	},
+	{
+	  "title": "Sikhboi",
+	  "subtitle": "A fullfilled app for digital learners",
+	  "category": "Mobile Apps",
+	  "image": "sikhboi.webp",
+	  "url": "https://play.google.com/store/apps/details?id=com.rhrsoft.sikhboinew"
+	},
+	{
+	  "title": "Hello Doctor",
+	  "subtitle": "An app for doctors to manage their patients",
+	  "category": "Mobile Apps",
+	  "image": "hello_doctor.webp",
+	  "url": "https://play.google.com/store/apps/details?id=com.rhrsoft.hello_doctor"
+	},
+	{
+	  "title": "Gone Board",
+	  "subtitle": "A flutter UI package",
+	  "category": "Library",
+	  "image": "gone_board.png",
+	  "url": "https://pub.dev/packages/gone_board"
+	},
+	{
+	  "title": "Flutter Build Uploader",
+	  "subtitle": "A flutter CLI tools for build automation",
+	  "category": "Library",
+	  "image": "flutter_build_uploader.png",
+	  "url": "https://pub.dev/packages/flutter_build_uploader"
+	},
+		{
+	  "title": "TypeMate",
+	  "subtitle": "Overlay tools that follow your text fields on any app",
+	  "category": "Library",
+	  "image": "type_mate.jpg",
+	  "url": "https://pub.dev/packages/type_mate"
+	},
+	{
+	  "title": "Productive Muslim",
+	  "subtitle": "A fullfilled islamic app",
+	  "category": "Mobile Apps",
+	  "image": "productive.jpg",
+	  "url": "https://apkpure.net/bn/productive-muslim/com.muslim.productive/download"
+	},
+	{
+	  "title": "Richminis",
+	  "subtitle": "Modern ecommerce system",
+	  "category": "Web Apps",
+	  "image": "richminis.webp",
+	  "url": "https://richminis.com"
+	},
+	{
+	  "title": "Ilmpurity",
+	  "subtitle": "Learning Management system with AI based Exam",
+	  "category": "Web Apps",
+	  "image": "ilmpurity.webp",
+	  "url": "https://ilmpurity.com"
+	},
+	{
+	  "title": "DokanMate",
+	  "subtitle": "A lightweight offline POS system",
+	  "category": "Desktop Apps",
+	  "image": "dokanmate_desktop.png",
+	  "url": "https://github.com/ratulhasanruhan/DokanMate"
+	},
+	{
+	  "title": "apinion",
+	  "subtitle": "A packgae for easy API handling",
+	  "category": "Library",
+	  "image": "apinion_logo.png",
+	  "url": "https://pub.dev/packages/apinion"
+	},
+	{
+	  "title": "Goribli",
+	  "subtitle": "A MLOps pipeline for image generation",
+	  "category": "AI/ML",
+	  "image": "goribli.png",
+	  "url": "https://goribli.web.app/"
+	},
+	{
+	  "title": "Porichoy",
+	  "subtitle": "A platform for portfolio website and cv showcasing",
+	  "category": "Web Apps",
+	  "image": "porichoy_white.png",
+	  "url": "https://porichoy.me/"
+	},
+	{
+	  "title": "Bandhu AI",
+	  "subtitle": "A mental wellbeing app",
+	  "category": "Mobile Apps",
+	  "image": "bandhu.png",
+	  "url": "https://bandhuai.app/"
+	},
+	{
+	  "title": "WaveCode",
+	  "subtitle": "Encodes audio into stunning visual representations and decodes them back to audio",
+	  "category": "Mobile Apps",
+	  "image": "wavecode.png",
+	  "url": "https://github.com/ratulhasanruhan/wavecode"
+	},
+	{
+	  "title": "DokanMate",
+	  "subtitle": "In a world of overloaded POS apps, we chose simplicity.",
+	  "category": "Mobile Apps",
+	  "image": "dokanmate.png",
+	  "url": "https://www.facebook.com/dokanmate/"
+	},
+	{
+	  "title": "GoruSheba",
+	  "subtitle": "Bangladesh's first intelligent cattle management system powered by AI & IoT. ",
+	  "category": "Mobile Apps",
+	  "image": "gorusheba.png",
+	  "url": "https://www.facebook.com/gorusheba/"
+	},
+	{
+	  "title": "Datayon",
+	  "subtitle": "A bengali monthly tech magazine.",
+	  "category": "Web Apps",
+	  "image": "datayon.png",
+	  "url": "https://datayon.bd"
+	},
+	{
+	  "title": "Disaster-Resilient Communication System",
+	  "subtitle": "A disaster-ready networking system for resilient communications",
+	  "category": "Networking",
+	  "image": "digital_delta.jpg",
+	  "url": "https://github.com/ratulhasanruhan/digital_delta_app"
+	},
+	{
+	  "title": "Care Life Touch",
+	  "subtitle": "On-demand medicine delivery and healthcare platform.",
+	  "category": "Mobile Apps",
+	  "image": "care_life_touch.webp",
+	  "url": "https://play.google.com/store/apps/details?id=com.appibrium.carelifetouch"
+	}
+  ]

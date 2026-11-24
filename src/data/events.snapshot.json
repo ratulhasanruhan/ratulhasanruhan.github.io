@@ -1,0 +1,179 @@
+[
+  {
+    "slug": "aws-student-builder-leadership-2026",
+    "event": "AWS Student Builder Group leadership announcement",
+    "date": "2026-10-01",
+    "caption": "Officially leading the AWS Student Builder Group.",
+    "postUrl": "https://www.linkedin.com/posts/ratul-hasan-ruhan_officially-leading-the-aws-student-builder-activity-7511400293310414848-fjid",
+    "photos": [{ "file": "aws-student-builder-1.webp", "width": 1200, "height": 1200 }],
+    "relatedItems": [{ "branch": "communities", "slug": "amazon-web-services" }]
+  },
+  {
+    "slug": "glrc-ambassador-2026",
+    "event": "Global Logic & Reasoning Challenge ambassador announcement",
+    "date": "2026-08-10",
+    "caption": "Honoured to be selected as the official GLRC Local Ambassador for Bangladesh.",
+    "postUrl": "https://www.linkedin.com/posts/ratul-hasan-ruhan_honoured-to-be-selected-as-the-official-glrc-activity-7492434140185849856-LBbE",
+    "photos": [{ "file": "glrc-ambassador-1.webp", "width": 600, "height": 451 }],
+    "relatedItems": [{ "branch": "communities", "slug": "global-logic-reasoning-challenge" }]
+  },
+  {
+    "slug": "coding-fest-buildathon-2026",
+    "event": "Coding Fest 2026 and National AI BUILD-A-THON recognition",
+    "date": "2026-02-02",
+    "caption": "Today’s stage brought two moments of recognition: 1st Place at Coding Fest 2026 and an Honorees Award at the AI Build-A-Thon.",
+    "postUrl": "https://www.linkedin.com/posts/ratul-hasan-ruhan_todays-stage-brought-two-moments-of-recognition-activity-7424095928569065472-AEFE",
+    "photos": [
+      { "file": "codingfest-buildathon-1.webp", "width": 800, "height": 491 },
+      { "file": "codingfest-buildathon-2.webp", "width": 800, "height": 668 },
+      { "file": "codingfest-buildathon-3.webp", "width": 800, "height": 600 },
+      { "file": "codingfest-buildathon-4.webp", "width": 1156, "height": 1536 },
+      { "file": "codingfest-buildathon-5.webp", "width": 1156, "height": 1536 }
+    ],
+    "relatedItems": [
+      { "branch": "awards", "slug": "coding-fest-2026-1st-place" },
+      { "branch": "awards", "slug": "national-ai-build-a-thon-trailblazer" }
+    ]
+  },
+  {
+    "slug": "national-ai-buildathon-2026",
+    "event": "National AI BUILD-A-THON Trailblazer recognition",
+    "date": "2026-01-19",
+    "caption": "Recognized at the National BUILD-A-THON for leading a team project.",
+    "postUrl": "https://www.linkedin.com/posts/ratul-hasan-ruhan_recognized-at-the-national-build-a-thon-activity-7418857255959453697-P4i9",
+    "photos": [
+      { "file": "national-ai-buildathon-1.webp", "width": 1155, "height": 1536 },
+      { "file": "national-ai-buildathon-2.webp", "width": 800, "height": 533 },
+      { "file": "national-ai-buildathon-3.webp", "width": 1156, "height": 1536 },
+      { "file": "national-ai-buildathon-4.webp", "width": 800, "height": 533 },
+      { "file": "national-ai-buildathon-5.webp", "width": 1155, "height": 1536 }
+    ],
+    "relatedItems": [
+      { "branch": "awards", "slug": "national-ai-build-a-thon-trailblazer" },
+      { "branch": "projects", "slug": "gorusheba" }
+    ]
+  },
+  {
+    "slug": "gdg-dhaka-community-2025",
+    "event": "GDG Dhaka community event",
+    "date": "2025-12-22",
+    "caption": "Had an awesome time at GDG Dhaka today.",
+    "postUrl": "https://www.linkedin.com/posts/ratul-hasan-ruhan_had-an-awesome-time-at-gdg-dhaka-today-activity-7408842505049427968-tUFP",
+    "photos": [
+      { "file": "gdg-dhaka-1.webp", "width": 1152, "height": 1536 },
+      { "file": "gdg-dhaka-2.webp", "width": 800, "height": 533 }
+    ],
+    "relatedItems": []
+  },
+  {
+    "slug": "bangladesh-ai-summit-2026",
+    "event": "Bangladesh AI Summit 2026",
+    "date": "2026-08-19",
+    "caption": "Getting ready for the Bangladesh AI Summit.",
+    "postUrl": "https://www.linkedin.com/posts/ratul-hasan-ruhan_getting-ready-for-the-bangladesh-ai-summit-activity-7495879582252769280-jNY_",
+    "photos": [
+      { "file": "ai-summit-2026-1.webp", "width": 800, "height": 602 },
+      { "file": "ai-summit-2026-2.webp", "width": 800, "height": 602 },
+      { "file": "ai-summit-2026-3.webp", "width": 1156, "height": 1536 }
+    ],
+    "relatedItems": [],
+    "status": "announced"
+  },
+  {
+    "slug": "hult-prize-semifinal-2026",
+    "event": "Hult Prize semi-final presentation (video thumbnail)",
+    "date": "2026-02-17",
+    "caption": "One more learning experience — presented at the Hult Prize semi-final today.",
+    "postUrl": "https://www.linkedin.com/posts/ratul-hasan-ruhan_one-more-learning-experience-presented-activity-7429389139361509376-dqlv",
+    "photos": [{ "file": "hult-prize-semifinal-1.webp", "width": 720, "height": 1280 }],
+    "relatedItems": [{ "branch": "communities", "slug": "hult-prize" }]
+  },
+  {
+    "slug": "ict-innovation-award-ceremony-2025",
+    "event": "Bangladesh ICT & Innovation Award 2025 ceremony",
+    "date": "2025-10-19",
+    "caption": "Honored to receive the Bangladesh ICT & Innovation Award 2025 for Ojogor.",
+    "postUrl": "https://www.linkedin.com/posts/ratul-hasan-ruhan_alhamdulillah-honored-to-receive-the-activity-7385641376262209536-9B7e",
+    "photos": [
+      { "file": "ict-innovation-award-1.webp", "width": 902, "height": 1600 },
+      { "file": "ict-innovation-award-2.webp", "width": 800, "height": 449 }
+    ],
+    "relatedItems": [
+      { "branch": "awards", "slug": "bangladesh-ict-innovation-award-2025" },
+      { "branch": "projects", "slug": "ojogor" }
+    ]
+  },
+  {
+    "slug": "national-tech-award-2025",
+    "event": "National Tech Award 2025",
+    "date": "2026-01-16",
+    "caption": "National Tech Award – 2025.",
+    "postUrl": "https://www.linkedin.com/posts/ratul-hasan-ruhan_national-tech-award-2025-activity-7417973259272474626-a3Rp",
+    "photos": [{ "file": "national-tech-award-1.webp", "width": 963, "height": 1280 }],
+    "relatedItems": [
+      { "branch": "awards", "slug": "national-tech-award-2025" },
+      { "branch": "projects", "slug": "ishara" }
+    ]
+  },
+  {
+    "slug": "professional-introduction-2026",
+    "event": "Annual professional introduction (article-share image)",
+    "date": "2026-06-30",
+    "caption": "A small tradition: creating a new professional introduction every fiscal year.",
+    "postUrl": "https://www.linkedin.com/posts/ratul-hasan-ruhan_ratul-hasan-ruhan-software-engineer-systems-activity-7477663669376589825-TkSP",
+    "photos": [{ "file": "professional-intro-2026-1.webp", "width": 800, "height": 450 }],
+    "relatedItems": []
+  },
+  {
+    "slug": "startup-world-cup-regional-final-2025",
+    "event": "Startup World Cup Bangladesh 2025 regional final",
+    "date": "2025-08-14",
+    "caption": "From the first round to the regional final at Startup World Cup Bangladesh 2025.",
+    "postUrl": "https://www.linkedin.com/posts/ratul-hasan-ruhan_from-the-first-round-to-the-final-at-startup-activity-7361780398055378945-rV1A",
+    "photos": [
+      { "file": "startup-world-cup-2025-1.webp", "width": 960, "height": 1280 },
+      { "file": "startup-world-cup-2025-2.webp", "width": 960, "height": 660 },
+      { "file": "startup-world-cup-2025-3.webp", "width": 960, "height": 937 }
+    ],
+    "relatedItems": [{ "branch": "awards", "slug": "startup-world-cup-2025-regional-finalist" }]
+  },
+  {
+    "slug": "ict-innovation-awards-pitch-2025",
+    "event": "Bangladesh ICT & Innovation Awards 2025 pitch",
+    "date": "2025-10-11",
+    "caption": "Humbled and honored to pitch my vision at the ICT & Innovation Awards 2025.",
+    "postUrl": "https://www.linkedin.com/posts/ratul-hasan-ruhan_waterproofidea-ictawards2025-activity-7382750515744399360-Tg5d",
+    "photos": [{ "file": "ict-awards-2025-pitch-1.webp", "width": 1152, "height": 1536 }],
+    "relatedItems": [{ "branch": "awards", "slug": "bangladesh-ict-innovation-award-2025" }]
+  },
+  {
+    "slug": "national-tech-award-nomination-2025",
+    "event": "National Tech Awards 2025 nomination (video thumbnail)",
+    "date": "2025-12-11",
+    "caption": "Official nominee video for the Student Innovation category of the 2025 National Tech Awards.",
+    "postUrl": "https://www.linkedin.com/posts/ratul-hasan-ruhan_my-official-nominee-video-for-the-student-activity-7404818529452994560-P5z_",
+    "photos": [{ "file": "national-tech-awards-nomination-1.webp", "width": 720, "height": 1278 }],
+    "relatedItems": [{ "branch": "awards", "slug": "national-tech-award-2025" }]
+  },
+  {
+    "slug": "software-freedom-day-2026",
+    "event": "Software Freedom Day 2026 community discussion",
+    "date": "2026-09-21",
+    "caption": "Bengali post reflecting on Software Freedom Day and the local open-source community.",
+    "postUrl": "https://www.linkedin.com/posts/ratul-hasan-ruhan_%E0%A6%B8%E0%A6%AB%E0%A6%9F%E0%A6%93%E0%A6%AF%E0%A6%AF%E0%A6%B0-%E0%A6%AB%E0%A6%B0%E0%A6%A1%E0%A6%AE-%E0%A6%A1-%E0%A7%A8%E0%A7%96-%E0%A6%87%E0%A6%A8%E0%A6%9F%E0%A6%B0%E0%A6%A8%E0%A6%9F-%E0%A6%B8%E0%A6%B9%E0%A6%9C%E0%A6%B2%E0%A6%AD%E0%A6%AF-activity-7507871341975470080-bQKs",
+    "photos": [
+      { "file": "software-freedom-day-2026-1.webp", "width": 800, "height": 602 },
+      { "file": "software-freedom-day-2026-2.webp", "width": 800, "height": 602 }
+    ],
+    "relatedItems": []
+  },
+  {
+    "slug": "aws-buildmyfolio-2026",
+    "event": "AWS BuildMyFolio session",
+    "date": "2026-11-02",
+    "caption": "Announced AWS BuildMyFolio session; participation is not confirmed.",
+    "photos": [],
+    "relatedItems": [{ "branch": "communities", "slug": "amazon-web-services" }],
+    "status": "announced"
+  }
+]

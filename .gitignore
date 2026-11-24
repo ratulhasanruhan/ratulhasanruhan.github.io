@@ -67,3 +67,10 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
+.next/
+out/
+build/
+coverage/
+*.tsbuildinfo
+.env.*
+!.env.example

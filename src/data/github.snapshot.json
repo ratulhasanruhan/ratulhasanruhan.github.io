@@ -1,0 +1,50 @@
+[
+  {
+    "name": "ratulhasanruhan.github.io",
+    "url": "https://github.com/ratulhasanruhan/ratulhasanruhan.github.io",
+    "description": "Portfolio",
+    "language": "HTML",
+    "updatedAt": "2026-11-24T09:05:38Z",
+    "stars": 2
+  },
+  {
+    "name": "ratulhasanruhan",
+    "url": "https://github.com/ratulhasanruhan/ratulhasanruhan",
+    "description": null,
+    "language": null,
+    "updatedAt": "2026-11-24T08:43:57Z",
+    "stars": 0
+  },
+  {
+    "name": "studypilot-notion",
+    "url": "https://github.com/ratulhasanruhan/studypilot-notion",
+    "description": "StudyPilot: turns syllabi into a Notion Student OS with deadlines, auto-scheduled study sessions and weekly digests. Cognition × Notion Student OS Hackathon.",
+    "language": "Python",
+    "updatedAt": "2026-11-21T11:45:32Z",
+    "stars": 0
+  },
+  {
+    "name": "diapc",
+    "url": "https://github.com/ratulhasanruhan/diapc",
+    "description": null,
+    "language": "TypeScript",
+    "updatedAt": "2026-11-17T07:06:27Z",
+    "stars": 0
+  },
+  {
+    "name": "richminis",
+    "url": "https://github.com/ratulhasanruhan/richminis",
+    "description": null,
+    "language": "Blade",
+    "updatedAt": "2026-11-11T11:23:53Z",
+    "stars": 0
+  },
+  {
+    "name": "ilmpurity",
+    "url": "https://github.com/ratulhasanruhan/ilmpurity",
+    "description": null,
+    "language": "TypeScript",
+    "updatedAt": "2026-11-11T10:59:03Z",
+    "stars": 0
+  }
+]
