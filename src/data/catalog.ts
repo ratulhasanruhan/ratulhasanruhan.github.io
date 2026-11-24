@@ -1,13 +1,19 @@
 import projectsSnapshot from "./projects.snapshot.json";
 import profileSnapshot from "./profile.snapshot.json";
+import eventsSnapshot from "./events.snapshot.json";
 import { toSlug } from "./slug";
 import type {
   Award,
   BranchId,
   Community,
+  EducationItem,
+  PortfolioEvent,
   Experience,
   PortfolioItem,
+  ProfileSkillGroup,
   Project,
+  ProjectSnapshot,
+  TimelineMilestone,
   Writing,
 } from "./types";
 
@@ -24,14 +30,19 @@ type ProfileRecord = {
     startDate: string;
     endDate?: string;
     description?: string;
+    contactEmail?: string;
     memberOf: { name: string; url: string };
   }[];
   award: {
     name: string;
     dateReceived: string;
+    receivedAt?: string;
     description: string;
     awardedBy?: { name: string };
   }[];
+  additionalData?: {
+    skills?: ProfileSkillGroup[];
+  };
 };
 
 const profileData = profileSnapshot as ProfileRecord;
@@ -46,6 +57,8 @@ export const profile = {
   sameAs: profileData.sameAs,
   linkedin: "https://www.linkedin.com/in/ratul-hasan-ruhan/",
   github: "https://github.com/ratulhasanruhan",
+  website: "https://ratulhasan.link",
+  appibrium: "https://appibrium.com",
   whatsapp: "https://wa.me/8801789536985",
   booking:
     "https://calendar.google.com/calendar/appointments/schedules/AcZssZ01vVQ1tVn35qEWA91zEWLjB0OY56xiZE_gVIc58FSZojPLTSxfHnpbgNrCQudJHp1GyClOtSOs?gv=true",
@@ -80,6 +93,8 @@ export const expertise = [
     description: "Build pipelines, deployments, and production tooling.",
   },
 ];
+
+export const skillGroups = profileData.additionalData?.skills ?? [];
 
 export const branches: {
   id: BranchId;
@@ -134,8 +149,8 @@ export const branches: {
 
 const projectSlugCounts = new Map<string, number>();
 
-export const projects: Project[] = projectsSnapshot.map((entry) => {
-  const baseSlug = toSlug(entry.title) || "project";
+export const projects: Project[] = (projectsSnapshot as ProjectSnapshot[]).map((entry) => {
+  const baseSlug = entry.slug ?? (toSlug(entry.title) || "project");
   const count = projectSlugCounts.get(baseSlug) ?? 0;
   projectSlugCounts.set(baseSlug, count + 1);
   const slug = count ? `${baseSlug}-${count + 1}` : baseSlug;
@@ -146,12 +161,20 @@ export const projects: Project[] = projectsSnapshot.map((entry) => {
     branch: "projects",
     title: entry.title,
     summary: entry.subtitle,
-    description: entry.subtitle,
-    year: null,
+    description: entry.description ?? entry.subtitle,
+    year: entry.year ?? null,
     category: entry.category,
     image: `/assets/projects/${entry.image}`,
     href: entry.url,
-    ...(slug === "ojogor" ? { relatedSlugs: ["bangladesh-ict-innovation-award-2025"] } : {}),
+    ...(entry.period ? { period: entry.period } : {}),
+    ...(entry.organization ? { organization: entry.organization } : {}),
+    relatedSlugs:
+      entry.relatedSlugs ??
+      (slug === "ojogor"
+        ? ["bangladesh-ict-innovation-award-2025"]
+        : slug === "ishara"
+          ? ["national-tech-award-2025"]
+          : undefined),
   };
 });
 
@@ -202,14 +225,26 @@ export const awards: Award[] = profileData.award.map((sourceAward) => {
     slug,
     kind: "award",
     branch: "awards",
-    title: sourceAward.name,
-    summary: sourceAward.awardedBy?.name ?? sourceAward.description,
-    description: sourceAward.description,
-    year: Number.parseInt(sourceAward.dateReceived, 10) || null,
+    title:
+      slug === "startup-world-cup-2025-regional-finalist"
+        ? "Startup World Cup — Regional Finalist (Bangladesh 2025)"
+        : sourceAward.name,
+    summary:
+      slug === "startup-world-cup-2025-regional-finalist"
+        ? "Regional Finalist (Bangladesh 2025)"
+        : sourceAward.awardedBy?.name ?? sourceAward.description,
+    description:
+      slug === "startup-world-cup-2025-regional-finalist"
+        ? "Reached the Bangladesh regional final in 2025."
+        : sourceAward.description,
+    year: slug === "national-tech-award-2025" ? 2025 : Number.parseInt(sourceAward.dateReceived, 10) || null,
     issuer: sourceAward.awardedBy?.name,
     images: imageSets[slug] ?? [],
+    ...(sourceAward.receivedAt ? { receivedAt: sourceAward.receivedAt } : {}),
     ...(slug === "bangladesh-ict-innovation-award-2025"
       ? { relatedSlugs: ["ojogor", "ict-award-tbs-2025"] }
+      : slug === "national-tech-award-2025"
+        ? { relatedSlugs: ["ishara"] }
       : slug === "national-ai-build-a-thon-trailblazer"
         ? { relatedSlugs: ["national-ai-build-a-thon-prothom-alo"] }
         : {}),
@@ -250,7 +285,12 @@ export const communities: Community[] = profileData.memberOf.map((membership) =>
   const org = membership.memberOf;
   const role = membership.roleName;
   const description = membership.description ?? communityDescriptions[org.name] ?? org.name;
-  const tenureEnd = membership.endDate ? `–${membership.endDate}` : "–Present";
+  const formatDate = (value: string) => {
+    const match = /^(\d{4})-(\d{2})$/.exec(value);
+    if (!match) return value === "present" ? "Present" : value;
+    return `${new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, 1)).toLocaleString("en", { month: "short", timeZone: "UTC" })} ${match[1]}`;
+  };
+  const tenureEnd = membership.endDate ? ` – ${formatDate(membership.endDate)}` : " – Present";
   const year = Number.parseInt(membership.startDate, 10) || null;
 
   return {
@@ -263,9 +303,10 @@ export const communities: Community[] = profileData.memberOf.map((membership) =>
     year,
     href: org.url,
     role,
-    tenure: `${membership.startDate}${tenureEnd}`,
+    tenure: `${formatDate(membership.startDate)}${tenureEnd}`,
     image: `/assets/images/communities/${communityAssets[org.name]}`,
     logoBackdrop: communityLogoBackdrops[org.name],
+    ...(membership.contactEmail ? { contactEmail: membership.contactEmail } : {}),
   };
 });
 
@@ -276,6 +317,7 @@ const experienceEntries = [
     description:
       "On-site, Dhaka · Designing and building end-to-end mobile systems, from UI to backend infrastructure, with DevOps and ML integration.",
     year: 2025,
+    href: "https://appibrium.com",
   },
   {
     title: "Solution Explorer — Software Engineer",
@@ -288,7 +330,7 @@ const experienceEntries = [
     title: "Sydrix AI — Mobile Application Developer",
     tenure: "May 2025 – Jul 2025",
     description:
-      "Remote (Dhaka, BD)· Built the Sydrix AI mobile solution and contributed to rapid prototyping for early-stage AI products.",
+      "Remote (Dhaka, BD) · Built Sydrix AI – Study Smart, an AI-powered study-management mobile app, and contributed to early-stage product prototyping.",
     year: 2025,
   },
   {
@@ -354,6 +396,7 @@ export const experience: Experience[] = experienceEntries.map((entry) => ({
   year: entry.year,
   tenure: entry.tenure,
   role: entry.title.split("—").at(-1)?.trim(),
+  ...("href" in entry ? { href: entry.href } : {}),
 }));
 
 export const certifications: Experience[] = certificationEntries.map((entry) => ({
@@ -409,32 +452,154 @@ export const researchInterests: PortfolioItem[] = [
 
 export const researchItems = [publication, ...researchInterests];
 
-export const education = [
+export const education: {
+  title: string;
+  organization: string;
+  tenure: string;
+  year: number;
+  status: string;
+  href?: string;
+}[] = [
   {
     title: "BSc (Hons) Computing",
     organization: "University of Greenwich (NCC Pathway)",
-    tenure: "Jan 2025 - Present",
+    tenure: "2025 – present (expected 2028)",
     year: 2025,
+    status: "Ongoing · expected 2028",
+    href: "https://www.gre.ac.uk/",
   },
   {
     title: "BSc. in Computer Science & Engineering",
     organization: "Daffodil International University",
     tenure: "Jan 2024 - Jan 2025",
     year: 2024,
+    status: "Completed",
+    href: "https://daffodilvarsity.edu.bd/",
   },
   {
     title: "Higher Secondary Certificate (Science)",
     organization: "Shariatpur Govt. College",
     tenure: "Jan 2021 - Jun 2023",
     year: 2021,
+    status: "Completed",
+    href: "https://sgc.college.gov.bd/",
   },
   {
     title: "Secondary School Certificate (Science)",
     organization: "PTGD Govt. High School",
     tenure: "Jan 2016 - Dec 2020",
     year: 2016,
+    status: "Completed",
   },
 ];
+
+export const educationItems: EducationItem[] = education.map((entry) => ({
+  slug: toSlug(entry.title),
+  kind: "education",
+  branch: "experience",
+  title: entry.title,
+  summary: `${entry.organization} · ${entry.tenure}`,
+  description: `${entry.title} at ${entry.organization}.`,
+  year: entry.year,
+  organization: entry.organization,
+  tenure: entry.tenure,
+  status: entry.status,
+  ...(entry.href ? { href: entry.href } : {}),
+}));
+
+export const events: PortfolioEvent[] = eventsSnapshot as PortfolioEvent[];
+
+export function getEventsForItem(item: Pick<PortfolioItem, "branch" | "slug">) {
+  return events.filter((event) =>
+    event.relatedItems.some((related) => related.branch === item.branch && related.slug === item.slug),
+  );
+}
+
+const timelineItems: TimelineMilestone[] = [
+  ...educationItems.map((item) => ({
+    slug: item.slug,
+    title: item.title,
+    date: item.tenure,
+    year: item.year ?? 0,
+    category: "education" as const,
+    organization: item.organization,
+    href: item.href,
+    item: { branch: item.branch, slug: item.slug },
+  })),
+  ...experience.map((item) => ({
+    slug: item.slug,
+    title: item.title,
+    date: item.tenure ?? String(item.year ?? ""),
+    year: item.year ?? 0,
+    category: "experience" as const,
+    item: { branch: item.branch, slug: item.slug },
+  })),
+  ...certifications.map((item) => ({
+    slug: item.slug,
+    title: item.title,
+    date: item.tenure ?? String(item.year ?? ""),
+    year: item.year ?? 0,
+    category: "certification" as const,
+    organization: item.issuer,
+    href: item.href,
+    item: { branch: item.branch, slug: item.slug },
+  })),
+  ...communities.map((item) => ({
+    slug: item.slug,
+    title: item.title,
+    date: item.tenure,
+    year: item.year ?? 0,
+    category: "community" as const,
+    organization: item.title,
+    href: item.href,
+    item: { branch: item.branch, slug: item.slug },
+  })),
+  ...awards.map((item) => ({
+    slug: item.slug,
+    title: item.title,
+    date: item.receivedAt ?? String(item.year ?? ""),
+    year: item.year ?? 0,
+    category: "award" as const,
+    organization: item.issuer,
+    item: { branch: item.branch, slug: item.slug },
+  })),
+  ...projects.map((item) => ({
+    slug: item.slug,
+    title: item.title,
+    date: item.period ?? String(item.year ?? ""),
+    year: item.year ?? (Number.parseInt(item.period?.slice(0, 4) ?? "", 10) || 0),
+    category: "project" as const,
+    organization: item.organization,
+    href: item.href,
+    item: { branch: item.branch, slug: item.slug },
+  })),
+  ...researchItems
+    .filter((item) => item.kind === "publication")
+    .map((item) => ({
+      slug: item.slug,
+      title: item.title,
+      date: String(item.year ?? ""),
+      year: item.year ?? 0,
+      category: "research" as const,
+      href: item.href,
+      item: { branch: item.branch, slug: item.slug },
+    })),
+];
+
+export function getTimelineMilestones(options: {
+  fromYear?: number;
+  toYear?: number;
+  category?: TimelineMilestone["category"];
+} = {}) {
+  return timelineItems
+    .filter((milestone) => {
+      if (!milestone.year) return false;
+      if (options.fromYear !== undefined && milestone.year < options.fromYear) return false;
+      if (options.toYear !== undefined && milestone.year > options.toYear) return false;
+      return !options.category || milestone.category === options.category;
+    })
+    .sort((a, b) => b.date.localeCompare(a.date) || b.title.localeCompare(a.title));
+}
 
 export const mediaCoverage = [
   {
@@ -548,6 +713,7 @@ export function getTreeItems(writings: Writing[]): PortfolioItem[] {
     ...writings,
     ...experience,
     ...certifications,
+    ...educationItems,
     resumeLeaf,
   ];
 }

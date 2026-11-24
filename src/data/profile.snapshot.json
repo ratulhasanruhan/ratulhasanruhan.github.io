@@ -19,7 +19,8 @@
     "https://ratulhasan.hashnode.dev",
     "https://ratulhasanruhan.medium.com",
     "https://peerlist.io/ratulhasan",
-    "http://ratulruhan.cv/"
+    "http://ratulruhan.cv/",
+    "https://ratulhasan.link"
   ],
   "address": {
     "@type": "PostalAddress",
@@ -89,7 +90,7 @@
         "@type": "Organization",
         "name": "Udemy"
       },
-      "dateIssued": "2024",
+      "dateIssued": "2024-08",
       "url": "https://www.udemy.com/certificate/UC-42719966-3bd8-47f3-b0ca-d3f67775cfd8/"
     }
   ],
@@ -132,12 +133,13 @@
         "@type": "Organization",
         "name": "Pegasus Tech Venture"
       },
-      "description": "From the first round to the final at 🌍 Startup World Cup: Bangladesh– 2025. Grateful to stand among 4500+ innovative startups."
+      "description": "Regional Finalist (Bangladesh 2025)."
     },
     {
       "@type": "Award",
       "name": "National Tech Award - 2025",
       "dateReceived": "2025",
+      "receivedAt": "2026-01",
       "description": "National Tech Award 2025 for Ishara, a real-time Bengali sign language translation system focused on accessibility and inclusion."
     },
     {
@@ -305,18 +307,21 @@
     {
       "@type": "OrganizationRole",
       "roleName": "Local Ambassador, Bangladesh",
-      "startDate": "2026",
-      "endDate": "2027",
+      "startDate": "2026-01",
+      "endDate": "2027-12",
+      "contactEmail": "rruhan@amb.gllrc.org",
       "memberOf": {
         "@type": "Organization",
         "name": "Global Logic & Reasoning Challenge (GLRC)",
-        "url": "https://gllrc.org/"
+        "url": "https://gllrc.org/en/rruhan"
       }
     },
     {
       "@type": "OrganizationRole",
       "roleName": "Country Ambassador, Bangladesh",
-      "startDate": "2026",
+      "startDate": "2026-01",
+      "endDate": "2027-12",
+      "contactEmail": "rruhan@amb.icscompetition.org",
       "memberOf": {
         "@type": "Organization",
         "name": "International Computer Science Competition (ICSC)",
@@ -384,7 +389,7 @@
     "education": [
       {
         "degree": "BSc (Hons) Computing",
-        "period": "Jan 2025 - Present",
+      "period": "2025 – present (expected 2028)",
         "institution": "University of Greenwich (NCC Pathway)",
         "url": "https://www.gre.ac.uk/",
         "status": "Ongoing"
@@ -413,22 +418,22 @@
     "skills": [
       {
         "category": "Mobile & Multiplatform",
-        "technologies": ["Flutter", "Kotlin", ".NET MAUI / C#"],
+        "technologies": ["Flutter", "Kotlin", ".NET MAUI", "C#"],
         "description": "Cross-platform mobile and desktop application development."
       },
       {
         "category": "Systems, Programming & Applied AI",
-        "technologies": ["Rust", "Python", "Java / Spring"],
+        "technologies": ["Rust", "Python", "Java", "Spring"],
         "description": "Systems programming, backend services, and applied machine learning."
       },
       {
         "category": "Embedded, IoT & Networking",
-        "technologies": ["Embedded Systems", "IoT", "Networking"],
+        "technologies": ["Embedded Systems", "IoT", "Networking", "Machine Learning"],
         "description": "Hardware–software integration and connected systems."
       },
       {
         "category": "DevOps & Infrastructure",
-        "technologies": ["CI/CD", "Deployment", "System Configuration"],
+        "technologies": ["CI/CD", "Deployment", "System Configuration", "Software Architecture"],
         "description": "Reliable builds, deployments, and production workflows."
       }
     ],
@@ -533,4 +538,3 @@
     ]
   }
 }
-
