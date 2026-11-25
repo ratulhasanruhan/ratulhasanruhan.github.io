@@ -677,7 +677,7 @@ function PlainList({
   onReturnToTree: () => void;
 }) {
   return (
-    <section className="plain-list" aria-label="Portfolio list view">
+    <section id="plain-list" className="plain-list" tabIndex={-1} aria-label="Portfolio list view">
       <div className="list-view-intro">
         <span className="eyebrow-kicker">A quiet walk through the orchard</span>
         <h2>The whole tree, <em>in plain words.</em></h2>
@@ -832,10 +832,22 @@ export default function MangoExperience({
   const treeStageRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLElement>(null);
   const menuTriggerRef = useRef<HTMLButtonElement>(null);
+  const focusListOnOpenRef = useRef(false);
   const aboutDialogRef = useRef<HTMLElement>(null);
   const tourPauseButtonRef = useRef<HTMLButtonElement>(null);
   const tourStartTimeoutRef = useRef<number | null>(null);
   const focusTourPauseOnStartRef = useRef(false);
+  useEffect(() => {
+    if (!listView || !focusListOnOpenRef.current) return;
+    focusListOnOpenRef.current = false;
+    const plainList = document.getElementById("plain-list");
+    if (!plainList) return;
+    plainList.scrollIntoView({
+      behavior: prefersReducedMotion ? "instant" : "smooth",
+      block: "start",
+    });
+    plainList.focus({ preventScroll: true });
+  }, [listView, prefersReducedMotion]);
   const stopTour = useCallback(() => {
     if (tourStartTimeoutRef.current !== null) {
       window.clearTimeout(tourStartTimeoutRef.current);
@@ -1125,6 +1137,7 @@ export default function MangoExperience({
     setSelectedBranch(null);
     setMobileMenuOpen(false);
     const next = !listView;
+    focusListOnOpenRef.current = next;
     setListModeOverride(next);
     stopTour();
     saveListView(next);
