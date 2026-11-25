@@ -1322,7 +1322,7 @@ export default function MangoExperience({
             <span aria-hidden="true">⌕</span><span>{bangla ? "খুঁজুন" : "Search"}</span><kbd>⌘K</kbd>
           </button>
           <a className="header-resume" href={profile.resume} download>Résumé</a>
-          <a className="header-language" href="/bn/" aria-label="View Bangla portfolio">EN / বাং</a>
+          <Link className="header-language" href="/bn/" prefetch={false} aria-label="View Bangla portfolio">EN / বাং</Link>
         </div>
       </header>
 
@@ -1641,7 +1641,7 @@ export default function MangoExperience({
               </nav>
               <div className="menu-sheet-actions">
                 <a className="primary-action" href={profile.resume} download>Download résumé <span aria-hidden="true">↓</span></a>
-                <a className="text-action" href="/bn/">বাংলা portfolio <span aria-hidden="true">↗</span></a>
+                <Link className="text-action" href="/bn/" prefetch={false}>বাংলা portfolio <span aria-hidden="true">↗</span></Link>
               </div>
               <div className="menu-link-groups">
                 <section><h3>Profiles</h3><div className="menu-social-links">
