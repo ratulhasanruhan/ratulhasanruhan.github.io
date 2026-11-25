@@ -48,45 +48,49 @@ async function fallbackPortfolio() {
 }
 
 async function getPortfolio(req) {
-  if (!portfolioPromise) {
-    portfolioPromise = (async () => {
-      const origin = ownOrigin(req);
-      if (origin) {
-        try {
-          const response = await fetch(`${origin}/agent/portfolio.json`, {
-            headers: { accept: "application/json" },
-            signal: AbortSignal.timeout(3500),
-          });
-          if (response.ok) return await response.json();
-        } catch {
-          // Fall through to the bundled public profile.
-        }
-      }
-      return fallbackPortfolio();
-    })();
+  if (portfolioPromise) return portfolioPromise;
+  const origin = ownOrigin(req);
+  if (!origin) return fallbackPortfolio();
+
+  const request = fetch(`${origin}/agent/portfolio.json`, {
+    headers: { accept: "application/json" },
+    signal: AbortSignal.timeout(3500),
+  }).then((response) => {
+    if (!response.ok) throw new Error(`Portfolio fetch failed with ${response.status}.`);
+    return response.json();
+  });
+  portfolioPromise = request;
+  try {
+    return await request;
+  } catch {
+    if (portfolioPromise === request) portfolioPromise = undefined;
+    return fallbackPortfolio();
   }
-  return portfolioPromise;
 }
 
 async function getProfileMarkdown(req, origin) {
-  if (!markdownPromise) {
-    markdownPromise = (async () => {
-      if (origin) {
-        try {
-          const response = await fetch(`${origin}/ratul-hasan-ruhan.md`, {
-            headers: { accept: "text/markdown" },
-            signal: AbortSignal.timeout(3500),
-          });
-          if (response.ok) return await response.text();
-        } catch {
-          // Read the bundled source when the static endpoint is unavailable.
-        }
-      }
-      const { profile } = await getPortfolio(req);
-      return `# ${profile.name}\n\n${profile.description}\n`;
-    })();
+  if (markdownPromise) return markdownPromise;
+  if (!origin) {
+    const { profile } = await getPortfolio(req);
+    return `# ${profile.name}\n\n${profile.description}\n`;
   }
-  return markdownPromise;
+
+  const request = (async () => {
+    const response = await fetch(`${origin}/ratul-hasan-ruhan.md`, {
+      headers: { accept: "text/markdown" },
+      signal: AbortSignal.timeout(3500),
+    });
+    if (!response.ok) throw new Error(`Profile Markdown fetch failed with ${response.status}.`);
+    return await response.text();
+  })();
+  markdownPromise = request;
+  try {
+    return await request;
+  } catch {
+    if (markdownPromise === request) markdownPromise = undefined;
+    const { profile } = await getPortfolio(req);
+    return `# ${profile.name}\n\n${profile.description}\n`;
+  }
 }
 
 function textResult(value) {
