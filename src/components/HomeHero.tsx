@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import {
@@ -22,12 +23,6 @@ import type { BranchId } from "@/data/types";
 
 const MangoTree3D = dynamic(() => import("@/components/MangoTree3D"), {
   ssr: false,
-  loading: () => (
-    <div className="mango3d-poster" aria-hidden="true">
-      <span className="mango3d-poster-glow" />
-      <span className="mango3d-poster-copy">Growing the tree…</span>
-    </div>
-  ),
 });
 
 const credentials: { label: string; detail: string; href: string; Icon: typeof Trophy }[] = [
@@ -91,16 +86,15 @@ function CountUp({ value, run }: { value: number; run: boolean }) {
       const frame = window.requestAnimationFrame(() => setDisplay(value));
       return () => window.cancelAnimationFrame(frame);
     }
-    let frame = 0;
     const start = performance.now();
     const duration = 1600;
-    const tick = (now: number) => {
+    const timer = window.setInterval(() => {
+      const now = performance.now();
       const progress = Math.min(1, (now - start) / duration);
       setDisplay(Math.round(value * (1 - Math.pow(1 - progress, 4))));
-      if (progress < 1) frame = window.requestAnimationFrame(tick);
-    };
-    frame = window.requestAnimationFrame(tick);
-    return () => window.cancelAnimationFrame(frame);
+      if (progress >= 1) window.clearInterval(timer);
+    }, 100);
+    return () => window.clearInterval(timer);
   }, [reduce, run, value]);
   return <>{display}</>;
 }
@@ -122,10 +116,56 @@ export default function HomeHero({
   const heroRef = useRef<HTMLElement>(null);
   const [hoveredBranch, setHoveredBranch] = useState<BranchId | null>(null);
   const [statsVisible, setStatsVisible] = useState(false);
+  const [mountTree, setMountTree] = useState(false);
+  const [treeReady, setTreeReady] = useState(false);
   const statsRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const sceneY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 120]);
   const sceneOpacity = useTransform(scrollYProgress, [0, 0.8], [1, reduce ? 1 : 0.2]);
+
+  useEffect(() => {
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    const deviceMemory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory;
+    if (
+      reduce ||
+      connection?.saveData ||
+      (deviceMemory !== undefined && deviceMemory < 4)
+    ) {
+      return;
+    }
+
+    let idleTimer = 0;
+    let idleCallback = 0;
+    const start = () => {
+      window.clearTimeout(idleTimer);
+      setMountTree(true);
+    };
+    const scheduleIdleMount = () => {
+      idleTimer = window.setTimeout(() => {
+        const idleWindow = window as Window & {
+          requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+          cancelIdleCallback?: (handle: number) => void;
+        };
+        if (idleWindow.requestIdleCallback) {
+          idleCallback = idleWindow.requestIdleCallback(start, { timeout: 3000 });
+        } else {
+          start();
+        }
+      }, 3000);
+    };
+    const inputEvents = ["pointermove", "touchstart", "scroll", "keydown"] as const;
+    inputEvents.forEach((eventName) => window.addEventListener(eventName, start, { once: true, passive: true }));
+    if (document.readyState === "complete") scheduleIdleMount();
+    else window.addEventListener("load", scheduleIdleMount, { once: true });
+
+    return () => {
+      inputEvents.forEach((eventName) => window.removeEventListener(eventName, start));
+      window.removeEventListener("load", scheduleIdleMount);
+      window.clearTimeout(idleTimer);
+      const idleWindow = window as Window & { cancelIdleCallback?: (handle: number) => void };
+      if (idleCallback) idleWindow.cancelIdleCallback?.(idleCallback);
+    };
+  }, [reduce]);
 
   useEffect(() => {
     const element = statsRef.current;
@@ -312,20 +352,57 @@ export default function HomeHero({
       <motion.div
         className="home-hero-scene"
         style={{ y: sceneY, opacity: sceneOpacity }}
-        initial={reduce ? false : { opacity: 0, scale: 0.94 }}
+        initial={false}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
       >
         <span className="home-hero-halo" aria-hidden="true" />
-        <MangoTree3D
-          branches={treeBranches}
-          hoveredBranch={hoveredBranch}
-          onHoverBranch={setHoveredBranch}
-          onSelectBranch={onSelectBranch}
-          night={night}
-          season={season}
-          reducedMotion={reduce}
-        />
+        <div className={`home-tree-stage${treeReady && !reduce ? " home-tree-stage-ready" : ""}`}>
+          <picture className="home-tree-poster">
+            <source
+              media="(max-width: 768px)"
+              srcSet="/assets/images/mango-tree-poster-mobile.webp"
+              type="image/webp"
+            />
+            <Image
+              src="/assets/images/mango-tree-poster-desktop.webp"
+              alt="A mango tree with a leafy canopy and ripe fruit."
+              fill
+              loading="eager"
+              fetchPriority="high"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </picture>
+          {mountTree && !reduce && (
+            <div className="home-tree-canvas">
+              <MangoTree3D
+                branches={treeBranches}
+                hoveredBranch={hoveredBranch}
+                onHoverBranch={setHoveredBranch}
+                onSelectBranch={onSelectBranch}
+                onFirstFrame={() => setTreeReady(true)}
+                night={night}
+                season={season}
+                reducedMotion={reduce}
+              />
+            </div>
+          )}
+          <nav className="poster-branch-links" aria-label="Open a portfolio branch">
+            {treeBranches.map((branch) => (
+              <button
+                key={branch.id}
+                type="button"
+                className={`poster-branch-link poster-branch-${branch.id}${hoveredBranch === branch.id ? " is-active" : ""}`}
+                onPointerEnter={() => setHoveredBranch(branch.id)}
+                onPointerLeave={() => setHoveredBranch(null)}
+                onClick={() => onSelectBranch(branch.id)}
+                aria-label={`${branch.label}, ${branch.count} items`}
+              >
+                <span>{branch.label}</span><small>{branch.count}</small>
+              </button>
+            ))}
+          </nav>
+        </div>
         <p className="home-hero-hint" aria-hidden="true">
           <span className="home-hero-hint-dot" /> Tap a mango to open a branch
           <span className="home-hero-hint-desktop"> · drag to turn the tree</span>

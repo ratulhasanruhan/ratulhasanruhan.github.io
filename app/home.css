@@ -333,6 +333,124 @@
   transform-origin: 50% 30%;
 }
 
+.home-tree-stage {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+}
+
+.home-tree-poster,
+.home-tree-canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.home-tree-poster {
+  z-index: 0;
+  opacity: 1;
+  transition: opacity 560ms ease;
+}
+
+.home-tree-poster img {
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.home-tree-stage-ready .home-tree-poster {
+  opacity: 0;
+}
+
+.home-tree-canvas {
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 560ms ease;
+}
+
+.home-tree-canvas .mango3d-labels {
+  display: none;
+}
+
+.home-tree-stage-ready .home-tree-canvas {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.poster-branch-links {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  pointer-events: none;
+}
+
+.poster-branch-link {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  max-width: 42%;
+  padding: 5px 6px 5px 11px;
+  border: 1px solid rgba(73, 82, 57, 0.14);
+  border-radius: 999px;
+  background: rgba(251, 248, 240, 0.92);
+  color: var(--ink);
+  box-shadow: 0 8px 20px rgba(42, 53, 37, 0.12);
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+.poster-branch-link small {
+  display: inline-grid;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 6px;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(66, 91, 62, 0.12);
+  color: var(--green-dark);
+  font-size: 11px;
+}
+
+.poster-branch-link:focus-visible {
+  outline: 3px solid var(--mango);
+  outline-offset: 3px;
+}
+
+.poster-branch-link.is-active {
+  background: var(--green-dark);
+  color: #fbf8f0;
+}
+
+.poster-branch-link.is-active small {
+  background: var(--mango);
+  color: #2b2410;
+}
+
+.poster-branch-writing { left: 20%; top: 69%; }
+.poster-branch-projects { left: 32%; top: 52%; }
+.poster-branch-communities { left: 44%; top: 40%; }
+.poster-branch-research { left: 67%; top: 45%; }
+.poster-branch-awards { left: 76%; top: 58%; }
+.poster-branch-experience { left: 82%; top: 69%; }
+
+@media (max-width: 640px) {
+  .poster-branch-link {
+    gap: 5px;
+    padding: 4px 4px 4px 9px;
+    font-size: 11px;
+  }
+
+  .poster-branch-writing { left: 18%; top: 74%; }
+  .poster-branch-projects { left: 31%; top: 52%; }
+  .poster-branch-communities { left: 41%; top: 38%; }
+  .poster-branch-research { left: 70%; top: 45%; }
+  .poster-branch-awards { left: 77%; top: 58%; }
+  .poster-branch-experience { left: 82%; top: 73%; }
+}
+
 .home-hero-halo {
   position: absolute;
   top: 10%;

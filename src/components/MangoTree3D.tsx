@@ -16,9 +16,20 @@ type MangoTree3DProps = {
   night: boolean;
   season: string;
   reducedMotion: boolean;
+  onFirstFrame?: () => void;
 };
 
 type Vec3 = [number, number, number];
+
+function FirstFrame({ onReady }: { onReady?: () => void }) {
+  const called = useRef(false);
+  useFrame(() => {
+    if (called.current) return;
+    called.current = true;
+    onReady?.();
+  });
+  return null;
+}
 
 type PlaceLabel = (branch: BranchId, x: number, y: number, viewportWidth: number, opacity: number) => void;
 
@@ -614,6 +625,7 @@ export default function MangoTree3D(props: MangoTree3DProps) {
     const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.05 });
     observer.observe(element);
     const onVisibility = () => setPageVisible(document.visibilityState === "visible");
+    onVisibility();
     document.addEventListener("visibilitychange", onVisibility);
     const pointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
     const compactQuery = window.matchMedia("(max-width: 760px)");
@@ -644,12 +656,13 @@ export default function MangoTree3D(props: MangoTree3DProps) {
     >
       <Canvas
         frameloop={running ? (props.reducedMotion ? "demand" : "always") : "never"}
-        dpr={[1, compact ? 1.5 : 1.8]}
+        dpr={[1, compact ? 1.25 : 1.8]}
         camera={{ position: [0, 0.55, 8.4], fov: 36, near: 0.1, far: 60 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         flat
         fallback={<div className="mango3d-fallback" />}
       >
+        <FirstFrame onReady={props.onFirstFrame} />
         <Scene {...props} compact={compact} enableControls={finePointer} placeLabel={placeLabel} />
       </Canvas>
       <div className="mango3d-labels">
