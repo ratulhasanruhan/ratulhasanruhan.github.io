@@ -280,15 +280,17 @@ export default function HomeHero({
           <a className="home-cta home-cta-secondary" href={profile.booking} target="_blank" rel="noreferrer">
             Book a call <span aria-hidden="true">↗</span>
           </a>
-          <a className="home-cta-link" href={profile.resume} download>
-            Résumé (PDF)
-          </a>
-          <button className="home-cta-link home-list-view-toggle" type="button" onClick={onToggleListView}>
-            Browse as a list
-          </button>
-          <button className="home-cta-link home-about-link" type="button" onClick={onAbout}>
-            About me
-          </button>
+          <div className="home-hero-text-links">
+            <a className="home-cta-link" href={profile.resume} download>
+              Résumé (PDF)
+            </a>
+            <button className="home-cta-link home-list-view-toggle" type="button" onClick={onToggleListView}>
+              Browse as a list
+            </button>
+            <button className="home-cta-link home-about-link" type="button" onClick={onAbout}>
+              About me
+            </button>
+          </div>
         </div>
 
         <ul className="home-hero-creds" aria-label="Highlights">
@@ -317,8 +319,9 @@ export default function HomeHero({
         <div className={`home-tree-stage${treeReady && !reduce ? " home-tree-stage-ready" : ""}`}>
           <picture className="home-tree-poster">
             <source
-              media="(max-width: 768px)"
-              srcSet="/assets/images/mango-tree-poster-mobile.webp"
+              media="(max-width: 760px)"
+              srcSet="/assets/images/mango-tree-poster-mobile.webp 380w"
+              sizes="calc(100vw - 28px)"
               type="image/webp"
             />
             <Image
@@ -327,7 +330,7 @@ export default function HomeHero({
               fill
               loading="eager"
               fetchPriority="high"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="(max-width: 760px) calc(100vw - 28px), (max-width: 900px) calc(100vw - 40px), 50vw"
             />
           </picture>
           {mountTree && !reduce && (
