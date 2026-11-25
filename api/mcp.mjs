@@ -77,7 +77,7 @@ async function getProfileMarkdown(req, origin) {
             headers: { accept: "text/markdown" },
             signal: AbortSignal.timeout(3500),
           });
-          if (response.ok) return response.text();
+          if (response.ok) return await response.text();
         } catch {
           // Read the bundled source when the static endpoint is unavailable.
         }
