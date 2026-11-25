@@ -1072,8 +1072,7 @@ export default function MangoExperience({
         } else if (mobileMenuOpen) {
           closeMenu();
         } else if (selectedBranch) {
-          setSelectedBranch(null);
-          restoreFocusRef.current?.focus();
+          closeBranch();
         } else if (
           tourIndex !== null ||
           tourStartTimeoutRef.current !== null ||
@@ -1109,7 +1108,14 @@ export default function MangoExperience({
 
   function closeBranch() {
     setSelectedBranch(null);
-    restoreFocusRef.current?.focus();
+    window.requestAnimationFrame(() => {
+      const target = restoreFocusRef.current;
+      if (target?.isConnected) {
+        target.focus();
+      } else if (menuTriggerRef.current?.isConnected) {
+        menuTriggerRef.current.focus();
+      }
+    });
   }
 
   function toggleListView() {
