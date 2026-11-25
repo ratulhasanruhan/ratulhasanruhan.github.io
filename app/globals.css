@@ -4800,7 +4800,8 @@ kbd {
   display: flex;
   min-height: 54px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 10px;
   border: 0;
   border-bottom: 1px solid var(--line);
   background: transparent;
@@ -4811,7 +4812,8 @@ kbd {
   text-align: left;
 }
 
-.menu-sheet-links button span {
+.menu-sheet-links button > span {
+  margin-left: auto;
   color: var(--ink-soft);
   font-size: 12px;
   font-weight: 500;
@@ -4848,7 +4850,6 @@ kbd {
 
 .menu-sheet-links button > svg {
   flex: 0 0 auto;
-  margin-right: 10px;
 }
 
 .menu-social-links a {
