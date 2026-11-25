@@ -25,28 +25,24 @@ const MangoTree3D = dynamic(() => import("@/components/MangoTree3D"), {
   ssr: false,
 });
 
-const credentials: { label: string; detail: string; href: string; Icon: typeof Trophy }[] = [
+const credentials: { label: string; href: string; Icon: typeof Trophy }[] = [
   {
-    label: "Bangladesh ICT & Innovation Award",
-    detail: "Winner · 2025",
+    label: "ICT Award 2025",
     href: "/awards/bangladesh-ict-innovation-award-2025/",
     Icon: Trophy,
   },
   {
-    label: "Startup World Cup",
-    detail: "Regional finalist · 2025",
+    label: "Startup World Cup finalist",
     href: "/awards/startup-world-cup-2025-regional-finalist/",
     Icon: Globe2,
   },
   {
-    label: "National AI Build-a-thon",
-    detail: "Trailblazer",
+    label: "AI Build-a-thon Trailblazer",
     href: "/awards/national-ai-build-a-thon-trailblazer/",
     Icon: Sparkles,
   },
   {
     label: "Creator of Ojogor",
-    detail: "First Bengali programming language",
     href: "/projects/ojogor/",
     Icon: CodeXml,
   },
@@ -98,8 +94,6 @@ function CountUp({ value, run }: { value: number; run: boolean }) {
   }, [reduce, run, value]);
   return <>{display}</>;
 }
-
-const headlineWords = ["I", "build", "software", "that"];
 
 export default function HomeHero({
   branchCounts,
@@ -197,7 +191,7 @@ export default function HomeHero({
       label: "Projects shipped",
       hint: "Open the projects",
       Icon: FolderKanban,
-      accent: "var(--green-bright)",
+      accent: "var(--accent)",
       target: { branch: "projects" },
     },
     {
@@ -207,7 +201,7 @@ export default function HomeHero({
       label: "Awards & honours",
       hint: "See the awards",
       Icon: Award,
-      accent: "var(--mango)",
+      accent: "var(--accent)",
       target: { branch: "awards" },
     },
     {
@@ -217,7 +211,7 @@ export default function HomeHero({
       label: "Articles written",
       hint: "Read the notes",
       Icon: PenLine,
-      accent: "var(--coral)",
+      accent: "var(--accent)",
       target: { section: "writing" },
     },
     {
@@ -227,7 +221,7 @@ export default function HomeHero({
       label: "Communities",
       hint: "Meet the people",
       Icon: UsersRound,
-      accent: "var(--sky)",
+      accent: "var(--accent)",
       target: { branch: "communities" },
     },
     {
@@ -237,7 +231,7 @@ export default function HomeHero({
       label: "Stages & events",
       hint: "View the moments",
       Icon: Camera,
-      accent: "var(--rose)",
+      accent: "var(--accent)",
       target: { section: "moments" },
     },
     {
@@ -247,7 +241,7 @@ export default function HomeHero({
       label: "Years building",
       hint: "Walk the journey",
       Icon: CalendarRange,
-      accent: "var(--mango-light)",
+      accent: "var(--accent)",
       target: { section: "journey" },
     },
   ];
@@ -257,67 +251,29 @@ export default function HomeHero({
     else onJump(target.section);
   }
 
-  const reveal = (delay: number) =>
-    reduce
-      ? {}
-      : {
-          initial: false,
-          animate: { opacity: 1, y: 0 },
-          transition: { delay, duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
-        };
-
   return (
     <section
       ref={heroRef}
       className={`home-hero${night ? " home-hero-night" : ""}`}
       aria-labelledby="hero-title"
     >
-      <div className="home-hero-backdrop" aria-hidden="true">
-        <span className="home-hero-orb home-hero-orb-a" />
-        <span className="home-hero-orb home-hero-orb-b" />
-        <span className="home-hero-orb home-hero-orb-c" />
-        <span className="home-hero-grain" />
-      </div>
-
       <div className="home-hero-copy">
-        <motion.a className="home-hero-status" href={profile.booking} target="_blank" rel="noreferrer" {...reveal(0)}>
+        <a className="home-hero-status" href={profile.booking} target="_blank" rel="noreferrer">
           <span className="home-hero-status-dot" aria-hidden="true" />
           <span>
             <strong>Open to new work</strong>
             <span className="home-hero-status-sep" aria-hidden="true">·</span>
             Dhaka, Bangladesh
           </span>
-        </motion.a>
+        </a>
 
-        <h1 id="hero-title" className="home-hero-title">
-          {headlineWords.map((word, index) => (
-            <motion.span
-              key={word}
-              className="home-hero-word"
-              initial={false}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ delay: 0.08 + index * 0.07, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {word}
-            </motion.span>
-          ))}
-          <motion.em
-            className="home-hero-word home-hero-accent"
-            initial={false}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ delay: 0.42, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
-            grows.
-          </motion.em>
-        </h1>
+        <h1 id="hero-title" className="home-hero-title">Ratul Hasan Ruhan</h1>
 
-        <motion.p className="home-hero-deck" {...reveal(0.5)}>
-          I&apos;m <button type="button" className="home-hero-name" onClick={onAbout}>Ratul Hasan Ruhan</button>, a
-          software engineer and systems researcher building programming languages, accessibility tools and
-          offline-first systems for Bangladesh.
-        </motion.p>
+        <p className="home-hero-deck">
+          Software engineer building programming languages, accessibility tools and offline-first systems for Bangladesh.
+        </p>
 
-        <motion.div className="home-hero-actions" {...reveal(0.62)}>
+        <div className="home-hero-actions">
           <button type="button" className="home-cta home-cta-primary" onClick={() => onJump("featured")}>
             See my best work <ArrowRight size={17} strokeWidth={2.4} aria-hidden="true" />
           </button>
@@ -330,10 +286,13 @@ export default function HomeHero({
           <button className="home-cta-link home-list-view-toggle" type="button" onClick={onToggleListView}>
             Browse as a list
           </button>
-        </motion.div>
+          <button className="home-cta-link home-about-link" type="button" onClick={onAbout}>
+            About me
+          </button>
+        </div>
 
-        <motion.ul className="home-hero-creds" aria-label="Highlights" {...reveal(0.74)}>
-          {credentials.map(({ label, detail, href, Icon }) => (
+        <ul className="home-hero-creds" aria-label="Highlights">
+          {credentials.map(({ label, href, Icon }) => (
             <li key={href}>
               <Link href={href} className="home-hero-cred">
                 <span className="home-hero-cred-icon" aria-hidden="true">
@@ -341,12 +300,11 @@ export default function HomeHero({
                 </span>
                 <span className="home-hero-cred-copy">
                   <strong>{label}</strong>
-                  <small>{detail}</small>
                 </span>
               </Link>
             </li>
           ))}
-        </motion.ul>
+        </ul>
       </div>
 
       <motion.div
@@ -356,7 +314,6 @@ export default function HomeHero({
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
       >
-        <span className="home-hero-halo" aria-hidden="true" />
         <div className={`home-tree-stage${treeReady && !reduce ? " home-tree-stage-ready" : ""}`}>
           <picture className="home-tree-poster">
             <source
@@ -403,10 +360,6 @@ export default function HomeHero({
             ))}
           </nav>
         </div>
-        <p className="home-hero-hint" aria-hidden="true">
-          <span className="home-hero-hint-dot" /> Tap a mango to open a branch
-          <span className="home-hero-hint-desktop"> · drag to turn the tree</span>
-        </p>
       </motion.div>
 
       <nav ref={statsRef} className="home-stats" aria-label="Portfolio at a glance">
