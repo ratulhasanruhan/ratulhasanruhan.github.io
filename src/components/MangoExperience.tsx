@@ -547,10 +547,14 @@ function BranchPanel({
 
   function trapFocus(event: ReactKeyboardEvent<HTMLElement>) {
     if (event.key !== "Tab") return;
-    const controls = panelRef.current?.querySelectorAll<HTMLElement>(
-      'a[href], button:not([disabled]), input:not([disabled]), [tabindex="0"]',
-    );
-    if (!controls?.length) return;
+    const controls = [...(panelRef.current?.querySelectorAll<HTMLElement>(
+      'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+    ) ?? [])].filter((element) => {
+      const style = window.getComputedStyle(element);
+      return !element.matches(":disabled") && element.getClientRects().length > 0 &&
+        style.visibility !== "hidden" && style.display !== "none";
+    });
+    if (!controls.length) return;
     const first = controls[0];
     const last = controls[controls.length - 1];
     if (event.shiftKey && document.activeElement === first) {
