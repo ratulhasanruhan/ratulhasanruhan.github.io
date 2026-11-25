@@ -261,7 +261,7 @@ export default function HomeHero({
     reduce
       ? {}
       : {
-          initial: { opacity: 0, y: 16 },
+          initial: false,
           animate: { opacity: 1, y: 0 },
           transition: { delay, duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
         };
@@ -294,7 +294,7 @@ export default function HomeHero({
             <motion.span
               key={word}
               className="home-hero-word"
-              initial={reduce ? false : { opacity: 0, y: "0.6em", filter: "blur(8px)" }}
+              initial={false}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 0.08 + index * 0.07, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
@@ -303,7 +303,7 @@ export default function HomeHero({
           ))}
           <motion.em
             className="home-hero-word home-hero-accent"
-            initial={reduce ? false : { opacity: 0, y: "0.6em", filter: "blur(8px)" }}
+            initial={false}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ delay: 0.42, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >

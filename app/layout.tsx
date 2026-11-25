@@ -10,6 +10,7 @@ const siteUrl = "https://also.ratulruhan.cv";
 const bengaliFont = Noto_Sans_Bengali({
   subsets: ["bengali"],
   display: "swap",
+  preload: false,
   variable: "--font-noto-bengali",
 });
 const title = "Ratul Hasan Ruhan | Software Engineer & Creator of Ojogor";
