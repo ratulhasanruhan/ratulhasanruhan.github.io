@@ -247,6 +247,13 @@
   text-decoration-color: currentColor;
 }
 
+.home-list-view-toggle {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
 .home-cta:focus-visible,
 .home-cta-link:focus-visible,
 .home-hero-status:focus-visible,

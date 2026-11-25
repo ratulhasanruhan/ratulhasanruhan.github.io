@@ -1108,6 +1108,7 @@ export default function MangoExperience({
 
   function toggleListView() {
     setSelectedBranch(null);
+    setMobileMenuOpen(false);
     const next = !listView;
     setListModeOverride(next);
     stopTour();
@@ -1320,6 +1321,7 @@ export default function MangoExperience({
               season={season}
               bangla={bangla}
               onSelectBranch={openBranch}
+              onToggleListView={toggleListView}
               onAbout={openAbout}
               onJump={goToSection}
             />
@@ -1613,6 +1615,7 @@ export default function MangoExperience({
                 <button type="button" onClick={goToTree}>Home <span>Start here</span></button>
                 <button type="button" onClick={() => goToSection("journey")}>Journey <span>2016 → today</span></button>
                 <button type="button" onClick={() => goToSection("featured")}>Best work <span>Highlights</span></button>
+                <button type="button" onClick={toggleListView}>{listView ? "Tree view" : "List view"} <span>Browse everything</span></button>
                 <button type="button" onClick={() => goToSection("writing")}>Writing <span>Articles & notes</span></button>
                 <button type="button" onClick={() => goToSection("education")}>Education <span>Degrees & research</span></button>
                 <button type="button" onClick={() => goToSection("moments")}>Moments <span>Events & photos</span></button>

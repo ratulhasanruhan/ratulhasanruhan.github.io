@@ -77,6 +77,7 @@ type HomeHeroProps = {
   season: string;
   bangla: boolean;
   onSelectBranch: (branch: BranchId) => void;
+  onToggleListView: () => void;
   onAbout: () => void;
   onJump: (sectionId: string) => void;
 };
@@ -113,6 +114,7 @@ export default function HomeHero({
   season,
   bangla,
   onSelectBranch,
+  onToggleListView,
   onAbout,
   onJump,
 }: HomeHeroProps) {
@@ -285,6 +287,9 @@ export default function HomeHero({
           <a className="home-cta-link" href={profile.resume} download>
             Résumé (PDF)
           </a>
+          <button className="home-cta-link home-list-view-toggle" type="button" onClick={onToggleListView}>
+            Browse as a list
+          </button>
         </motion.div>
 
         <motion.ul className="home-hero-creds" aria-label="Highlights" {...reveal(0.74)}>
