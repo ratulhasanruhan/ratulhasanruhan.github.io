@@ -5,6 +5,7 @@ import { z } from "zod";
 
 let portfolioPromise;
 let markdownPromise;
+const productionOrigin = "https://also.ratulruhan.cv";
 
 function header(req, name) {
   const value = req.headers[name.toLowerCase()];
@@ -104,7 +105,30 @@ function normalize(value) {
     .toLocaleLowerCase();
 }
 
-function createServer(portfolio, markdown) {
+function absoluteContactUrls(value, origin, key = "") {
+  if (Array.isArray(value)) return value.map((entry) => absoluteContactUrls(entry, origin, key));
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value).map(([entryKey, entry]) => [
+        entryKey,
+        absoluteContactUrls(entry, origin, entryKey),
+      ]),
+    );
+  }
+  if (typeof value !== "string") return value;
+  const trimmed = value.trim();
+  if (!trimmed || /^[a-z][a-z\d+.-]*:/i.test(trimmed)) return value;
+  const urlField = /(url|uri|link|site|booking|form|href|resume)/i.test(key);
+  if (!urlField && !/^(?:\/|\.{1,2}\/|#|\?)/.test(trimmed)) return value;
+  const base = `${(origin ?? productionOrigin).replace(/\/+$/, "")}/`;
+  try {
+    return new URL(trimmed, base).href;
+  } catch {
+    return value;
+  }
+}
+
+function createServer(portfolio, markdown, origin) {
   const server = new McpServer({ name: "Ratul Hasan Ruhan Portfolio", version: "1.0.0" });
   const readOnly = {
     readOnlyHint: true,
@@ -184,13 +208,13 @@ function createServer(portfolio, markdown) {
     title: "Get contact information",
     description: "Return public contact and booking information.",
     annotations: readOnly,
-  }, async () => textResult(portfolio.contact ?? {}));
+  }, async () => textResult(absoluteContactUrls(portfolio.contact ?? {}, origin)));
 
   server.registerTool("get_resume", {
     title: "Get résumé",
     description: "Return the public résumé download URL.",
     annotations: readOnly,
-  }, async () => textResult({ url: portfolio.resume }));
+  }, async () => textResult({ url: absoluteContactUrls(portfolio.resume, origin, "resume") }));
 
   server.registerResource(
     "profile-markdown",
@@ -247,7 +271,7 @@ export default async function handler(req, res) {
       getProfileMarkdown(req, origin),
       readBody(req),
     ]);
-    const server = createServer(portfolio, markdown);
+    const server = createServer(portfolio, markdown, origin);
     const transport = new StreamableHTTPServerTransport({
       sessionIdGenerator: undefined,
       enableJsonResponse: true,
