@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getEventsForItem } from "@/data/catalog";
+import { branches, getEventsForItem } from "@/data/catalog";
 import type { PortfolioItem } from "@/data/types";
 
 function itemImages(item: PortfolioItem) {
@@ -41,9 +41,20 @@ export default function ItemDetail({ item }: { item: PortfolioItem }) {
       event,
     })),
   );
+  const branch = branches.find((entry) => entry.id === item.branch);
+  const breadcrumb = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://also.ratulruhan.cv/" },
+      { "@type": "ListItem", position: 2, name: branch?.label ?? item.branch, item: `https://also.ratulruhan.cv/${item.branch}/` },
+      { "@type": "ListItem", position: 3, name: item.title },
+    ],
+  }).replace(/</g, "\\u003c");
 
   return (
     <article id="item-detail" className="item-detail" tabIndex={-1} aria-labelledby="item-detail-title">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumb }} />
       <div className="item-detail-heading">
         <div className="item-detail-copy">
           <Link className="detail-backlink" href={`/${item.branch}/`}>

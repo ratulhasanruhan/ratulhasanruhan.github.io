@@ -31,6 +31,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/auth.md",
     "/.well-known/api-catalog",
     "/assets/projects/projects.json",
+    "/agent/portfolio.json",
+    "/llms.txt",
+    "/llms-full.txt",
+    "/.well-known/mcp.json",
   ].map((path) => ({
     url: `${siteUrl}${path}`,
     priority: 0.4,

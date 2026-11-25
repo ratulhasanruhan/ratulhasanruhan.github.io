@@ -1874,6 +1874,45 @@ kbd {
   padding: 56px 0 54px;
 }
 
+.portfolio-faq {
+  max-width: 980px;
+  margin: 0 auto 72px;
+  padding: clamp(24px, 4vw, 48px);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: rgba(255, 253, 248, 0.72);
+  box-shadow: 0 18px 60px rgba(15, 61, 44, 0.08);
+}
+
+.portfolio-faq h2 {
+  margin: 8px 0 22px;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1;
+}
+
+.portfolio-faq-list {
+  display: grid;
+  gap: 8px;
+}
+
+.portfolio-faq-list details {
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.portfolio-faq-list summary {
+  color: var(--green-dark);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.portfolio-faq-list p {
+  margin: 12px 0 0;
+  color: var(--ink-soft);
+}
+
 .contact-story {
   padding-top: 9px;
 }

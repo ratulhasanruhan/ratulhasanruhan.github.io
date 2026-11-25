@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import { education, expertise, profile, skillGroups } from "@/data/catalog";
+import { awards, education, expertise, getTreeItems, profile, projects, skillGroups } from "@/data/catalog";
 
 const socialNames: Record<string, string> = {
   "https://www.linkedin.com/in/ratul-hasan-ruhan/": "LinkedIn",
@@ -20,6 +20,26 @@ const socialNames: Record<string, string> = {
 export default function ContactSoil({ bangla = false, compact = false }: { bangla?: boolean; compact?: boolean }) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [seedState, setSeedState] = useState<"idle" | "falling" | "sprout">("idle");
+  const ojogor = projects.find((item) => item.slug === "ojogor");
+  const currentProject = projects.find((item) => item.slug === "sydrix-ai");
+  const studyItems = getTreeItems([]).filter((item) => item.kind === "education");
+  const faq = [
+    { question: "Who is Ratul Hasan Ruhan?", answer: `${profile.title} based in ${profile.location}. ${profile.description}` },
+    { question: "What is Ojogor?", answer: ojogor ? `${ojogor.summary} ${ojogor.description}` : "Ojogor is a Bengali programming-language project." },
+    { question: "What awards has Ratul received?", answer: awards.slice(0, 5).map((item) => `${item.title}${item.year ? ` (${item.year})` : ""}`).join("; ") },
+    { question: "Where does Ratul study?", answer: studyItems.map((item) => `${item.title} at ${item.organization}${item.tenure ? ` (${item.tenure})` : ""}`).join("; ") },
+    { question: "What is Ratul building now?", answer: currentProject?.summary ?? "Ratul is building software across mobile systems, web, and applied AI." },
+    { question: "How can I hire or contact Ratul?", answer: `Email ${profile.email} or book a quick sync at ${profile.booking}.` },
+  ];
+  const faqJsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer },
+    })),
+  }).replace(/</g, "\\u003c");
 
   async function submitForm(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -108,6 +128,20 @@ export default function ContactSoil({ bangla = false, compact = false }: { bangl
             </div>
           )}
         </div>
+
+        <section className="portfolio-faq" aria-labelledby="portfolio-faq-title">
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqJsonLd }} />
+          <div className="section-eyebrow"><span /> Common questions</div>
+          <h2 id="portfolio-faq-title">A few quick answers</h2>
+          <div className="portfolio-faq-list">
+            {faq.map(({ question, answer }) => (
+              <details key={question}>
+                <summary>{question}</summary>
+                <p>{answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
 
         <div className="contact-ground" id="contact">
           <div className="contact-story">
