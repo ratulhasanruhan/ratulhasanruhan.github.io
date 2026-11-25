@@ -7,6 +7,11 @@
           "href": "https://also.ratulruhan.cv/openapi.json",
           "type": "application/vnd.oai.openapi+json;version=3.1",
           "title": "Ratul Hasan Ruhan profile data API — OpenAPI 3.1"
+        },
+        {
+          "href": "https://also.ratulruhan.cv/.well-known/mcp.json",
+          "type": "application/json",
+          "title": "Ratul Hasan Ruhan read-only MCP server"
         }
       ],
       "service-doc": [
@@ -14,6 +19,16 @@
           "href": "https://also.ratulruhan.cv/ratul-hasan-ruhan.md",
           "type": "text/markdown",
           "title": "Profile overview and endpoint guide (Markdown)"
+        },
+        {
+          "href": "https://also.ratulruhan.cv/llms.txt",
+          "type": "text/plain",
+          "title": "Short LLM site guide"
+        },
+        {
+          "href": "https://also.ratulruhan.cv/llms-full.txt",
+          "type": "text/plain",
+          "title": "Full portfolio catalog in Markdown"
         }
       ],
       "describedby": [

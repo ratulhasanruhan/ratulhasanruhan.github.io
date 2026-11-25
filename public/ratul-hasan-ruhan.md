@@ -1,5 +1,7 @@
 # Ratul Hasan Ruhan - Software Engineer & Systems Researcher
 
+Machine-readable guides: [llms.txt](https://also.ratulruhan.cv/llms.txt), [full catalog](https://also.ratulruhan.cv/llms-full.txt), [portfolio JSON](https://also.ratulruhan.cv/agent/portfolio.json), and [MCP server card](https://also.ratulruhan.cv/.well-known/mcp.json). The read-only MCP endpoint is `https://also.ratulruhan.cv/api/mcp`.
+
 👋 Welcome! I'm **Ratul Hasan Ruhan**, a Software Engineer & Systems Researcher based in Dhaka, Bangladesh. I'm passionate about building scalable mobile systems, exploring applied AI/ML, and creating innovative solutions that bridge technology with real-world applications.
 
 ## 🌟 About Me
@@ -13,7 +15,7 @@ I'm especially interested in how software systems are designed, how components i
 - **Founder & Full-Stack Mobile Architect** at [Appibrium](https://appibrium.com) — Leading end-to-end mobile system development
 - **Creator of Ojogor (অজগর)** — The first Bengali programming language, making coding accessible to Bengali speakers
 - **Winner of Bangladesh ICT & Innovation Award 2025** — Recognized for innovation in technology
-- **Startup World Cup 2025 Regional Finalist** — Among 4500+ innovative startups
+- **Startup World Cup 2025** — Regional Finalist (Bangladesh 2025)
 - **Multiple 1st Place Awards** at DIA ICT Fest 2025 — Programming Contest & Project Showcasing
 - **Published Researcher** — Author of research on Caller Collision Resolution Protocol (CCRP)
 - **Award-winning Mobile Developer** — Expert in Flutter, cross-platform development, and AI/ML integration

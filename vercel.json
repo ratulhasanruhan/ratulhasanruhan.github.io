@@ -18,6 +18,10 @@
       }
     },
     {
+      "src": "^/api/mcp/?$",
+      "dest": "/api/mcp.mjs"
+    },
+    {
       "src": "^/(bn)?/?$",
       "has": [
         {

@@ -3,7 +3,7 @@
 **No authentication, registration, or API key is required.**
 
 Everything on this site is public, read-only profile data. Agents can fetch any
-of the endpoints below with a plain, unauthenticated `GET` request. There is no
+of the endpoints below with a plain, unauthenticated request. There is no
 OAuth server, no token endpoint, no protected resource, and no write API — so
 there is nothing to register for.
 
@@ -16,6 +16,14 @@ there is nothing to register for.
 | Profile overview | `https://also.ratulruhan.cv/ratul-hasan-ruhan.md` | `text/markdown` |
 | OpenAPI 3.1 description | `https://also.ratulruhan.cv/openapi.json` | `application/vnd.oai.openapi+json` |
 | API catalog (RFC 9727) | `https://also.ratulruhan.cv/.well-known/api-catalog` | `application/linkset+json` |
+| MCP server card | `https://also.ratulruhan.cv/.well-known/mcp.json` | `application/json` |
+| MCP endpoint | `https://also.ratulruhan.cv/api/mcp` | Streamable HTTP; `POST` |
+| LLM site guide | `https://also.ratulruhan.cv/llms.txt` | `text/plain` |
+| Full LLM catalog | `https://also.ratulruhan.cv/llms-full.txt` | `text/plain` |
+| Portfolio data | `https://also.ratulruhan.cv/agent/portfolio.json` | `application/json` |
+
+The MCP endpoint is stateless and read-only. It supports `POST` and `OPTIONS`;
+`GET` and `DELETE` return `405 Method Not Allowed`.
 
 On the canonical Vercel host (`also.ratulruhan.cv`), HTML page routes
 (`/`, `/projects/`, `/bn/`, …) also return the Markdown overview when requested
