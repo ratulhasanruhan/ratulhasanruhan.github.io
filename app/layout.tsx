@@ -6,7 +6,7 @@ import "./globals.css";
 import "./home.css";
 import "./sections.css";
 
-const siteUrl = "https://also.ratulruhan.cv";
+const siteUrl = "https://ratulx.tech";
 const bengaliFont = Noto_Sans_Bengali({
   subsets: ["bengali"],
   display: "swap",

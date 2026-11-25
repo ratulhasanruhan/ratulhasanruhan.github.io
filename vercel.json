@@ -9,6 +9,19 @@
       "has": [
         {
           "type": "host",
+          "value": "www.ratulx.tech"
+        }
+      ],
+      "status": 308,
+      "headers": {
+        "Location": "https://ratulx.tech/$1"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+          "type": "host",
           "value": "www.also.ratulruhan.cv"
         }
       ],
@@ -37,7 +50,7 @@
         "Vary": "Accept",
         "Access-Control-Allow-Origin": "*",
         "Cache-Control": "public, max-age=300, s-maxage=3600",
-        "Link": "<https://also.ratulruhan.cv/>; rel=\"alternate\"; type=\"text/html\", <https://also.ratulruhan.cv/ratul-hasan-ruhan.json>; rel=\"describedby\"; type=\"application/ld+json\""
+        "Link": "<https://ratulx.tech/>; rel=\"alternate\"; type=\"text/html\", <https://ratulx.tech/ratul-hasan-ruhan.json>; rel=\"describedby\"; type=\"application/ld+json\""
       }
     },
     {
@@ -56,7 +69,7 @@
         "Vary": "Accept",
         "Access-Control-Allow-Origin": "*",
         "Cache-Control": "public, max-age=300, s-maxage=3600",
-        "Link": "<https://also.ratulruhan.cv/>; rel=\"alternate\"; type=\"text/html\", <https://also.ratulruhan.cv/ratul-hasan-ruhan.json>; rel=\"describedby\"; type=\"application/ld+json\""
+        "Link": "<https://ratulx.tech/>; rel=\"alternate\"; type=\"text/html\", <https://ratulx.tech/ratul-hasan-ruhan.json>; rel=\"describedby\"; type=\"application/ld+json\""
       }
     },
     {
@@ -104,7 +117,7 @@
     {
       "src": "/(.*)",
       "headers": {
-        "Link": "<https://also.ratulruhan.cv/ratul-hasan-ruhan.json>; rel=\"describedby\"; type=\"application/ld+json\", <https://also.ratulruhan.cv/ratul-hasan-ruhan.md>; rel=\"alternate\"; type=\"text/markdown\", <https://also.ratulruhan.cv/sitemap.xml>; rel=\"alternate\"; type=\"application/xml\", <https://also.ratulruhan.cv/.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\"",
+        "Link": "<https://ratulx.tech/ratul-hasan-ruhan.json>; rel=\"describedby\"; type=\"application/ld+json\", <https://ratulx.tech/ratul-hasan-ruhan.md>; rel=\"alternate\"; type=\"text/markdown\", <https://ratulx.tech/sitemap.xml>; rel=\"alternate\"; type=\"application/xml\", <https://ratulx.tech/.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\"",
         "Vary": "Accept"
       },
       "continue": true

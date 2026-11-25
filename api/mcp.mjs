@@ -5,7 +5,7 @@ import { z } from "zod";
 
 let portfolioPromise;
 let markdownPromise;
-const productionOrigin = "https://also.ratulruhan.cv";
+const productionOrigin = "https://ratulx.tech";
 
 function header(req, name) {
   const value = req.headers[name.toLowerCase()];
@@ -23,6 +23,8 @@ function ownOrigin(req) {
     forwardedProto === "http" && !process.env.VERCEL ? "http" :
       local ? "http" : "https";
   const deployment = hostname === "also.ratulruhan.cv" ||
+    hostname === "ratulx.tech" ||
+    hostname === "www.ratulx.tech" ||
     hostname.endsWith(".ratulruhan.cv") ||
     hostname.endsWith(".vercel.app") ||
     local;
@@ -42,7 +44,7 @@ async function fallbackPortfolio() {
       email: profile.email,
       telephone: profile.telephone,
       location: profile.address?.addressLocality,
-      booking: "https://also.ratulruhan.cv/#contact",
+      booking: "https://ratulx.tech/#contact",
     },
     resume: "/assets/Ratul-Hasan-Ruhan-Resume.pdf",
   };

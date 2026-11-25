@@ -8,7 +8,7 @@
     "contact": {
       "name": "Ratul Hasan Ruhan",
       "email": "ratulhasan1644@gmail.com",
-      "url": "https://also.ratulruhan.cv/"
+      "url": "https://ratulx.tech/"
     },
     "license": {
       "name": "All rights reserved — personal profile data; attribution appreciated.",
@@ -16,7 +16,7 @@
     }
   },
   "servers": [
-    { "url": "https://also.ratulruhan.cv", "description": "Canonical (Vercel)" },
+    { "url": "https://ratulx.tech", "description": "Canonical (Vercel)" },
     { "url": "https://ratuler.vercel.app", "description": "Mirror (Vercel)" },
     { "url": "https://ratulhasan.web.app", "description": "Mirror (Firebase Hosting)" },
     { "url": "https://ratulhasanruhan.github.io", "description": "Mirror (GitHub Pages; no custom headers)" }
@@ -66,7 +66,7 @@
         "operationId": "getProfileMarkdown",
         "tags": ["profile"],
         "summary": "Human/agent-readable profile overview (Markdown)",
-        "description": "Prose summary of the profile. On also.ratulruhan.cv, HTML page routes also return this document when the request carries `Accept: text/markdown`. On Firebase/GitHub Pages, fetch this path directly.",
+        "description": "Prose summary of the profile. On ratulx.tech, HTML page routes also return this document when the request carries `Accept: text/markdown`. On Firebase/GitHub Pages, fetch this path directly.",
         "responses": {
           "200": {
             "description": "Markdown document",

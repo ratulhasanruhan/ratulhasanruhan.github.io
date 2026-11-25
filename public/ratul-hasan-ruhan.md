@@ -1,6 +1,6 @@
 # Ratul Hasan Ruhan - Software Engineer & Systems Researcher
 
-Machine-readable guides: [llms.txt](https://also.ratulruhan.cv/llms.txt), [full catalog](https://also.ratulruhan.cv/llms-full.txt), [portfolio JSON](https://also.ratulruhan.cv/agent/portfolio.json), and [MCP server card](https://also.ratulruhan.cv/.well-known/mcp.json). The read-only MCP endpoint is `https://also.ratulruhan.cv/api/mcp`.
+Machine-readable guides: [llms.txt](https://ratulx.tech/llms.txt), [full catalog](https://ratulx.tech/llms-full.txt), [portfolio JSON](https://ratulx.tech/agent/portfolio.json), and [MCP server card](https://ratulx.tech/.well-known/mcp.json). The read-only MCP endpoint is `https://ratulx.tech/api/mcp`.
 
 👋 Welcome! I'm **Ratul Hasan Ruhan**, a Software Engineer & Systems Researcher based in Dhaka, Bangladesh. I'm passionate about building scalable mobile systems, exploring applied AI/ML, and creating innovative solutions that bridge technology with real-world applications.
 

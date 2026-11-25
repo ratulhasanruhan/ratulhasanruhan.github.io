@@ -4,7 +4,7 @@ import PortfolioShell from "@/components/PortfolioShell";
 import { branches } from "@/data/catalog";
 import type { BranchId } from "@/data/types";
 
-const siteUrl = "https://also.ratulruhan.cv";
+const siteUrl = "https://ratulx.tech";
 
 export const dynamicParams = false;
 

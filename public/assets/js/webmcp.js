@@ -15,7 +15,7 @@
               (typeof document !== 'undefined' && document.modelContext);
   if (!ctx) return;
 
-  const ORIGIN = 'https://also.ratulruhan.cv';
+  const ORIGIN = 'https://ratulx.tech';
   const PROFILE_URL = './ratul-hasan-ruhan.json';
   const PROJECTS_URL = './assets/projects/projects.json';
   const RESUME_URL = ORIGIN + '/assets/Ratul-Hasan-Ruhan-Resume.pdf';

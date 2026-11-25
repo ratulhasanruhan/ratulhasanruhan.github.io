@@ -1,7 +1,7 @@
 {
   "name": "Ratul Hasan Ruhan Portfolio",
   "description": "Unauthenticated, read-only MCP access to Ratul Hasan Ruhan's public portfolio, timeline, events, contact information, and résumé.",
-  "endpoint": "https://also.ratulruhan.cv/api/mcp",
+  "endpoint": "https://ratulx.tech/api/mcp",
   "transport": "streamable-http",
   "tools": [
     "get_profile",

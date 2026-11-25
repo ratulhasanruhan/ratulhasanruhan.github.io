@@ -4,7 +4,7 @@ import { getFreshContent } from "@/data/fresh-content";
 
 export const dynamic = "force-static";
 
-const siteUrl = "https://also.ratulruhan.cv";
+const siteUrl = "https://ratulx.tech";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { writings } = await getFreshContent();

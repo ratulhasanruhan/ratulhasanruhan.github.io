@@ -46,8 +46,8 @@ export default function ItemDetail({ item }: { item: PortfolioItem }) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://also.ratulruhan.cv/" },
-      { "@type": "ListItem", position: 2, name: branch?.label ?? item.branch, item: `https://also.ratulruhan.cv/${item.branch}/` },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://ratulx.tech/" },
+      { "@type": "ListItem", position: 2, name: branch?.label ?? item.branch, item: `https://ratulx.tech/${item.branch}/` },
       { "@type": "ListItem", position: 3, name: item.title },
     ],
   }).replace(/</g, "\\u003c");
