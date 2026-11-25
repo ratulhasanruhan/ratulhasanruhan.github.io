@@ -1387,7 +1387,7 @@
   color: var(--accent-deep);
   cursor: pointer;
   font: inherit;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 700;
   text-decoration: none;
 }
@@ -1532,9 +1532,10 @@
 
   .home-hero-text-links {
     grid-column: 1 / -1;
+    flex-wrap: wrap;
     align-items: baseline;
-    gap: 16px;
-    white-space: nowrap;
+    column-gap: 16px;
+    row-gap: 8px;
   }
 
   .home-hero-text-links .home-cta-link {
