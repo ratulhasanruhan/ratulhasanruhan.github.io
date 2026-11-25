@@ -844,7 +844,9 @@ export default function MangoExperience({
   }, []);
   const openSearch = useCallback(() => {
     stopTour();
+    setAboutOpen(false);
     setMobileMenuOpen(false);
+    setSelectedBranch(null);
     setSearchOpen(true);
   }, [stopTour]);
   const restoreFocusRef = useRef<HTMLElement | null>(null);
