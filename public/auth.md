@@ -28,7 +28,9 @@ The MCP endpoint is stateless and read-only. It supports `POST` and `OPTIONS`;
 On the canonical Vercel host (`also.ratulruhan.cv`), HTML page routes
 (`/`, `/projects/`, `/bn/`, …) also return the Markdown overview when requested
 with `Accept: text/markdown`. Firebase Hosting and GitHub Pages serve static
-files only, so prefer the direct `/ratul-hasan-ruhan.md` URL there.
+files only, so prefer the direct `/ratul-hasan-ruhan.md` URL there. GitHub Pages
+cannot set custom response headers; use the canonical Vercel host for
+cross-origin access to `/agent/portfolio.json`.
 
 ## Usage terms
 
