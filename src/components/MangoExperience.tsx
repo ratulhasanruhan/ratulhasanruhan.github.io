@@ -268,7 +268,7 @@ function profileLinkLabel(url: string) {
   const labels: Record<string, string> = {
     "https://www.linkedin.com/in/ratul-hasan-ruhan/": "LinkedIn",
     "https://github.com/ratulhasanruhan": "GitHub",
-    "https://ratulhasan.link": "Website",
+    "https://ratulhasan.link": "ratulhasan.link",
     "https://peerlist.io/ratulhasan": "Peerlist",
     "https://ratulhasan.hashnode.dev": "Hashnode",
     "https://ratulhasanruhan.medium.com": "Medium",
@@ -307,6 +307,7 @@ function ItemCard({
   const relatedEvents = getEventsForItem(item).flatMap((event) =>
     event.photos.slice(0, 3).map((photo) => ({ event, photo })),
   );
+  const organization = itemOrganization(item);
 
   return (
     <Link
@@ -338,7 +339,9 @@ function ItemCard({
           {itemDate(item)}
         </span>
         <strong>{item.title}</strong>
-        {itemOrganization(item) && <span className="item-card-organization">{itemOrganization(item)}</span>}
+        {organization && organization.trim().toLocaleLowerCase() !== item.title.trim().toLocaleLowerCase() && (
+          <span className="item-card-organization">{organization}</span>
+        )}
         <span className="item-card-summary">{item.summary}</span>
         {relatedEvents.length > 0 && (
           <span className="item-event-photos" aria-label={`${relatedEvents.length} related event photos`}>
@@ -1319,7 +1322,7 @@ export default function MangoExperience({
             <span aria-hidden="true">⌕</span><span>{bangla ? "খুঁজুন" : "Search"}</span><kbd>⌘K</kbd>
           </button>
           <a className="header-resume" href={profile.resume} download>Résumé</a>
-          <Link className="header-language" href="/bn/" aria-label="View Bangla portfolio">EN / বাং</Link>
+          <a className="header-language" href="/bn/" aria-label="View Bangla portfolio">EN / বাং</a>
         </div>
       </header>
 
@@ -1624,26 +1627,33 @@ export default function MangoExperience({
                 <button className="icon-button" type="button" onClick={closeMenu} aria-label="Close menu">×</button>
               </div>
               <nav className="menu-sheet-links" aria-label="Portfolio sections">
-                <button type="button" onClick={goToTree}>Home <span>Start here</span></button>
-                <button type="button" onClick={() => goToSection("journey")}>Journey <span>2016 → today</span></button>
-                <button type="button" onClick={() => goToSection("featured")}>Best work <span>Highlights</span></button>
-                <button type="button" onClick={toggleListView}>{listView ? "Tree view" : "List view"} <span>Browse everything</span></button>
-                <button type="button" onClick={() => goToSection("writing")}>Writing <span>Articles & notes</span></button>
-                <button type="button" onClick={() => goToSection("education")}>Education <span>Degrees & research</span></button>
-                <button type="button" onClick={() => goToSection("moments")}>Moments <span>Events & photos</span></button>
-                <button type="button" onClick={() => openBranch("projects")}>All projects <span>Everything I&apos;ve built</span></button>
-                <button type="button" onClick={() => openBranch("awards")}>Awards <span>Milestones</span></button>
-                <button type="button" onClick={() => openBranch("communities")}>Community <span>People & roles</span></button>
-                <button type="button" onClick={goToContact}>Contact <span>Get in touch</span></button>
+                <button type="button" onClick={goToTree}><House size={16} aria-hidden="true" />Home <span>Start here</span></button>
+                <button type="button" onClick={() => goToSection("journey")}><Signpost size={16} aria-hidden="true" />Journey <span>2016 → today</span></button>
+                <button type="button" onClick={() => goToSection("featured")}><BriefcaseBusiness size={16} aria-hidden="true" />Best work <span>Highlights</span></button>
+                <button type="button" onClick={toggleListView}><FolderKanban size={16} aria-hidden="true" />{listView ? "Tree view" : "List view"} <span>Browse everything</span></button>
+                <button type="button" onClick={() => goToSection("writing")}><PenLine size={16} aria-hidden="true" />Writing <span>Articles & notes</span></button>
+                <button type="button" onClick={() => goToSection("education")}><GraduationCap size={16} aria-hidden="true" />Education <span>Degrees & research</span></button>
+                <button type="button" onClick={() => goToSection("moments")}><Camera size={16} aria-hidden="true" />Moments <span>Events & photos</span></button>
+                <button type="button" onClick={() => openBranch("projects")}><FolderKanban size={16} aria-hidden="true" />All projects <span>Everything I&apos;ve built</span></button>
+                <button type="button" onClick={() => openBranch("awards")}><Trophy size={16} aria-hidden="true" />Awards <span>Milestones</span></button>
+                <button type="button" onClick={() => openBranch("communities")}><UsersRound size={16} aria-hidden="true" />Community <span>People & roles</span></button>
+                <button type="button" onClick={goToContact}><Handshake size={16} aria-hidden="true" />Contact <span>Get in touch</span></button>
               </nav>
               <div className="menu-sheet-actions">
                 <a className="primary-action" href={profile.resume} download>Download résumé <span aria-hidden="true">↓</span></a>
-                <Link className="text-action" href="/bn/">বাংলা portfolio <span aria-hidden="true">↗</span></Link>
+                <a className="text-action" href="/bn/">বাংলা portfolio <span aria-hidden="true">↗</span></a>
               </div>
-              <div className="menu-social-links" aria-label="Social profiles">
-                {profile.sameAs.map((url) => (
-                  <a key={url} href={url} target="_blank" rel="noreferrer">{profileLinkLabel(url)}</a>
-                ))}
+              <div className="menu-link-groups">
+                <section><h3>Profiles</h3><div className="menu-social-links">
+                  {profile.sameAs.filter((url) => !url.includes("ratulruhan.cv") && !url.includes("ratuler.vercel") && !url.includes("ratulhasan.web.app")).map((url) => (
+                    <a key={url} href={url} target="_blank" rel="noreferrer">{profileLinkLabel(url)}</a>
+                  ))}
+                </div></section>
+                <section><h3>Other sites</h3><div className="menu-social-links">
+                  {["https://ratulruhan.cv", "https://also.ratulruhan.cv", "https://ratuler.vercel.app", "https://ratulhasan.web.app"].map((url) => (
+                    <a key={url} href={url} target="_blank" rel="noreferrer">{new URL(url).hostname}</a>
+                  ))}
+                </div></section>
               </div>
             </motion.section>
           </motion.div>

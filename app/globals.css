@@ -70,6 +70,7 @@ html {
 body {
   min-width: 320px;
   margin: 0;
+  font-family: "DM Sans", var(--font-noto-bengali), "Noto Sans Bengali", sans-serif;
   background:
     radial-gradient(ellipse at 50% -10%, rgba(250, 244, 223, 0.94), transparent 58%),
     var(--paper);
@@ -77,6 +78,10 @@ body {
   font-size: 15px;
   line-height: 1.55;
   overflow-x: clip;
+}
+
+body :is(h1, h2, h3, h4, h5, h6) {
+  font-family: "Instrument Serif", var(--font-noto-bengali), Georgia, serif;
 }
 
 button,
@@ -4792,6 +4797,19 @@ kbd {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 18px;
+}
+
+.menu-link-groups h3 {
+  margin: 12px 0 6px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.menu-sheet-links button > svg {
+  flex: 0 0 auto;
+  margin-right: 10px;
 }
 
 .menu-social-links a {

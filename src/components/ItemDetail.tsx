@@ -31,6 +31,7 @@ function formatMonthYear(value: string) {
 
 export default function ItemDetail({ item }: { item: PortfolioItem }) {
   const images = itemImages(item);
+  const repeatedDescription = item.summary.trim().toLocaleLowerCase() === item.description.trim().toLocaleLowerCase();
   const relatedEvents = getEventsForItem(item);
   const eventPhotos = relatedEvents.flatMap((event) =>
     event.photos.map((photo) => ({
@@ -51,7 +52,7 @@ export default function ItemDetail({ item }: { item: PortfolioItem }) {
           <p className="eyebrow-kicker">{itemTypeLabel(item)}{item.year ? ` · ${item.year}` : ""}</p>
           <h2 id="item-detail-title">{item.title}</h2>
           <p className="item-detail-summary">{item.summary}</p>
-          <p className="item-detail-description">{item.description}</p>
+          {!repeatedDescription && <p className="item-detail-description">{item.description}</p>}
           <div className="item-detail-facts">
             {"category" in item && <span>{item.category}</span>}
             {"issuer" in item && item.issuer && <span>Issued by {item.issuer}</span>}

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Noto_Sans_Bengali } from "next/font/google";
 import WebMcp from "@/components/WebMcp";
 import profile from "@/data/profile.snapshot.json";
 import "./globals.css";
@@ -6,6 +7,11 @@ import "./home.css";
 import "./sections.css";
 
 const siteUrl = "https://also.ratulruhan.cv";
+const bengaliFont = Noto_Sans_Bengali({
+  subsets: ["bengali"],
+  display: "swap",
+  variable: "--font-noto-bengali",
+});
 const title = "Ratul Hasan Ruhan | Software Engineer & Creator of Ojogor";
 const description =
   "Ratul Hasan Ruhan — award-winning software engineer in Dhaka, Bangladesh. Founder of Appibrium, creator of Ojogor (the first Bengali programming language). Expert in Flutter, cross-platform mobile development, AI/ML, systems engineering, and IoT. Winner of Bangladesh ICT & Innovation Award 2025.";
@@ -92,7 +98,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="alternate" href="/.well-known/api-catalog" type="application/linkset+json" title="API Catalog" />
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
       </head>
-      <body>
+      <body className={bengaliFont.variable}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: personJson }}

@@ -195,7 +195,7 @@ export default function ContactSoil({ bangla = false, compact = false }: { bangl
             <span className="mark-leaf" /> RHR
           </Link>
           <p>{bangla ? "ঢাকা, বাংলাদেশে যত্ন নিয়ে তৈরি।" : "Made with care in Dhaka, Bangladesh."}</p>
-          <Link href="/bn/">{bangla ? "বাংলা সাইট" : "বাংলা"}</Link>
+          <a href="/bn/">{bangla ? "বাংলা সাইট" : "বাংলা"}</a>
           <a href="#top">{bangla ? "গাছের ছায়ায় ফিরুন ↑" : "Back to the canopy ↑"}</a>
         </footer>
       </div>
