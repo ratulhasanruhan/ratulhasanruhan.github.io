@@ -14,11 +14,22 @@ function formatDate(value: string) {
   return date.toLocaleDateString("en", { month: "short", year: "numeric", timeZone: "UTC" });
 }
 
-function Reveal({ children, className, delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+function Reveal({
+  children,
+  className,
+  delay = 0,
+  role,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  role?: "listitem";
+}) {
   const reduce = useReducedMotion();
   return (
     <motion.div
       className={className}
+      role={role}
       initial={reduce ? false : { opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}
@@ -48,8 +59,8 @@ export function WritingShelf({ writings, onOpenAll }: { writings: Writing[]; onO
 
       <div className="writing-grid" role="list">
         {latest.map((item, index) => (
-          <Reveal className="writing-grid-item" key={item.slug} delay={index * 0.05}>
-            <Link role="listitem" className="writing-card" href={`/${item.branch}/${item.slug}/`}>
+          <Reveal className="writing-grid-item" key={item.slug} delay={index * 0.05} role="listitem">
+            <Link className="writing-card" href={`/${item.branch}/${item.slug}/`}>
               <span className="writing-thumb">
                 {item.cover ? (
                   <Image src={item.cover} alt="" fill sizes="(max-width: 760px) 88vw, (max-width: 1100px) 44vw, 360px" loading="lazy" />
