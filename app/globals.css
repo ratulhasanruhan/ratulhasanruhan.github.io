@@ -5753,7 +5753,7 @@ kbd {
   filter: saturate(1.08);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .back-to-top {
     right: 16px;
     bottom: calc(78px + env(safe-area-inset-bottom));
