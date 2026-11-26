@@ -282,12 +282,13 @@ export default function HomeHero({
 
         <div className="home-hero-roles" aria-live="off">
           {reduce ? (
-            <span className="home-hero-role">Mobile apps</span>
+            <span className="home-hero-role" aria-hidden="true">Mobile apps</span>
           ) : (
             <AnimatePresence mode="wait" initial={false}>
               <motion.span
                 key={heroRoles[roleIndex]}
                 className="home-hero-role"
+                aria-hidden="true"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
@@ -297,7 +298,7 @@ export default function HomeHero({
               </motion.span>
             </AnimatePresence>
           )}
-          <span className="sr-only">Mobile apps, AI tools, Programming languages, Accessibility</span>
+          <span className="visually-hidden">Mobile apps, AI tools, Programming languages, Accessibility</span>
         </div>
 
         <p className="home-hero-deck">
