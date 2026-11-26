@@ -14,11 +14,22 @@ function formatDate(value: string) {
   return date.toLocaleDateString("en", { month: "short", year: "numeric", timeZone: "UTC" });
 }
 
-function Reveal({ children, className, delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+function Reveal({
+  children,
+  className,
+  delay = 0,
+  role,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  role?: "listitem";
+}) {
   const reduce = useReducedMotion();
   return (
     <motion.div
       className={className}
+      role={role}
       initial={reduce ? false : { opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}
@@ -35,68 +46,43 @@ export function WritingShelf({ writings, onOpenAll }: { writings: Writing[]; onO
     [writings],
   );
   if (sorted.length === 0) return null;
-  const [lead, ...rest] = sorted;
+  const latest = sorted.slice(0, 3);
 
   return (
     <section id="writing" className="home-section writing-shelf" aria-labelledby="writing-title">
       <Reveal className="home-section-heading">
         <p className="section-eyebrow">Writing · {sorted.length} articles</p>
         <h2 id="writing-title">
-          Notes from <em>the workbench.</em>
+          Notes from the <em>workbench.</em>
         </h2>
-        <p>Practical write-ups on Flutter, tooling and the systems I build, published on Hashnode and Medium.</p>
       </Reveal>
 
-      <div className="writing-layout">
-        <Reveal className="writing-lead-wrap">
-          <Link className="writing-lead" href={`/${lead.branch}/${lead.slug}/`}>
-            {lead.cover && (
-              <span className="writing-cover">
-                <Image src={lead.cover} alt="" fill sizes="(max-width: 900px) 92vw, 620px" loading="lazy" />
+      <div className="writing-grid" role="list">
+        {latest.map((item, index) => (
+          <Reveal className="writing-grid-item" key={item.slug} delay={index * 0.05} role="listitem">
+            <Link className="writing-card" href={`/${item.branch}/${item.slug}/`}>
+              <span className="writing-thumb">
+                {item.cover ? (
+                  <Image src={item.cover} alt="" fill sizes="(max-width: 760px) 88vw, (max-width: 1100px) 44vw, 360px" loading="lazy" />
+                ) : (
+                  <span className="writing-thumb-fallback" aria-hidden="true">
+                    {item.title.slice(0, 1)}
+                  </span>
+                )}
               </span>
-            )}
-            <span className="writing-lead-copy">
-              <span className="writing-badge">Latest</span>
-              <span className="writing-date">{formatDate(lead.publishedAt)}</span>
-              <strong>{lead.title}</strong>
-              <span className="writing-summary">{lead.summary}</span>
-              <span className="writing-read">
-                Read the article <ArrowRight size={15} aria-hidden="true" />
+              <span className="writing-card-copy">
+                <strong>{item.title}</strong>
+                <span className="writing-date">{formatDate(item.publishedAt)}</span>
               </span>
-            </span>
-          </Link>
-        </Reveal>
-
-        <div className="writing-rail" role="list">
-          {rest.slice(0, 6).map((item, index) => (
-            <Reveal className="writing-rail-item" key={item.slug} delay={index * 0.05}>
-              <Link role="listitem" className="writing-card" href={`/${item.branch}/${item.slug}/`}>
-                <span className="writing-thumb">
-                  {item.cover ? (
-                    <Image src={item.cover} alt="" fill sizes="(max-width: 760px) 72vw, 180px" loading="lazy" />
-                  ) : (
-                    <span className="writing-thumb-fallback" aria-hidden="true">
-                      {item.title.slice(0, 1)}
-                    </span>
-                  )}
-                </span>
-                <span className="writing-card-copy">
-                  <span className="writing-date">{formatDate(item.publishedAt)}</span>
-                  <strong>{item.title}</strong>
-                </span>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
+            </Link>
+          </Reveal>
+        ))}
       </div>
 
       <div className="home-section-actions">
-        <button type="button" className="home-pill-button" onClick={onOpenAll}>
-          See all {sorted.length} articles <ArrowRight size={15} aria-hidden="true" />
+        <button type="button" className="home-text-link" onClick={onOpenAll}>
+          See all articles <ArrowRight size={15} aria-hidden="true" />
         </button>
-        <a className="home-text-link" href="https://ratulhasan.hashnode.dev" target="_blank" rel="noreferrer">
-          Follow on Hashnode ↗
-        </a>
       </div>
     </section>
   );
@@ -108,7 +94,7 @@ export function EducationSection() {
       <Reveal className="home-section-heading">
         <p className="section-eyebrow">Education &amp; research</p>
         <h2 id="education-title">
-          Always <em>still learning.</em>
+          Always <em>learning.</em>
         </h2>
         <p>Computer science from Dhaka to Greenwich, plus the research and certifications along the way.</p>
       </Reveal>
@@ -216,7 +202,7 @@ export function MomentsGallery() {
         ),
     [tag],
   );
-  const visible = expanded ? photos : photos.slice(0, 12);
+  const visible = expanded ? photos : photos.slice(0, 8);
   const active = openIndex === null ? null : photos[openIndex];
 
   const close = useCallback(() => {
@@ -253,9 +239,8 @@ export function MomentsGallery() {
       <Reveal className="home-section-heading">
         <p className="section-eyebrow">Moments · from LinkedIn</p>
         <h2 id="moments-title">
-          On stage, <em>in the room.</em>
+          On stage, <em>together.</em>
         </h2>
-        <p>Award nights, summits, hackathons and community days, straight from my LinkedIn posts.</p>
       </Reveal>
 
       <div className="moments-tags" role="group" aria-label="Filter moments">
@@ -307,10 +292,10 @@ export function MomentsGallery() {
         ))}
       </div>
 
-      {photos.length > 12 && (
+      {photos.length > 8 && (
         <div className="home-section-actions">
           <button type="button" className="home-pill-button" onClick={() => setExpanded((value) => !value)}>
-            {expanded ? "Show fewer" : `Show all ${photos.length} photos`}
+            {expanded ? "Show fewer" : `See all ${photos.length} moments`}
           </button>
         </div>
       )}

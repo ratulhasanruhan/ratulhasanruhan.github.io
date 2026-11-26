@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
     "@react-three/drei": "^10.7.9",
     "@react-three/fiber": "^9.8.2",
     "lucide-react": "^0.577.0",
@@ -17,7 +18,8 @@
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "rss-parser": "3.13.0",
-    "three": "^0.187.0"
+    "three": "^0.187.0",
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@types/node": "24.19.2",

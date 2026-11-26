@@ -5,7 +5,7 @@ import { getTreeItems } from "@/data/catalog";
 import { getFreshContent } from "@/data/fresh-content";
 import type { PortfolioItem } from "@/data/types";
 
-const siteUrl = "https://also.ratulruhan.cv";
+const siteUrl = "https://ratulx.tech";
 
 export const dynamicParams = false;
 

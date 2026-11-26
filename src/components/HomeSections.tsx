@@ -10,6 +10,7 @@ import type { PortfolioItem } from "@/data/types";
 type Feature = {
   item: PortfolioItem;
   kicker: string;
+  year: number;
   image: string;
   imageAlt: string;
   tone: "mango" | "leaf" | "ink" | "sky";
@@ -30,7 +31,8 @@ function buildFeatures(): Feature[] {
   if (ojogor) {
     features.push({
       item: ojogor,
-      kicker: "Language design · Compiler",
+      kicker: "Programming language",
+      year: ojogor.year ?? 2025,
       image: ojogor.image,
       imageAlt: "Ojogor programming language",
       tone: "ink",
@@ -40,7 +42,8 @@ function buildFeatures(): Feature[] {
   if (ict) {
     features.push({
       item: ict,
-      kicker: "National award · 2025",
+      kicker: "Award",
+      year: ict.year ?? 2025,
       image: ict.images[0]?.src ?? "",
       imageAlt: ict.images[0]?.alt ?? ict.title,
       tone: "mango",
@@ -50,7 +53,8 @@ function buildFeatures(): Feature[] {
   if (ishara) {
     features.push({
       item: ishara,
-      kicker: "Accessibility · AI",
+      kicker: "Accessibility",
+      year: ishara.year ?? 2025,
       image: ishara.image,
       imageAlt: "Ishara sign-language translation",
       tone: "sky",
@@ -61,20 +65,11 @@ function buildFeatures(): Feature[] {
   if (codingFest) {
     features.push({
       item: codingFest,
-      kicker: "Competitive programming · 2026",
+      kicker: "Competitive programming",
+      year: codingFest.year ?? 2026,
       image: codingFest.images[0]?.src ?? "",
       imageAlt: codingFest.images[0]?.alt ?? codingFest.title,
       tone: "leaf",
-    });
-  }
-  const startup = awards.find((award) => award.slug.startsWith("startup-world-cup"));
-  if (startup) {
-    features.push({
-      item: startup,
-      kicker: "Entrepreneurship · 2025",
-      image: startup.images[0]?.src ?? "",
-      imageAlt: startup.images[0]?.alt ?? startup.title,
-      tone: "ink",
     });
   }
   return features.filter((feature) => feature.image);
@@ -137,10 +132,7 @@ function TiltCard({ feature, index }: { feature: Feature; index: number }) {
         <span className="feature-copy">
           <span className="feature-kicker">{feature.kicker}</span>
           <strong className="feature-title">{item.title}</strong>
-          <span className="feature-summary">{item.summary}</span>
-          <span className="feature-open">
-            View the story <span aria-hidden="true">→</span>
-          </span>
+          <span className="feature-year">{feature.year}</span>
         </span>
       </Link>
     </motion.div>
@@ -161,11 +153,8 @@ export function FeaturedWork() {
       >
         <p className="section-eyebrow">Featured work</p>
         <h2 id="featured-title">
-          The fruit worth <em>picking first.</em>
+          The fruit worth picking <em>first.</em>
         </h2>
-        <p>
-          The work I&apos;m proudest of: a programming language, an accessibility system, and the awards they earned.
-        </p>
       </motion.div>
       <div className="featured-grid">
         {features.map((feature, index) => (

@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import { education, expertise, profile, skillGroups } from "@/data/catalog";
+import { awards, education, expertise, getTreeItems, profile, projects, skillGroups } from "@/data/catalog";
 
 const socialNames: Record<string, string> = {
   "https://www.linkedin.com/in/ratul-hasan-ruhan/": "LinkedIn",
@@ -20,6 +20,26 @@ const socialNames: Record<string, string> = {
 export default function ContactSoil({ bangla = false, compact = false }: { bangla?: boolean; compact?: boolean }) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [seedState, setSeedState] = useState<"idle" | "falling" | "sprout">("idle");
+  const ojogor = projects.find((item) => item.slug === "ojogor");
+  const currentProject = projects.find((item) => item.slug === "sydrix-ai");
+  const studyItems = getTreeItems([]).filter((item) => item.kind === "education");
+  const faq = [
+    { question: "Who is Ratul Hasan Ruhan?", answer: `${profile.title} based in ${profile.location}. ${profile.description}` },
+    { question: "What is Ojogor?", answer: ojogor ? `${ojogor.summary} ${ojogor.description}` : "Ojogor is a Bengali programming-language project." },
+    { question: "What awards has Ratul received?", answer: awards.slice(0, 5).map((item) => `${item.title}${item.year ? ` (${item.year})` : ""}`).join("; ") },
+    { question: "Where does Ratul study?", answer: studyItems.map((item) => `${item.title} at ${item.organization}${item.tenure ? ` (${item.tenure})` : ""}`).join("; ") },
+    { question: "What is Ratul building now?", answer: currentProject?.summary ?? "Ratul is building software across mobile systems, web, and applied AI." },
+    { question: "How can I hire or contact Ratul?", answer: `Email ${profile.email} or book a quick sync at ${profile.booking}.` },
+  ];
+  const faqJsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer },
+    })),
+  }).replace(/</g, "\\u003c");
 
   async function submitForm(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -44,7 +64,7 @@ export default function ContactSoil({ bangla = false, compact = false }: { bangl
   }
 
   return (
-    <section className={`soil-section${compact ? " soil-compact" : ""}`} id="roots" aria-labelledby={compact ? "craft-title" : "roots-title"}>
+    <section className={`soil-section${compact ? " soil-compact" : ""}`} id="roots" aria-labelledby={compact ? "contact-title" : "roots-title"}>
       <div className="soil-section-inner">
         {!compact && (
           <>
@@ -75,7 +95,7 @@ export default function ContactSoil({ bangla = false, compact = false }: { bangl
           </>
         )}
 
-        <div className="craft-panel">
+        {!compact && <div className="craft-panel">
           <div className="craft-heading">
             <span className="craft-stamp">{bangla ? <>কাজের<br />নোট</> : <>FIELD<br />NOTES</>}</span>
             <div>
@@ -107,48 +127,89 @@ export default function ContactSoil({ bangla = false, compact = false }: { bangl
               ))}
             </div>
           )}
-        </div>
+        </div>}
+
+        <section className="portfolio-faq" aria-labelledby="portfolio-faq-title">
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqJsonLd }} />
+          <div className="section-eyebrow"><span /> Common questions</div>
+          <h2 id="portfolio-faq-title">A few quick answers</h2>
+          <div className="portfolio-faq-list">
+            {faq.map(({ question, answer }) => (
+              <details key={question}>
+                <summary>{question}</summary>
+                <p>{answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
 
         <div className="contact-ground" id="contact">
           <div className="contact-story">
-            <div className="section-eyebrow"><span /> {bangla ? "একটি বীজ বুনুন" : "Plant a seed"}</div>
-            <h2>{bangla ? <>ভালো কিছু <em>ছোট করেই শুরু।</em></> : <>Good things <em>start small.</em></>}</h2>
-            <p>
-              {bangla
-                ? "ভাবনার কোনো চ্যালেঞ্জ, গবেষণার প্রশ্ন বা বড় হওয়ার মতো কোনো ধারণা আছে? লিখে পাঠান, দেখা যাক কোথায় যায়।"
-                : <>Have a thoughtful challenge, a research question, or an idea worth growing? Leave a note and let&apos;s see where it leads.</>}
-            </p>
-            <div className="contact-actions">
-              <a className="primary-action" href={profile.booking} target="_blank" rel="noreferrer">
-                {bangla ? "একটি ছোট আলাপ ঠিক করুন" : "Book a quick sync"} <span aria-hidden="true">↗</span>
-              </a>
-              <a className="text-action" href={profile.resume} download>
-                {bangla ? "জীবনবৃত্তান্ত ডাউনলোড" : "Download résumé"} <span aria-hidden="true">↓</span>
-              </a>
-            </div>
-            <div className="contact-links">
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>
-              <span>{profile.location}</span>
-            </div>
-            <nav className="social-links" aria-label={bangla ? "সামাজিক যোগাযোগ" : "Social profiles"}>
-              {profile.sameAs
-                .filter((url) => socialNames[url])
-                .map((url) => (
-                  <a key={url} href={url} target="_blank" rel="noreferrer">
-                    {socialNames[url]}
+            {compact ? (
+              <>
+                <div className="section-eyebrow"><span /> Contact</div>
+                <h2 id="contact-title">Let&apos;s talk.</h2>
+                <div className="contact-actions">
+                  <a className="primary-action" href={`mailto:${profile.email}`}>Email</a>
+                  <a
+                    className="secondary-action"
+                    href={profile.whatsapp}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    WhatsApp <span aria-hidden="true">↗</span>
                   </a>
-                ))}
-            </nav>
+                  <a className="secondary-action" href={profile.booking} target="_blank" rel="noreferrer">
+                    Book a call <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="section-eyebrow"><span /> {bangla ? "একটি বীজ বুনুন" : "Plant a seed"}</div>
+                <h2>{bangla ? <>ভালো কিছু <em>ছোট করেই শুরু।</em></> : <>Good things <em>start small.</em></>}</h2>
+                <p>
+                  {bangla
+                    ? "ভাবনার কোনো চ্যালেঞ্জ, গবেষণার প্রশ্ন বা বড় হওয়ার মতো কোনো ধারণা আছে? লিখে পাঠান, দেখা যাক কোথায় যায়।"
+                    : <>Have a thoughtful challenge, a research question, or an idea worth growing? Leave a note and let&apos;s see where it leads.</>}
+                </p>
+                <div className="contact-actions">
+                  <a className="primary-action" href={profile.booking} target="_blank" rel="noreferrer">
+                    {bangla ? "একটি ছোট আলাপ ঠিক করুন" : "Book a quick sync"} <span aria-hidden="true">↗</span>
+                  </a>
+                  <a className="text-action" href={profile.resume} download>
+                    {bangla ? "জীবনবৃত্তান্ত ডাউনলোড" : "Download résumé"} <span aria-hidden="true">↓</span>
+                  </a>
+                </div>
+                <div className="contact-links">
+                  <a href={`mailto:${profile.email}`}>{profile.email}</a>
+                  <span>{profile.location}</span>
+                </div>
+                <nav className="social-links" aria-label={bangla ? "সামাজিক যোগাযোগ" : "Social profiles"}>
+                  {profile.sameAs
+                    .filter((url) => socialNames[url])
+                    .map((url) => (
+                      <a key={url} href={url} target="_blank" rel="noreferrer">
+                        {socialNames[url]}
+                      </a>
+                    ))}
+                </nav>
+              </>
+            )}
           </div>
 
           <div className="seed-form-shell">
-            <div className={`seed-art seed-${seedState}`} aria-hidden="true">
-              <span className="seed-dot" />
-              <span className="seed-stem" />
-              <span className="seed-leaf seed-leaf-left" />
-              <span className="seed-leaf seed-leaf-right" />
-            </div>
-            <p className="eyebrow-kicker">{bangla ? "আগামী মৌসুমের জন্য একটি বার্তা" : "A note for the next season"}</p>
+            {!compact && (
+              <>
+                <div className={`seed-art seed-${seedState}`} aria-hidden="true">
+                  <span className="seed-dot" />
+                  <span className="seed-stem" />
+                  <span className="seed-leaf seed-leaf-left" />
+                  <span className="seed-leaf seed-leaf-right" />
+                </div>
+                <p className="eyebrow-kicker">{bangla ? "আগামী মৌসুমের জন্য একটি বার্তা" : "A note for the next season"}</p>
+              </>
+            )}
             <form
               className="seed-form"
               action="https://formspree.io/f/mkgrbazr"
@@ -195,7 +256,7 @@ export default function ContactSoil({ bangla = false, compact = false }: { bangl
             <span className="mark-leaf" /> RHR
           </Link>
           <p>{bangla ? "ঢাকা, বাংলাদেশে যত্ন নিয়ে তৈরি।" : "Made with care in Dhaka, Bangladesh."}</p>
-          <Link href="/bn/">{bangla ? "বাংলা সাইট" : "বাংলা"}</Link>
+          <Link href="/bn/" prefetch={false}>{bangla ? "বাংলা সাইট" : "বাংলা"}</Link>
           <a href="#top">{bangla ? "গাছের ছায়ায় ফিরুন ↑" : "Back to the canopy ↑"}</a>
         </footer>
       </div>

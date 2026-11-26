@@ -1,24 +1,39 @@
 {
   "linkset": [
     {
-      "anchor": "https://also.ratulruhan.cv/",
+      "anchor": "https://ratulx.tech/",
       "service-desc": [
         {
-          "href": "https://also.ratulruhan.cv/openapi.json",
+          "href": "https://ratulx.tech/openapi.json",
           "type": "application/vnd.oai.openapi+json;version=3.1",
           "title": "Ratul Hasan Ruhan profile data API — OpenAPI 3.1"
+        },
+        {
+          "href": "https://ratulx.tech/.well-known/mcp.json",
+          "type": "application/json",
+          "title": "Ratul Hasan Ruhan read-only MCP server"
         }
       ],
       "service-doc": [
         {
-          "href": "https://also.ratulruhan.cv/ratul-hasan-ruhan.md",
+          "href": "https://ratulx.tech/ratul-hasan-ruhan.md",
           "type": "text/markdown",
           "title": "Profile overview and endpoint guide (Markdown)"
+        },
+        {
+          "href": "https://ratulx.tech/llms.txt",
+          "type": "text/plain",
+          "title": "Short LLM site guide"
+        },
+        {
+          "href": "https://ratulx.tech/llms-full.txt",
+          "type": "text/plain",
+          "title": "Full portfolio catalog in Markdown"
         }
       ],
       "describedby": [
         {
-          "href": "https://also.ratulruhan.cv/ratul-hasan-ruhan.json",
+          "href": "https://ratulx.tech/ratul-hasan-ruhan.json",
           "type": "application/ld+json",
           "title": "schema.org Person record for Ratul Hasan Ruhan"
         }

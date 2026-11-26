@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getEventsForItem } from "@/data/catalog";
+import { branches, getEventsForItem } from "@/data/catalog";
 import type { PortfolioItem } from "@/data/types";
 
 function itemImages(item: PortfolioItem) {
@@ -31,6 +31,7 @@ function formatMonthYear(value: string) {
 
 export default function ItemDetail({ item }: { item: PortfolioItem }) {
   const images = itemImages(item);
+  const repeatedDescription = item.summary.trim().toLocaleLowerCase() === item.description.trim().toLocaleLowerCase();
   const relatedEvents = getEventsForItem(item);
   const eventPhotos = relatedEvents.flatMap((event) =>
     event.photos.map((photo) => ({
@@ -40,9 +41,20 @@ export default function ItemDetail({ item }: { item: PortfolioItem }) {
       event,
     })),
   );
+  const branch = branches.find((entry) => entry.id === item.branch);
+  const breadcrumb = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://ratulx.tech/" },
+      { "@type": "ListItem", position: 2, name: branch?.label ?? item.branch, item: `https://ratulx.tech/${item.branch}/` },
+      { "@type": "ListItem", position: 3, name: item.title },
+    ],
+  }).replace(/</g, "\\u003c");
 
   return (
     <article id="item-detail" className="item-detail" tabIndex={-1} aria-labelledby="item-detail-title">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumb }} />
       <div className="item-detail-heading">
         <div className="item-detail-copy">
           <Link className="detail-backlink" href={`/${item.branch}/`}>
@@ -51,7 +63,7 @@ export default function ItemDetail({ item }: { item: PortfolioItem }) {
           <p className="eyebrow-kicker">{itemTypeLabel(item)}{item.year ? ` · ${item.year}` : ""}</p>
           <h2 id="item-detail-title">{item.title}</h2>
           <p className="item-detail-summary">{item.summary}</p>
-          <p className="item-detail-description">{item.description}</p>
+          {!repeatedDescription && <p className="item-detail-description">{item.description}</p>}
           <div className="item-detail-facts">
             {"category" in item && <span>{item.category}</span>}
             {"issuer" in item && item.issuer && <span>Issued by {item.issuer}</span>}

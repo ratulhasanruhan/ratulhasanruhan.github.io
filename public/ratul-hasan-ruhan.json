@@ -2,17 +2,14 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Ratul Hasan Ruhan",
-  "alternateName": [
-    "Ratul Hasan",
-    "Ratul Ruhan",
-    "রাতুল হাসান রুহান"
-  ],
+  "alternateName": ["Ratul Hasan", "Ratul Ruhan", "রাতুল হাসান রুহান"],
   "jobTitle": "Software Engineer & Systems Researcher",
   "email": "ratulhasan1644@gmail.com",
   "telephone": "+8801789536985",
-  "url": "https://also.ratulruhan.cv/",
-  "image": "https://also.ratulruhan.cv/assets/images/ratulhasan-avatar.png",
+  "url": "https://ratulx.tech/",
+  "image": "https://ratulx.tech/assets/images/ratulhasan-avatar.png",
   "sameAs": [
+    "https://ratulx.tech/",
     "https://also.ratulruhan.cv/",
     "https://ratuler.vercel.app/",
     "https://ratulhasan.web.app/",
@@ -94,7 +91,7 @@
         "@type": "Organization",
         "name": "Udemy"
       },
-      "dateIssued": "2024",
+      "dateIssued": "2024-08",
       "url": "https://www.udemy.com/certificate/UC-42719966-3bd8-47f3-b0ca-d3f67775cfd8/"
     }
   ],
@@ -137,12 +134,13 @@
         "@type": "Organization",
         "name": "Pegasus Tech Venture"
       },
-      "description": "From the first round to the final at 🌍 Startup World Cup: Bangladesh– 2025. Grateful to stand among 4500+ innovative startups."
+      "description": "Regional Finalist (Bangladesh 2025)."
     },
     {
       "@type": "Award",
       "name": "National Tech Award - 2025",
       "dateReceived": "2025",
+      "receivedAt": "2026-01",
       "description": "National Tech Award 2025 for Ishara, a real-time Bengali sign language translation system focused on accessibility and inclusion."
     },
     {
@@ -310,18 +308,21 @@
     {
       "@type": "OrganizationRole",
       "roleName": "Local Ambassador, Bangladesh",
-      "startDate": "2026",
-      "endDate": "2027",
+      "startDate": "2026-01",
+      "endDate": "2027-12",
+      "contactEmail": "rruhan@amb.gllrc.org",
       "memberOf": {
         "@type": "Organization",
         "name": "Global Logic & Reasoning Challenge (GLRC)",
-        "url": "https://gllrc.org/"
+        "url": "https://gllrc.org/en/rruhan"
       }
     },
     {
       "@type": "OrganizationRole",
       "roleName": "Country Ambassador, Bangladesh",
-      "startDate": "2026",
+      "startDate": "2026-01",
+      "endDate": "2027-12",
+      "contactEmail": "rruhan@amb.icscompetition.org",
       "memberOf": {
         "@type": "Organization",
         "name": "International Computer Science Competition (ICSC)",
@@ -389,7 +390,7 @@
     "education": [
       {
         "degree": "BSc (Hons) Computing",
-        "period": "Jan 2025 - Present",
+      "period": "2025 – present (expected 2028)",
         "institution": "University of Greenwich (NCC Pathway)",
         "url": "https://www.gre.ac.uk/",
         "status": "Ongoing"
@@ -418,38 +419,22 @@
     "skills": [
       {
         "category": "Mobile & Multiplatform",
-        "technologies": [
-          "Flutter",
-          "Kotlin",
-          ".NET MAUI / C#"
-        ],
+        "technologies": ["Flutter", "Kotlin", ".NET MAUI", "C#"],
         "description": "Cross-platform mobile and desktop application development."
       },
       {
         "category": "Systems, Programming & Applied AI",
-        "technologies": [
-          "Rust",
-          "Python",
-          "Java / Spring"
-        ],
+        "technologies": ["Rust", "Python", "Java", "Spring"],
         "description": "Systems programming, backend services, and applied machine learning."
       },
       {
         "category": "Embedded, IoT & Networking",
-        "technologies": [
-          "Embedded Systems",
-          "IoT",
-          "Networking"
-        ],
+        "technologies": ["Embedded Systems", "IoT", "Networking", "Machine Learning"],
         "description": "Hardware–software integration and connected systems."
       },
       {
         "category": "DevOps & Infrastructure",
-        "technologies": [
-          "CI/CD",
-          "Deployment",
-          "System Configuration"
-        ],
+        "technologies": ["CI/CD", "Deployment", "System Configuration", "Software Architecture"],
         "description": "Reliable builds, deployments, and production workflows."
       }
     ],
@@ -461,33 +446,33 @@
     ],
     "awardImages": {
       "National AI BUILD-A-THON – Trailblazer": [
-        "https://also.ratulruhan.cv/assets/images/awards/ai_buildathon_award_ceremony.JPG",
-        "https://also.ratulruhan.cv/assets/images/awards/national_ai_buildathon.jpeg"
+        "https://ratulx.tech/assets/images/awards/ai_buildathon_award_ceremony.JPG",
+        "https://ratulx.tech/assets/images/awards/national_ai_buildathon.jpeg"
       ],
       "Coding Fest 2026 – 1st Place": [
-        "https://also.ratulruhan.cv/assets/images/awards/coding_fest_2026.jpg",
-        "https://also.ratulruhan.cv/assets/images/awards/coding_fest_2026_certificate.jpg"
+        "https://ratulx.tech/assets/images/awards/coding_fest_2026.jpg",
+        "https://ratulx.tech/assets/images/awards/coding_fest_2026_certificate.jpg"
       ],
       "Bangladesh ICT & Innovation Award 2025": [
-        "https://also.ratulruhan.cv/assets/images/awards/winner_trophy.jpg",
-        "https://also.ratulruhan.cv/assets/images/awards/award_ceremony.jpg"
+        "https://ratulx.tech/assets/images/awards/winner_trophy.jpg",
+        "https://ratulx.tech/assets/images/awards/award_ceremony.jpg"
       ],
       "Startup World Cup: 2025 | Regional Finalist": [
-        "https://also.ratulruhan.cv/assets/images/awards/pitch_session.jpg",
-        "https://also.ratulruhan.cv/assets/images/awards/showcase_session.jpg"
+        "https://ratulx.tech/assets/images/awards/pitch_session.jpg",
+        "https://ratulx.tech/assets/images/awards/showcase_session.jpg"
       ],
       "National Tech Award - 2025": [
-        "https://also.ratulruhan.cv/assets/images/awards/national_tech_award.jpg"
+        "https://ratulx.tech/assets/images/awards/national_tech_award.jpg"
       ],
       "1st Place – Programming Contest | DIA ICT Fest 2025": [
-        "https://also.ratulruhan.cv/assets/images/awards/1st_certificate_programming_contest.jpg",
-        "https://also.ratulruhan.cv/assets/images/awards/trophy.jpg"
+        "https://ratulx.tech/assets/images/awards/1st_certificate_programming_contest.jpg",
+        "https://ratulx.tech/assets/images/awards/trophy.jpg"
       ],
       "1st Place – Project Showcasing | DIA ICT Fest 2025": [
-        "https://also.ratulruhan.cv/assets/images/awards/project_showcase.jpg"
+        "https://ratulx.tech/assets/images/awards/project_showcase.jpg"
       ],
       "2nd Place – Puzzle Hunt | DIA ICT Fest 2025": [
-        "https://also.ratulruhan.cv/assets/images/awards/award_receiving.jpg"
+        "https://ratulx.tech/assets/images/awards/award_receiving.jpg"
       ]
     },
     "mediaCoverage": [

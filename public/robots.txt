@@ -1,4 +1,4 @@
-# https://also.ratulruhan.cv/robots.txt
+# https://ratulx.tech/robots.txt
 # Personal portfolio of Ratul Hasan Ruhan — Software Engineer
 
 # AI content usage preferences (https://contentsignals.org/)
@@ -37,4 +37,4 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-Sitemap: https://also.ratulruhan.cv/sitemap.xml
+Sitemap: https://ratulx.tech/sitemap.xml

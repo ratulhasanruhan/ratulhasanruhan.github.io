@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import {
@@ -15,47 +16,39 @@ import {
   UsersRound,
   CalendarRange,
 } from "lucide-react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { branches, linkedinPosts, profile } from "@/data/catalog";
 import type { BranchId } from "@/data/types";
 
 const MangoTree3D = dynamic(() => import("@/components/MangoTree3D"), {
   ssr: false,
-  loading: () => (
-    <div className="mango3d-poster" aria-hidden="true">
-      <span className="mango3d-poster-glow" />
-      <span className="mango3d-poster-copy">Growing the tree…</span>
-    </div>
-  ),
 });
 
-const credentials: { label: string; detail: string; href: string; Icon: typeof Trophy }[] = [
+const credentials: { label: string; href: string; Icon: typeof Trophy }[] = [
   {
-    label: "Bangladesh ICT & Innovation Award",
-    detail: "Winner · 2025",
+    label: "ICT Award 2025",
     href: "/awards/bangladesh-ict-innovation-award-2025/",
     Icon: Trophy,
   },
   {
-    label: "Startup World Cup",
-    detail: "Regional finalist · 2025",
+    label: "Startup World Cup finalist",
     href: "/awards/startup-world-cup-2025-regional-finalist/",
     Icon: Globe2,
   },
   {
-    label: "National AI Build-a-thon",
-    detail: "Trailblazer",
+    label: "AI Build-a-thon Trailblazer",
     href: "/awards/national-ai-build-a-thon-trailblazer/",
     Icon: Sparkles,
   },
   {
     label: "Creator of Ojogor",
-    detail: "First Bengali programming language",
     href: "/projects/ojogor/",
     Icon: CodeXml,
   },
 ];
+
+const heroRoles = ["Mobile apps", "AI tools", "Programming languages", "Accessibility"];
 
 type StatTarget = { branch: BranchId } | { section: string };
 
@@ -77,6 +70,7 @@ type HomeHeroProps = {
   season: string;
   bangla: boolean;
   onSelectBranch: (branch: BranchId) => void;
+  onToggleListView: () => void;
   onAbout: () => void;
   onJump: (sectionId: string) => void;
 };
@@ -90,21 +84,18 @@ function CountUp({ value, run }: { value: number; run: boolean }) {
       const frame = window.requestAnimationFrame(() => setDisplay(value));
       return () => window.cancelAnimationFrame(frame);
     }
-    let frame = 0;
     const start = performance.now();
     const duration = 1600;
-    const tick = (now: number) => {
+    const timer = window.setInterval(() => {
+      const now = performance.now();
       const progress = Math.min(1, (now - start) / duration);
       setDisplay(Math.round(value * (1 - Math.pow(1 - progress, 4))));
-      if (progress < 1) frame = window.requestAnimationFrame(tick);
-    };
-    frame = window.requestAnimationFrame(tick);
-    return () => window.cancelAnimationFrame(frame);
+      if (progress >= 1) window.clearInterval(timer);
+    }, 100);
+    return () => window.clearInterval(timer);
   }, [reduce, run, value]);
   return <>{display}</>;
 }
-
-const headlineWords = ["I", "build", "software", "that"];
 
 export default function HomeHero({
   branchCounts,
@@ -113,17 +104,73 @@ export default function HomeHero({
   season,
   bangla,
   onSelectBranch,
+  onToggleListView,
   onAbout,
   onJump,
 }: HomeHeroProps) {
   const reduce = useReducedMotion() ?? false;
   const heroRef = useRef<HTMLElement>(null);
   const [hoveredBranch, setHoveredBranch] = useState<BranchId | null>(null);
+  const [roleIndex, setRoleIndex] = useState(0);
   const [statsVisible, setStatsVisible] = useState(false);
+  const [mountTree, setMountTree] = useState(false);
+  const [treeReady, setTreeReady] = useState(false);
   const statsRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const sceneY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 120]);
   const sceneOpacity = useTransform(scrollYProgress, [0, 0.8], [1, reduce ? 1 : 0.2]);
+
+  useEffect(() => {
+    if (reduce) return;
+    const timer = window.setInterval(() => {
+      setRoleIndex((index) => (index + 1) % heroRoles.length);
+    }, 2200);
+    return () => window.clearInterval(timer);
+  }, [reduce]);
+
+  useEffect(() => {
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    const deviceMemory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory;
+    if (
+      reduce ||
+      connection?.saveData ||
+      (deviceMemory !== undefined && deviceMemory < 4)
+    ) {
+      return;
+    }
+
+    let idleTimer = 0;
+    let idleCallback = 0;
+    const start = () => {
+      window.clearTimeout(idleTimer);
+      setMountTree(true);
+    };
+    const scheduleIdleMount = () => {
+      idleTimer = window.setTimeout(() => {
+        const idleWindow = window as Window & {
+          requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+          cancelIdleCallback?: (handle: number) => void;
+        };
+        if (idleWindow.requestIdleCallback) {
+          idleCallback = idleWindow.requestIdleCallback(start, { timeout: 3000 });
+        } else {
+          start();
+        }
+      }, 3000);
+    };
+    const inputEvents = ["pointermove", "touchstart", "scroll", "keydown"] as const;
+    inputEvents.forEach((eventName) => window.addEventListener(eventName, start, { once: true, passive: true }));
+    if (document.readyState === "complete") scheduleIdleMount();
+    else window.addEventListener("load", scheduleIdleMount, { once: true });
+
+    return () => {
+      inputEvents.forEach((eventName) => window.removeEventListener(eventName, start));
+      window.removeEventListener("load", scheduleIdleMount);
+      window.clearTimeout(idleTimer);
+      const idleWindow = window as Window & { cancelIdleCallback?: (handle: number) => void };
+      if (idleCallback) idleWindow.cancelIdleCallback?.(idleCallback);
+    };
+  }, [reduce]);
 
   useEffect(() => {
     const element = statsRef.current;
@@ -155,7 +202,7 @@ export default function HomeHero({
       label: "Projects shipped",
       hint: "Open the projects",
       Icon: FolderKanban,
-      accent: "var(--green-bright)",
+      accent: "var(--violet)",
       target: { branch: "projects" },
     },
     {
@@ -165,7 +212,7 @@ export default function HomeHero({
       label: "Awards & honours",
       hint: "See the awards",
       Icon: Award,
-      accent: "var(--mango)",
+      accent: "var(--pink)",
       target: { branch: "awards" },
     },
     {
@@ -175,7 +222,7 @@ export default function HomeHero({
       label: "Articles written",
       hint: "Read the notes",
       Icon: PenLine,
-      accent: "var(--coral)",
+      accent: "var(--mango)",
       target: { section: "writing" },
     },
     {
@@ -185,7 +232,7 @@ export default function HomeHero({
       label: "Communities",
       hint: "Meet the people",
       Icon: UsersRound,
-      accent: "var(--sky)",
+      accent: "var(--teal)",
       target: { branch: "communities" },
     },
     {
@@ -195,7 +242,7 @@ export default function HomeHero({
       label: "Stages & events",
       hint: "View the moments",
       Icon: Camera,
-      accent: "var(--rose)",
+      accent: "var(--sky)",
       target: { section: "moments" },
     },
     {
@@ -205,7 +252,7 @@ export default function HomeHero({
       label: "Years building",
       hint: "Walk the journey",
       Icon: CalendarRange,
-      accent: "var(--mango-light)",
+      accent: "var(--leaf)",
       target: { section: "journey" },
     },
   ];
@@ -215,80 +262,71 @@ export default function HomeHero({
     else onJump(target.section);
   }
 
-  const reveal = (delay: number) =>
-    reduce
-      ? {}
-      : {
-          initial: { opacity: 0, y: 16 },
-          animate: { opacity: 1, y: 0 },
-          transition: { delay, duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
-        };
-
   return (
     <section
       ref={heroRef}
       className={`home-hero${night ? " home-hero-night" : ""}`}
       aria-labelledby="hero-title"
     >
-      <div className="home-hero-backdrop" aria-hidden="true">
-        <span className="home-hero-orb home-hero-orb-a" />
-        <span className="home-hero-orb home-hero-orb-b" />
-        <span className="home-hero-orb home-hero-orb-c" />
-        <span className="home-hero-grain" />
-      </div>
-
       <div className="home-hero-copy">
-        <motion.a className="home-hero-status" href={profile.booking} target="_blank" rel="noreferrer" {...reveal(0)}>
+        <a className="home-hero-status" href={profile.booking} target="_blank" rel="noreferrer">
           <span className="home-hero-status-dot" aria-hidden="true" />
           <span>
             <strong>Open to new work</strong>
             <span className="home-hero-status-sep" aria-hidden="true">·</span>
             Dhaka, Bangladesh
           </span>
-        </motion.a>
+        </a>
 
-        <h1 id="hero-title" className="home-hero-title">
-          {headlineWords.map((word, index) => (
-            <motion.span
-              key={word}
-              className="home-hero-word"
-              initial={reduce ? false : { opacity: 0, y: "0.6em", filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ delay: 0.08 + index * 0.07, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {word}
-            </motion.span>
-          ))}
-          <motion.em
-            className="home-hero-word home-hero-accent"
-            initial={reduce ? false : { opacity: 0, y: "0.6em", filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ delay: 0.42, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
-            grows.
-          </motion.em>
-        </h1>
+        <h1 id="hero-title" className="home-hero-title">Ratul Hasan Ruhan</h1>
 
-        <motion.p className="home-hero-deck" {...reveal(0.5)}>
-          I&apos;m <button type="button" className="home-hero-name" onClick={onAbout}>Ratul Hasan Ruhan</button>, a
-          software engineer and systems researcher building programming languages, accessibility tools and
-          offline-first systems for Bangladesh.
-        </motion.p>
+        <div className="home-hero-roles" aria-live="off">
+          {reduce ? (
+            <span className="home-hero-role" aria-hidden="true">Mobile apps</span>
+          ) : (
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={heroRoles[roleIndex]}
+                className="home-hero-role"
+                aria-hidden="true"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.24, ease: "easeOut" }}
+              >
+                {heroRoles[roleIndex]}
+              </motion.span>
+            </AnimatePresence>
+          )}
+          <span className="visually-hidden">Mobile apps, AI tools, Programming languages, Accessibility</span>
+        </div>
 
-        <motion.div className="home-hero-actions" {...reveal(0.62)}>
+        <p className="home-hero-deck">
+          Software engineer · Creator of Ojogor · Dhaka
+        </p>
+
+        <div className="home-hero-actions">
           <button type="button" className="home-cta home-cta-primary" onClick={() => onJump("featured")}>
             See my best work <ArrowRight size={17} strokeWidth={2.4} aria-hidden="true" />
           </button>
           <a className="home-cta home-cta-secondary" href={profile.booking} target="_blank" rel="noreferrer">
             Book a call <span aria-hidden="true">↗</span>
           </a>
-          <a className="home-cta-link" href={profile.resume} download>
-            Résumé (PDF)
-          </a>
-        </motion.div>
+          <div className="home-hero-text-links">
+            <a className="home-cta-link" href={profile.resume} download>
+              Résumé (PDF)
+            </a>
+            <button className="home-cta-link home-list-view-toggle" type="button" onClick={onToggleListView}>
+              Browse as a list
+            </button>
+            <button className="home-cta-link home-about-link" type="button" onClick={onAbout}>
+              About me
+            </button>
+          </div>
+        </div>
 
-        <motion.ul className="home-hero-creds" aria-label="Highlights" {...reveal(0.74)}>
-          {credentials.map(({ label, detail, href, Icon }) => (
+        <ul className="home-hero-creds" aria-label="Highlights">
+          {credentials.map(({ label, href, Icon }) => (
             <li key={href}>
               <Link href={href} className="home-hero-cred">
                 <span className="home-hero-cred-icon" aria-hidden="true">
@@ -296,35 +334,67 @@ export default function HomeHero({
                 </span>
                 <span className="home-hero-cred-copy">
                   <strong>{label}</strong>
-                  <small>{detail}</small>
                 </span>
               </Link>
             </li>
           ))}
-        </motion.ul>
+        </ul>
       </div>
 
       <motion.div
         className="home-hero-scene"
         style={{ y: sceneY, opacity: sceneOpacity }}
-        initial={reduce ? false : { opacity: 0, scale: 0.94 }}
+        initial={false}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
       >
-        <span className="home-hero-halo" aria-hidden="true" />
-        <MangoTree3D
-          branches={treeBranches}
-          hoveredBranch={hoveredBranch}
-          onHoverBranch={setHoveredBranch}
-          onSelectBranch={onSelectBranch}
-          night={night}
-          season={season}
-          reducedMotion={reduce}
-        />
-        <p className="home-hero-hint" aria-hidden="true">
-          <span className="home-hero-hint-dot" /> Tap a mango to open a branch
-          <span className="home-hero-hint-desktop"> · drag to turn the tree</span>
-        </p>
+        <div className={`home-tree-stage${treeReady && !reduce ? " home-tree-stage-ready" : ""}`}>
+          <picture className="home-tree-poster">
+            <source
+              media="(max-width: 760px)"
+              srcSet="/assets/images/mango-tree-poster-mobile.webp 380w"
+              sizes="calc(100vw - 28px)"
+              type="image/webp"
+            />
+            <Image
+              src="/assets/images/mango-tree-poster-desktop.webp"
+              alt="A mango tree with a leafy canopy and ripe fruit."
+              fill
+              loading="eager"
+              fetchPriority="high"
+              sizes="(max-width: 760px) calc(100vw - 28px), (max-width: 900px) calc(100vw - 40px), 50vw"
+            />
+          </picture>
+          {mountTree && !reduce && (
+            <div className="home-tree-canvas">
+              <MangoTree3D
+                branches={treeBranches}
+                hoveredBranch={hoveredBranch}
+                onHoverBranch={setHoveredBranch}
+                onSelectBranch={onSelectBranch}
+                onFirstFrame={() => setTreeReady(true)}
+                night={night}
+                season={season}
+                reducedMotion={reduce}
+              />
+            </div>
+          )}
+          <nav className="poster-branch-links" aria-label="Open a portfolio branch">
+            {treeBranches.map((branch) => (
+              <button
+                key={branch.id}
+                type="button"
+                className={`poster-branch-link poster-branch-${branch.id}${hoveredBranch === branch.id ? " is-active" : ""}`}
+                onPointerEnter={() => setHoveredBranch(branch.id)}
+                onPointerLeave={() => setHoveredBranch(null)}
+                onClick={() => onSelectBranch(branch.id)}
+                aria-label={`${branch.label}, ${branch.count} items`}
+              >
+                <span>{branch.label}</span><small>{branch.count}</small>
+              </button>
+            ))}
+          </nav>
+        </div>
       </motion.div>
 
       <nav ref={statsRef} className="home-stats" aria-label="Portfolio at a glance">
