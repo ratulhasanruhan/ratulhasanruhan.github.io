@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Noto_Sans_Bengali } from "next/font/google";
+import Script from "next/script";
 import WebMcp from "@/components/WebMcp";
 import profile from "@/data/profile.snapshot.json";
 import "./globals.css";
@@ -85,14 +86,14 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f7f3ea",
+  themeColor: "#FFF9F2",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const personJson = JSON.stringify(profile).replace(/</g, "\\u003c");
 
   return (
-    <html lang="en">
+    <html lang="en" data-theme="bloom">
       <head>
         <link rel="alternate" href="/ratul-hasan-ruhan.json" type="application/ld+json" title="Ratul Hasan Ruhan — Professional Data" />
         <link rel="alternate" href="/ratul-hasan-ruhan.md" type="text/markdown" title="Ratul Hasan Ruhan — Markdown Profile" />
@@ -100,6 +101,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
       </head>
       <body className={bengaliFont.variable}>
+        <Script id="color-theme-init" strategy="beforeInteractive">
+          {`try{const t=localStorage.getItem("rhr-color-theme");if(t==="lagoon"||t==="sunset")document.documentElement.dataset.theme=t}catch{}`}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: personJson }}

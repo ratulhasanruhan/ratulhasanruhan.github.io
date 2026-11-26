@@ -23,21 +23,18 @@ type Stop = {
   kind: StopKind;
   year: number;
   sort: number;
-  when: string;
   title: string;
   place: string;
-  note?: string;
   href: string;
-  photo?: { src: string; alt: string };
 };
 
-const kindMeta: Record<StopKind, { label: string; Icon: ComponentType<{ size?: number; strokeWidth?: number }> }> = {
-  education: { label: "Education", Icon: GraduationCap },
-  work: { label: "Work", Icon: BriefcaseBusiness },
-  award: { label: "Award", Icon: Trophy },
-  project: { label: "Project", Icon: Rocket },
-  research: { label: "Research", Icon: FlaskConical },
-  community: { label: "Community", Icon: UsersRound },
+const kindMeta: Record<StopKind, { Icon: ComponentType<{ size?: number; strokeWidth?: number }> }> = {
+  education: { Icon: GraduationCap },
+  work: { Icon: BriefcaseBusiness },
+  award: { Icon: Trophy },
+  project: { Icon: Rocket },
+  research: { Icon: FlaskConical },
+  community: { Icon: UsersRound },
 };
 
 const filters: { id: "all" | StopKind | "build"; label: string }[] = [
@@ -59,13 +56,6 @@ function startSort(text: string | undefined, fallbackYear: number, fallbackMonth
   }
   const yearMatch = text?.match(/(\d{4})/);
   return (yearMatch ? Number(yearMatch[1]) : fallbackYear) * 12 + fallbackMonth;
-}
-
-function postPhoto(slug: string) {
-  const post = linkedinPosts.find((entry) => entry.slug === slug);
-  const photo = post?.photos[0];
-  if (!post || !photo) return undefined;
-  return { src: `/assets/images/linkedin/${photo.file}`, alt: post.title };
 }
 
 function postSort(slug: string, fallbackYear: number) {
@@ -98,10 +88,8 @@ function buildStops(): Stop[] {
       kind: "education",
       year: item.year ?? 0,
       sort: startSort(item.tenure, item.year ?? 0, 0),
-      when: item.tenure,
       title: item.title,
       place: item.organization,
-      note: item.status,
       href: `/${item.branch}/${item.slug}/`,
     });
   }
@@ -113,10 +101,8 @@ function buildStops(): Stop[] {
       kind: "work",
       year: item.year ?? 0,
       sort: startSort(item.tenure, item.year ?? 0),
-      when: item.tenure ?? String(item.year ?? ""),
       title: role ?? item.title,
       place: company,
-      note: item.description.split(" · ").at(-1),
       href: `/${item.branch}/${item.slug}/`,
     });
   }
@@ -129,11 +115,9 @@ function buildStops(): Stop[] {
       kind: "award",
       year: award.year ?? 0,
       sort: postSort(post, award.year ?? 0),
-      when: String(award.year ?? ""),
       title: award.title,
       place: award.issuer ?? "",
       href: `/${award.branch}/${award.slug}/`,
-      photo: postPhoto(post) ?? (award.images[0] ? { src: award.images[0].src, alt: award.images[0].alt } : undefined),
     });
   }
 
@@ -144,12 +128,9 @@ function buildStops(): Stop[] {
       kind: "project",
       year: 2025,
       sort: 2025 * 12 + 1,
-      when: "2025",
       title: "Ojogor (অজগর)",
-      place: "The first Bengali programming language",
-      note: "Featured by The Business Standard, Dhaka Tribune and more.",
+      place: "Independent project",
       href: `/${ojogor.branch}/${ojogor.slug}/`,
-      photo: { src: ojogor.image, alt: "Ojogor programming language" },
     });
   }
 
@@ -158,10 +139,8 @@ function buildStops(): Stop[] {
     kind: "project",
     year: 2026,
     sort: postSort("offline-disaster-relief-system", 2026),
-    when: "2026",
     title: "A relief system that works without the internet",
-    place: "P2P mesh · Go + gRPC · Flutter",
-    note: "Decentralised relief coordination for floods, with autonomous drone support.",
+    place: "Independent project",
     href: linkedinPosts.find((entry) => entry.slug === "offline-disaster-relief-system")?.postUrl ?? "/projects/",
   });
 
@@ -170,10 +149,8 @@ function buildStops(): Stop[] {
     kind: "research",
     year: publication.year ?? 2025,
     sort: 2025 * 12 + 9,
-    when: "Oct 2025",
     title: "Caller Collision Resolution Protocol (CCRP)",
     place: "Research preprint",
-    note: "Bridging simultaneous call attempts in real-world telephony.",
     href: `/${publication.branch}/${publication.slug}/`,
   });
 
@@ -185,11 +162,9 @@ function buildStops(): Stop[] {
       kind: "community",
       year: community.year ?? 0,
       sort: post ? postSort(post, community.year ?? 0) : startSort(community.tenure, community.year ?? 0),
-      when: community.tenure,
       title: community.role,
       place: community.title,
       href: `/${community.branch}/${community.slug}/`,
-      photo: post ? postPhoto(post) : undefined,
     });
   }
 
@@ -197,6 +172,11 @@ function buildStops(): Stop[] {
 }
 
 const allStops = buildStops();
+const highlightStops = [
+  ...allStops.filter((stop) => stop.kind === "education").slice(0, 4),
+  ...allStops.filter((stop) => stop.kind === "work").slice(-3),
+  ...allStops.filter((stop) => stop.kind === "award").slice(-4),
+].sort((a, b) => a.sort - b.sort || a.title.localeCompare(b.title));
 
 function smoothPath(points: { x: number; y: number }[]) {
   if (points.length < 2) return "";
@@ -220,6 +200,7 @@ type Geometry = { width: number; height: number; d: string; pins: number[] };
 export default function HomeJourney({ onContact }: { onContact: () => void }) {
   const reduce = useReducedMotion() ?? false;
   const [filter, setFilter] = useState<(typeof filters)[number]["id"]>("all");
+  const [showFullJourney, setShowFullJourney] = useState(false);
   const [geometry, setGeometry] = useState<Geometry>({ width: 0, height: 0, d: "", pins: [] });
   const [reached, setReached] = useState(0);
   const roadRef = useRef<HTMLDivElement>(null);
@@ -230,10 +211,10 @@ export default function HomeJourney({ onContact }: { onContact: () => void }) {
 
   const stops = useMemo(
     () =>
-      allStops.filter((stop) =>
+      (showFullJourney ? allStops : highlightStops).filter((stop) =>
         filter === "all" ? true : filter === "build" ? stop.kind === "project" || stop.kind === "research" : stop.kind === filter,
       ),
-    [filter],
+    [filter, showFullJourney],
   );
 
   const counts = useMemo(() => {
@@ -316,27 +297,26 @@ export default function HomeJourney({ onContact }: { onContact: () => void }) {
       <div className="journey-heading">
         <p className="journey-eyebrow">My journey · 2016 → today</p>
         <h2 id="journey-title">
-          The road <em>so far.</em>
+          A road still <em>unfolding.</em>
         </h2>
-        <p>
-          From a school in Shariatpur to national stages. Every stop opens the full story.
-        </p>
       </div>
 
-      <div className="journey-filters" role="group" aria-label="Filter the journey">
-        {filters.map((entry) => (
-          <button
-            key={entry.id}
-            type="button"
-            className={filter === entry.id ? "is-active" : ""}
-            aria-pressed={filter === entry.id}
-            onClick={() => setFilter(entry.id)}
-          >
-            {entry.label}
-            <span>{counts[entry.id] ?? 0}</span>
-          </button>
-        ))}
-      </div>
+      {showFullJourney && (
+        <div className="journey-filters" role="group" aria-label="Filter the journey">
+          {filters.map((entry) => (
+            <button
+              key={entry.id}
+              type="button"
+              className={filter === entry.id ? "is-active" : ""}
+              aria-pressed={filter === entry.id}
+              onClick={() => setFilter(entry.id)}
+            >
+              {entry.label}
+              <span>{counts[entry.id] ?? 0}</span>
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="road" ref={roadRef}>
         {geometry.d && (
@@ -349,9 +329,9 @@ export default function HomeJourney({ onContact }: { onContact: () => void }) {
           >
             <defs>
               <linearGradient id="road-glow" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#ffd27a" />
-                <stop offset="55%" stopColor="#f4a42c" />
-                <stop offset="100%" stopColor="#ff7a45" />
+                <stop offset="0%" stopColor="var(--violet)" />
+                <stop offset="55%" stopColor="var(--pink)" />
+                <stop offset="100%" stopColor="var(--mango)" />
               </linearGradient>
               <filter id="road-blur" x="-50%" y="-5%" width="200%" height="110%">
                 <feGaussianBlur stdDeviation="6" />
@@ -376,47 +356,25 @@ export default function HomeJourney({ onContact }: { onContact: () => void }) {
 
         <ol className="road-stops">
           {stops.map((stop, index) => {
-            const { Icon, label } = kindMeta[stop.kind];
+            const { Icon } = kindMeta[stop.kind];
             const side = index % 2 === 0 ? "left" : "right";
-            const showYear = stop.year !== stops[index - 1]?.year;
             const external = stop.href.startsWith("http");
             const card = (
-              <>
-                {stop.photo && (
-                  <span className="road-card-photo">
-                    <Image src={stop.photo.src} alt={stop.photo.alt} fill sizes="(max-width: 760px) 120px, 180px" loading="lazy" />
-                  </span>
-                )}
-                <span className="road-card-body">
-                  <span className="road-card-meta">
-                    <span className={`road-kind road-kind-${stop.kind}`}>
-                      <Icon size={13} strokeWidth={2.2} /> {label}
-                    </span>
-                    <span className="road-when">{stop.when}</span>
-                  </span>
-                  <strong className="road-card-title">{stop.title}</strong>
-                  {stop.place && <span className="road-card-place">{stop.place}</span>}
-                  {stop.note && <span className="road-card-note">{stop.note}</span>}
-                  <span className="road-card-open">
-                    {external ? "View on LinkedIn" : "Open story"} <span aria-hidden="true">{external ? "↗" : "→"}</span>
-                  </span>
-                </span>
-              </>
+              <span className="road-card-body">
+                {stop.year > 0 && <span className="road-when">{stop.year}</span>}
+                <strong className="road-card-title">{stop.title}</strong>
+                {stop.place && <span className="road-card-place">{stop.place}</span>}
+              </span>
             );
             return (
               <li
                 key={stop.id}
-                className={`road-stop road-stop-${side}${stop.photo ? " has-photo" : ""}${index < reached ? " is-reached" : ""}`}
+                className={`road-stop road-stop-${side}${index < reached ? " is-reached" : ""}`}
                 style={{ "--wiggle": Math.sin(index * 1.15 + 0.6).toFixed(3), "--row": index + 1 } as CSSProperties}
               >
                 <span className="road-pin" data-road-pin aria-hidden="true">
                   <Icon size={14} strokeWidth={2.4} />
                 </span>
-                {showYear && (
-                  <span className="road-year" aria-hidden="true">
-                    {stop.year}
-                  </span>
-                )}
                 <motion.div
                   className="road-card-wrap"
                   initial={reduce ? false : { opacity: 0, x: side === "left" ? -36 : 36, y: 12 }}
@@ -444,15 +402,11 @@ export default function HomeJourney({ onContact }: { onContact: () => void }) {
             <span className="road-flag" />
           </span>
           <div className="road-finish-copy">
-            <strong>Today, and the next stop.</strong>
-            <span>Building Appibrium, studying at Greenwich, and looking for the next hard problem.</span>
+            <strong>What&apos;s next?</strong>
             <div className="road-finish-actions">
               <button type="button" className="road-finish-primary" onClick={onContact}>
-                Let&apos;s work together
+                Let&apos;s talk
               </button>
-              <a href={profile.resume} download>
-                Download résumé ↓
-              </a>
             </div>
           </div>
         </div>
@@ -462,10 +416,27 @@ export default function HomeJourney({ onContact }: { onContact: () => void }) {
         </div>
       </div>
 
-      <p className="journey-certs">
-        <BadgeCheck size={15} strokeWidth={2.2} aria-hidden="true" /> Also certified in Cisco CCNA + Python network
-        automation, computer architecture and data literacy.
-      </p>
+      <div className="journey-expand">
+        <button
+          type="button"
+          className="home-text-link"
+          aria-expanded={showFullJourney}
+          onClick={() => {
+            const expand = !showFullJourney;
+            setShowFullJourney(expand);
+            if (!expand) setFilter("all");
+          }}
+        >
+          {showFullJourney ? "Show highlights" : "Show the full journey"} <span aria-hidden="true">→</span>
+        </button>
+      </div>
+
+      {showFullJourney && (
+        <p className="journey-certs">
+          <BadgeCheck size={15} strokeWidth={2.2} aria-hidden="true" /> Also certified in Cisco CCNA + Python network
+          automation, computer architecture and data literacy.
+        </p>
+      )}
     </section>
   );
 }

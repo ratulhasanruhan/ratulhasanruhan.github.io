@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import {
+  ArrowUp,
   BadgeCheck,
   BriefcaseBusiness,
   Camera,
@@ -34,7 +35,7 @@ import {
 } from "react";
 import ContactSoil from "@/components/ContactSoil";
 import HomeHero from "@/components/HomeHero";
-import { EducationSection, MomentsGallery, WritingShelf } from "@/components/HomeContent";
+import { MomentsGallery, WritingShelf } from "@/components/HomeContent";
 import HomeJourney from "@/components/HomeJourney";
 import { FeaturedWork, SkillMarquee } from "@/components/HomeSections";
 import TreeScene, { crownLayout, DESKTOP_TREE_OFFSET_X, DESKTOP_TREE_SCALE_X } from "@/components/TreeScene";
@@ -65,6 +66,73 @@ const seasons = [
   { name: "Sheet", bengali: "শীত", note: "soft winter fog", noteBn: "শীতের কুয়াশা" },
   { name: "Basanta", bengali: "বসন্ত", note: "mango blossoms", noteBn: "আমের মুকুল" },
 ];
+
+type ColorTheme = "bloom" | "lagoon" | "sunset";
+
+function getThemeSnapshot(): ColorTheme {
+  const theme = document.documentElement.dataset.theme;
+  return theme === "lagoon" || theme === "sunset" ? theme : "bloom";
+}
+
+function getServerThemeSnapshot(): ColorTheme {
+  return "bloom";
+}
+
+function getStoredTheme(): ColorTheme {
+  try {
+    const theme = window.localStorage.getItem("rhr-color-theme");
+    return theme === "lagoon" || theme === "sunset" ? theme : "bloom";
+  } catch {
+    return "bloom";
+  }
+}
+
+function subscribeTheme(callback: () => void) {
+  const onStorage = (event: StorageEvent) => {
+    if (event.key !== null && event.key !== "rhr-color-theme") return;
+    document.documentElement.dataset.theme = getStoredTheme();
+    callback();
+  };
+  window.addEventListener("storage", onStorage);
+  window.addEventListener("rhr-color-theme", callback);
+  return () => {
+    window.removeEventListener("storage", onStorage);
+    window.removeEventListener("rhr-color-theme", callback);
+  };
+}
+
+const colorThemes: { id: ColorTheme; label: string }[] = [
+  { id: "bloom", label: "Bloom" },
+  { id: "lagoon", label: "Lagoon" },
+  { id: "sunset", label: "Sunset" },
+];
+
+function ThemeSwatches({
+  activeTheme,
+  onSelect,
+  className = "",
+}: {
+  activeTheme: ColorTheme;
+  onSelect: (theme: ColorTheme) => void;
+  className?: string;
+}) {
+  return (
+    <div className={`theme-swatches ${className}`.trim()} role="group" aria-label="Color theme">
+      {colorThemes.map(({ id, label }) => (
+        <button
+          key={id}
+          className={`theme-swatch theme-swatch-${id}`}
+          type="button"
+          aria-label={`Use ${label} color theme`}
+          aria-pressed={activeTheme === id}
+          onClick={() => onSelect(id)}
+        >
+          <span aria-hidden="true" />
+        </button>
+      ))}
+    </div>
+  );
+}
 
 const tourStops: { branch: BranchId; caption: string; subcaption: string }[] = [
   {
@@ -827,6 +895,8 @@ export default function MangoExperience({
   const [projectFilter, setProjectFilter] = useState("");
   const [activeSection, setActiveSection] = useState<string>("home");
   const [scrolled, setScrolled] = useState(false);
+  const activeTheme = useSyncExternalStore(subscribeTheme, getThemeSnapshot, getServerThemeSnapshot);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const router = useRouter();
   const showHome = !initialBranch && !initialFocus;
   const treeStageRef = useRef<HTMLDivElement>(null);
@@ -837,6 +907,43 @@ export default function MangoExperience({
   const tourPauseButtonRef = useRef<HTMLButtonElement>(null);
   const tourStartTimeoutRef = useRef<number | null>(null);
   const focusTourPauseOnStartRef = useRef(false);
+  const scrollProgressRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let frame = 0;
+    let visible = false;
+    const updateScroll = () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = maxScroll > 0 ? Math.min(1, window.scrollY / maxScroll) : 0;
+        scrollProgressRef.current?.style.setProperty("transform", `scaleX(${progress})`);
+        const nextVisible = window.scrollY >= window.innerHeight;
+        if (nextVisible !== visible) {
+          visible = nextVisible;
+          setShowBackToTop(nextVisible);
+        }
+      });
+    };
+    updateScroll();
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    window.addEventListener("resize", updateScroll);
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateScroll);
+      window.removeEventListener("resize", updateScroll);
+    };
+  }, []);
+
+  function changeTheme(theme: ColorTheme) {
+    document.documentElement.dataset.theme = theme;
+    try {
+      window.localStorage.setItem("rhr-color-theme", theme);
+    } catch {
+      document.documentElement.dataset.theme = theme;
+    }
+    window.dispatchEvent(new Event("rhr-color-theme"));
+  }
   useEffect(() => {
     if (!listView || !focusListOnOpenRef.current) return;
     focusListOnOpenRef.current = false;
@@ -1304,6 +1411,7 @@ export default function MangoExperience({
         }
       }}
     >
+      <div className="scroll-progress" ref={scrollProgressRef} aria-hidden="true" />
       <header className={`site-header${scrolled ? " header-condensed" : ""}`}>
         <Link className="brand" href="/" onClick={goToTree} aria-label="Ratul Hasan Ruhan — home">
           <span className="brand-avatar"><Image src={profile.portrait} alt="" width={40} height={40} priority /></span>
@@ -1318,7 +1426,13 @@ export default function MangoExperience({
                 className={active ? "nav-active" : ""}
                 aria-current={active ? "location" : undefined}
                 type="button"
-                onClick={() => (link.branch ? openBranch(link.branch) : link.id === "home" ? goToTree() : goToSection(link.id))}
+                onClick={() =>
+                  link.branch
+                    ? openBranch(link.branch)
+                    : link.id === "home"
+                      ? goToTree()
+                      : goToSection(link.id === "education" ? "journey" : link.id)
+                }
               >
                 {link.label}
               </button>
@@ -1336,6 +1450,7 @@ export default function MangoExperience({
           </button>
           <a className="header-resume" href={profile.resume} download>Résumé</a>
           <Link className="header-language" href="/bn/" prefetch={false} aria-label="View Bangla portfolio">EN / বাং</Link>
+          <ThemeSwatches activeTheme={activeTheme} onSelect={changeTheme} className="header-theme-swatches" />
         </div>
       </header>
 
@@ -1356,7 +1471,6 @@ export default function MangoExperience({
             <FeaturedWork />
             <HomeJourney onContact={goToContact} />
             <WritingShelf writings={writings} onOpenAll={() => openBranch("writing")} />
-            <EducationSection />
             <MomentsGallery />
             <SkillMarquee />
           </>
@@ -1558,8 +1672,19 @@ export default function MangoExperience({
           !showHome && <FreshGarden writings={writings} repositories={repositories} />
         )}
 
-        <ContactSoil bangla={bangla} compact={showHome} />
+      <ContactSoil bangla={bangla} compact={showHome} />
       </main>
+
+      {showBackToTop && (
+        <button
+          className="back-to-top"
+          type="button"
+          aria-label="Back to top"
+          onClick={() => window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "instant" : "smooth" })}
+        >
+          <ArrowUp size={20} aria-hidden="true" />
+        </button>
+      )}
 
       {selectedBranch && !listView && (
         <BranchPanel
@@ -1645,7 +1770,7 @@ export default function MangoExperience({
                 <button type="button" onClick={() => goToSection("featured")}><BriefcaseBusiness size={16} aria-hidden="true" />Best work <span>Highlights</span></button>
                 <button type="button" onClick={toggleListView}><FolderKanban size={16} aria-hidden="true" />{listView ? "Tree view" : "List view"} <span>Browse everything</span></button>
                 <button type="button" onClick={() => goToSection("writing")}><PenLine size={16} aria-hidden="true" />Writing <span>Articles & notes</span></button>
-                <button type="button" onClick={() => goToSection("education")}><GraduationCap size={16} aria-hidden="true" />Education <span>Degrees & research</span></button>
+                <button type="button" onClick={() => goToSection("journey")}><GraduationCap size={16} aria-hidden="true" />Education <span>In the journey</span></button>
                 <button type="button" onClick={() => goToSection("moments")}><Camera size={16} aria-hidden="true" />Moments <span>Events & photos</span></button>
                 <button type="button" onClick={() => openBranch("projects")}><FolderKanban size={16} aria-hidden="true" />All projects <span>Everything I&apos;ve built</span></button>
                 <button type="button" onClick={() => openBranch("awards")}><Trophy size={16} aria-hidden="true" />Awards <span>Milestones</span></button>
@@ -1656,6 +1781,7 @@ export default function MangoExperience({
                 <a className="primary-action" href={profile.resume} download>Download résumé <span aria-hidden="true">↓</span></a>
                 <Link className="text-action" href="/bn/" prefetch={false}>বাংলা portfolio <span aria-hidden="true">↗</span></Link>
               </div>
+              <ThemeSwatches activeTheme={activeTheme} onSelect={changeTheme} className="menu-theme-swatches" />
               <div className="menu-link-groups">
                 <section><h3>Profiles</h3><div className="menu-social-links">
                   {profile.sameAs.filter((url) => !url.includes("ratulruhan.cv") && !url.includes("ratuler.vercel") && !url.includes("ratulhasan.web.app")).map((url) => (

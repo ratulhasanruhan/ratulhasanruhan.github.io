@@ -16,7 +16,7 @@ import {
   UsersRound,
   CalendarRange,
 } from "lucide-react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { branches, linkedinPosts, profile } from "@/data/catalog";
 import type { BranchId } from "@/data/types";
@@ -47,6 +47,8 @@ const credentials: { label: string; href: string; Icon: typeof Trophy }[] = [
     Icon: CodeXml,
   },
 ];
+
+const heroRoles = ["Mobile apps", "AI tools", "Programming languages", "Accessibility"];
 
 type StatTarget = { branch: BranchId } | { section: string };
 
@@ -109,6 +111,7 @@ export default function HomeHero({
   const reduce = useReducedMotion() ?? false;
   const heroRef = useRef<HTMLElement>(null);
   const [hoveredBranch, setHoveredBranch] = useState<BranchId | null>(null);
+  const [roleIndex, setRoleIndex] = useState(0);
   const [statsVisible, setStatsVisible] = useState(false);
   const [mountTree, setMountTree] = useState(false);
   const [treeReady, setTreeReady] = useState(false);
@@ -116,6 +119,14 @@ export default function HomeHero({
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const sceneY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 120]);
   const sceneOpacity = useTransform(scrollYProgress, [0, 0.8], [1, reduce ? 1 : 0.2]);
+
+  useEffect(() => {
+    if (reduce) return;
+    const timer = window.setInterval(() => {
+      setRoleIndex((index) => (index + 1) % heroRoles.length);
+    }, 2200);
+    return () => window.clearInterval(timer);
+  }, [reduce]);
 
   useEffect(() => {
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
@@ -191,7 +202,7 @@ export default function HomeHero({
       label: "Projects shipped",
       hint: "Open the projects",
       Icon: FolderKanban,
-      accent: "var(--accent)",
+      accent: "var(--violet)",
       target: { branch: "projects" },
     },
     {
@@ -201,7 +212,7 @@ export default function HomeHero({
       label: "Awards & honours",
       hint: "See the awards",
       Icon: Award,
-      accent: "var(--accent)",
+      accent: "var(--pink)",
       target: { branch: "awards" },
     },
     {
@@ -211,7 +222,7 @@ export default function HomeHero({
       label: "Articles written",
       hint: "Read the notes",
       Icon: PenLine,
-      accent: "var(--accent)",
+      accent: "var(--mango)",
       target: { section: "writing" },
     },
     {
@@ -221,7 +232,7 @@ export default function HomeHero({
       label: "Communities",
       hint: "Meet the people",
       Icon: UsersRound,
-      accent: "var(--accent)",
+      accent: "var(--teal)",
       target: { branch: "communities" },
     },
     {
@@ -231,7 +242,7 @@ export default function HomeHero({
       label: "Stages & events",
       hint: "View the moments",
       Icon: Camera,
-      accent: "var(--accent)",
+      accent: "var(--sky)",
       target: { section: "moments" },
     },
     {
@@ -241,7 +252,7 @@ export default function HomeHero({
       label: "Years building",
       hint: "Walk the journey",
       Icon: CalendarRange,
-      accent: "var(--accent)",
+      accent: "var(--leaf)",
       target: { section: "journey" },
     },
   ];
@@ -269,8 +280,28 @@ export default function HomeHero({
 
         <h1 id="hero-title" className="home-hero-title">Ratul Hasan Ruhan</h1>
 
+        <div className="home-hero-roles" aria-live="off">
+          {reduce ? (
+            <span className="home-hero-role">Mobile apps</span>
+          ) : (
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={heroRoles[roleIndex]}
+                className="home-hero-role"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.24, ease: "easeOut" }}
+              >
+                {heroRoles[roleIndex]}
+              </motion.span>
+            </AnimatePresence>
+          )}
+          <span className="sr-only">Mobile apps, AI tools, Programming languages, Accessibility</span>
+        </div>
+
         <p className="home-hero-deck">
-          Software engineer building programming languages, accessibility tools and offline-first systems for Bangladesh.
+          Software engineer · Creator of Ojogor · Dhaka
         </p>
 
         <div className="home-hero-actions">
